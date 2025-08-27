@@ -553,7 +553,7 @@
             }
         }
     </style>
-    <header class="header">
+    {{-- <header class="header">
         <nav class="nav-container">
             <div class="logo">
                 <div class="logo-icon">CB</div>
@@ -578,10 +578,10 @@
 
             <button class="mobile-menu-toggle" onclick="toggleMenu()">☰</button>
         </nav>
-    </header>
+    </header> --}}
 
     <!-- Hero Section -->
-    <main class="hero">
+    {{-- <main class="hero">
         <!-- Floating Elements -->
         <div class="floating-element">🏢</div>
         <div class="floating-element">🏠</div>
@@ -615,7 +615,7 @@
             </div>
 
         </div>
-    </main>
+    </main> --}}
 
 
     <!-- Spinner Start -->
@@ -785,7 +785,7 @@
                     <div class="collapse navbar-collapse" id="navbarCollapse">
                         <div class="navbar-nav ms-auto py-0">
                             <a href="index.html" class="nav-item nav-link active">Home</a>
-                            <a href="shop.html" class="nav-item nav-link">Shop</a>
+                            <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
                             <a href="single.html" class="nav-item nav-link">Single Page</a>
                             <div class="nav-item dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>

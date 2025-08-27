@@ -4,12 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class ShopController extends Controller
 {
-    public function index(){
-        return view('user.index');
-    }
-
     public function shop(){
         return view('user.shop');
     }
