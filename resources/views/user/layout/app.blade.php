@@ -34,7 +34,7 @@
 
 <body>
     {{-- Header --}}
-    {{-- @include('user.header') --}}
+    @include('user.layout.header')
 
     {{-- Sidebar (if you want a left menu) --}}
     {{-- @include('user-layout.sidebar') --}}
@@ -48,7 +48,7 @@
     {{-- @include('user-layout.footer') --}}
 
     {{-- Global JS --}}
-   
+   @include('user.layout.footer')
     @stack('scripts') {{-- page specific scripts --}}
 </body>
 

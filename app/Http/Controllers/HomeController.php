@@ -13,4 +13,9 @@ class HomeController extends Controller
     public function shop(){
         return view('user.shop');
     }
+
+    public function single(){
+        // dd('sdfsdf');
+        return view('user.single');
+    }
 }
