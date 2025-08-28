@@ -18,4 +18,7 @@ class HomeController extends Controller
         // dd('sdfsdf');
         return view('user.single');
     }
+    public function contact(){
+        return view('user.contact');
+    }
 }

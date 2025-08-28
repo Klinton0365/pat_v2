@@ -13,7 +13,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
+Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
 Route::get('/single-product', [HomeController::class, 'single'])->name('single-product');
+
+Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
 Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 Route::get('/best-seller', [BestSellerController::class, 'bestSeller'])->name('best-seller');

@@ -9,4 +9,8 @@ class ShopController extends Controller
     public function shop(){
         return view('user.shop');
     }
+
+    public function checkout(){
+        return view('user.checkout');
+    }
 }
