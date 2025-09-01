@@ -16,14 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/register', [AuthController::class, 'register'])->name('register');
+Route::get('/Register', [AuthController::class, 'register'])->name('Register');
 
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
 Route::get('/single-product', [HomeController::class, 'single'])->name('single-product');
 
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
-
 
 Route::get('/best-seller', [BestSellerController::class, 'bestSeller'])->name('best-seller');
 

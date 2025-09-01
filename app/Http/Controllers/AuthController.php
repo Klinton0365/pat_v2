@@ -14,6 +14,7 @@ class AuthController extends Controller
      */
     public function register(Request $request)
     {
+        dd($request->all());
         $request->validate([
             'first_name' => 'required|string|max:255',
             'last_name'  => 'nullable|string|max:255',
