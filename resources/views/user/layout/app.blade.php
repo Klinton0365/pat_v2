@@ -22,7 +22,6 @@
     <link href="lib/animate/animate.min.css" rel="stylesheet">
     <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
 
-
     <!-- Customized Bootstrap Stylesheet -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -30,7 +29,6 @@
     <link href="css/style.css" rel="stylesheet">
     @stack('styles')
 </head>
-
 
 <body>
     {{-- Header --}}
@@ -48,7 +46,7 @@
     {{-- @include('user-layout.footer') --}}
 
     {{-- Global JS --}}
-   @include('user.layout.footer')
+    @include('user.layout.footer')
     @stack('scripts') {{-- page specific scripts --}}
 </body>
 
