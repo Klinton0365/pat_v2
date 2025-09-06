@@ -34,8 +34,14 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 });
 
-Route::middleware(['auth:sanctum', 'isAdmin'])->group(function () {
-    // Example admin-only routes
+
+
+
+// ADMIN
+Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
+Route::post('/admin/login', [AdminController::class, 'authenticate'])->name('admin.authenticate');
+
+Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
-    // you can add more admin-specific routes here
+    Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
 });

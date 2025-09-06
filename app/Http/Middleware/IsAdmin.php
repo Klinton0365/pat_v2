@@ -3,25 +3,23 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Request;
-use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Admin;
 
 class IsAdmin
 {
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
-        // Assuming your "admins" table is linked to users
-        $user = $request->user();
-        dd($user);
-        if (!$user || !$user->admin) { // if no related admin
-            abort(403, 'Access denied. Admins only.');
+        if (Auth::check()) {
+            $user = Auth::user();
+
+            $isAdmin = Admin::where('user_id', $user->id)->where('is_active', true)->exists();
+
+            if ($isAdmin) {
+                return $next($request);
+            }
         }
 
-        // Optional: check role
-        if ($user->admin->role !== 'super_admin') {
-            abort(403, 'You do not have the required admin privileges.');
-        }
-
-        return $next($request);
+        return redirect()->route('admin.login')->withErrors('Access denied. Admins only.');
     }
 }
