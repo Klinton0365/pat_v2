@@ -58,6 +58,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('orders', AdminOrderController::class);
     Route::resource('inventories', AdminInventoryController::class);
     Route::resource('service-requests', AdminServiceRequestController::class);
+
+    
 });
 
 // Admin Panel

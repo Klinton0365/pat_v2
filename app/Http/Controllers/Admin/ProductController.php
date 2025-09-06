@@ -12,7 +12,7 @@ class AdminProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category', 'inventory')->get();
+        $products = Product::with('category')->latest()->get();
         return view('admin.products.index', compact('products'));
     }
 
@@ -24,8 +24,37 @@ class AdminProductController extends Controller
 
     public function store(Request $request)
     {
-        $product = Product::create($request->all());
-        Inventory::create(['product_id' => $product->id, 'stock' => $request->stock ?? 0]);
-        return redirect()->route('admin.products.index');
+        $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+        ]);
+
+        Product::create($request->all());
+        return redirect()->route('products.index')->with('success', 'Product created successfully');
+    }
+
+    public function edit(Product $product)
+    {
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'category_id' => 'required|exists:categories,id',
+            'name' => 'required|string|max:255',
+            'price' => 'required|numeric',
+        ]);
+
+        $product->update($request->all());
+        return redirect()->route('products.index')->with('success', 'Product updated successfully');
+    }
+
+    public function destroy(Product $product)
+    {
+        $product->delete();
+        return redirect()->route('products.index')->with('success', 'Product deleted successfully');
     }
 }
