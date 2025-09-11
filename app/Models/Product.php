@@ -6,13 +6,20 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = [
-        'category_id',
-        'name',
-        'description',
-        'price',
-        'warranty_months'
-    ];
+   protected $fillable = [
+    'category_id',
+    'name',
+    'description',
+    'price',
+    'warranty_months',
+    'main_image',
+    'product_images',
+];
+
+protected $casts = [
+    'product_images' => 'array',
+];
+
 
     public function category()
     {
