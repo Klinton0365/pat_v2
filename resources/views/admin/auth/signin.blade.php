@@ -58,12 +58,12 @@
                             @csrf
 
                             <div class="form-floating mb-3">
-                                <input type="email" name="email" class="form-control" id="floatingInput" placeholder="name@example.com" required>
+                                <input type="email" name="email" class="form-control" id="floatingInput" value="klinton.dev@gmail.com" placeholder="name@example.com" required>
                                 <label for="floatingInput">Email address</label>
                             </div>
 
                             <div class="form-floating mb-4">
-                                <input type="password" name="password" class="form-control" id="floatingPassword" placeholder="Password" required>
+                                <input type="password" name="password" class="form-control" id="floatingPassword" value="Notnilk" placeholder="Password" required>
                                 <label for="floatingPassword">Password</label>
                             </div>
 

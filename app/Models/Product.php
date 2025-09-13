@@ -6,21 +6,21 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-   protected $fillable = [
-    'category_id',
-    'name',
-    'description',
-    'price',
-    'warranty_months',
-    'main_image',
-    'product_images',
-];
 
-protected $casts = [
-    'product_images' => 'array',
-];
+    protected $fillable = [
+        'category_id', 'name', 'slug', 'description',
+        'price', 'discount', 'warranty_months', 'main_image',
+        'product_images', 'colors', 'stock', 'sku',
+        'is_published', 'publish_home', 'featured',
+        'views', 'rating',
+    ];
 
+    protected $casts = [
+        'product_images' => 'array',
+        'colors' => 'array', // ✅ auto decode JSON
+    ];
 
+    // Relationships
     public function category()
     {
         return $this->belongsTo(Category::class);
