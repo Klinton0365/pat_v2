@@ -128,9 +128,10 @@
                     <div class="mb-3 text-start">
                         <label for="product_images" class="form-label">Product Images (Multiple)</label>
                         <input type="file" name="product_images[]" class="form-control" accept="image/*" multiple>
-                       @foreach ($product->product_images as $img)
-    <img src="{{ asset('storage/' . $img) }}" alt="Gallery Image" width="100" class="me-2 mb-2">
-@endforeach
+                        @foreach ($product->product_images as $img)
+                            <img src="{{ asset('storage/' . $img) }}" alt="Gallery Image" width="100"
+                                class="me-2 mb-2">
+                        @endforeach
 
                         @error('product_images')
                             <span class="text-danger">{{ $message }}</span>

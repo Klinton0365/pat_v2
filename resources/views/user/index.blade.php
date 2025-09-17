@@ -791,7 +791,7 @@
                     <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
                         <h1>Our Products</h1>
                     </div>
-                    <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+                    {{-- <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
                             <li class="nav-item mb-4">
                                 <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
@@ -812,6 +812,16 @@
                             <li class="nav-item mb-4">
                                 <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
                                     <span class="text-dark" style="width: 130px;">Top Selling</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div> --}}
+                    <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+                        <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                            <li class="nav-item mb-4">
+                                <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
+                                    href="#tab-1">
+                                    <span class="text-dark" style="width: 130px;">All Products</span>
                                 </a>
                             </li>
                         </ul>

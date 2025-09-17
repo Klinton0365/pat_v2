@@ -302,7 +302,7 @@
                                 class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
                                     class="fa fa-shopping-bag me-2 text-white"></i> Add to cart</a>
                         </div>
-                        <div class="col-lg-12">
+                        {{-- <div class="col-lg-12">
                             <nav>
                                 <div class="nav nav-tabs mb-3">
                                     <button class="nav-link active border-white border-bottom-0" type="button"
@@ -394,7 +394,7 @@
                                         Clita erat ipsum et lorem et sit</p>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                         <form action="#">
                             <h4 class="mb-5 fw-bold">Leave a Reply</h4>
                             <div class="row g-4">

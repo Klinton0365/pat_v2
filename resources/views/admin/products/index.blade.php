@@ -15,6 +15,7 @@
                     <tr class="text-white">
                         <th>#</th>
                         <th>Name</th>
+                        <th>Image</th>
                         <th>Category</th>
                         <th>Price</th>
                         <th>Warranty (Months)</th>
@@ -27,6 +28,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $product->name }}</td>
+                            <td><img src="{{ asset('storage/' . $product->main_image) }}" alt="Main Image"
+                                    width="100"></td>
                             <td>{{ $product->category->name }}</td>
                             <td>${{ number_format($product->price, 2) }}</td>
                             <td>{{ $product->warranty_months ?? 'N/A' }}</td>
