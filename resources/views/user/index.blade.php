@@ -654,8 +654,7 @@
             </div>
             <div class="col-12 col-lg-5 col-xl-3 wow fadeInRight" data-wow-delay="0.1s">
                 <div class="carousel-header-banner h-100">
-                    <img src="img/header-img.jpg" class="img-fluid w-100 h-100" style="object-fit: cover;"
-                        alt="Image">
+                    <img src="img/header-img.jpg" class="img-fluid w-100 h-100" style="object-fit: cover;" alt="Image">
                     <div class="carousel-banner-offer">
                         <p class="bg-primary text-white rounded fs-5 py-2 px-4 mb-0 me-3">Save $48.00</p>
                         <p class="text-primary fs-5 fw-bold mb-0">Special Offer</p>
@@ -784,14 +783,14 @@
 
 
     <!-- Our Products Start -->
-    <div class="container-fluid product py-5">
+     <div class="container-fluid product py-5">
         <div class="container py-5">
             <div class="tab-class">
                 <div class="row g-4">
                     <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
                         <h1>Our Products</h1>
                     </div>
-                    {{-- <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+                    <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
                         <ul class="nav nav-pills d-inline-flex text-center mb-5">
                             <li class="nav-item mb-4">
                                 <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
@@ -812,16 +811,6 @@
                             <li class="nav-item mb-4">
                                 <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
                                     <span class="text-dark" style="width: 130px;">Top Selling</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </div> --}}
-                    <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
-                        <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                            <li class="nav-item mb-4">
-                                <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
-                                    href="#tab-1">
-                                    <span class="text-dark" style="width: 130px;">All Products</span>
                                 </a>
                             </li>
                         </ul>
@@ -1723,6 +1712,233 @@
             </div>
         </div>
     </div>
+    
+    <div class="container-fluid product py-5">
+    <div class="container py-5">
+        <div class="tab-class">
+            <div class="row g-4">
+                <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
+                    <h1>Our Products</h1>
+                </div>
+                <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+                    <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                        <!-- All Products Tab -->
+                        <li class="nav-item mb-4">
+                            <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
+                                href="#tab-all" data-category="all">
+                                <span class="text-dark" style="width: 130px;">All Products</span>
+                            </a>
+                        </li>
+                        
+                        <!-- Dynamic Category Tabs -->
+                        @foreach($categories as $index => $category)
+                        <li class="nav-item mb-4">
+                            <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill" 
+                                href="#tab-{{ $category->id }}" data-category="{{ $category->id }}">
+                                <span class="text-dark" style="width: 130px;">{{ $category->name }}</span>
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Tab Content -->
+            <div class="tab-content">
+                <!-- All Products Tab -->
+                <div id="tab-all" class="tab-pane fade show p-0 active">
+                    <div class="row g-4" id="products-container">
+                        @foreach($products as $product)
+                        <div class="col-md-6 col-lg-4 col-xl-3 product-item-wrapper" data-category="{{ $product->category_id }}">
+                            <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                <div class="product-item-inner border rounded">
+                                    <div class="product-item-inner-item">
+                                        <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}" 
+                                             class="img-fluid w-100 rounded-top" alt="{{ $product->name }}">
+                                        
+                                        @if($product->featured)
+                                        <div class="product-new">Featured</div>
+                                        @endif
+                                        
+                                        @if($product->discount > 0)
+                                        <div class="product-sale">Sale</div>
+                                        @endif
+                                        
+                                         <div class="product-details">
+                                            <a href="{{ route('product.show', $product->id) }}">
+                                                <i class="fa fa-eye fa-1x"></i>
+                                            </a>
+                                        </div> 
+                                    </div>
+                                    <div class="text-center rounded-bottom p-4">
+                                        <a href="#" class="d-block mb-2">{{ $product->category->name }}</a>
+                                       <a href="{{ route('product.show', $product->id) }}" class="d-block h4">
+                                            {{ $product->name }}
+                                        </a>
+                                        @if($product->discount > 0)
+                                        <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
+                                        <span class="text-primary fs-5">${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</span>
+                                        @else
+                                        <span class="text-primary fs-5">${{ number_format($product->price, 2) }}</span>
+                                        @endif
+                                    </div>
+                                </div>
+                                <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
+                                    <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4 add-to-cart"
+                                       data-product-id="{{ $product->id }}">
+                                        <i class="fas fa-shopping-cart me-2"></i> Add To Cart
+                                    </a>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="d-flex">
+                                            @for($i = 1; $i <= 5; $i++)
+                                                @if($i <= ($product->rating ?? 4))
+                                                    <i class="fas fa-star text-primary"></i>
+                                                @else
+                                                    <i class="fas fa-star"></i>
+                                                @endif
+                                            @endfor
+                                        </div>
+                                        <div class="d-flex">
+                                            <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3">
+                                                <span class="rounded-circle btn-sm-square border">
+                                                    <i class="fas fa-random"></i>
+                                                </span>
+                                            </a>
+                                            <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0 wishlist-btn"
+                                               data-product-id="{{ $product->id }}">
+                                                <span class="rounded-circle btn-sm-square border">
+                                                    <i class="fas fa-heart"></i>
+                                                </span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+                
+                <!-- Individual Category Tabs -->
+                @foreach($categories as $category)
+                <div id="tab-{{ $category->id }}" class="tab-pane fade show p-0">
+                    <div class="row g-4">
+                        <!-- Products will be filtered and shown here via JavaScript -->
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const categoryTabs = document.querySelectorAll('[data-category]');
+    const allProducts = document.querySelectorAll('.product-item-wrapper');
+    
+    categoryTabs.forEach(tab => {
+        tab.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            const categoryId = this.getAttribute('data-category');
+            const targetTabId = this.getAttribute('href');
+            const targetTab = document.querySelector(targetTabId);
+            
+            // Remove active class from all tabs
+            categoryTabs.forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('show', 'active');
+            });
+            
+            // Add active class to clicked tab
+            this.classList.add('active');
+            targetTab.classList.add('show', 'active');
+            
+            // Filter and display products
+            if (categoryId === 'all') {
+                // Show all products in the main container
+                const mainContainer = document.querySelector('#tab-all .row');
+                mainContainer.innerHTML = '';
+                
+                allProducts.forEach(product => {
+                    mainContainer.appendChild(product.cloneNode(true));
+                });
+            } else {
+                // Filter products for specific category
+                const categoryContainer = targetTab.querySelector('.row');
+                categoryContainer.innerHTML = '';
+                
+                allProducts.forEach(product => {
+                    if (product.getAttribute('data-category') === categoryId) {
+                        categoryContainer.appendChild(product.cloneNode(true));
+                    }
+                });
+            }
+            
+            // Re-initialize any animations or effects
+            if (typeof WOW !== 'undefined') {
+                new WOW().init();
+            }
+        });
+    });
+    
+    // Add to cart functionality
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.add-to-cart')) {
+            e.preventDefault();
+            const productId = e.target.closest('.add-to-cart').getAttribute('data-product-id');
+            // Add your cart logic here
+            console.log('Adding product to cart:', productId);
+        }
+        
+        if (e.target.closest('.wishlist-btn')) {
+            e.preventDefault();
+            const productId = e.target.closest('.wishlist-btn').getAttribute('data-product-id');
+            // Add your wishlist logic here
+            console.log('Adding product to wishlist:', productId);
+        }
+    });
+});
+</script>
+
+<style>
+.product-item-wrapper {
+    transition: all 0.3s ease;
+}
+
+.product-new {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #28a745;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.product-sale {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: #dc3545;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 12px;
+    z-index: 1;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #007bff !important;
+}
+
+.nav-pills .nav-link.active span {
+    color: white !important;
+}
+</style>
     <!-- Our Products End -->
 
     <!-- Product Banner Start -->
@@ -1751,8 +1967,7 @@
                                 style="background: rgba(242, 139, 0, 0.5);">
                                 <h2 class="display-2 text-secondary">SALE</h2>
                                 <h4 class="display-5 text-white mb-4">Get UP To 50% Off</h4>
-                                <a href="#"
-                                    class="btn btn-secondary rounded-pill align-self-center py-2 px-4">Shop
+                                <a href="#" class="btn btn-secondary rounded-pill align-self-center py-2 px-4">Shop
                                     Now</a>
                             </div>
                         </div>
@@ -1798,8 +2013,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -1831,8 +2045,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -1864,8 +2077,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -1897,8 +2109,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -1932,8 +2143,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -1965,8 +2175,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -1998,8 +2207,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2031,8 +2239,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2066,8 +2273,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2099,8 +2305,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2132,8 +2337,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2165,8 +2369,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2200,8 +2403,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2233,8 +2435,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2266,8 +2467,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2317,8 +2517,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2352,8 +2551,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2387,8 +2585,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2422,8 +2619,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2457,8 +2653,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
@@ -2492,8 +2687,7 @@
                             <div class="d-flex">
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
                                 <a href="#"
                                     class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
