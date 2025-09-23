@@ -32,6 +32,9 @@ public function productShow(){
         // dd('sdfsdf');
         return view('user.single');
     }
+
+   
+
     public function contact(){
         return view('user.contact');
     }

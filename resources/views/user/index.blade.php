@@ -783,7 +783,7 @@
 
 
     <!-- Our Products Start -->
-     <div class="container-fluid product py-5">
+    <!-- <div class="container-fluid product py-5">
         <div class="container py-5">
             <div class="tab-class">
                 <div class="row g-4">
@@ -1711,9 +1711,9 @@
                 </div>
             </div>
         </div>
-    </div>
-    
-    <div class="container-fluid product py-5">
+    </div>-->
+
+<div class="container-fluid product py-5">
     <div class="container py-5">
         <div class="tab-class">
             <div class="row g-4">
@@ -1765,16 +1765,24 @@
                                         @endif
                                         
                                          <div class="product-details">
-                                            <a href="{{ route('product.show', $product->id) }}">
+                                            {{-- - <a href="{{ route('product.show', $product->id) }}">
+                                                <i class="fa fa-eye fa-1x"></i>
+                                            </a>--}} 
+                                            <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                                                 <i class="fa fa-eye fa-1x"></i>
                                             </a>
+
                                         </div> 
                                     </div>
                                     <div class="text-center rounded-bottom p-4">
-                                        <a href="#" class="d-block mb-2">{{ $product->category->name }}</a>
-                                       <a href="{{ route('product.show', $product->id) }}" class="d-block h4">
+                                        {{-- - <a href="#" class="d-block mb-2">{{ $product->category->name }}</a>--}}
+                                        {{-- -<a href="{{ route('product.show', $product->id) }}" class="d-block h4">
+                                            {{ $product->name }}
+                                        </a> --}}
+                                        <a href="{{ route('product.show', [$product->id, $product->slug]) }}" class="d-block h4">
                                             {{ $product->name }}
                                         </a>
+
                                         @if($product->discount > 0)
                                         <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
                                         <span class="text-primary fs-5">${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</span>

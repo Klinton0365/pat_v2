@@ -27,7 +27,10 @@ Route::get('/Register', [AuthController::class, 'register'])->name('Register');
 
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
-Route::get('/product/{slug}', [ShopController::class, 'shop'])->name('product.show');
+// Route::get('/product/{slug}', [ShopController::class, 'shop'])->name('product.show');
+
+Route::get('/product/{id}/{slug}', [ShopController::class, 'show'])->name('product.show');
+
 
 Route::get('/single-product', [HomeController::class, 'single'])->name('single-product');
 

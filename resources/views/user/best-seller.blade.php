@@ -1,6 +1,6 @@
 @extends('user.layout.app')
-@section('content')
 
+@section('content')
 
     <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
