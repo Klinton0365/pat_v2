@@ -1779,9 +1779,26 @@
                                         {{-- -<a href="{{ route('product.show', $product->id) }}" class="d-block h4">
                                             {{ $product->name }}
                                         </a> --}}
-                                        <a href="{{ route('product.show', [$product->id, $product->slug]) }}" class="d-block h4">
+                                        <style>
+                                        .product-name {
+                                            display: -webkit-box;
+                                            -webkit-line-clamp: 2;   /* limit to 2 lines */
+                                            -webkit-box-orient: vertical;
+                                            overflow: hidden;
+                                            text-overflow: ellipsis;
+                                            line-height: 1.4em;
+                                            max-height: 2.8em;       /* 2 lines * line height */
+                                            white-space: normal;
+                                        }
+                                        </style>
+                                        <a href="{{ route('product.show', [$product->id, $product->slug]) }}" 
+                                        class="d-block h4 product-name">
                                             {{ $product->name }}
                                         </a>
+
+                                        {{--<a href="{{ route('product.show', [$product->id, $product->slug]) }}" class="d-block h4">
+                                            {{ $product->name }}
+                                        </a>--}}
 
                                         @if($product->discount > 0)
                                         <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
