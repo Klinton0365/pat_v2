@@ -1,6 +1,7 @@
 @extends('user.layout.app')
+
 @section('content')
-<!-- Single Page Header start -->
+    <!-- Single Page Header start -->
     <div class="container-fluid page-header py-5">
         <h1 class="text-center text-white display-6 wow fadeInUp" data-wow-delay="0.1s">Single Product</h1>
         <ol class="breadcrumb justify-content-center mb-0 wow fadeInUp" data-wow-delay="0.3s">
@@ -10,7 +11,6 @@
         </ol>
     </div>
     <!-- Single Page Header End -->
-
 
     <!-- Single Products Start -->
     <div class="container-fluid shop py-5">
@@ -224,36 +224,32 @@
                         </div>
                     </div>
                 </div>
-                {{-- - <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
+
+                <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="row g-4 single-product">
                         <div class="col-xl-6">
                             <div class="single-carousel owl-carousel">
-                                <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-4.png' alt=''>">
+                                <div class="single-item" data-dot="<img class='img-fluid' src='img/product-4.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
                                         <img src="img/product-4.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
-                                <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-5.png' alt=''>">
+                                <div class="single-item" data-dot="<img class='img-fluid' src='img/product-5.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
                                         <img src="img/product-5.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
-                                <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-6.png' alt=''>">
+                                <div class="single-item" data-dot="<img class='img-fluid' src='img/product-6.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
                                         <img src="img/product-6.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
-                                <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-7.png' alt=''>">
+                                <div class="single-item" data-dot="<img class='img-fluid' src='img/product-7.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
                                         <img src="img/product-7.png" class="img-fluid rounded" alt="Image">
                                     </div>
                                 </div>
-                                <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='img/product-3.png' alt=''>">
+                                <div class="single-item" data-dot="<img class='img-fluid' src='img/product-3.png' alt=''>">
                                     <div class="single-inner bg-light rounded">
                                         <img src="img/product-3.png" class="img-fluid rounded" alt="Image">
                                     </div>
@@ -302,7 +298,7 @@
                                 class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary"><i
                                     class="fa fa-shopping-bag me-2 text-white"></i> Add to cart</a>
                         </div>
-                        
+
                         <form action="#">
                             <h4 class="mb-5 fw-bold">Leave a Reply</h4>
                             <div class="row g-4">
@@ -342,84 +338,92 @@
                             </div>
                         </form>
                     </div>
-                </div>--}}
-                <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
-    <div class="row g-4 single-product">
-        <div class="col-xl-6">
-            <div class="single-carousel owl-carousel">
-                {{-- Main Image --}}
-                <div class="single-item" data-dot="<img class='img-fluid' src='{{ asset('storage/'.$product->main_image) }}' alt=''>">
-                    <div class="single-inner bg-light rounded">
-                        <img src="{{ asset('storage/'.$product->main_image) }}" class="img-fluid rounded" alt="{{ $product->name }}">
-                    </div>
                 </div>
 
-                {{-- Extra Images --}}
-                @if($product->product_images)
-                    @foreach(json_decode($product->product_images) as $img)
-                        <div class="single-item" data-dot="<img class='img-fluid' src='{{ asset('storage/'.$img) }}' alt=''>">
-                            <div class="single-inner bg-light rounded">
-                                <img src="{{ asset('storage/'.$img) }}" class="img-fluid rounded" alt="{{ $product->name }}">
+                {{-- <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="row g-4 single-product">
+                        <div class="col-xl-6">
+                            <div class="single-carousel owl-carousel">
+
+                                <div class="single-item"
+                                    data-dot="<img class='img-fluid' src='{{ asset('storage/' . $product->main_image) }}' alt=''>">
+                                    <div class="single-inner bg-light rounded">
+                                        <img src="{{ asset('storage/' . $product->main_image) }}" class="img-fluid rounded"
+                                            alt="{{ $product->name }}">
+                                    </div>
+                                </div>
+
+
+                                @if($product->product_images)
+                                @foreach(json_decode($product->product_images) as $img)
+                                <div class="single-item"
+                                    data-dot="<img class='img-fluid' src='{{ asset('storage/' . $img) }}' alt=''>">
+                                    <div class="single-inner bg-light rounded">
+                                        <img src="{{ asset('storage/' . $img) }}" class="img-fluid rounded"
+                                            alt="{{ $product->name }}">
+                                    </div>
+                                </div>
+                                @endforeach
+                                @endif
                             </div>
                         </div>
-                    @endforeach
-                @endif
-            </div>
-        </div>
 
-        <div class="col-xl-6">
-            <h4 class="fw-bold mb-3">{{ $product->name }}</h4>
-            <p class="mb-3">Category: {{ $product->category->name }}</p>
+                        <div class="col-xl-6">
+                            <h4 class="fw-bold mb-3">{{ $product->name }}</h4>
+                            <p class="mb-3">Category: {{ $product->category->name }}</p>
 
-            @if($product->discount > 0)
-                <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
-                <h5 class="fw-bold mb-3">${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</h5>
-            @else
-                <h5 class="fw-bold mb-3">${{ number_format($product->price, 2) }}</h5>
-            @endif
+                            @if($product->discount > 0)
+                            <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
+                            <h5 class="fw-bold mb-3">
+                                ${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</h5>
+                            @else
+                            <h5 class="fw-bold mb-3">${{ number_format($product->price, 2) }}</h5>
+                            @endif
 
-            {{-- Rating --}}
-            <div class="d-flex mb-4">
-                @for($i = 1; $i <= 5; $i++)
-                    @if($i <= round($product->rating))
-                        <i class="fa fa-star text-secondary"></i>
-                    @else
-                        <i class="fa fa-star"></i>
-                    @endif
-                @endfor
-            </div>
 
-            {{-- Stock & SKU --}}
-            <div class="d-flex flex-column mb-3">
-                <small>Product SKU: {{ $product->sku ?? 'N/A' }}</small>
-                <small>Available: 
-                    <strong class="text-primary">{{ $product->stock > 0 ? $product->stock.' items in stock' : 'Out of stock' }}</strong>
-                </small>
-            </div>
+                            <div class="d-flex mb-4">
+                                @for($i = 1; $i <= 5; $i++) @if($i <=round($product->rating))
+                                    <i class="fa fa-star text-secondary"></i>
+                                    @else
+                                    <i class="fa fa-star"></i>
+                                    @endif
+                                    @endfor
+                            </div>
 
-            {{-- Description --}}
-            <p class="mb-4">{{ $product->description }}</p>
 
-            {{-- Quantity --}}
-            <div class="input-group quantity mb-5" style="width: 100px;">
-                <div class="input-group-btn">
-                    <button class="btn btn-sm btn-minus rounded-circle bg-light border"><i class="fa fa-minus"></i></button>
-                </div>
-                <input type="text" class="form-control form-control-sm text-center border-0" value="1">
-                <div class="input-group-btn">
-                    <button class="btn btn-sm btn-plus rounded-circle bg-light border"><i class="fa fa-plus"></i></button>
-                </div>
-            </div>
+                            <div class="d-flex flex-column mb-3">
+                                <small>Product SKU: {{ $product->sku ?? 'N/A' }}</small>
+                                <small>Available:
+                                    <strong class="text-primary">{{ $product->stock > 0 ? $product->stock . ' items in
+                                        stock' : 'Out of stock' }}</strong>
+                                </small>
+                            </div>
 
-            {{-- Add to Cart --}}
-            <a href="#" 
-                class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary add-to-cart"
-                data-product-id="{{ $product->id }}">
-                <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
-            </a>
-        </div>
-    </div>
-</div>
+
+                            <p class="mb-4">{{ $product->description }}</p>
+
+
+                            <div class="input-group quantity mb-5" style="width: 100px;">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-minus rounded-circle bg-light border"><i
+                                            class="fa fa-minus"></i></button>
+                                </div>
+                                <input type="text" class="form-control form-control-sm text-center border-0" value="1">
+                                <div class="input-group-btn">
+                                    <button class="btn btn-sm btn-plus rounded-circle bg-light border"><i
+                                            class="fa fa-plus"></i></button>
+                                </div>
+                            </div>
+
+
+                            <a href="#"
+                                class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary add-to-cart"
+                                data-product-id="{{ $product->id }}">
+                                <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
+                            </a>
+                        </div>
+                    </div>
+                </div> --}}
 
             </div>
         </div>
@@ -464,12 +468,9 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -503,12 +504,9 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -542,12 +540,9 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -581,12 +576,9 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -620,12 +612,9 @@
                                 <i class="fas fa-star"></i>
                             </div>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -635,4 +624,4 @@
         </div>
     </div>
     <!-- Related Product End -->
-    @endsection
+@endsection

@@ -29,8 +29,7 @@ Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
 // Route::get('/product/{slug}', [ShopController::class, 'shop'])->name('product.show');
 
-Route::get('/product/{id}/{slug}', [ShopController::class, 'show'])->name('product.show');
-
+Route::get('/product/{id}', [ShopController::class, 'show'])->name('product.show');
 
 Route::get('/single-product', [HomeController::class, 'single'])->name('single-product');
 
@@ -63,8 +62,6 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('orders', AdminOrderController::class);
     Route::resource('inventories', AdminInventoryController::class);
     Route::resource('service-requests', AdminServiceRequestController::class);
-
-    
 });
 
 // Admin Panel
