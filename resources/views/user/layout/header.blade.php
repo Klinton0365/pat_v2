@@ -164,8 +164,8 @@
                     <div class="navbar-nav ms-auto py-0">
                         <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
                         <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
-                        <a href="{{ route('single-product') }}" class="nav-item nav-link">Single Page</a>
-                        <div class="nav-item dropdown">
+                        {{-- <a href="{{ route('single-product') }}" class="nav-item nav-link">Single Page</a> --}}
+                        {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">
                                 <a href="{{ route('best-seller') }}" class="dropdown-item">Bestseller</a>
@@ -173,8 +173,8 @@
                                 <a href="{{ route('checkout') }}" class="dropdown-item">Cheackout</a>
                                 <a href="{{ route('shop') }}" class="dropdown-item">404 Page</a>
                             </div>
-                        </div>
-                        <a href="contact.html" class="nav-item nav-link me-2">Contact</a>
+                        </div> --}}
+                        <a href="{{ route('contact') }}" class="nav-item nav-link me-2">Contact</a>
                         <div class="nav-item dropdown d-block d-lg-none mb-3">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All
                                 Category</a>
