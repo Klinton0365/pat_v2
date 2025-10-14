@@ -40,6 +40,11 @@ class HomeController extends Controller
 
     public function contact()
     {
-        return view('user.contact');
+
+        $categories = Category::withCount('products')
+            // ->where('status', 'active')
+            ->get();
+
+        return view('user.contact', compact('categories'));
     }
 }

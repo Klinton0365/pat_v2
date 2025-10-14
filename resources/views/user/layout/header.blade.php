@@ -2,11 +2,13 @@
 <div class="container-fluid px-5 d-none border-bottom d-lg-block">
     <div class="row gx-0 align-items-center">
         <div class="col-lg-4 text-center text-lg-start mb-lg-0">
-            <div class="d-inline-flex align-items-center" style="height: 45px;">
+            {{-- <div class="d-inline-flex align-items-center" style="height: 45px;">
                 <a href="#" class="text-muted me-2"> Help</a><small> / </small>
                 <a href="#" class="text-muted mx-2"> Support</a><small> / </small>
                 <a href="#" class="text-muted ms-2"> Contact</a>
-
+            </div> --}}
+            <div class="d-inline-flex align-items-center" style="height: 45px;">
+                <a href="#" class="text-muted me-2"> GST : </a><small></small>
             </div>
         </div>
         <div class="col-lg-4 text-center d-flex align-items-center justify-content-center">
@@ -16,7 +18,7 @@
 
         <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <div class="dropdown">
+                {{-- <div class="dropdown">
                     <a href="#" class="dropdown-toggle text-muted me-2" data-bs-toggle="dropdown"><small>
                             USD</small></a>
                     <div class="dropdown-menu rounded">
@@ -33,7 +35,7 @@
                         <a href="#" class="dropdown-item"> Spanol</a>
                         <a href="#" class="dropdown-item"> Italiano</a>
                     </div>
-                </div>
+                </div> --}}
                 <div class="dropdown">
                     <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i
                                 class="fa fa-home me-2"></i> My Dashboard</small></a>
@@ -76,7 +78,7 @@
                         <option value="Pest Control-5">Category 4</option>
                     </select> --}}
                     <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
-                        <option value="">All Categories</option>
+                        <option value=""> Categories</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
@@ -89,10 +91,10 @@
         </div>
         <div class="col-md-4 col-lg-3 text-center text-lg-end">
             <div class="d-inline-flex align-items-center">
-                <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
+                {{-- <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
                         class="rounded-circle btn-md-square border"><i class="fas fa-random"></i></i></a>
                 <a href="#" class="text-muted d-flex align-items-center justify-content-center me-3"><span
-                        class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a>
+                        class="rounded-circle btn-md-square border"><i class="fas fa-heart"></i></a> --}}
                 <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span
                         class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
                     <span class="text-dark ms-2">$0.00</span></a>
@@ -111,43 +113,23 @@
                     data-bs-toggle="collapse" data-bs-target="#allCat">
                     <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
                 </button>
+
                 <div class="collapse navbar-collapse rounded-bottom" id="allCat">
                     <div class="navbar-nav ms-auto py-0">
                         <ul class="list-unstyled categories-bars">
-                            <li>
-                                <div class="categories-bars-item">
-                                    <a href="#">Accessories</a>
-                                    <span>(3)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-bars-item">
-                                    <a href="#">Electronics & Computer</a>
-                                    <span>(5)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-bars-item">
-                                    <a href="#">Laptops & Desktops</a>
-                                    <span>(2)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-bars-item">
-                                    <a href="#">Mobiles & Tablets</a>
-                                    <span>(8)</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="categories-bars-item">
-                                    <a href="#">SmartPhone & Smart TV</a>
-                                    <span>(5)</span>
-                                </div>
-                            </li>
+                            @foreach($categories as $category)
+                                <li>
+                                    <div class="categories-bars-item">
+                                        <a href="#">{{ $category->name }}</a>
+                                        <span>({{ $category->products_count }})</span>
+                                    </div>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </nav>
+
         </div>
         <div class="col-12 col-lg-9">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
@@ -175,44 +157,7 @@
                             </div>
                         </div> --}}
                         <a href="{{ route('contact') }}" class="nav-item nav-link me-2">Contact</a>
-                        <div class="nav-item dropdown d-block d-lg-none mb-3">
-                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">All
-                                Category</a>
-                            <div class="dropdown-menu m-0">
-                                <ul class="list-unstyled categories-bars">
-                                    <li>
-                                        <div class="categories-bars-item">
-                                            <a href="#">Accessories</a>
-                                            <span>(3)</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="categories-bars-item">
-                                            <a href="#">Electronics & Computer</a>
-                                            <span>(5)</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="categories-bars-item">
-                                            <a href="#">Laptops & Desktops</a>
-                                            <span>(2)</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="categories-bars-item">
-                                            <a href="#">Mobiles & Tablets</a>
-                                            <span>(8)</span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="categories-bars-item">
-                                            <a href="#">SmartPhone & Smart TV</a>
-                                            <span>(5)</span>
-                                        </div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
                     <a href="" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0"><i
                             class="fa fa-mobile-alt me-2"></i> +0123 456 7890</a>
