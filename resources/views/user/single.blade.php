@@ -225,7 +225,7 @@
                     </div>
                 </div>
 
-                <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
+                {{-- <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="row g-4 single-product">
                         <div class="col-xl-6">
                             <div class="single-carousel owl-carousel">
@@ -338,9 +338,9 @@
                             </div>
                         </form>
                     </div>
-                </div>
+                </div> --}}
 
-                {{-- <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
                     <div class="row g-4 single-product">
                         <div class="col-xl-6">
                             <div class="single-carousel owl-carousel">
@@ -423,7 +423,7 @@
                             </a>
                         </div>
                     </div>
-                </div> --}}
+                </div>
 
             </div>
         </div>

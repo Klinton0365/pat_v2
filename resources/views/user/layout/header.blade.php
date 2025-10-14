@@ -67,13 +67,21 @@
                 <div class="d-flex border rounded-pill">
                     <input class="form-control border-0 rounded-pill w-100 py-3" type="text"
                         data-bs-target="#dropdownToggle123" placeholder="Search Looking For?">
-                    <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
+                    {{-- <select class="form-select text-dark border-0 border-start rounded-0 p-3"
+                        style="width: 200px;">
                         <option value="All Category">All Category</option>
                         <option value="Pest Control-2">Category 1</option>
                         <option value="Pest Control-3">Category 2</option>
                         <option value="Pest Control-4">Category 3</option>
                         <option value="Pest Control-5">Category 4</option>
+                    </select> --}}
+                    <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
+                        <option value="">All Categories</option>
+                        @foreach($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
+
                     <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;"><i
                             class="fas fa-search"></i></button>
                 </div>
@@ -144,8 +152,8 @@
         <div class="col-12 col-lg-9">
             <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
                 <a href="" class="navbar-brand d-block d-lg-none">
-                    <h1 class="display-5 text-secondary m-0"><i
-                            class="fas fa-shopping-bag text-white me-2"></i>Electro</h1>
+                    <h1 class="display-5 text-secondary m-0"><i class="fas fa-shopping-bag text-white me-2"></i>Electro
+                    </h1>
                     <!-- <img src="img/logo.png" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse"

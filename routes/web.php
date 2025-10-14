@@ -15,7 +15,6 @@ use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ServiceController;
 use Illuminate\Support\Facades\Route;
 
-
 // Route::get('/', function () {
 //     return view('welcome');
 // });
@@ -29,7 +28,7 @@ Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
 // Route::get('/product/{slug}', [ShopController::class, 'shop'])->name('product.show');
 
-Route::get('/product/{id}', [ShopController::class, 'show'])->name('product.show');
+Route::get('/product/{id}/{slug}', [ShopController::class, 'show'])->name('product.show');
 
 Route::get('/single-product', [HomeController::class, 'single'])->name('single-product');
 
@@ -43,11 +42,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('orders', OrderController::class);
     Route::resource('services', ServiceController::class);
-    
+
     Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
     Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 });
-
 
 // ADMIN
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
