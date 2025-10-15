@@ -96,8 +96,8 @@
                         <div>
                             <p class="text-muted mb-3">Find The Best Camera for You!</p>
                             <h3 class="text-primary">Smart Camera</h3>
-                            <h1 class="display-3 text-secondary mb-0">40% <span
-                                    class="text-primary fw-normal">Off</span></h1>
+                            <h1 class="display-3 text-secondary mb-0">40% <span class="text-primary fw-normal">Off</span>
+                            </h1>
                         </div>
                         <img src="img/product-1.png" class="img-fluid" alt="">
                     </a>
@@ -107,8 +107,8 @@
                         <div>
                             <p class="text-muted mb-3">Find The Best Whatches for You!</p>
                             <h3 class="text-primary">Smart Whatch</h3>
-                            <h1 class="display-3 text-secondary mb-0">20% <span
-                                    class="text-primary fw-normal">Off</span></h1>
+                            <h1 class="display-3 text-secondary mb-0">20% <span class="text-primary fw-normal">Off</span>
+                            </h1>
                         </div>
                         <img src="img/product-2.png" class="img-fluid" alt="">
                     </a>
@@ -154,12 +154,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -189,12 +186,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -224,12 +218,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -259,12 +250,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -294,12 +282,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -329,12 +314,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -400,10 +382,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -431,8 +411,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-4.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-4.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-sale">sale</div>
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -445,10 +424,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -476,8 +453,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-5.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-5.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -489,10 +465,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -520,8 +494,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-6.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-6.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-new">New</div>
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -534,10 +507,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -565,8 +536,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-7.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-7.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-sale">Sale</div>
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -579,10 +549,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -610,8 +578,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-8.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-8.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -623,10 +590,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -654,8 +619,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-9.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-9.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-new">New</div>
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -668,10 +632,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -712,10 +674,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -760,10 +720,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -804,10 +762,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -848,10 +804,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -879,8 +833,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-6.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-6.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-new">New</div>
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
@@ -893,10 +846,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -940,10 +891,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -971,8 +920,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-10.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-10.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -984,10 +932,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1015,8 +961,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-11.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-11.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -1028,10 +973,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1059,8 +1002,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-12.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-12.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -1072,10 +1014,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1107,8 +1047,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-14.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-14.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -1120,10 +1059,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1151,8 +1088,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-15.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-15.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -1164,10 +1100,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1195,8 +1129,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-17.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-17.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -1208,10 +1141,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1239,8 +1170,7 @@
                                 <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
                                     <div class="product-item-inner border rounded">
                                         <div class="product-item-inner-item">
-                                            <img src="img/product-16.png" class="img-fluid w-100 rounded-top"
-                                                alt="Image">
+                                            <img src="img/product-16.png" class="img-fluid w-100 rounded-top" alt="Image">
                                             <div class="product-details">
                                                 <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
@@ -1252,10 +1182,8 @@
                                             <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                    <div
-                                        class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                        <a href="#"
-                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
                                                 class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="d-flex">
@@ -1320,12 +1248,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1353,12 +1278,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1386,12 +1308,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1419,12 +1338,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1454,12 +1370,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1487,12 +1400,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1520,12 +1430,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1553,12 +1460,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1588,12 +1492,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1621,12 +1522,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1654,12 +1552,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1687,12 +1582,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1722,12 +1614,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1755,12 +1644,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1788,12 +1674,9 @@
                             <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4"><i
                                     class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
                             <div class="d-flex">
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                        class="rounded-circle btn-sm-square border"><i
-                                            class="fas fa-random"></i></i></a>
-                                <a href="#"
-                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                        class="rounded-circle btn-sm-square border"><i class="fas fa-random"></i></i></a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0"><span
                                         class="rounded-circle btn-sm-square border"><i class="fas fa-heart"></i></a>
                             </div>
                         </div>
@@ -1840,151 +1723,5 @@
     </div>
     <!-- Product Banner End -->
 
-    <!-- Footer Start -->
-    <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
-        <div class="container py-5">
-            <div class="row g-4 rounded mb-5" style="background: rgba(255, 255, 255, .03);">
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="rounded p-4">
-                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center mb-4"
-                            style="width: 70px; height: 70px;">
-                            <i class="fas fa-map-marker-alt fa-2x text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white">Address</h4>
-                            <p class="mb-2">123 Street New York.USA</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="rounded p-4">
-                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center mb-4"
-                            style="width: 70px; height: 70px;">
-                            <i class="fas fa-envelope fa-2x text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white">Mail Us</h4>
-                            <p class="mb-2">info@example.com</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="rounded p-4">
-                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center mb-4"
-                            style="width: 70px; height: 70px;">
-                            <i class="fa fa-phone-alt fa-2x text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white">Telephone</h4>
-                            <p class="mb-2">(+012) 3456 7890</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="rounded p-4">
-                        <div class="rounded-circle bg-secondary d-flex align-items-center justify-content-center mb-4"
-                            style="width: 70px; height: 70px;">
-                            <i class="fab fa-firefox-browser fa-2x text-primary"></i>
-                        </div>
-                        <div>
-                            <h4 class="text-white">Yoursite@ex.com</h4>
-                            <p class="mb-2">(+012) 3456 7890</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row g-5">
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <div class="footer-item">
-                            <h4 class="text-primary mb-4">Newsletter</h4>
-                            <p class="text-white mb-3">Dolor amet sit justo amet elitr clita ipsum elitr est.Lorem ipsum
-                                dolor sit amet, consectetur adipiscing elit consectetur adipiscing elit.</p>
-                            <div class="position-relative mx-auto rounded-pill">
-                                <input class="form-control rounded-pill w-100 py-3 ps-4 pe-5" type="text"
-                                    placeholder="Enter your email">
-                                <button type="button"
-                                    class="btn btn-primary rounded-pill position-absolute top-0 end-0 py-2 mt-2 me-2">SignUp</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="text-primary mb-4">Customer Service</h4>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Contact Us</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Returns</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Order History</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Site Map</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Testimonials</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> My Account</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Unsubscribe Notification</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="text-primary mb-4">Information</h4>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> About Us</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Delivery infomation</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Privacy Policy</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Terms & Conditions</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Warranty</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> FAQ</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Seller Login</a>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-6 col-xl-3">
-                    <div class="footer-item d-flex flex-column">
-                        <h4 class="text-primary mb-4">Extras</h4>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Brands</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Gift Vouchers</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Affiliates</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Wishlist</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Order History</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Track Your Order</a>
-                        <a href="#" class=""><i class="fas fa-angle-right me-2"></i> Track Your Order</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Footer End -->
 
-
-    <!-- Copyright Start -->
-    <div class="container-fluid copyright py-4">
-        <div class="container">
-            <div class="row g-4 align-items-center">
-                <div class="col-md-6 text-center text-md-start mb-md-0">
-                    <span class="text-white"><a href="#" class="border-bottom text-white"><i
-                                class="fas fa-copyright text-light me-2"></i>Your Site Name</a>, All right
-                        reserved.</span>
-                </div>
-                <div class="col-md-6 text-center text-md-end text-white">
-
-                    <!--/*** This template is free as long as you keep the below author’s credit link/attribution link/backlink. ***/-->
-                    <!--/*** If you'd like to use the template without the below author’s credit link/attribution link/backlink, ***/-->
-                    <!--/*** you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". ***/-->
-                    Designed By <a class="border-bottom text-white" href="https://htmlcodex.com">HTML Codex</a>.
-                    Distributed By <a class="border-bottom text-white" href="https://themewagon.com">ThemeWagon</a>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Copyright End -->
-
-
-    <!-- Back to Top -->
-    <a href="#" class="btn btn-primary btn-lg-square back-to-top"><i class="fa fa-arrow-up"></i></a>
-
-
-    <!-- JavaScript Libraries -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="lib/wow/wow.min.js"></script>
-    <script src="lib/owlcarousel/owl.carousel.min.js"></script>
-
-
-    <!-- Template Javascript -->
-    <script src="js/main.js"></script>
-    @endsection
+@endsection
