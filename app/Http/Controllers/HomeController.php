@@ -11,10 +11,11 @@ class HomeController extends Controller
     //     $products = Product::with('category')->get();
     //     return view('user.index', compact('products'));
     // }
+
     public function index()
     {
         $products = Product::with('category')->get();
-        $categories = Category::all(); // Get all categories
+        $categories = Category::with('products')->get(); // Get all categories
 
         return view('user.index', compact('products', 'categories'));
     }
