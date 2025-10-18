@@ -686,7 +686,7 @@
 
         .hero {
             position: relative;
-            width: 100vw;
+            /* width: 100vw; */
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -697,8 +697,8 @@
         .hero__content {
             position: relative;
             z-index: 10;
-            padding: 5vw;
-            max-width: 1400px;
+            padding: 2vw 5vw;
+            /* max-width: 1400px; */
             margin: 0 auto;
             width: 100%;
         }
@@ -864,58 +864,6 @@
             pointer-events: none;
         }
 
-        .loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: black;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            opacity: 1;
-            transition: opacity 1s ease-out;
-        }
-
-        .loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .progress-container {
-            width: 300px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 2px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
-
-        .progress-bar {
-            width: 0%;
-            height: 100%;
-            background: linear-gradient(90deg, #4facfe, #00f2fe);
-            border-radius: 2px;
-            transition: width 0.1s ease-out;
-        }
-
-        .progress-percentage {
-            font-size: 2rem;
-            font-weight: 600;
-            color: #fff0b3;
-            margin-bottom: 10px;
-        }
-
-        .loading-text {
-            font-size: 1rem;
-            color: rgba(255, 240, 179, 0.7);
-            font-weight: 300;
-            text-align: center;
-        }
-
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -964,10 +912,6 @@
                 gap: 1.5rem;
                 margin-top: 3rem;
             }
-
-            .progress-container {
-                width: 250px;
-            }
         }
     </style>
     <svg id="svg-filters">
@@ -979,20 +923,11 @@
         </defs>
     </svg>
 
-    <div class="loader" id="loader">
-        <div class="progress-percentage" id="progress-percentage">0%</div>
-        <div class="progress-container">
-            <div class="progress-bar" id="progress-bar"></div>
-        </div>
-        <div class="loading-text">Loading a beautiful experience for you</div>
-    </div>
-
     <main class="hero" id="hero">
         <div class="hero__content">
             <div class="hero__pretitle">Pure Water Technology</div>
             <h1 class="hero__title">
-                Pure Aqua
-                <span>Tech</span>
+                Pure H²O
             </h1>
             <p class="hero__subtitle">
                 Advanced water purification solutions for a healthier tomorrow.
@@ -1007,7 +942,7 @@
                 </a>
             </div>
 
-            <div class="hero__features">
+            {{-- <div class="hero__features">
                 <div class="feature">
                     <div class="feature__icon">💧</div>
                     <div class="feature__title">99.9% Purity</div>
@@ -1028,7 +963,7 @@
                     <div class="feature__title">Certified Safe</div>
                     <div class="feature__text">ISO & NSF certified products</div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </main>
 
@@ -1060,10 +995,8 @@
 
                 this.lastMousePosition = { x: 0, y: 0 };
                 this.mouseThrottleTime = 0;
-                this.loadingProgress = 0;
-                this.isLoaded = false;
 
-                this.startLoading();
+                this.init();
             }
 
             init() {
@@ -1092,43 +1025,14 @@
                 this.createBackground();
                 this.bindEvents();
                 this.setupAutoDrops();
+
+                setTimeout(() => {
+                    const centerX = window.innerWidth / 2;
+                    const centerY = window.innerHeight / 2;
+                    this.addRipple(centerX, centerY, 1.5);
+                }, 500);
+
                 this.tick();
-            }
-
-            startLoading() {
-                const progressBar = document.getElementById("progress-bar");
-                const progressPercentage = document.getElementById("progress-percentage");
-                const loader = document.getElementById("loader");
-
-                const loadingInterval = setInterval(() => {
-                    this.loadingProgress += Math.random() * 3 + 1;
-
-                    if (this.loadingProgress >= 100) {
-                        this.loadingProgress = 100;
-                        clearInterval(loadingInterval);
-
-                        progressBar.style.width = "100%";
-                        progressPercentage.textContent = "100%";
-
-                        setTimeout(() => {
-                            this.init();
-
-                            setTimeout(() => {
-                                loader.classList.add("hidden");
-                                this.isLoaded = true;
-
-                                setTimeout(() => {
-                                    const centerX = window.innerWidth / 2;
-                                    const centerY = window.innerHeight / 2;
-                                    this.addRipple(centerX, centerY, 1.5);
-                                }, 300);
-                            }, 500);
-                        }, 300);
-                    } else {
-                        progressBar.style.width = this.loadingProgress + "%";
-                        progressPercentage.textContent = Math.floor(this.loadingProgress) + "%";
-                    }
-                }, 50);
             }
 
             initWaterRipple() {
@@ -1190,75 +1094,75 @@
                         }
                     },
                     vertexShader: `
-                            varying vec2 vUv;
+                                                        varying vec2 vUv;
 
-                            void main() {
-                                vUv = uv;
-                                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                            }
-                        `,
+                                                        void main() {
+                                                            vUv = uv;
+                                                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                                                        }
+                                                    `,
                     fragmentShader: `
-                            uniform sampler2D waterTexture;
-                            uniform float rippleStrength;
-                            uniform vec2 resolution;
-                            uniform float time;
-                            uniform vec3 colorA1;
-                            uniform vec3 colorA2;
-                            uniform vec3 colorB1;
-                            uniform vec3 colorB2;
-                            varying vec2 vUv;
+                                                        uniform sampler2D waterTexture;
+                                                        uniform float rippleStrength;
+                                                        uniform vec2 resolution;
+                                                        uniform float time;
+                                                        uniform vec3 colorA1;
+                                                        uniform vec3 colorA2;
+                                                        uniform vec3 colorB1;
+                                                        uniform vec3 colorB2;
+                                                        varying vec2 vUv;
 
-                            float S(float a, float b, float t) {
-                                return smoothstep(a, b, t);
-                            }
+                                                        float S(float a, float b, float t) {
+                                                            return smoothstep(a, b, t);
+                                                        }
 
-                            mat2 Rot(float a) {
-                                float s = sin(a);
-                                float c = cos(a);
-                                return mat2(c, -s, s, c);
-                            }
+                                                        mat2 Rot(float a) {
+                                                            float s = sin(a);
+                                                            float c = cos(a);
+                                                            return mat2(c, -s, s, c);
+                                                        }
 
-                            float noise(vec2 p) {
-                                vec2 ip = floor(p);
-                                vec2 fp = fract(p);
-                                float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-                                float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                        float noise(vec2 p) {
+                                                            vec2 ip = floor(p);
+                                                            vec2 fp = fract(p);
+                                                            float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+                                                            float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                            float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                            float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
 
-                                fp = fp * fp * (3.0 - 2.0 * fp);
+                                                            fp = fp * fp * (3.0 - 2.0 * fp);
 
-                                return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-                            }
+                                                            return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+                                                        }
 
-                            void main() {
-                                float waterHeight = texture2D(waterTexture, vUv).r;
+                                                        void main() {
+                                                            float waterHeight = texture2D(waterTexture, vUv).r;
 
-                                float step = 1.0 / resolution.x;
-                                vec2 distortion = vec2(
-                                    texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-                                    texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-                                ) * rippleStrength * 5.0;
+                                                            float step = 1.0 / resolution.x;
+                                                            vec2 distortion = vec2(
+                                                                texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+                                                                texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+                                                            ) * rippleStrength * 5.0;
 
-                                vec2 tuv = vUv + distortion;
-                                tuv -= 0.5;
+                                                            vec2 tuv = vUv + distortion;
+                                                            tuv -= 0.5;
 
-                                float ratio = resolution.x / resolution.y;
-                                tuv.y *= 1.0/ratio;
+                                                            float ratio = resolution.x / resolution.y;
+                                                            tuv.y *= 1.0/ratio;
 
-                                vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+                                                            vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                            vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                            vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
 
-                                float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-                                finalComp += vec3(noiseValue);
+                                                            float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+                                                            finalComp += vec3(noiseValue);
 
-                                float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-                                finalComp *= mix(0.95, 1.0, vignette);
+                                                            float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+                                                            finalComp *= mix(0.95, 1.0, vignette);
 
-                                gl_FragColor = vec4(finalComp, 1.0);
-                            }
-                        `
+                                                            gl_FragColor = vec4(finalComp, 1.0);
+                                                        }
+                                                    `
                 };
 
                 const geometry = new THREE.PlaneGeometry(
@@ -1443,8 +1347,11 @@
             new App();
         });
     </script>
+
+
+
     <!-- Searvices Start -->
-    <div class="container-fluid px-0">
+    {{-- <div class="container-fluid px-0">
         <div class="row g-0">
             <div class="col-6 col-md-4 col-lg-2 border-start border-end wow fadeInUp" data-wow-delay="0.1s">
                 <div class="p-4">
@@ -1513,8 +1420,650 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    {{--
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet"> --}}
+
+    <style>
+        .feature-item {
+            background: rgba(255, 255, 255, 0.05);
+            border-right: 1px solid rgba(255, 255, 255, 0.1) !important;
+            border-left: 1px solid rgba(255, 255, 255, 0.1) !important;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(79, 172, 254, 0.1), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .feature-item:hover::before {
+            left: 100%;
+        }
+
+        .feature-content {
+            padding: 2rem 1.5rem;
+        }
+
+        .feature-icon-wrapper {
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(79, 172, 254, 0.15);
+            border-radius: 12px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+        }
+
+        .feature-item:hover .feature-icon-wrapper {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transform: scale(1.1) rotate(-5deg);
+            box-shadow: 0 8px 25px rgba(79, 172, 254, 0.4);
+        }
+
+        .feature-icon-wrapper i {
+            font-size: 1.8rem;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.4s ease;
+        }
+
+        .feature-item:hover .feature-icon-wrapper i {
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .feature-text h6 {
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .feature-item:hover .feature-text h6 {
+            color: #4facfe;
+        }
+
+        .feature-text p {
+            color: rgba(255, 255, 255, 0.65);
+            font-size: 0.875rem;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        @media (max-width: 991px) {
+            .feature-item {
+                border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .feature-content {
+                padding: 1.5rem 1rem;
+            }
+
+            .feature-icon-wrapper {
+                width: 50px;
+                height: 50px;
+            }
+
+            .feature-icon-wrapper i {
+                font-size: 1.5rem;
+            }
+
+            .feature-text h6 {
+                font-size: 0.85rem;
+            }
+
+            .feature-text p {
+                font-size: 0.8rem;
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .fadeInUp:nth-child(1) {
+            animation-delay: 0.1s;
+        }
+
+        .fadeInUp:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .fadeInUp:nth-child(3) {
+            animation-delay: 0.3s;
+        }
+
+        .fadeInUp:nth-child(4) {
+            animation-delay: 0.4s;
+        }
+
+        .fadeInUp:nth-child(5) {
+            animation-delay: 0.5s;
+        }
+
+        .fadeInUp:nth-child(6) {
+            animation-delay: 0.6s;
+        }
+    </style>
+    <div class="features-section">
+        <div class="container-fluid px-0">
+            <div class="row g-0">
+                <div class="col-6 col-md-4 col-lg-2 feature-item fadeInUp">
+                    <div class="feature-content">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-shield-halved"></i>
+                            </div>
+                            <div class="feature-text ms-3">
+                                <h6 class="text-uppercase mb-2">Quality Guarantee</h6>
+                                <p class="mb-0">30 days satisfaction guarantee</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 feature-item fadeInUp">
+                    <div class="feature-content">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-truck-fast"></i>
+                            </div>
+                            <div class="feature-text ms-3">
+                                <h6 class="text-uppercase mb-2">Free Installation</h6>
+                                <p class="mb-0">Professional setup included</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 feature-item fadeInUp">
+                    <div class="feature-content">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-headset"></i>
+                            </div>
+                            <div class="feature-text ms-3">
+                                <h6 class="text-uppercase mb-2">Support 24/7</h6>
+                                <p class="mb-0">Round-the-clock assistance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 feature-item fadeInUp">
+                    <div class="feature-content">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-certificate"></i>
+                            </div>
+                            <div class="feature-text ms-3">
+                                <h6 class="text-uppercase mb-2">Certified Products</h6>
+                                <p class="mb-0">ISO & NSF certified systems</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 feature-item fadeInUp">
+                    <div class="feature-content">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-droplet"></i>
+                            </div>
+                            <div class="feature-text ms-3">
+                                <h6 class="text-uppercase mb-2">Pure Water Tech</h6>
+                                <p class="mb-0">96.9% filtration efficiency</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 col-md-4 col-lg-2 feature-item fadeInUp">
+                    <div class="feature-content">
+                        <div class="d-flex align-items-center">
+                            <div class="feature-icon-wrapper">
+                                <i class="fas fa-wrench"></i>
+                            </div>
+                            <div class="feature-text ms-3">
+                                <h6 class="text-uppercase mb-2">Free Maintenance</h6>
+                                <p class="mb-0">Annual service included</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
     <!-- Searvices End -->
+
+    {{-- About Us --}}
+    <style>
+        .history-area {
+            background: #f7f9fb;
+            padding: 100px 0;
+            position: relative;
+            min-height: 100vh;
+        }
+
+        .title-bg-small {
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 24px;
+            margin-bottom: 15px;
+            color: #fff;
+            background: #4facfe;
+            display: inline-block;
+            padding: 3px 18px;
+            text-transform: uppercase;
+        }
+
+        .section-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: #101010;
+            margin-bottom: 70px;
+        }
+
+        .section-title span {
+            font-weight: 700;
+        }
+
+        .primary-bg {
+            background: #4facfe;
+        }
+
+        .column-title {
+            font-size: 36px;
+            font-weight: 300;
+            color: #101010;
+            margin-bottom: 30px;
+        }
+
+        .column-title span {
+            font-weight: 700;
+        }
+
+        #history-slid .history-content {
+            background: #fff;
+            padding: 35px;
+            padding-left: 14px;
+        }
+
+        #history-slid .carousel-inner {
+            margin-bottom: 45px;
+        }
+
+        #history-slid .carousel-item {
+            background: #fff;
+        }
+
+        #history-slid .carousel-indicators {
+            position: relative;
+            left: 0%;
+            z-index: 5;
+            width: 100%;
+            padding-left: 0;
+            margin-left: 0%;
+            text-align: center;
+            list-style: none;
+        }
+
+        #history-slid .carousel-indicators:before {
+            content: "";
+            width: 100%;
+            height: 2px;
+            position: absolute;
+            left: 0;
+            top: 15px;
+            background-color: #ddd;
+            z-index: -1;
+        }
+
+        #history-slid .carousel-indicators li {
+            display: inline-block;
+            width: 70px;
+            height: 35px;
+            line-height: 35px;
+            margin: 0 35px;
+            text-indent: 0px;
+            cursor: pointer;
+            color: #101010;
+            border: 0px solid #fff;
+            border-radius: 0px;
+            margin-top: 40px;
+            font-weight: 700;
+            font-size: 16px;
+            position: relative;
+            background: transparent;
+            transition: all 0.3s ease;
+        }
+
+        #history-slid .carousel-indicators li:hover {
+            transform: translateY(-3px);
+        }
+
+        #history-slid .carousel-indicators li:before {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            content: "";
+            border-radius: 50%;
+            background: #101010;
+            margin-left: -7px;
+            transition: all 0.3s ease;
+        }
+
+        #history-slid .carousel-indicators li.active {
+            line-height: 35px;
+            box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.15);
+            color: #4facfe;
+            background: #fff;
+        }
+
+        #history-slid .carousel-indicators li.active::before {
+            background: #4facfe;
+        }
+
+        #history-slid .carousel-indicators li.active:after {
+            position: absolute;
+            top: -34px;
+            left: 44%;
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            content: "";
+            border-radius: 50%;
+            margin-left: -7px;
+            border: 1px solid #4facfe;
+        }
+
+        #history-slid .carousel-item-next,
+        #history-slid .carousel-item-prev,
+        #history-slid .carousel-item.active {
+            display: flex;
+        }
+
+        .history-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Scroll Animation Styles */
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .fade-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .scale-in {
+            opacity: 0;
+            transform: scale(0.9);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .scale-in.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .delay-1 {
+            transition-delay: 0.1s;
+        }
+
+        .delay-2 {
+            transition-delay: 0.2s;
+        }
+
+        .delay-3 {
+            transition-delay: 0.3s;
+        }
+
+        .delay-4 {
+            transition-delay: 0.4s;
+        }
+
+        @media (max-width: 991px) {
+            #history-slid .carousel-item {
+                flex-direction: column;
+            }
+
+            #history-slid .carousel-indicators li {
+                margin: 0 15px;
+                width: 60px;
+            }
+        }
+    </style>
+
+    <section class="history-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center">
+                    <p class="title-bg-small fade-in-up">About us</p>
+                    <h3 class="section-title fade-in-up delay-1">Our <span>History</span></h3>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <div id="history-slid" class="carousel slide" data-ride="carousel" data-interval="false">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner scale-in delay-2">
+                            <!-- 2010 -->
+                            <div class="carousel-item row">
+                                <div class="col-lg-6 col-md-12 pl-0">
+                                    <div class="history-img">
+                                        <img class="img-fluid"
+                                            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800"
+                                            alt="2010 Foundation" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 pr-0">
+                                    <div class="history-content">
+                                        <p class="title-bg-small primary-bg">Foundation Year</p>
+                                        <h2 class="column-title">The <span>Beginning</span></h2>
+                                        <p>Pure Aqua Tech was established with a vision to provide clean, safe drinking
+                                            water solutions to communities across the region.</p>
+                                        <p>Starting with a small team of dedicated engineers, we began our journey to
+                                            revolutionize water purification technology and make clean water accessible to
+                                            all.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2015 -->
+                            <div class="carousel-item row">
+                                <div class="col-lg-6 col-md-12 pl-0">
+                                    <div class="history-img">
+                                        <img class="img-fluid"
+                                            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800"
+                                            alt="2015 Innovation" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 pr-0">
+                                    <div class="history-content">
+                                        <p class="title-bg-small primary-bg">Innovation Milestone</p>
+                                        <h2 class="column-title">Advanced <span>RO Technology</span></h2>
+                                        <p>Launched our first advanced Reverse Osmosis system with multi-stage filtration,
+                                            achieving 99.9% purification efficiency.</p>
+                                        <p>This breakthrough technology set new industry standards and earned us ISO
+                                            certification for quality excellence and customer satisfaction.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2018 -->
+                            <div class="carousel-item row">
+                                <div class="col-lg-6 col-md-12 pl-0">
+                                    <div class="history-img">
+                                        <img class="img-fluid"
+                                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800"
+                                            alt="2018 Expansion" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 pr-0">
+                                    <div class="history-content">
+                                        <p class="title-bg-small primary-bg">Market Expansion</p>
+                                        <h2 class="column-title">Regional <span>Growth</span></h2>
+                                        <p>Expanded operations to serve over 50 cities, installing water purification
+                                            systems in thousands of homes and businesses nationwide.</p>
+                                        <p>Established dedicated service centers to provide 24/7 customer support and
+                                            maintenance services across all regions we operate in.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2020 - Active -->
+                            <div class="carousel-item row active">
+                                <div class="col-lg-6 col-md-12 pl-0">
+                                    <div class="history-img">
+                                        <img class="img-fluid"
+                                            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800"
+                                            alt="2020 Smart Technology" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 pr-0">
+                                    <div class="history-content">
+                                        <p class="title-bg-small primary-bg">Digital Revolution</p>
+                                        <h2 class="column-title">Smart <span>IoT Systems</span></h2>
+                                        <p>Introduced IoT-enabled water purifiers with real-time monitoring, automatic
+                                            filter alerts, and mobile app connectivity for enhanced user experience.</p>
+                                        <p>Our smart systems allow users to track water quality, consumption patterns, and
+                                            schedule maintenance through their smartphones seamlessly.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2022 -->
+                            <div class="carousel-item row">
+                                <div class="col-lg-6 col-md-12 pl-0">
+                                    <div class="history-img">
+                                        <img class="img-fluid"
+                                            src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800"
+                                            alt="2022 Sustainability" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 pr-0">
+                                    <div class="history-content">
+                                        <p class="title-bg-small primary-bg">Green Initiative</p>
+                                        <h2 class="column-title">Eco-Friendly <span>Solutions</span></h2>
+                                        <p>Launched our sustainable water purification line with zero-waste technology and
+                                            energy-efficient operations to protect the environment.</p>
+                                        <p>Committed to reducing plastic waste by promoting reusable filter systems and
+                                            eco-conscious manufacturing processes throughout production.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- 2024 -->
+                            <div class="carousel-item row">
+                                <div class="col-lg-6 col-md-12 pl-0">
+                                    <div class="history-img">
+                                        <img class="img-fluid"
+                                            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800"
+                                            alt="2024 Recognition" />
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-12 pr-0">
+                                    <div class="history-content">
+                                        <p class="title-bg-small primary-bg">Industry Leader</p>
+                                        <h2 class="column-title">Award <span>Winning</span></h2>
+                                        <p>Recognized as the leading water purification company with multiple industry
+                                            awards for innovation and exceptional customer satisfaction.</p>
+                                        <p>Achieved NSF International certification and became the trusted choice for over
+                                            100,000 satisfied customers nationwide and growing.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Indicators -->
+                        <ol class="carousel-indicators text-center fade-in-up delay-3">
+                            <li data-target="#history-slid" data-slide-to="0">2010</li>
+                            <li data-target="#history-slid" data-slide-to="1">2015</li>
+                            <li data-target="#history-slid" data-slide-to="2">2018</li>
+                            <li data-target="#history-slid" data-slide-to="3" class="active">2020</li>
+                            <li data-target="#history-slid" data-slide-to="4">2022</li>
+                            <li data-target="#history-slid" data-slide-to="5">2024</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Scroll Animation Observer
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all elements with animation classes
+        document.addEventListener('DOMContentLoaded', () => {
+            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+            animatedElements.forEach(el => observer.observe(el));
+        });
+    </script>
 
     <!-- Products Offer Start -->
     <div class="container-fluid bg-light py-5">
@@ -1547,928 +2096,880 @@
     </div>
     <!-- Products Offer End -->
 
-
     <!-- Our Products Start -->
-
-    <!-- <div class="container-fluid product py-5">
-            <div class="container py-5">
-                <div class="tab-class">
-                    <div class="row g-4">
-                        <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
-                            <h1>Our Products</h1>
-                        </div>
-                        <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
-                            <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                                <li class="nav-item mb-4">
-                                    <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
-                                        href="#tab-1">
-                                        <span class="text-dark" style="width: 130px;">All Products</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-4">
-                                    <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
-                                        <span class="text-dark" style="width: 130px;">New Arrivals</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-4">
-                                    <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
-                                        <span class="text-dark" style="width: 130px;">Featured</span>
-                                    </a>
-                                </li>
-                                <li class="nav-item mb-4">
-                                    <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
-                                        <span class="text-dark" style="width: 130px;">Top Selling</span>
-                                    </a>
-                                </li>
-                            </ul>
+    {{-- <div class="container-fluid product py-5">
+        <div class="container py-5">
+            <div class="tab-class">
+                <div class="row g-4">
+                    <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
+                        <h1>Our Products</h1>
+                    </div>
+                    <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+                        <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                            <li class="nav-item mb-4">
+                                <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
+                                    href="#tab-1">
+                                    <span class="text-dark" style="width: 130px;">All Products</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-4">
+                                <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-2">
+                                    <span class="text-dark" style="width: 130px;">New Arrivals</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-4">
+                                <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-3">
+                                    <span class="text-dark" style="width: 130px;">Featured</span>
+                                </a>
+                            </li>
+                            <li class="nav-item mb-4">
+                                <a class="d-flex mx-2 py-2 bg-light rounded-pill" data-bs-toggle="pill" href="#tab-4">
+                                    <span class="text-dark" style="width: 130px;">Top Selling</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-content">
+                    <div id="tab-1" class="tab-pane fade show p-0 active">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-3.png" class="img-fluid w-100 rounded-top" alt="">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-4.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-sale">sale</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-5.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-6.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-7.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-sale">Sale</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-8.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-9.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-10.png" class="img-fluid w-100 rounded-top" alt="">
+                                            <div class="product-sale">Sale</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div class="tab-content">
-                        <div id="tab-1" class="tab-pane fade show p-0 active">
-                            <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-3.png" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                    <div id="tab-2" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-3.png" class="img-fluid rounded-top" alt="">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-4.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-sale">sale</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-4.png" class="img-fluid w-100 rounded-top" alt="">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-5.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-5.png" class="img-fluid w-100 rounded-top" alt="">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-6.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-6.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-new">New</div>
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-7.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-sale">Sale</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
                                             </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-8.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-9.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-10.png" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                                <div class="product-sale">Sale</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-3.png" class="img-fluid rounded-top" alt="">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                    </div>
+                    <div id="tab-3" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-9.png" class="img-fluid w-100 rounded-top" alt="">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-4.png" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-10.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-5.png" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-11.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-6.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-new">New</div>
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-12.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div id="tab-3" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-9.png" class="img-fluid w-100 rounded-top"
-                                                    alt="">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                    </div>
+                    <div id="tab-4" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-14.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-10.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
                                             </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-11.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-12.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="tab-4" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-14.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-15.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div
-                                            class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.3s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-15.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-17.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div
-                                            class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.5s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-17.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
-                                            </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
+                            </div>
+                            <div class="col-md-6 col-lg-4 col-xl-3">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="img/product-16.png" class="img-fluid w-100 rounded-top" alt="Image">
+                                            <div class="product-details">
+                                                <a href="#"><i class="fa fa-eye fa-1x"></i></a>
                                             </div>
                                         </div>
-                                        <div
-                                            class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
-                                            </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <a href="#" class="d-block mb-2">SmartPhone</a>
+                                            <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
+                                            <del class="me-2 fs-5">$1,250.00</del>
+                                            <span class="text-primary fs-5">$1,050.00</span>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-md-6 col-lg-4 col-xl-3">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.7s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="img/product-16.png" class="img-fluid w-100 rounded-top"
-                                                    alt="Image">
-                                                <div class="product-details">
-                                                    <a href="#"><i class="fa fa-eye fa-1x"></i></a>
-                                                </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
+                                        <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
+                                                class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star text-primary"></i>
+                                                <i class="fas fa-star"></i>
                                             </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <a href="#" class="d-block mb-2">SmartPhone</a>
-                                                <a href="#" class="d-block h4">Apple iPad Mini <br> G2356</a>
-                                                <del class="me-2 fs-5">$1,250.00</del>
-                                                <span class="text-primary fs-5">$1,050.00</span>
-                                            </div>
-                                        </div>
-                                        <div
-                                            class="product-item-add border border-top-0 rounded-bottom  text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4"><i
-                                                    class="fas fa-shopping-cart me-2"></i> Add To Cart</a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star text-primary"></i>
-                                                    <i class="fas fa-star"></i>
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-random"></i></i></a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0"><span
-                                                            class="rounded-circle btn-sm-square border"><i
-                                                                class="fas fa-heart"></i></a>
-                                                </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-random"></i></i></a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0"><span
+                                                        class="rounded-circle btn-sm-square border"><i
+                                                            class="fas fa-heart"></i></a>
                                             </div>
                                         </div>
                                     </div>
@@ -2478,9 +2979,10 @@
                     </div>
                 </div>
             </div>
-        </div>-->
+        </div>
+    </div>--}}
 
-    <div class="container-fluid product py-5">
+    <div class="container-fluid product py-5" style="background: white;">
         <div class="container py-5">
             <div class="tab-class">
                 <div class="row g-4">
