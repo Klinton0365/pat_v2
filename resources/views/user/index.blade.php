@@ -1094,75 +1094,75 @@
                         }
                     },
                     vertexShader: `
-                                                            varying vec2 vUv;
+                                                                varying vec2 vUv;
 
-                                                            void main() {
-                                                                vUv = uv;
-                                                                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                                                            }
-                                                        `,
+                                                                void main() {
+                                                                    vUv = uv;
+                                                                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                                                                }
+                                                            `,
                     fragmentShader: `
-                                                            uniform sampler2D waterTexture;
-                                                            uniform float rippleStrength;
-                                                            uniform vec2 resolution;
-                                                            uniform float time;
-                                                            uniform vec3 colorA1;
-                                                            uniform vec3 colorA2;
-                                                            uniform vec3 colorB1;
-                                                            uniform vec3 colorB2;
-                                                            varying vec2 vUv;
+                                                                uniform sampler2D waterTexture;
+                                                                uniform float rippleStrength;
+                                                                uniform vec2 resolution;
+                                                                uniform float time;
+                                                                uniform vec3 colorA1;
+                                                                uniform vec3 colorA2;
+                                                                uniform vec3 colorB1;
+                                                                uniform vec3 colorB2;
+                                                                varying vec2 vUv;
 
-                                                            float S(float a, float b, float t) {
-                                                                return smoothstep(a, b, t);
-                                                            }
+                                                                float S(float a, float b, float t) {
+                                                                    return smoothstep(a, b, t);
+                                                                }
 
-                                                            mat2 Rot(float a) {
-                                                                float s = sin(a);
-                                                                float c = cos(a);
-                                                                return mat2(c, -s, s, c);
-                                                            }
+                                                                mat2 Rot(float a) {
+                                                                    float s = sin(a);
+                                                                    float c = cos(a);
+                                                                    return mat2(c, -s, s, c);
+                                                                }
 
-                                                            float noise(vec2 p) {
-                                                                vec2 ip = floor(p);
-                                                                vec2 fp = fract(p);
-                                                                float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-                                                                float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                float noise(vec2 p) {
+                                                                    vec2 ip = floor(p);
+                                                                    vec2 fp = fract(p);
+                                                                    float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+                                                                    float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                    float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                    float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
 
-                                                                fp = fp * fp * (3.0 - 2.0 * fp);
+                                                                    fp = fp * fp * (3.0 - 2.0 * fp);
 
-                                                                return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-                                                            }
+                                                                    return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+                                                                }
 
-                                                            void main() {
-                                                                float waterHeight = texture2D(waterTexture, vUv).r;
+                                                                void main() {
+                                                                    float waterHeight = texture2D(waterTexture, vUv).r;
 
-                                                                float step = 1.0 / resolution.x;
-                                                                vec2 distortion = vec2(
-                                                                    texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-                                                                    texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-                                                                ) * rippleStrength * 5.0;
+                                                                    float step = 1.0 / resolution.x;
+                                                                    vec2 distortion = vec2(
+                                                                        texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+                                                                        texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+                                                                    ) * rippleStrength * 5.0;
 
-                                                                vec2 tuv = vUv + distortion;
-                                                                tuv -= 0.5;
+                                                                    vec2 tuv = vUv + distortion;
+                                                                    tuv -= 0.5;
 
-                                                                float ratio = resolution.x / resolution.y;
-                                                                tuv.y *= 1.0/ratio;
+                                                                    float ratio = resolution.x / resolution.y;
+                                                                    tuv.y *= 1.0/ratio;
 
-                                                                vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+                                                                    vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                    vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                    vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
 
-                                                                float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-                                                                finalComp += vec3(noiseValue);
+                                                                    float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+                                                                    finalComp += vec3(noiseValue);
 
-                                                                float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-                                                                finalComp *= mix(0.95, 1.0, vignette);
+                                                                    float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+                                                                    finalComp *= mix(0.95, 1.0, vignette);
 
-                                                                gl_FragColor = vec4(finalComp, 1.0);
-                                                            }
-                                                        `
+                                                                    gl_FragColor = vec4(finalComp, 1.0);
+                                                                }
+                                                            `
                 };
 
                 const geometry = new THREE.PlaneGeometry(
@@ -3757,38 +3757,117 @@
                     data-wow-delay="0.1s">Products</h4>
                 <h1 class="mb-0 display-3 wow fadeInUp" data-wow-delay="0.3s">All Category Products</h1>
             </div>
+            {{-- <div class="productList-carousel owl-carousel pt-4 wow fadeInUp" data-wow-delay="0.3s">
+                @foreach($categories as $category)
+                <div class="productImg-carousel owl-carousel productList-item">
+                    @foreach($category as $categoryProduct)
+                    <div class="productImg-item products-mini-item border">
+                        <div class="row g-0">
+                            <div class="col-5">
+                                <div class="products-mini-img border-end h-100">
+                                    <img src="{{ asset('storage/' . $categoryProduct->products->main_image) }}"
+                                        class="img-fluid w-100 h-100" alt="{{ $categoryProduct->products->name }}">
+                                    <div class="products-mini-icon rounded-circle bg-primary">
+
+                                        <a
+                                            href="{{ route('product.show', [$categoryProduct->products->id, $categoryProduct->products->slug]) }}">
+                                            <i class="fa fa-eye fa-1x"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-7">
+                                <div class="products-mini-content p-3">
+                                    <a href="#" class="d-block mb-2">{{ $categoryProduct->name }}</a>
+
+                                    <a
+                                        href="{{ route('product.show', [$categoryProduct->products->id, $categoryProduct->products->slug]) }}">
+                                        <i class="fa fa-eye fa-1x"></i>
+                                    </a>
+                                    @if($categoryProduct->products->discount > 0)
+                                    <del class="me-2 fs-5">₹{{ number_format($categoryProduct->products->price, 2) }}</del>
+                                    <span class="text-primary fs-5">
+                                        ₹{{ number_format($categoryProduct->products->price -
+                                        ($categoryProduct->products->price * $categoryProduct->products->discount / 100), 2)
+                                        }}
+                                    </span>
+                                    @else
+                                    <span class="text-primary fs-5">₹{{ number_format($categoryProduct->products->price, 2)
+                                        }}</span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class="products-mini-add border p-3">
+                            <a href="#" class="btn btn-primary border-secondary rounded-pill py-2 px-4">
+                                <i class="fas fa-shopping-cart me-2"></i> Add To Cart
+                            </a>
+                            <div class="d-flex">
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3">
+                                    <span class="rounded-circle btn-sm-square border">
+                                        <i class="fas fa-random"></i>
+                                    </span>
+                                </a>
+                                <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0">
+                                    <span class="rounded-circle btn-sm-square border">
+                                        <i class="fas fa-heart"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+                @endforeach
+            </div> --}}
             <div class="productList-carousel owl-carousel pt-4 wow fadeInUp" data-wow-delay="0.3s">
-                @foreach($products->chunk(4) as $productChunk)
+                @foreach($categories as $category)
                     <div class="productImg-carousel owl-carousel productList-item">
-                        {{-- @foreach($productChunk as $product)
+
+                        @foreach($category->products as $categoryProduct)
                             <div class="productImg-item products-mini-item border">
                                 <div class="row g-0">
                                     <div class="col-5">
                                         <div class="products-mini-img border-end h-100">
-                                            <img src="{{ asset('storage/' . $product->main_image) }}" class="img-fluid w-100 h-100"
-                                                alt="{{ $product->name }}">
+                                            <img src="{{ asset('storage/' . $categoryProduct->main_image) }}"
+                                                class="img-fluid w-100 h-100" alt="{{ $categoryProduct->name }}">
                                             <div class="products-mini-icon rounded-circle bg-primary">
-                                                
-                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
-                                                        <i class="fa fa-eye fa-1x"></i>
-                                                    </a>
+                                                <a
+                                                    href="{{ route('product.show', [$categoryProduct->id, $categoryProduct->slug]) }}">
+                                                    <i class="fa fa-eye fa-1x"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-7">
                                         <div class="products-mini-content p-3">
-                                            <a href="#" class="d-block mb-2">{{ $product->category->name }}</a>
-                                            
-                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
-                                                        <i class="fa fa-eye fa-1x"></i>
-                                                    </a>
-                                            @if($product->discount > 0)
-                                                <del class="me-2 fs-5">₹{{ number_format($product->price, 2) }}</del>
+                                            <a href="#" class="d-block mb-2">{{ $category->name }}</a>
+
+                                            <style>
+                                                .product-name {
+                                                    display: -webkit-box;
+                                                    -webkit-line-clamp: 2;
+                                                    /* limit to 2 lines */
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    line-height: 1.4em;
+                                                    max-height: 2.8em;
+                                                    /* 2 lines * line height */
+                                                    white-space: normal;
+                                                }
+                                            </style>
+                                            <a href="#"
+                                                class="d-block h4 product-name">
+                                                {{ $categoryProduct->name }}
+                                            </a>
+                                            @if($categoryProduct->discount > 0)
+                                                <del class="me-2 fs-5">₹{{ number_format($categoryProduct->price, 2) }}</del>
                                                 <span class="text-primary fs-5">
-                                                    ₹{{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
+                                                    ₹{{ number_format($categoryProduct->price - ($categoryProduct->price * $categoryProduct->discount / 100), 2) }}
                                                 </span>
                                             @else
-                                                <span class="text-primary fs-5">₹{{ number_format($product->price, 2) }}</span>
+                                                <span class="text-primary fs-5">₹{{ number_format($categoryProduct->price, 2) }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -3811,10 +3890,11 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach --}}
+                        @endforeach
                     </div>
                 @endforeach
             </div>
+
         </div>
     </div>
     <!-- Product List End -->
