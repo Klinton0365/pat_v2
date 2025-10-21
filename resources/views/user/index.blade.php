@@ -3760,7 +3760,7 @@
             <div class="productList-carousel owl-carousel pt-4 wow fadeInUp" data-wow-delay="0.3s">
                 @foreach($products->chunk(4) as $productChunk)
                     <div class="productImg-carousel owl-carousel productList-item">
-                        @foreach($productChunk as $product)
+                        {{-- @foreach($productChunk as $product)
                             <div class="productImg-item products-mini-item border">
                                 <div class="row g-0">
                                     <div class="col-5">
@@ -3768,9 +3768,7 @@
                                             <img src="{{ asset('storage/' . $product->main_image) }}" class="img-fluid w-100 h-100"
                                                 alt="{{ $product->name }}">
                                             <div class="products-mini-icon rounded-circle bg-primary">
-                                                {{-- <a href="{{ route('product.show', $product->slug) }}">
-                                                    <i class="fa fa-eye fa-1x text-white"></i>
-                                                </a> --}}
+                                                
                                                 <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                                                         <i class="fa fa-eye fa-1x"></i>
                                                     </a>
@@ -3780,8 +3778,7 @@
                                     <div class="col-7">
                                         <div class="products-mini-content p-3">
                                             <a href="#" class="d-block mb-2">{{ $product->category->name }}</a>
-                                            {{-- <a href="{{ route('product.show', $product->slug) }}"
-                                                class="d-block h4">{{ $product->name }}</a> --}}
+                                            
                                                 <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                                                         <i class="fa fa-eye fa-1x"></i>
                                                     </a>
@@ -3814,7 +3811,7 @@
                                     </div>
                                 </div>
                             </div>
-                        @endforeach
+                        @endforeach --}}
                     </div>
                 @endforeach
             </div>
