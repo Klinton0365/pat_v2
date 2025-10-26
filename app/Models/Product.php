@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-
     protected $fillable = [
         'category_id', 'name', 'slug', 'description',
         'price', 'discount', 'warranty_months', 'main_image',
@@ -39,5 +38,10 @@ class Product extends Model
     public function serviceRequests()
     {
         return $this->hasMany(ServiceRequest::class);
+    }
+
+    public function festivalOffer()
+    {
+        return $this->hasOne(FestivalOffer::class);
     }
 }

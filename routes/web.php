@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminInventoryController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServiceRequestController;
+use App\Http\Controllers\Admin\FestivalOfferController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BestSellerController;
 use App\Http\Controllers\CartController;
@@ -67,6 +68,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('orders', AdminOrderController::class);
     Route::resource('inventories', AdminInventoryController::class);
     Route::resource('service-requests', AdminServiceRequestController::class);
+    Route::resource('festival-offers',FestivalOfferController::class)->names('admin.festival-offers');
+
 });
 
 // Admin Panel

@@ -24,6 +24,7 @@
                 <div class="dropdown-menu bg-transparent border-0">
                     <a href="{{ route('categories.index') }}" class="dropdown-item">Category</a>
                     <a href="{{ route('products.index') }}" class="dropdown-item">Product</a>
+                    <a href="{{ route('admin.festival-offers.index') }}" class="dropdown-item">Festival Offers</a>
                 </div>
             </div>
             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Inventory</a>
