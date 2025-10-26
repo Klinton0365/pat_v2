@@ -15,6 +15,7 @@ use App\Http\Controllers\ContactController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ServiceController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ServiceBookingController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -37,6 +38,10 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 
 Route::get('/best-seller', [BestSellerController::class, 'bestSeller'])->name('best-seller');
+
+
+Route::get('/services', [ServiceBookingController::class, 'index'])->name('services');
+Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('service.book');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/profile', [AuthController::class, 'profile']);

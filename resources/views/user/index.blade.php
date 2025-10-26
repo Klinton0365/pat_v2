@@ -1094,75 +1094,75 @@
                         }
                     },
                     vertexShader: `
-                                                                varying vec2 vUv;
+                                                                            varying vec2 vUv;
 
-                                                                void main() {
-                                                                    vUv = uv;
-                                                                    gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                                                                }
-                                                            `,
+                                                                            void main() {
+                                                                                vUv = uv;
+                                                                                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                                                                            }
+                                                                        `,
                     fragmentShader: `
-                                                                uniform sampler2D waterTexture;
-                                                                uniform float rippleStrength;
-                                                                uniform vec2 resolution;
-                                                                uniform float time;
-                                                                uniform vec3 colorA1;
-                                                                uniform vec3 colorA2;
-                                                                uniform vec3 colorB1;
-                                                                uniform vec3 colorB2;
-                                                                varying vec2 vUv;
+                                                                            uniform sampler2D waterTexture;
+                                                                            uniform float rippleStrength;
+                                                                            uniform vec2 resolution;
+                                                                            uniform float time;
+                                                                            uniform vec3 colorA1;
+                                                                            uniform vec3 colorA2;
+                                                                            uniform vec3 colorB1;
+                                                                            uniform vec3 colorB2;
+                                                                            varying vec2 vUv;
 
-                                                                float S(float a, float b, float t) {
-                                                                    return smoothstep(a, b, t);
-                                                                }
+                                                                            float S(float a, float b, float t) {
+                                                                                return smoothstep(a, b, t);
+                                                                            }
 
-                                                                mat2 Rot(float a) {
-                                                                    float s = sin(a);
-                                                                    float c = cos(a);
-                                                                    return mat2(c, -s, s, c);
-                                                                }
+                                                                            mat2 Rot(float a) {
+                                                                                float s = sin(a);
+                                                                                float c = cos(a);
+                                                                                return mat2(c, -s, s, c);
+                                                                            }
 
-                                                                float noise(vec2 p) {
-                                                                    vec2 ip = floor(p);
-                                                                    vec2 fp = fract(p);
-                                                                    float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-                                                                    float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                    float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                    float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                            float noise(vec2 p) {
+                                                                                vec2 ip = floor(p);
+                                                                                vec2 fp = fract(p);
+                                                                                float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
 
-                                                                    fp = fp * fp * (3.0 - 2.0 * fp);
+                                                                                fp = fp * fp * (3.0 - 2.0 * fp);
 
-                                                                    return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-                                                                }
+                                                                                return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+                                                                            }
 
-                                                                void main() {
-                                                                    float waterHeight = texture2D(waterTexture, vUv).r;
+                                                                            void main() {
+                                                                                float waterHeight = texture2D(waterTexture, vUv).r;
 
-                                                                    float step = 1.0 / resolution.x;
-                                                                    vec2 distortion = vec2(
-                                                                        texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-                                                                        texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-                                                                    ) * rippleStrength * 5.0;
+                                                                                float step = 1.0 / resolution.x;
+                                                                                vec2 distortion = vec2(
+                                                                                    texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+                                                                                    texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+                                                                                ) * rippleStrength * 5.0;
 
-                                                                    vec2 tuv = vUv + distortion;
-                                                                    tuv -= 0.5;
+                                                                                vec2 tuv = vUv + distortion;
+                                                                                tuv -= 0.5;
 
-                                                                    float ratio = resolution.x / resolution.y;
-                                                                    tuv.y *= 1.0/ratio;
+                                                                                float ratio = resolution.x / resolution.y;
+                                                                                tuv.y *= 1.0/ratio;
 
-                                                                    vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                    vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                    vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+                                                                                vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                                vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                                vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
 
-                                                                    float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-                                                                    finalComp += vec3(noiseValue);
+                                                                                float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+                                                                                finalComp += vec3(noiseValue);
 
-                                                                    float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-                                                                    finalComp *= mix(0.95, 1.0, vignette);
+                                                                                float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+                                                                                finalComp *= mix(0.95, 1.0, vignette);
 
-                                                                    gl_FragColor = vec4(finalComp, 1.0);
-                                                                }
-                                                            `
+                                                                                gl_FragColor = vec4(finalComp, 1.0);
+                                                                            }
+                                                                        `
                 };
 
                 const geometry = new THREE.PlaneGeometry(
@@ -3243,6 +3243,880 @@
     </style>
     <!-- Our Products End -->
 
+
+    {{-- Service --}}
+    <style>
+        .services-section {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .services-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        /* Left Content Section */
+        .content-section {
+            position: sticky;
+            top: 100px;
+        }
+
+        .services-label {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #9ca3af;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .services-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1f2937;
+            line-height: 1.2;
+            margin-bottom: 25px;
+        }
+
+        .services-title .highlight {
+            color: #6366f1;
+        }
+
+        .services-description {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 15px;
+        }
+
+        .services-description-extra {
+            font-size: 1rem;
+            color: #6b7280;
+            line-height: 1.8;
+            margin-bottom: 35px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 35px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-secondary {
+            background: #e0e7ff;
+            color: #6366f1;
+        }
+
+        .btn-secondary:hover {
+            background: #c7d2fe;
+            transform: translateY(-2px);
+        }
+
+        /* Right Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .services-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .content-section {
+                position: static;
+            }
+
+            .services-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .services-section {
+                padding: 60px 0;
+            }
+
+            .services-title {
+                font-size: 2.2rem;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .services-title {
+                font-size: 1.8rem;
+            }
+
+            .service-card {
+                padding: 30px 20px;
+            }
+
+            .service-icon {
+                width: 60px;
+                height: 60px;
+            }
+
+            .service-icon svg {
+                width: 28px;
+                height: 28px;
+            }
+        }
+    </style>
+
+    {{-- <section class="services-section">
+        <div class="container">
+            <div class="services-wrapper">
+                <!-- Left Content -->
+                <div class="content-section">
+                    <p class="services-label">SERVICES</p>
+                    <h2 class="services-title">
+                        Our <span class="highlight">Services</span>
+                    </h2>
+                    <p class="services-description">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Maiores impedit perferendis suscipit
+                        eaque, iste dolor cupiditate blanditiis ratione.
+                    </p>
+                    <p class="services-description-extra">
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <div class="button-group">
+                        <a href="#" class="btn btn-primary">Get started</a>
+                        <a href="#" class="btn btn-secondary">Live demo</a>
+                    </div>
+                </div>
+
+                <!-- Right Services Grid -->
+                <style>
+                    .holderCircle {
+                        width: 500px;
+                        height: 500px;
+                        border-radius: 100%;
+                        margin: 60px auto;
+                        position: relative;
+                    }
+
+
+                    .dotCircle {
+                        width: 100%;
+                        height: 100%;
+                        position: absolute;
+                        margin: auto;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        border-radius: 100%;
+                        z-index: 20;
+                    }
+
+                    .dotCircle .itemDot {
+                        display: block;
+                        width: 80px;
+                        height: 80px;
+                        position: absolute;
+                        background: #ffffff;
+                        color: #7d4ac7;
+                        border-radius: 20px;
+                        text-align: center;
+                        line-height: 80px;
+                        font-size: 30px;
+                        z-index: 3;
+                        cursor: pointer;
+                        border: 2px solid #e6e6e6;
+                    }
+
+                    .dotCircle .itemDot .forActive {
+                        width: 56px;
+                        height: 56px;
+                        position: absolute;
+                        top: 0;
+                        left: 0;
+                        right: 0;
+                        bottom: 0;
+                        display: none;
+                    }
+
+                    .dotCircle .itemDot .forActive::after {
+                        content: '';
+                        width: 5px;
+                        height: 5px;
+                        border: 3px solid #7d4ac7;
+                        bottom: -31px;
+                        left: -14px;
+                        filter: blur(1px);
+                        position: absolute;
+                        border-radius: 100%;
+                    }
+
+                    .dotCircle .itemDot .forActive::before {
+                        content: '';
+                        width: 6px;
+                        height: 6px;
+                        filter: blur(5px);
+                        top: -15px;
+                        position: absolute;
+                        transform: rotate(-45deg);
+                        border: 6px solid #a733bb;
+                        right: -39px;
+                    }
+
+                    .dotCircle .itemDot.active .forActive {
+                        display: block;
+                    }
+
+                    .round {
+                        position: absolute;
+                        left: 40px;
+                        top: 45px;
+                        width: 410px;
+                        height: 410px;
+                        border: 2px dotted #a733bb;
+                        border-radius: 100%;
+                        -webkit-animation: rotation 100s infinite linear;
+                    }
+
+                    .dotCircle .itemDot:hover,
+                    .dotCircle .itemDot.active {
+                        color: #ffffff;
+                        transition: 0.5s;
+                        /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d4ac7+0,a733bb+100 */
+                        background: #7d4ac7;
+                        /* Old browsers */
+                        background: -moz-linear-gradient(left, #7d4ac7 0%, #a733bb 100%);
+                        /* FF3.6-15 */
+                        background: -webkit-linear-gradient(left, #7d4ac7 0%, #a733bb 100%);
+                        /* Chrome10-25,Safari5.1-6 */
+                        background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%);
+                        /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+                        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d4ac7', endColorstr='#a733bb', GradientType=1);
+                        /* IE6-9 */
+                        border: 2px solid #ffffff;
+                        -webkit-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+                        -moz-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+                        box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+                    }
+
+                    .dotCircle .itemDot {
+                        font-size: 40px;
+                    }
+
+                    .contentCircle {
+                        width: 250px;
+                        border-radius: 100%;
+                        color: #222222;
+                        position: relative;
+                        top: 150px;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                    }
+
+                    .contentCircle .CirItem {
+                        border-radius: 100%;
+                        color: #222222;
+                        position: absolute;
+                        text-align: center;
+                        bottom: 0;
+                        left: 0;
+                        opacity: 0;
+                        transform: scale(0);
+                        transition: 0.5s;
+                        font-size: 15px;
+                        width: 100%;
+                        height: 100%;
+                        top: 0;
+                        right: 0;
+                        margin: auto;
+                        line-height: 250px;
+                    }
+
+                    .CirItem.active {
+                        z-index: 1;
+                        opacity: 1;
+                        transform: scale(1);
+                        transition: 0.5s;
+                    }
+
+                    .contentCircle .CirItem i {
+                        font-size: 180px;
+                        position: absolute;
+                        top: 0;
+                        left: 50%;
+                        margin-left: -90px;
+                        color: #000000;
+                        opacity: 0.1;
+                    }
+
+                    @media only screen and (min-width:300px) and (max-width:599px) {
+                        .holderCircle {
+                            /* width: 300px; height: 300px;*/
+                            margin: 110px auto;
+                        }
+
+                        .holderCircle::after {
+                            width: 100%;
+                            height: 100%;
+                        }
+
+                        .dotCircle {
+                            width: 100%;
+                            height: 100%;
+                            top: 0;
+                            right: 0;
+                            bottom: 0;
+                            left: 0;
+                            margin: auto;
+                        }
+                    }
+
+                    @media only screen and (min-width:600px) and (max-width:767px) {}
+
+                    @media only screen and (min-width:768px) and (max-width:991px) {}
+
+                    @media only screen and (min-width:992px) and (max-width:1199px) {}
+
+                    @media only screen and (min-width:1200px) and (max-width:1499px) {}
+
+                    .title-box .title {
+                        font-weight: 600;
+                        letter-spacing: 2px;
+                        position: relative;
+                        z-index: -1;
+                    }
+
+                    .title-box span {
+                        text-shadow: 0 10px 10px rgba(0, 0, 0, .15);
+                        font-weight: 800;
+                        color: #640178;
+                    }
+
+                    .title-box p {
+                        font-size: 17px;
+                        line-height: 2em;
+                    }
+                </style>
+
+                <div class="services-grid">
+                    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+                        id="bootstrap-css">
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+                    <!------ Include the above in your HEAD tag ---------->
+                    <section class="iq-features">
+                        <div class="container">
+                            <div class="row align-items-center">
+                                <div class="col-lg-3 col-md-12"></div>
+                                <div class="col-lg-6 col-md-12">
+                                    <div class="holderCircle">
+                                        <div class="round"></div>
+                                        <div class="dotCircle">
+                                            <span class="itemDot active itemDot1" data-tab="1">
+                                                <i class="fa fa-clock-o"></i>
+                                                <span class="forActive"></span>
+                                            </span>
+                                            <span class="itemDot itemDot2" data-tab="2">
+                                                <i class="fa fa-comments"></i>
+                                                <span class="forActive"></span>
+                                            </span>
+                                            <span class="itemDot itemDot3" data-tab="3">
+                                                <i class="fa fa-user"></i>
+                                                <span class="forActive"></span>
+                                            </span>
+                                            <span class="itemDot itemDot4" data-tab="4">
+                                                <i class="fa fa-tags"></i>
+                                                <span class="forActive"></span>
+                                            </span>
+                                            <span class="itemDot itemDot5" data-tab="5">
+                                                <i class="fa fa-upload"></i>
+                                                <span class="forActive"></span>
+                                            </span>
+                                            <span class="itemDot itemDot6" data-tab="6">
+                                                <i class="fa fa-briefcase"></i>
+                                                <span class="forActive"></span>
+                                            </span>
+                                        </div>
+                                        <div class="contentCircle">
+                                            <div class="CirItem title-box active CirItem1">
+                                                <h2 class="title"><span>Automate</span></h2>
+                                                <p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty
+                                                    tjtyjtyjtdy</p>
+                                                <i class="fa fa-clock-o"></i>
+                                            </div>
+                                            <div class="CirItem title-box CirItem2">
+                                                <h2 class="title"><span>Chat </span></h2>
+                                                <p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty
+                                                    tjtyjtyjtdy</p>
+                                                <i class="fa fa-comments"></i>
+                                            </div>
+                                            <div class="CirItem title-box CirItem3">
+                                                <h2 class="title"><span>Responses</span></h2>
+                                                <p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty
+                                                    tjtyjtyjtdy</p>
+                                                <i class="fa fa-user"></i>
+                                            </div>
+                                            <div class="CirItem title-box CirItem4">
+                                                <h2 class="title"><span>Tags</span></h2>
+                                                <p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty
+                                                    tjtyjtyjtdy</p>
+                                                <i class="fa fa-tags"></i>
+                                            </div>
+                                            <div class="CirItem title-box CirItem5">
+                                                <h2 class="title"><span>Sharing</span></h2>
+                                                <p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty
+                                                    tjtyjtyjtdy</p>
+                                                <i class="fa fa-upload"></i>
+                                            </div>
+                                            <div class="CirItem title-box CirItem6">
+                                                <h2 class="title"><span>Support</span></h2>
+                                                <p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty
+                                                    tjtyjtyjtdy</p>
+                                                <i class="fa fa-briefcase"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3 col-md-12"></div>
+                            </div>
+                        </div>
+                    </section>
+                    <script>
+
+                        let i = 2;
+
+
+                        $(document).ready(function () {
+                            var radius = 200;
+                            var fields = $('.itemDot');
+                            var container = $('.dotCircle');
+                            var width = container.width();
+                            radius = width / 2.5;
+
+                            var height = container.height();
+                            var angle = 0, step = (2 * Math.PI) / fields.length;
+                            fields.each(function () {
+                                var x = Math.round(width / 2 + radius * Math.cos(angle) - $(this).width() / 2);
+                                var y = Math.round(height / 2 + radius * Math.sin(angle) - $(this).height() / 2);
+                                if (window.console) {
+                                    console.log($(this).text(), x, y);
+                                }
+
+                                $(this).css({
+                                    left: x + 'px',
+                                    top: y + 'px'
+                                });
+                                angle += step;
+                            });
+
+
+                            $('.itemDot').click(function () {
+
+                                var dataTab = $(this).data("tab");
+                                $('.itemDot').removeClass('active');
+                                $(this).addClass('active');
+                                $('.CirItem').removeClass('active');
+                                $('.CirItem' + dataTab).addClass('active');
+                                i = dataTab;
+
+                                $('.dotCircle').css({
+                                    "transform": "rotate(" + (360 - (i - 1) * 36) + "deg)",
+                                    "transition": "2s"
+                                });
+                                $('.itemDot').css({
+                                    "transform": "rotate(" + ((i - 1) * 36) + "deg)",
+                                    "transition": "1s"
+                                });
+
+
+                            });
+
+                            setInterval(function () {
+                                var dataTab = $('.itemDot.active').data("tab");
+                                if (dataTab > 6 || i > 6) {
+                                    dataTab = 1;
+                                    i = 1;
+                                }
+                                $('.itemDot').removeClass('active');
+                                $('[data-tab="' + i + '"]').addClass('active');
+                                $('.CirItem').removeClass('active');
+                                $('.CirItem' + i).addClass('active');
+                                i++;
+
+
+                                $('.dotCircle').css({
+                                    "transform": "rotate(" + (360 - (i - 2) * 36) + "deg)",
+                                    "transition": "2s"
+                                });
+                                $('.itemDot').css({
+                                    "transform": "rotate(" + ((i - 2) * 36) + "deg)",
+                                    "transition": "1s"
+                                });
+
+                            }, 5000);
+
+                        });
+                    </script>
+                </div>
+            </div>
+        </div>
+    </section> --}}
+
+    <style>
+.holderCircle { width: 500px; height: 500px; border-radius: 100%; margin: 60px auto; position: relative; }
+
+
+.dotCircle { width: 100%; height: 100%; position: absolute; margin: auto; top: 0; left: 0; right: 0; bottom: 0; border-radius: 100%; z-index: 20; }
+.dotCircle  .itemDot { display: block; width: 80px; height: 80px; position: absolute; background: #ffffff; color: #7d4ac7; border-radius: 20px; text-align: center; line-height: 80px; font-size: 30px; z-index: 3; cursor: pointer; border: 2px solid #e6e6e6; }
+.dotCircle  .itemDot .forActive { width: 56px; height: 56px; position: absolute; top: 0; left: 0; right: 0; bottom: 0; display: none; }
+.dotCircle  .itemDot .forActive::after { content: ''; width: 5px; height: 5px; border: 3px solid #7d4ac7; bottom: -31px; left: -14px; filter: blur(1px); position: absolute; border-radius: 100%; }
+.dotCircle  .itemDot .forActive::before { content: ''; width: 6px; height: 6px; filter: blur(5px); top: -15px; position: absolute; transform: rotate(-45deg); border: 6px solid #a733bb; right: -39px; }
+.dotCircle  .itemDot.active .forActive { display: block; }
+.round { position: absolute; left: 40px; top: 45px; width: 410px; height: 410px; border: 2px dotted #a733bb; border-radius: 100%; -webkit-animation: rotation 100s infinite linear; }
+.dotCircle .itemDot:hover, .dotCircle .itemDot.active { color: #ffffff; transition: 0.5s;   /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d4ac7+0,a733bb+100 */ background: #7d4ac7; /* Old browsers */ background: -moz-linear-gradient(left, #7d4ac7 0%, #a733bb 100%); /* FF3.6-15 */ background: -webkit-linear-gradient(left, #7d4ac7 0%, #a733bb 100%); /* Chrome10-25,Safari5.1-6 */ background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d4ac7', endColorstr='#a733bb', GradientType=1); /* IE6-9 */ border: 2px solid #ffffff; -webkit-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13); -moz-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13); box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13); }
+.dotCircle .itemDot { font-size: 40px; }
+.contentCircle { width: 250px; border-radius: 100%; color: #222222; position: relative; top: 150px; left: 50%; transform: translate(-50%, -50%); }
+.contentCircle .CirItem { border-radius: 100%; color: #222222; position: absolute; text-align: center; bottom: 0; left: 0; opacity: 0; transform: scale(0); transition: 0.5s; font-size: 15px; width: 100%; height: 100%; top: 0; right: 0; margin: auto; line-height: 250px; }
+.CirItem.active { z-index: 1; opacity: 1; transform: scale(1); transition: 0.5s; }
+.contentCircle .CirItem i { font-size: 180px; position: absolute; top: 0; left: 50%; margin-left: -90px; color: #000000; opacity: 0.1; }
+@media only screen and (min-width:300px) and (max-width:599px) {
+	.holderCircle {/* width: 300px; height: 300px;*/ margin: 110px auto; }
+	.holderCircle::after { width: 100%; height: 100%; }
+	.dotCircle { width: 100%; height: 100%; top: 0; right: 0; bottom: 0; left: 0; margin: auto; }
+}
+@media only screen and (min-width:600px) and (max-width:767px) { }
+@media only screen and (min-width:768px) and (max-width:991px) { }
+@media only screen and (min-width:992px) and (max-width:1199px) { }
+@media only screen and (min-width:1200px) and (max-width:1499px) { }
+  .title-box .title { font-weight: 600; letter-spacing: 2px; position: relative; z-index: -1; }
+        .title-box span { text-shadow: 0 10px 10px rgba(0, 0, 0, .15); font-weight: 800; color: #640178; }
+        .title-box p {font-size: 17px; line-height: 2em; }
+                </style>
+
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet"
+                        id="bootstrap-css">
+                    <link rel="stylesheet"
+                        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+                    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <section class="services-section">
+    <div class="container">
+        <div class="services-wrapper">
+            <!-- Left -->
+            <div class="content-section">
+                <p class="services-label">SERVICES</p>
+                <h2 class="services-title">
+                    Pure <span class="highlight">Aqua Tech Services</span>
+                </h2>
+                <p class="services-description">
+                    We provide end-to-end water purifier solutions for your home and office — installation, repair,
+                    filter replacement, and more.
+                </p>
+                <p class="services-description-extra">
+                    Ensure pure water and peace of mind with our certified technicians and fast response service.
+                </p>
+                <div class="button-group">
+                    <a href="#bookNow" class="btn btn-primary" onclick="openBookingModal()">Book Service</a>
+                    <a href="#" class="btn btn-secondary">View Plans</a>
+                </div>
+            </div>
+
+            <!-- Right Circular Section -->
+
+
+<!------ Include the above in your HEAD tag ---------->
+<section class="iq-features">
+<div class="container">
+<div class="row align-items-center">
+<div class="col-lg-3 col-md-12"></div>
+<div class="col-lg-6 col-md-12">
+ <div class="holderCircle">
+<div class="round"></div>
+<div class="dotCircle">
+<span class="itemDot active itemDot1" data-tab="1">
+ <i class="fa fa-clock-o"></i>
+ <span class="forActive"></span>
+</span>
+<span class="itemDot itemDot2" data-tab="2">
+<i class="fa fa-comments"></i>
+<span class="forActive"></span>
+</span>
+<span class="itemDot itemDot3" data-tab="3">
+<i class="fa fa-user"></i>
+<span class="forActive"></span>
+</span>
+<span class="itemDot itemDot4" data-tab="4">
+<i class="fa fa-tags"></i>
+<span class="forActive"></span>
+</span>
+<span class="itemDot itemDot5" data-tab="5">
+ <i class="fa fa-upload"></i>
+<span class="forActive"></span>
+</span>
+<span class="itemDot itemDot6" data-tab="6">
+<i class="fa fa-briefcase"></i>
+<span class="forActive"></span>
+</span>
+</div>
+<div class="contentCircle">
+<div class="CirItem title-box active CirItem1">
+<h2 class="title"><span>Automate</span></h2>
+<p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty tjtyjtyjtdy</p>
+<i class="fa fa-clock-o"></i>
+</div>
+<div class="CirItem title-box CirItem2">
+<h2 class="title"><span>Chat </span></h2>
+<p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty tjtyjtyjtdy</p>
+<i class="fa fa-comments"></i>
+</div>
+<div class="CirItem title-box CirItem3">
+<h2 class="title"><span>Responses</span></h2>
+<p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty tjtyjtyjtdy</p>
+<i class="fa fa-user"></i>
+</div>
+<div class="CirItem title-box CirItem4">
+<h2 class="title"><span>Tags</span></h2>
+<p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty tjtyjtyjtdy</p>
+<i class="fa fa-tags"></i>
+</div>
+<div class="CirItem title-box CirItem5">
+<h2 class="title"><span>Sharing</span></h2>
+<p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty tjtyjtyjtdy</p>
+<i class="fa fa-upload"></i>
+</div>
+<div class="CirItem title-box CirItem6">
+<h2 class="title"><span>Support</span></h2>
+<p>tfhdfghfghfghfgjtyjtyhfg ftgfthtyjyutg rthtryjdrhrt tyjdrytyjuty tjtyjtyjtdy</p>
+<i class="fa fa-briefcase"></i>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-lg-3 col-md-12"></div>
+               </div>
+            </div>
+        </section>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+    
+	let i=2;
+
+	
+	$(document).ready(function(){
+		var radius = 200;
+		var fields = $('.itemDot');
+		var container = $('.dotCircle');
+		var width = container.width();
+ radius = width/2.5;
+ 
+		 var height = container.height();
+		var angle = 0, step = (2*Math.PI) / fields.length;
+		fields.each(function() {
+			var x = Math.round(width/2 + radius * Math.cos(angle) - $(this).width()/2);
+			var y = Math.round(height/2 + radius * Math.sin(angle) - $(this).height()/2);
+			if(window.console) {
+				console.log($(this).text(), x, y);
+			}
+			
+			$(this).css({
+				left: x + 'px',
+				top: y + 'px'
+			});
+			angle += step;
+		});
+		
+		
+		$('.itemDot').click(function(){
+			
+			var dataTab= $(this).data("tab");
+			$('.itemDot').removeClass('active');
+			$(this).addClass('active');
+			$('.CirItem').removeClass('active');
+			$( '.CirItem'+ dataTab).addClass('active');
+			i=dataTab;
+			
+			$('.dotCircle').css({
+				"transform":"rotate("+(360-(i-1)*36)+"deg)",
+				"transition":"2s"
+			});
+			$('.itemDot').css({
+				"transform":"rotate("+((i-1)*36)+"deg)",
+				"transition":"1s"
+			});
+			
+			
+		});
+		
+		setInterval(function(){
+			var dataTab= $('.itemDot.active').data("tab");
+			if(dataTab>6||i>6){
+			dataTab=1;
+			i=1;
+			}
+			$('.itemDot').removeClass('active');
+			$('[data-tab="'+i+'"]').addClass('active');
+			$('.CirItem').removeClass('active');
+			$( '.CirItem'+i).addClass('active');
+			i++;
+			
+			
+			$('.dotCircle').css({
+				"transform":"rotate("+(360-(i-2)*36)+"deg)",
+				"transition":"2s"
+			});
+			$('.itemDot').css({
+				"transform":"rotate("+((i-2)*36)+"deg)",
+				"transition":"1s"
+			});
+			
+			}, 5000);
+		
+	});
+
+
+
+</script>
+
+<!-- Booking Modal -->
+<div id="bookingModal"
+    style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.6); z-index:9999; align-items:center; justify-content:center;">
+    <div style="background:#fff; padding:30px; border-radius:15px; width:90%; max-width:600px; position:relative;">
+        <h3 class="text-center mb-3">Book Your Service</h3>
+        <form id="serviceBookingForm">
+            @csrf
+            <div class="form-group mb-3">
+                <label>Name</label>
+                <input type="text" name="name" class="form-control" required />
+            </div>
+            <div class="form-group mb-3">
+                <label>Email</label>
+                <input type="email" name="email" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label>Phone</label>
+                <input type="text" name="phone" class="form-control" required />
+            </div>
+            <div class="form-group mb-3">
+                <label>Service Type</label>
+                <select name="service_type" class="form-control" required>
+                    <option value="">Select Service</option>
+                    <option>Installation</option>
+                    <option>Maintenance</option>
+                    <option>Filter Change</option>
+                    <option>Repair</option>
+                    <option>Water Testing</option>
+                    <option>Customer Support</option>
+                </select>
+            </div>
+            <div class="form-group mb-3">
+                <label>Preferred Date</label>
+                <input type="date" name="preferred_date" class="form-control" required />
+            </div>
+            <div class="form-group mb-3">
+                <label>Preferred Time</label>
+                <input type="time" name="preferred_time" class="form-control" required />
+            </div>
+            <input type="hidden" name="latitude" id="latitude" />
+            <input type="hidden" name="longitude" id="longitude" />
+            <div class="text-center">
+                <button type="submit" class="btn btn-primary">Confirm Booking</button>
+                <button type="button" class="btn btn-secondary" onclick="closeBookingModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openBookingModal() {
+        document.getElementById('bookingModal').style.display = 'flex';
+        getLocation();
+    }
+
+    function closeBookingModal() {
+        document.getElementById('bookingModal').style.display = 'none';
+    }
+
+    function getLocation() {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+                document.getElementById('latitude').value = position.coords.latitude;
+                document.getElementById('longitude').value = position.coords.longitude;
+            });
+        } else {
+            alert("Geolocation is not supported by your browser.");
+        }
+    }
+
+    $('#serviceBookingForm').on('submit', function (e) {
+        e.preventDefault();
+        $.ajax({
+            url: "{{ route('service.book') }}",
+            method: 'POST',
+            data: $(this).serialize(),
+            success: function (response) {
+                alert(response.message);
+                $('#serviceBookingForm')[0].reset();
+                closeBookingModal();
+            },
+            error: function (xhr) {
+                alert("Please fill all required fields correctly.");
+            }
+        });
+    });
+</script>
+
     <!-- Product Banner Start -->
     <div class="container-fluid py-5">
         <div class="container">
@@ -3857,7 +4731,7 @@
                                                     white-space: normal;
                                                 }
                                             </style>
-                                            <a href="#"
+                                            <a href="{{ route('product.show', [$categoryProduct->id, $categoryProduct->slug]) }}"
                                                 class="d-block h4 product-name">
                                                 {{ $categoryProduct->name }}
                                             </a>

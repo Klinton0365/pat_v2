@@ -1,5 +1,5 @@
 <!-- Topbar Start -->
-<div class="container-fluid px-5 d-none border-bottom d-lg-block">
+<div class="container-fluid px-5 d-none border-bottom d-lg-block bg-white">
     <div class="row gx-0 align-items-center">
         <div class="col-lg-4 text-center text-lg-start mb-lg-0">
             {{-- <div class="d-inline-flex align-items-center" style="height: 45px;">
@@ -36,7 +36,7 @@
                         <a href="#" class="dropdown-item"> Italiano</a>
                     </div>
                 </div> --}}
-                <div class="dropdown">
+                {{-- <div class="dropdown">
                     <a href="#" class="dropdown-toggle text-muted ms-2" data-bs-toggle="dropdown"><small><i
                                 class="fa fa-home me-2"></i> My Dashboard</small></a>
                     <div class="dropdown-menu rounded">
@@ -48,7 +48,117 @@
                         <a href="#" class="dropdown-item"> My Account</a>
                         <a href="#" class="dropdown-item"> Log Out</a>
                     </div>
-                </div>
+                </div> --}}
+                <style>
+                    .login-botton {
+                        font-weight: bold;
+                        color: white;
+                        border-radius: 2rem;
+                        cursor: pointer;
+                        width: 95.02px;
+                        height: 32px;
+                        padding: 5px 0;
+                        border: none;
+                        background-color: #3653f8;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .login-botton .span-mother {
+                        display: flex;
+                        overflow: hidden;
+                    }
+
+                    .login-botton:hover .span-mother {
+                        position: absolute;
+                    }
+
+                    .login-botton:hover .span-mother span {
+                        transform: translateY(1.2em);
+                    }
+
+                    .login-botton .span-mother span:nth-child(1) {
+                        transition: 0.2s;
+                    }
+
+                    .login-botton .span-mother span:nth-child(2) {
+                        transition: 0.3s;
+                    }
+
+                    .login-botton .span-mother span:nth-child(3) {
+                        transition: 0.4s;
+                    }
+
+                    .login-botton .span-mother span:nth-child(4) {
+                        transition: 0.5s;
+                    }
+
+                    .login-botton .span-mother span:nth-child(5) {
+                        transition: 0.6s;
+                    }
+
+                    .login-botton .span-mother span:nth-child(6) {
+                        transition: 0.7s;
+                    }
+
+                    .login-botton .span-mother2 {
+                        display: flex;
+                        position: absolute;
+                        overflow: hidden;
+                    }
+
+                    .login-botton .span-mother2 span {
+                        transform: translateY(-1.2em);
+                    }
+
+                    .login-botton:hover .span-mother2 span {
+                        transform: translateY(0);
+                    }
+
+                    .login-botton .span-mother2 span {
+                        transition: 0.2s;
+                    }
+
+                    .login-botton .span-mother2 span:nth-child(2) {
+                        transition: 0.3s;
+                    }
+
+                    .login-botton .span-mother2 span:nth-child(3) {
+                        transition: 0.4s;
+                    }
+
+                    .login-botton .span-mother2 span:nth-child(4) {
+                        transition: 0.5s;
+                    }
+
+                    .login-botton .span-mother2 span:nth-child(5) {
+                        transition: 0.6s;
+                    }
+
+                    .login-botton .span-mother2 span:nth-child(6) {
+                        transition: 0.7s;
+                    }
+                </style>
+                <a href="{{ route('login') }}">
+                <button class="login-botton">
+                    <span class="span-mother">
+                        <span>L</span>
+                        <span>O</span>
+                        <span>G</span>
+                        <span>I</span>
+                        <span>N</span>
+                    </span>
+                    <span class="span-mother2">
+                        <span>L</span>
+                        <span>O</span>
+                        <span>G</span>
+                        <span>I</span>
+                        <span>N</span>
+                    </span>
+                </button>
+                </a>
+
             </div>
         </div>
     </div>
