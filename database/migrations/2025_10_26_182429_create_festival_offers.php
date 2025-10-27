@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->text('description')->nullable();
             $table->decimal('offer_price', 10, 2)->nullable();
+            $table->boolean('is_percentage')->default(0); // 0 = Amount, 1 = Percentage
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
             $table->boolean('status')->default(1);

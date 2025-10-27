@@ -15,9 +15,10 @@ class FestivalOffer extends Model
         'slug',
         'description',
         'offer_price',
+        'is_percentage',
         'start_date',
         'end_date',
-        'status'
+        'status',
     ];
 
     public function product()

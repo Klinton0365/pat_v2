@@ -25,6 +25,8 @@
     <link href="{{ asset('admin/lib/owlcarousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
     <link href="{{ asset('admin/lib/tempusdominus/css/tempusdominus-bootstrap-4.min.css') }}" rel="stylesheet" />
 
+    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/css/bootstrap-datepicker.min.css"> --}}
+
     <!-- Customized Bootstrap Stylesheet -->
     <link href="{{ asset('admin/css/bootstrap.min.css') }}" rel="stylesheet">
 
@@ -57,7 +59,7 @@
     </div>
 
     <!-- JavaScript Libraries -->
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script> --}}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="{{ asset('admin/lib/chart/chart.min.js') }}"></script>
     <script src="{{ asset('admin/lib/easing/easing.min.js') }}"></script>
@@ -66,6 +68,9 @@
     <script src="{{ asset('admin/lib/tempusdominus/js/moment.min.js') }}"></script>
     <script src="{{ asset('admin/lib/tempusdominus/js/moment-timezone.min.js') }}"></script>
     <script src="{{ asset('admin/lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js') }}"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.10.0/js/bootstrap-datepicker.min.js"></script> --}}
 
     <!-- Template Javascript -->
     <script src="{{ asset('admin/js/main.js') }}"></script>

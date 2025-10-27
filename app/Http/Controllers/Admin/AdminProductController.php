@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
-use App\Models\Inventory;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
@@ -15,12 +14,14 @@ class AdminProductController extends Controller
     public function index()
     {
         $products = Product::with('category')->latest()->get();
+
         return view('admin.products.index', compact('products'));
     }
 
     public function create()
     {
         $categories = Category::all();
+
         return view('admin.products.create', compact('categories'));
     }
 
@@ -66,28 +67,26 @@ class AdminProductController extends Controller
 
         // ✅ Create product
         $product = Product::create([
-            'category_id'   => $request->category_id,
-            'name'          => $request->name,
-            'slug'          => $request->slug,
-            'description'   => $request->description,
-            'price'         => $request->price,
-            'discount'      => $request->discount ?? 0,
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'description' => $request->description,
+            'price' => $request->price,
+            'discount' => $request->discount ?? 0,
             'warranty_months' => $request->warranty_months,
-            'main_image'    => $mainImagePath,
+            'main_image' => $mainImagePath,
             'product_images' => json_encode($productImages),
-            'colors'        => json_encode($request->colors),
-            'stock'         => $request->stock ?? 0,
-            'sku'           => $request->sku,
-            'is_published'  => $request->has('is_published') ? 1 : 0,
-            'publish_home'  => $request->has('publish_home') ? 1 : 0,
-            'featured'      => $request->has('featured') ? 1 : 0,
-            'rating'        => $request->rating ?? 0,
+            'colors' => json_encode($request->colors),
+            'stock' => $request->stock ?? 0,
+            'sku' => $request->sku,
+            'is_published' => $request->has('is_published') ? 1 : 0,
+            'publish_home' => $request->has('publish_home') ? 1 : 0,
+            'featured' => $request->has('featured') ? 1 : 0,
+            'rating' => $request->rating ?? 0,
         ]);
-
 
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
-
 
     // public function edit(Product $product)
     // {
@@ -106,19 +105,17 @@ class AdminProductController extends Controller
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-
-
     public function update(Request $request, Product $product)
     {
         $request->validate([
             'category_id' => 'required|exists:categories,id',
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255|unique:products,slug,' . $product->id,
+            'slug' => 'required|string|max:255|unique:products,slug,'.$product->id,
             'price' => 'required|numeric',
             'discount' => 'nullable|numeric|min:0|max:100',
             'warranty_months' => 'nullable|integer',
             'stock' => 'required|integer|min:0',
-            'sku' => 'nullable|string|max:100|unique:products,sku,' . $product->id,
+            'sku' => 'nullable|string|max:100|unique:products,sku,'.$product->id,
             'main_image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
             'product_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
         ]);
@@ -160,10 +157,27 @@ class AdminProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product updated successfully.');
     }
 
-
     public function destroy(Product $product)
     {
         $product->delete();
+
         return redirect()->route('products.index')->with('success', 'Product deleted successfully');
+    }
+
+    public function getProductDetails($id)
+    {
+        //\Log::info('IDDD: ', $id);
+        \Log::info('IDDD: ', ['id' => $id]);
+
+        $product = \App\Models\Product::find($id);
+
+        if ($product) {
+            return response()->json([
+                'price' => $product->price,
+                'discount' => $product->discount,
+            ]);
+        } else {
+            return response()->json(['error' => 'Product not found'], 404);
+        }
     }
 }

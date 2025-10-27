@@ -59,6 +59,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 Route::post('/admin/login', [AdminController::class, 'authenticate'])->name('admin.authenticate');
 
+
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::post('/admin/logout', [AdminController::class, 'logout'])->name('admin.logout');
@@ -69,6 +70,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::resource('inventories', AdminInventoryController::class);
     Route::resource('service-requests', AdminServiceRequestController::class);
     Route::resource('festival-offers',FestivalOfferController::class)->names('admin.festival-offers');
+
+    Route::get('/admin/get-product-details/{id}', [AdminProductController::class, 'getProductDetails'])->name('admin.getProductDetails');
 
 });
 
