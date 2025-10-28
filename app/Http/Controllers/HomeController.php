@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\FestivalOffer;
 use App\Models\Product;
 
 class HomeController extends Controller
@@ -18,7 +19,17 @@ class HomeController extends Controller
         $categories = Category::with('products')->get();
         // dd($categories);
 
-        return view('user.index', compact('products', 'categories'));
+        $amountOffer = FestivalOffer::with('product')
+            ->where('is_percentage', 0)
+            ->where('status', 1)
+            ->first();
+
+        $percentageOffer = FestivalOffer::with('product')
+            ->where('is_percentage', 1)
+            ->where('status', 1)
+            ->first();
+
+        return view('user.index', compact('products', 'categories', 'amountOffer', 'percentageOffer'));
     }
 
     public function productShow()
