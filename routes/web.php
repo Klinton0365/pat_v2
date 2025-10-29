@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServiceRequestController;
 use App\Http\Controllers\Admin\FestivalOfferController;
+use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BestSellerController;
 use App\Http\Controllers\CartController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ServiceController;
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ServiceBookingController;
 
@@ -73,6 +75,9 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/admin/get-product-details/{id}', [AdminProductController::class, 'getProductDetails'])->name('admin.getProductDetails');
 
+    Route::get('/user-details', [AdminProductController::class, 'userDetails'])->name('admin.user.details');
+
+    Route::resource('customers', AdminUserController::class);
 });
 
 // Admin Panel
