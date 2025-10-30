@@ -1,7 +1,7 @@
 @extends('admin.layout.app')
 
 @section('content')
-    @extends('admin.layout.navbar')
+    {{-- @extends('admin.layout.navbar') --}}
     <div class="content">
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary text-center rounded p-4">

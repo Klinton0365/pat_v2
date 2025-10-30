@@ -34,18 +34,18 @@
                             </div>
 
                             <div class="mb-3">
-    <label>Offer Price</label>
-    <input type="number" step="0.01" name="offer_price"
-        value="{{ $festivalOffer->offer_price }}" class="form-control">
-</div>
+                                <label>Offer Price</label>
+                                <input type="number" step="0.01" name="offer_price"
+                                    value="{{ $festivalOffer->offer_price }}" class="form-control">
+                            </div>
 
-<div class="mb-3">
-    <label>Offer Type</label>
-    <select name="is_percentage" class="form-control" required>
-        <option value="0" {{ $festivalOffer->is_percentage == 0 ? 'selected' : '' }}>Amount</option>
-        <option value="1" {{ $festivalOffer->is_percentage == 1 ? 'selected' : '' }}>Percentage</option>
-    </select>
-</div>
+                            <div class="mb-3">
+                                <label>Offer Type</label>
+                                <select name="is_percentage" class="form-control" required>
+                                    <option value="0" {{ $festivalOffer->is_percentage == 0 ? 'selected' : '' }}>Amount</option>
+                                    <option value="1" {{ $festivalOffer->is_percentage == 1 ? 'selected' : '' }}>Percentage</option>
+                                </select>
+                            </div>
 
                             <div class="row">
                                 <div class="col-md-6 mb-3">

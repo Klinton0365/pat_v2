@@ -4,7 +4,7 @@
 <!-- Flatpickr CSS -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 
-    @extends('admin.layout.navbar')
+    {{-- @extends('admin.layout.navbar') --}}
 
     <div class="content">
         <div class="container-fluid pt-4 px-4">
@@ -24,27 +24,26 @@
                         </select>
                     </div> --}}
                     <div class="mb-3">
-    <label>Select Product</label>
-    <select name="product_id" id="product_id" class="form-control" required>
-        <option value="">Choose Product</option>
-        @foreach($products as $product)
-            <option value="{{ $product->id }}">{{ $product->name }}</option>
-        @endforeach
-    </select>
-</div>
+                        <label>Select Product</label>
+                        <select name="product_id" id="product_id" class="form-control" required>
+                            <option value="">Choose Product</option>
+                            @foreach($products as $product)
+                                <option value="{{ $product->id }}">{{ $product->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
 
-<div class="row">
-    <div class="col-md-6 mb-3">
-        <label>Product Price</label>
-        <input type="text" id="product_price" class="form-control" readonly>
-    </div>
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>Product Price</label>
+                            <input type="text" id="product_price" class="form-control" readonly>
+                        </div>
 
-    <div class="col-md-6 mb-3">
-        <label>Product Discount (%)</label>
-        <input type="text" id="product_discount" class="form-control" readonly>
-    </div>
-</div>
-
+                        <div class="col-md-6 mb-3">
+                            <label>Product Discount (%)</label>
+                            <input type="text" id="product_discount" class="form-control" readonly>
+                        </div>
+                    </div>
 
                     <div class="mb-3">
                         <label>Offer Title</label>

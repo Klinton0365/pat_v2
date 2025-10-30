@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminInventoryController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServiceRequestController;
+use App\Http\Controllers\Admin\AdminTechnicianController;
 use App\Http\Controllers\Admin\FestivalOfferController;
 use App\Http\Controllers\Admin\AdminUserController;
 use App\Http\Controllers\AuthController;
@@ -77,7 +78,8 @@ Route::middleware(['auth', 'isAdmin'])->group(function () {
 
     Route::get('/user-details', [AdminProductController::class, 'userDetails'])->name('admin.user.details');
 
-    Route::resource('customers', AdminUserController::class);
+    Route::resource('customers', AdminUserController::class)->names('admin.customers');
+    Route::resource('technicians', AdminTechnicianController::class)->names('admin.technicians');
 });
 
 // Admin Panel

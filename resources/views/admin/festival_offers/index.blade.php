@@ -35,12 +35,12 @@
                                     <td>{{ $offer->title }}</td>
                                     <td>₹{{ $offer->offer_price }}</td>
                                     <td>
-    @if($offer->is_percentage === 1)
-        YES%
-    @else
-        ₹NO
-    @endif
-</td>
+                                        @if($offer->is_percentage === 1)
+                                            YES%
+                                        @else
+                                            ₹NO
+                                        @endif
+                                    </td>
 
                                     <td>{{ $offer->start_date }} - {{ $offer->end_date }}</td>
                                     <td>
