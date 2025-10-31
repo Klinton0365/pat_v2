@@ -25,7 +25,6 @@ class User extends Authenticatable
         'country',
         'password',
 
-        // Social login fields
         'provider',
         'provider_id',
         'google_token',
