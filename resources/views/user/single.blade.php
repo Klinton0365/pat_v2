@@ -196,6 +196,7 @@
    <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
 </a>
 
+
                         </div>
                     </div>
                 </div>
@@ -205,34 +206,6 @@
     </div>
     <!-- Single Products End -->
 
-    <script>
-document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('.add-to-cart').forEach(function(button) {
-        button.addEventListener('click', function(e) {
-            e.preventDefault();
-            let productId = this.getAttribute('data-product-id');
-
-            fetch("{{ route('cart.add') }}", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
-                },
-                body: JSON.stringify({ product_id: productId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    alert(data.message);
-                } else {
-                    alert("Something went wrong!");
-                }
-            })
-            .catch(err => console.error(err));
-        });
-    });
-});
-</script>
 
 
     <!-- Related Product Start -->
@@ -300,4 +273,46 @@ document.addEventListener('DOMContentLoaded', function () {
     </div>
     @endif
     <!-- Related Product End -->
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const buttons = document.querySelectorAll('.add-to-cart');
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            const productId = this.getAttribute('data-product-id');
+            console.log('Clicked Add to Cart for product:', productId); // ✅ Debug
+
+            fetch("{{ route('cart.add') }}", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                    "X-CSRF-TOKEN": "{{ csrf_token() }}"
+                },
+                body: JSON.stringify({ product_id: productId })
+            })
+            .then(response => {
+                if (!response.ok) throw new Error("Network response was not ok");
+                return response.json();
+            })
+            .then(data => {
+                console.log('Response:', data);
+                if (data.success) {
+                    alert(data.message);
+                } else {
+                    alert('Something went wrong!');
+                }
+            })
+            .catch(error => {
+                console.error('Fetch error:', error);
+                alert('Request failed — check console for details.');
+            });
+        });
+    });
+});
+</script>
+
 @endsection

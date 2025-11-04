@@ -28,8 +28,15 @@ use App\Http\Controllers\ServiceBookingController;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::get('/login', [AuthController::class, 'login'])->name('login');
-Route::get('/Register', [AuthController::class, 'register'])->name('Register');
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+Route::get('/register', [AuthController::class, 'showRegisterForm'])->name('register');
+Route::post('/register', [AuthController::class, 'register'])->name('register.submit');
+
+// Google Login
+Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
+Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
+
 
 Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
@@ -63,7 +70,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 
 
-Route::middleware('auth')->group(function () {
+// Route::middleware('auth')->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
@@ -74,7 +81,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.process');
     Route::post('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
-});
+// });
 
 
 // ADMIN
