@@ -55,9 +55,15 @@ Route::get('/best-seller', [BestSellerController::class, 'bestSeller'])->name('b
 Route::get('/services', [ServiceBookingController::class, 'index'])->name('services');
 Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('service.book');
 
-Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+
+// Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth.ensure', 'auth:sanctum', 'verified'])->group(function () {
+
+    Route::get('/cart', [CartController::class, 'cart'])->name('cart');
+
+    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::post('/logout', [AuthController::class, 'logout']);
 
@@ -74,7 +80,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
-    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    
     Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 

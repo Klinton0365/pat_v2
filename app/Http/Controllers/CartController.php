@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Cart;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,9 +12,10 @@ class CartController extends Controller
 {
     public function index()
     {
+        $categories = Category::all();
         $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
 
-        return view('user.cart', compact('cartItems'));
+        return view('user.cart', compact('cartItems','categories'));
     }
 
     // public function addToCart(Request $request)
@@ -28,17 +30,38 @@ class CartController extends Controller
     //     return response()->json(['success' => true, 'message' => 'Product added to cart']);
     // }
 
+    // public function addToCart(Request $request)
+    // {
+    //     \Log::info('ADD TO CAR: ', $request->all());
+
+    //     $product = Product::findOrFail($request->product_id);
+
+    //     $cartItem = Cart::updateOrCreate(
+    //         ['user_id' => Auth::id(), 'product_id' => $product->id],
+    //         ['quantity' => \DB::raw('quantity + 1'), 'price' => $product->price]
+    //     );
+
+    //     return response()->json(['success' => true, 'message' => 'Product added to cart successfully!']);
+    // }
+
     public function addToCart(Request $request)
     {
-        \Log::info('ADD TO CAR: ', $request->all());
+        \Log::info('ADD TO CART: ', $request->all());
+
         $product = Product::findOrFail($request->product_id);
 
-        $cartItem = Cart::updateOrCreate(
-            ['user_id' => Auth::id(), 'product_id' => $product->id],
-            ['quantity' => \DB::raw('quantity + 1'), 'price' => $product->price]
-        );
+        // Use updateOrCreate but increment quantity properly
+        $cartItem = Cart::firstOrNew([
+            'user_id' => Auth::id(),
+            'product_id' => $product->id,
+        ]);
 
-        return response()->json(['success' => true, 'message' => 'Product added to cart successfully!']);
+        $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
+        $cartItem->price = $product->price;
+        $cartItem->save();
+
+        // ✅ Redirect to cart page
+        return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
     }
 
     public function remove($id)

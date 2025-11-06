@@ -88,6 +88,6 @@
         </div>
     </div>
     <!-- ============================= -->
-    <!-- 🌐 Modern Register Page End -->
+    <!-- 🌐 Modern Register Page End   -->
     <!-- ============================= -->
 @endsection
