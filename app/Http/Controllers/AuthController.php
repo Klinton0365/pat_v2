@@ -77,8 +77,32 @@ class AuthController extends Controller
         return view('user.auth.login', compact('categories'));
     }
 
+    // public function login(Request $request)
+    // {
+    //     $request->validate([
+    //         'email' => 'required|string|email',
+    //         'password' => 'required|string',
+    //     ]);
+
+    //     $user = User::where('email', $request->email)->first();
+
+    //     if (! $user || ! Hash::check($request->password, $user->password)) {
+    //         return response()->json(['message' => 'Invalid credentials'], 401);
+    //     }
+
+    //     // Sanctum token
+    //     $token = $user->createToken('auth_token')->plainTextToken;
+
+    //     return response()->json([
+    //         'message' => 'Login successful',
+    //         'user' => $user,
+    //         'token' => $token,
+    //     ], 200);
+    // }
+
     public function login(Request $request)
     {
+        // Validate input
         $request->validate([
             'email' => 'required|string|email',
             'password' => 'required|string',
@@ -86,30 +110,51 @@ class AuthController extends Controller
 
         $user = User::where('email', $request->email)->first();
 
+        // Check credentials
         if (! $user || ! Hash::check($request->password, $user->password)) {
-            return response()->json(['message' => 'Invalid credentials'], 401);
+            // Flash an error message to session
+            return back()->with('error', 'Invalid email or password. Please try again.');
         }
 
-        // Sanctum token
-        $token = $user->createToken('auth_token')->plainTextToken;
+        // Log the user in (web session)
+        Auth::login($user);
 
-        return response()->json([
-            'message' => 'Login successful',
-            'user' => $user,
-            'token' => $token,
-        ], 200);
+        // Redirect to home or dashboard
+        return redirect()->intended(route('home'))->with('success', 'Login successful!');
     }
 
     /**
      * Logout user
      */
+    // public function logout(Request $request)
+    // {
+    //     $request->user()->tokens()->delete();
+
+    //     return response()->json([
+    //         'message' => 'Logged out successfully',
+    //     ]);
+    // }
+
     public function logout(Request $request)
     {
-        $request->user()->tokens()->delete();
+        // ✅ If user has Sanctum tokens (API auth), delete them
+        if ($request->user() && method_exists($request->user(), 'tokens')) {
+            $request->user()->tokens()->delete();
+        }
 
-        return response()->json([
-            'message' => 'Logged out successfully',
-        ]);
+        // ✅ Handle session-based (web) logout safely
+        if (auth('web')->check()) {
+            auth('web')->logout();
+        }
+
+        // ✅ Invalidate session if exists
+        if ($request->hasSession()) {
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+        }
+
+        // ✅ Redirect to home page
+        return redirect()->route('home')->with('success', 'You have been logged out successfully.');
     }
 
     public function redirectToGoogle()
