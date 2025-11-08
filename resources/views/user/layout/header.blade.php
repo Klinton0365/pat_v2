@@ -15,10 +15,10 @@
             <small class="text-dark">Call Us:</small>
             <a href="#" class="text-muted">(+012) 1234 567890</a>
         </div>
-
+        
         <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-               
+               @auth
                 <style>
                     .login-botton {
                         font-weight: bold;
@@ -128,7 +128,7 @@
                     </span>
                 </button>
                 </a>
-
+                @endauth
             </div>
         </div>
     </div>

@@ -1071,75 +1071,75 @@
                         }
                     },
                     vertexShader: `
-                                                                                    varying vec2 vUv;
+                                                                                        varying vec2 vUv;
 
-                                                                                    void main() {
-                                                                                        vUv = uv;
-                                                                                        gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                                                                                    }
-                                                                                `,
+                                                                                        void main() {
+                                                                                            vUv = uv;
+                                                                                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                                                                                        }
+                                                                                    `,
                     fragmentShader: `
-                                                                                    uniform sampler2D waterTexture;
-                                                                                    uniform float rippleStrength;
-                                                                                    uniform vec2 resolution;
-                                                                                    uniform float time;
-                                                                                    uniform vec3 colorA1;
-                                                                                    uniform vec3 colorA2;
-                                                                                    uniform vec3 colorB1;
-                                                                                    uniform vec3 colorB2;
-                                                                                    varying vec2 vUv;
+                                                                                        uniform sampler2D waterTexture;
+                                                                                        uniform float rippleStrength;
+                                                                                        uniform vec2 resolution;
+                                                                                        uniform float time;
+                                                                                        uniform vec3 colorA1;
+                                                                                        uniform vec3 colorA2;
+                                                                                        uniform vec3 colorB1;
+                                                                                        uniform vec3 colorB2;
+                                                                                        varying vec2 vUv;
 
-                                                                                    float S(float a, float b, float t) {
-                                                                                        return smoothstep(a, b, t);
-                                                                                    }
+                                                                                        float S(float a, float b, float t) {
+                                                                                            return smoothstep(a, b, t);
+                                                                                        }
 
-                                                                                    mat2 Rot(float a) {
-                                                                                        float s = sin(a);
-                                                                                        float c = cos(a);
-                                                                                        return mat2(c, -s, s, c);
-                                                                                    }
+                                                                                        mat2 Rot(float a) {
+                                                                                            float s = sin(a);
+                                                                                            float c = cos(a);
+                                                                                            return mat2(c, -s, s, c);
+                                                                                        }
 
-                                                                                    float noise(vec2 p) {
-                                                                                        vec2 ip = floor(p);
-                                                                                        vec2 fp = fract(p);
-                                                                                        float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                        float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                        float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                        float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                        float noise(vec2 p) {
+                                                                                            vec2 ip = floor(p);
+                                                                                            vec2 fp = fract(p);
+                                                                                            float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                            float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                            float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                            float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
 
-                                                                                        fp = fp * fp * (3.0 - 2.0 * fp);
+                                                                                            fp = fp * fp * (3.0 - 2.0 * fp);
 
-                                                                                        return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-                                                                                    }
+                                                                                            return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+                                                                                        }
 
-                                                                                    void main() {
-                                                                                        float waterHeight = texture2D(waterTexture, vUv).r;
+                                                                                        void main() {
+                                                                                            float waterHeight = texture2D(waterTexture, vUv).r;
 
-                                                                                        float step = 1.0 / resolution.x;
-                                                                                        vec2 distortion = vec2(
-                                                                                            texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-                                                                                            texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-                                                                                        ) * rippleStrength * 5.0;
+                                                                                            float step = 1.0 / resolution.x;
+                                                                                            vec2 distortion = vec2(
+                                                                                                texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+                                                                                                texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+                                                                                            ) * rippleStrength * 5.0;
 
-                                                                                        vec2 tuv = vUv + distortion;
-                                                                                        tuv -= 0.5;
+                                                                                            vec2 tuv = vUv + distortion;
+                                                                                            tuv -= 0.5;
 
-                                                                                        float ratio = resolution.x / resolution.y;
-                                                                                        tuv.y *= 1.0/ratio;
+                                                                                            float ratio = resolution.x / resolution.y;
+                                                                                            tuv.y *= 1.0/ratio;
 
-                                                                                        vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                                        vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                                        vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+                                                                                            vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                                            vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                                            vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
 
-                                                                                        float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-                                                                                        finalComp += vec3(noiseValue);
+                                                                                            float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+                                                                                            finalComp += vec3(noiseValue);
 
-                                                                                        float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-                                                                                        finalComp *= mix(0.95, 1.0, vignette);
+                                                                                            float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+                                                                                            finalComp *= mix(0.95, 1.0, vignette);
 
-                                                                                        gl_FragColor = vec4(finalComp, 1.0);
-                                                                                    }
-                                                                                `
+                                                                                            gl_FragColor = vec4(finalComp, 1.0);
+                                                                                        }
+                                                                                    `
                 };
 
                 const geometry = new THREE.PlaneGeometry(
@@ -2977,6 +2977,361 @@
 
                             <!-- Dynamic Category Tabs -->
                             @foreach($categories as $index => $category)
+                            <li class="nav-item mb-4">
+                                <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill"
+                                    href="#tab-{{ $category->id }}" data-category="{{ $category->id }}">
+                                    <span class="text-dark" style="width: 130px;">{{ $category->name }}</span>
+                                </a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tab Content -->
+                <div class="tab-content">
+                    <!-- All Products Tab -->
+                    <div id="tab-all" class="tab-pane fade show p-0 active">
+                        <div class="row g-4" id="products-container">
+                            @foreach($products as $product)
+                            <div class="col-md-6 col-lg-4 col-xl-3 product-item-wrapper"
+                                data-category="{{ $product->category_id }}">
+                                <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
+                                    <div class="product-item-inner border rounded">
+                                        <div class="product-item-inner-item">
+                                            <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
+                                                class="img-fluid w-100 rounded-top" alt="{{ $product->name }}">
+
+                                            @if($product->featured)
+                                            <div class="product-new">Featured</div>
+                                            @endif
+
+                                            @if($product->discount > 0)
+                                            <div class="product-sale">Sale</div>
+                                            @endif
+
+                                            <div class="product-details">
+                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
+                                                    <i class="fa fa-eye fa-1x"></i>
+                                                </a>
+
+                                            </div>
+                                        </div>
+                                        <div class="text-center rounded-bottom p-4">
+                                            <style>
+                                                .product-name {
+                                                    display: -webkit-box;
+                                                    -webkit-line-clamp: 2;
+                                                    -webkit-box-orient: vertical;
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    line-height: 1.4em;
+                                                    max-height: 2.8em;
+                                                    white-space: normal;
+                                                }
+                                            </style>
+                                            <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
+                                                class="d-block h4 product-name">
+                                                {{ $product->name }}
+                                            </a>
+
+                                            @if($product->discount > 0)
+                                            <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
+                                            <span class="text-primary fs-5">${{ number_format($product->price -
+                                                ($product->price * $product->discount / 100), 2) }}</span>
+                                            @else
+                                            <span class="text-primary fs-5">${{ number_format($product->price, 2) }}</span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
+                                        <a href="#"
+                                            class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4 add-to-cart"
+                                            data-product-id="{{ $product->id }}">
+                                            <i class="fas fa-shopping-cart me-2"></i> Add To Cart
+                                        </a>
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="d-flex">
+                                                @for($i = 1; $i <= 5; $i++) @if($i <=($product->rating ?? 4))
+                                                    <i class="fas fa-star text-primary"></i>
+                                                    @else
+                                                    <i class="fas fa-star"></i>
+                                                    @endif
+                                                    @endfor
+                                            </div>
+                                            <div class="d-flex">
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-3">
+                                                    <span class="rounded-circle btn-sm-square border">
+                                                        <i class="fas fa-random"></i>
+                                                    </span>
+                                                </a>
+                                                <a href="#"
+                                                    class="text-primary d-flex align-items-center justify-content-center me-0 wishlist-btn"
+                                                    data-product-id="{{ $product->id }}">
+                                                    <span class="rounded-circle btn-sm-square border">
+                                                        <i class="fas fa-heart"></i>
+                                                    </span>
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <!-- Individual Category Tabs -->
+                    @foreach($categories as $category)
+                    <div id="tab-{{ $category->id }}" class="tab-pane fade show p-0">
+                        <div class="row g-4">
+                            <!-- Products will be filtered and shown here via JavaScript -->
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div> --}}
+
+
+    {{-- Add this CSS to your main stylesheet --}}
+
+    <style>
+        .product-card-minimal {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card-minimal:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card-minimal .image-wrapper {
+            position: relative;
+            overflow: hidden;
+            background: #f8f9fa;
+            aspect-ratio: 1;
+        }
+
+        .product-card-minimal .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card-minimal:hover .product-img {
+            transform: scale(1.05);
+        }
+
+        .product-card-minimal .badges {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .product-card-minimal .badge {
+            background: white;
+            color: #333;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* .product-card-minimal .badge.featured {
+                    background: #000;
+                    color: white;
+                } */
+        .product-card-minimal .badge.featured {
+            background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
+            color: white;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+        }
+
+        .product-card-minimal .badge.sale {
+            background: #ff3b30;
+            color: white;
+        }
+
+        .product-card-minimal .quick-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .product-card-minimal:hover .quick-view {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .product-card-minimal .quick-view-btn {
+            background: white;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .product-card-minimal .quick-view-btn:hover {
+            transform: scale(1.1);
+            background: #000;
+            color: white;
+        }
+
+        .product-card-minimal .product-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card-minimal .product-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1d1d1f;
+            margin-bottom: 8px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            min-height: 44px;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        .product-card-minimal .product-name:hover {
+            color: #0066cc;
+        }
+
+        .product-card-minimal .price-section {
+            margin-bottom: 5px;
+        }
+
+        .product-card-minimal .price-current {
+            font-size: 20px;
+            font-weight: 700;
+            color: #1d1d1f;
+        }
+
+        .product-card-minimal .price-original {
+            font-size: 16px;
+            color: #86868b;
+            text-decoration: line-through;
+            margin-left: 8px;
+        }
+
+        .product-card-minimal .actions {
+            display: flex;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .product-card-minimal .btn-add-cart {
+            flex: 1;
+            background: #1d1d1f;
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card-minimal .btn-add-cart:hover {
+            background: #000;
+            transform: translateY(-2px);
+            color: white;
+        }
+
+        .product-card-minimal .btn-wishlist {
+            width: 44px;
+            height: 44px;
+            background: #f5f5f7;
+            border: none;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            color: #1d1d1f;
+        }
+
+        .product-card-minimal .btn-wishlist:hover {
+            background: #ff3b30;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .product-card-minimal .rating-stars {
+            display: flex;
+            gap: 2px;
+            margin: 8px;
+        }
+
+        .product-card-minimal .rating-stars i {
+            font-size: 14px;
+        }
+
+        .product-card-minimal .rating-stars .text-primary {
+            color: #ffd700 !important;
+        }
+    </style>
+
+    <div class="container-fluid product py-5" style="background: white;">
+        <div class="container py-5">
+            <div class="tab-class">
+                <div class="row g-4">
+                    <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
+                        <h1>Our Products</h1>
+                    </div>
+                    <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
+                        <ul class="nav nav-pills d-inline-flex text-center mb-5">
+                            <!-- All Products Tab -->
+                            <li class="nav-item mb-4">
+                                <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
+                                    href="#tab-all" data-category="all">
+                                    <span class="text-dark" style="width: 130px;">All Products</span>
+                                </a>
+                            </li>
+
+                            <!-- Dynamic Category Tabs -->
+                            @foreach($categories as $index => $category)
                                 <li class="nav-item mb-4">
                                     <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill"
                                         href="#tab-{{ $category->id }}" data-category="{{ $category->id }}">
@@ -2996,85 +3351,76 @@
                             @foreach($products as $product)
                                 <div class="col-md-6 col-lg-4 col-xl-3 product-item-wrapper"
                                     data-category="{{ $product->category_id }}">
-                                    <div class="product-item rounded wow fadeInUp" data-wow-delay="0.1s">
-                                        <div class="product-item-inner border rounded">
-                                            <div class="product-item-inner-item">
-                                                <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
-                                                    class="img-fluid w-100 rounded-top" alt="{{ $product->name }}">
 
+                                    {{-- Minimal/Clean Product Card --}}
+                                    <div class="product-card-minimal">
+                                        <div class="image-wrapper">
+                                            <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
+                                                class="product-img" alt="{{ $product->name }}">
+
+                                            {{-- Badges --}}
+                                            <div class="badges">
                                                 @if($product->featured)
-                                                    <div class="product-new">Featured</div>
+                                                    <span class="badge featured">Featured</span>
                                                 @endif
-
-                                                @if($product->discount > 0)
-                                                    <div class="product-sale">Sale</div>
-                                                @endif
-
-                                                <div class="product-details">
-                                                    <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
-                                                        <i class="fa fa-eye fa-1x"></i>
-                                                    </a>
-
-                                                </div>
+                                                {{-- @if($product->discount > 0)
+                                                <span class="badge sale">Sale</span>
+                                                @endif --}}
                                             </div>
-                                            <div class="text-center rounded-bottom p-4">
-                                                <style>
-                                                    .product-name {
-                                                        display: -webkit-box;
-                                                        -webkit-line-clamp: 2;
-                                                        -webkit-box-orient: vertical;
-                                                        overflow: hidden;
-                                                        text-overflow: ellipsis;
-                                                        line-height: 1.4em;
-                                                        max-height: 2.8em;
-                                                        white-space: normal;
-                                                    }
-                                                </style>
-                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
-                                                    class="d-block h4 product-name">
-                                                    {{ $product->name }}
-                                                </a>
 
-                                                @if($product->discount > 0)
-                                                    <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
-                                                    <span
-                                                        class="text-primary fs-5">${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</span>
-                                                @else
-                                                    <span class="text-primary fs-5">${{ number_format($product->price, 2) }}</span>
-                                                @endif
+                                            {{-- Quick View Button --}}
+                                            <div class="quick-view">
+                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
+                                                    class="quick-view-btn">
+                                                    <i class="fa fa-eye"></i>
+                                                </a>
                                             </div>
                                         </div>
-                                        <div class="product-item-add border border-top-0 rounded-bottom text-center p-4 pt-0">
-                                            <a href="#"
-                                                class="btn btn-primary border-secondary rounded-pill py-2 px-4 mb-4 add-to-cart"
-                                                data-product-id="{{ $product->id }}">
-                                                <i class="fas fa-shopping-cart me-2"></i> Add To Cart
+
+                                        <div class="product-info">
+                                            {{-- Product Name --}}
+                                            <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
+                                                class="product-name">
+                                                {{ $product->name }}
                                             </a>
-                                            <div class="d-flex justify-content-between align-items-center">
-                                                <div class="d-flex">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        @if($i <= ($product->rating ?? 4))
-                                                            <i class="fas fa-star text-primary"></i>
-                                                        @else
-                                                            <i class="fas fa-star"></i>
-                                                        @endif
-                                                    @endfor
-                                                </div>
-                                                <div class="d-flex">
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-3">
-                                                        <span class="rounded-circle btn-sm-square border">
-                                                            <i class="fas fa-random"></i>
-                                                        </span>
-                                                    </a>
-                                                    <a href="#"
-                                                        class="text-primary d-flex align-items-center justify-content-center me-0 wishlist-btn"
-                                                        data-product-id="{{ $product->id }}">
-                                                        <span class="rounded-circle btn-sm-square border">
-                                                            <i class="fas fa-heart"></i>
-                                                        </span>
-                                                    </a>
-                                                </div>
+
+                                            {{-- Price Section --}}
+                                            <div class="price-section">
+                                                @if($product->discount > 0)
+                                                    <span class="price-current">
+                                                        ${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
+                                                    </span>
+                                                    <span class="price-original">
+                                                        ${{ number_format($product->price, 2) }}
+                                                    </span>
+                                                @else
+                                                    <span class="price-current">
+                                                        ${{ number_format($product->price, 2) }}
+                                                    </span>
+                                                @endif
+                                            </div>
+
+                                            {{-- Rating Stars --}}
+                                            <div class="rating-stars">
+                                                @for($i = 1; $i <= 5; $i++)
+                                                    @if($i <= ($product->rating ?? 4))
+                                                        <i class="fas fa-star text-primary"></i>
+                                                    @else
+                                                        <i class="fas fa-star" style="color: #d1d5db;"></i>
+                                                    @endif
+                                                @endfor
+                                            </div>
+
+                                            {{-- Actions --}}
+                                            <div class="actions">
+                                                <a href="#" class="btn-add-cart add-to-cart"
+                                                    data-product-id="{{ $product->id }}">
+                                                    <i class="fas fa-shopping-cart me-2"></i> Add to Cart
+                                                </a>
+                                                <a href="#" class="btn-wishlist wishlist-btn"
+                                                    data-product-id="{{ $product->id }}">
+                                                    <i class="fas fa-heart"></i>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -3094,427 +3440,77 @@
                 </div>
             </div>
         </div>
-    </div> --}}
-    
+    </div>
 
-    {{-- Add this CSS to your main stylesheet or in a <style> tag --}}
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Only select the actual navigation tab links, not product wrappers
+            const categoryTabs = document.querySelectorAll('.nav-pills [data-category]');
+            const allProducts = document.querySelectorAll('.product-item-wrapper');
 
-    <style>
-            .product-card-minimal {
-                background: white;
-                border-radius: 16px;
-                overflow: hidden;
-                transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-                box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-                height: 100%;
-                display: flex;
-                flex-direction: column;
-            }
+            categoryTabs.forEach(tab => {
+                tab.addEventListener('click', function (e) {
+                    e.preventDefault();
 
-            .product-card-minimal:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-            }
+                    const categoryId = this.getAttribute('data-category');
+                    const targetTabId = this.getAttribute('href');
+                    const targetTab = document.querySelector(targetTabId);
 
-            .product-card-minimal .image-wrapper {
-                position: relative;
-                overflow: hidden;
-                background: #f8f9fa;
-                aspect-ratio: 1;
-            }
+                    // Remove active class from all tabs
+                    categoryTabs.forEach(t => t.classList.remove('active'));
+                    document.querySelectorAll('.tab-pane').forEach(pane => {
+                        pane.classList.remove('show', 'active');
+                    });
 
-            .product-card-minimal .product-img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-                transition: transform 0.6s ease;
-            }
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    targetTab.classList.add('show', 'active');
 
-            .product-card-minimal:hover .product-img {
-                transform: scale(1.05);
-            }
+                    // Filter and display products
+                    if (categoryId === 'all') {
+                        const mainContainer = document.querySelector('#tab-all .row');
+                        mainContainer.innerHTML = '';
+                        allProducts.forEach(product => {
+                            mainContainer.appendChild(product.cloneNode(true));
+                        });
+                    } else {
+                        const categoryContainer = targetTab.querySelector('.row');
+                        categoryContainer.innerHTML = '';
+                        allProducts.forEach(product => {
+                            if (product.getAttribute('data-category') === categoryId) {
+                                categoryContainer.appendChild(product.cloneNode(true));
+                            }
+                        });
+                    }
 
-            .product-card-minimal .badges {
-                position: absolute;
-                top: 12px;
-                left: 12px;
-                display: flex;
-                flex-direction: column;
-                gap: 8px;
-                z-index: 2;
-            }
-
-            .product-card-minimal .badge {
-                background: white;
-                color: #333;
-                padding: 6px 14px;
-                border-radius: 6px;
-                font-size: 12px;
-                font-weight: 600;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-            }
-
-            /* .product-card-minimal .badge.featured {
-                background: #000;
-                color: white;
-            } */
-            .product-card-minimal .badge.featured {
-                background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
-                color: white;
-                box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            }
-
-            .product-card-minimal .badge.sale {
-                background: #ff3b30;
-                color: white;
-            }
-
-            .product-card-minimal .quick-view {
-                position: absolute;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%) scale(0);
-                opacity: 0;
-                transition: all 0.3s ease;
-                z-index: 3;
-            }
-
-            .product-card-minimal:hover .quick-view {
-                transform: translate(-50%, -50%) scale(1);
-                opacity: 1;
-            }
-
-            .product-card-minimal .quick-view-btn {
-                background: white;
-                border: none;
-                width: 50px;
-                height: 50px;
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-                transition: all 0.2s ease;
-                text-decoration: none;
-                color: #333;
-            }
-
-            .product-card-minimal .quick-view-btn:hover {
-                transform: scale(1.1);
-                background: #000;
-                color: white;
-            }
-
-            .product-card-minimal .product-info {
-                padding: 20px;
-                flex: 1;
-                display: flex;
-                flex-direction: column;
-            }
-
-            .product-card-minimal .product-name {
-                font-size: 16px;
-                font-weight: 600;
-                color: #1d1d1f;
-                margin-bottom: 8px;
-                display: -webkit-box;
-                -webkit-line-clamp: 2;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-                line-height: 1.4;
-                min-height: 44px;
-                text-decoration: none;
-                transition: color 0.2s ease;
-            }
-
-            .product-card-minimal .product-name:hover {
-                color: #0066cc;
-            }
-
-            .product-card-minimal .price-section {
-                margin-bottom: 5px;
-            }
-
-            .product-card-minimal .price-current {
-                font-size: 20px;
-                font-weight: 700;
-                color: #1d1d1f;
-            }
-
-            .product-card-minimal .price-original {
-                font-size: 16px;
-                color: #86868b;
-                text-decoration: line-through;
-                margin-left: 8px;
-            }
-
-            .product-card-minimal .actions {
-                display: flex;
-                gap: 8px;
-                margin-top: auto;
-            }
-
-            .product-card-minimal .btn-add-cart {
-                flex: 1;
-                background: #1d1d1f;
-                color: white;
-                border: none;
-                padding: 12px;
-                border-radius: 8px;
-                font-weight: 600;
-                font-size: 14px;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                text-decoration: none;
-                display: inline-flex;
-                align-items: center;
-                justify-content: center;
-            }
-
-            .product-card-minimal .btn-add-cart:hover {
-                background: #000;
-                transform: translateY(-2px);
-                color: white;
-            }
-
-            .product-card-minimal .btn-wishlist {
-                width: 44px;
-                height: 44px;
-                background: #f5f5f7;
-                border: none;
-                border-radius: 8px;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                cursor: pointer;
-                transition: all 0.2s ease;
-                text-decoration: none;
-                color: #1d1d1f;
-            }
-
-            .product-card-minimal .btn-wishlist:hover {
-                background: #ff3b30;
-                color: white;
-                transform: scale(1.05);
-            }
-
-            .product-card-minimal .rating-stars {
-                display: flex;
-                gap: 2px;
-                margin: 8px;
-            }
-
-            .product-card-minimal .rating-stars i {
-                font-size: 14px;
-            }
-
-            .product-card-minimal .rating-stars .text-primary {
-                color: #ffd700 !important;
-            }
-        </style>
-
-        {{-- Replace your product card HTML with this --}}
-        <div class="container-fluid product py-5" style="background: white;">
-            <div class="container py-5">
-                <div class="tab-class">
-                    <div class="row g-4">
-                        <div class="col-lg-4 text-start wow fadeInLeft" data-wow-delay="0.1s">
-                            <h1>Our Products</h1>
-                        </div>
-                        <div class="col-lg-8 text-end wow fadeInRight" data-wow-delay="0.1s">
-                            <ul class="nav nav-pills d-inline-flex text-center mb-5">
-                                <!-- All Products Tab -->
-                                <li class="nav-item mb-4">
-                                    <a class="d-flex mx-2 py-2 bg-light rounded-pill active" data-bs-toggle="pill"
-                                        href="#tab-all" data-category="all">
-                                        <span class="text-dark" style="width: 130px;">All Products</span>
-                                    </a>
-                                </li>
-
-                                <!-- Dynamic Category Tabs -->
-                                @foreach($categories as $index => $category)
-                                    <li class="nav-item mb-4">
-                                        <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill"
-                                            href="#tab-{{ $category->id }}" data-category="{{ $category->id }}">
-                                            <span class="text-dark" style="width: 130px;">{{ $category->name }}</span>
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Tab Content -->
-                    <div class="tab-content">
-                        <!-- All Products Tab -->
-                        <div id="tab-all" class="tab-pane fade show p-0 active">
-                            <div class="row g-4" id="products-container">
-                                @foreach($products as $product)
-                                    <div class="col-md-6 col-lg-4 col-xl-3 product-item-wrapper"
-                                        data-category="{{ $product->category_id }}">
-                                        
-                                        {{-- Minimal/Clean Product Card --}}
-                                        <div class="product-card-minimal">
-                                            <div class="image-wrapper">
-                                                <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
-                                                    class="product-img" 
-                                                    alt="{{ $product->name }}">
-
-                                                {{-- Badges --}}
-                                                <div class="badges">
-                                                    @if($product->featured)
-                                                        <span class="badge featured">Featured</span>
-                                                    @endif
-                                                    {{-- @if($product->discount > 0)
-                                                        <span class="badge sale">Sale</span>
-                                                    @endif --}}
-                                                </div>
-
-                                                {{-- Quick View Button --}}
-                                                <div class="quick-view">
-                                                    <a href="{{ route('product.show', [$product->id, $product->slug]) }}" 
-                                                    class="quick-view-btn">
-                                                        <i class="fa fa-eye"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-
-                                            <div class="product-info">
-                                                {{-- Product Name --}}
-                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
-                                                    class="product-name">
-                                                    {{ $product->name }}
-                                                </a>
-
-                                                {{-- Price Section --}}
-                                                <div class="price-section">
-                                                    @if($product->discount > 0)
-                                                        <span class="price-current">
-                                                            ${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
-                                                        </span>
-                                                        <span class="price-original">
-                                                            ${{ number_format($product->price, 2) }}
-                                                        </span>
-                                                    @else
-                                                        <span class="price-current">
-                                                            ${{ number_format($product->price, 2) }}
-                                                        </span>
-                                                    @endif
-                                                </div>
-
-                                                {{-- Rating Stars --}}
-                                                <div class="rating-stars">
-                                                    @for($i = 1; $i <= 5; $i++)
-                                                        @if($i <= ($product->rating ?? 4))
-                                                            <i class="fas fa-star text-primary"></i>
-                                                        @else
-                                                            <i class="fas fa-star" style="color: #d1d5db;"></i>
-                                                        @endif
-                                                    @endfor
-                                                </div>
-
-                                                {{-- Actions --}}
-                                                <div class="actions">
-                                                    <a href="#"
-                                                        class="btn-add-cart add-to-cart"
-                                                        data-product-id="{{ $product->id }}">
-                                                        <i class="fas fa-shopping-cart me-2"></i> Add to Cart
-                                                    </a>
-                                                    <a href="#"
-                                                        class="btn-wishlist wishlist-btn"
-                                                        data-product-id="{{ $product->id }}">
-                                                        <i class="fas fa-heart"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <!-- Individual Category Tabs -->
-                        @foreach($categories as $category)
-                            <div id="tab-{{ $category->id }}" class="tab-pane fade show p-0">
-                                <div class="row g-4">
-                                    <!-- Products will be filtered and shown here via JavaScript -->
-                                </div>
-                            </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-    // Only select the actual navigation tab links, not product wrappers
-    const categoryTabs = document.querySelectorAll('.nav-pills [data-category]');
-    const allProducts = document.querySelectorAll('.product-item-wrapper');
-
-    categoryTabs.forEach(tab => {
-        tab.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const categoryId = this.getAttribute('data-category');
-            const targetTabId = this.getAttribute('href');
-            const targetTab = document.querySelector(targetTabId);
-
-            // Remove active class from all tabs
-            categoryTabs.forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.tab-pane').forEach(pane => {
-                pane.classList.remove('show', 'active');
-            });
-
-            // Add active class to clicked tab
-            this.classList.add('active');
-            targetTab.classList.add('show', 'active');
-
-            // Filter and display products
-            if (categoryId === 'all') {
-                const mainContainer = document.querySelector('#tab-all .row');
-                mainContainer.innerHTML = '';
-                allProducts.forEach(product => {
-                    mainContainer.appendChild(product.cloneNode(true));
-                });
-            } else {
-                const categoryContainer = targetTab.querySelector('.row');
-                categoryContainer.innerHTML = '';
-                allProducts.forEach(product => {
-                    if (product.getAttribute('data-category') === categoryId) {
-                        categoryContainer.appendChild(product.cloneNode(true));
+                    if (typeof WOW !== 'undefined') {
+                        new WOW().init();
                     }
                 });
-            }
+            });
 
-            if (typeof WOW !== 'undefined') {
-                new WOW().init();
-            }
+            // Add to cart functionality
+            document.addEventListener('click', function (e) {
+                const addToCartBtn = e.target.closest('.add-to-cart');
+                const wishlistBtn = e.target.closest('.wishlist-btn');
+
+                if (addToCartBtn) {
+                    e.preventDefault();
+                    const productId = addToCartBtn.getAttribute('data-product-id');
+                    console.log('Adding product to cart:', productId);
+                    // Add your cart logic here
+                } else if (wishlistBtn) {
+                    e.preventDefault();
+                    const productId = wishlistBtn.getAttribute('data-product-id');
+                    console.log('Adding product to wishlist:', productId);
+                    // Add your wishlist logic here
+                }
+            });
         });
-    });
+    </script>
 
-    // Add to cart functionality
-    document.addEventListener('click', function (e) {
-        const addToCartBtn = e.target.closest('.add-to-cart');
-        const wishlistBtn = e.target.closest('.wishlist-btn');
-        
-        if (addToCartBtn) {
-            e.preventDefault();
-            const productId = addToCartBtn.getAttribute('data-product-id');
-            console.log('Adding product to cart:', productId);
-            // Add your cart logic here
-        } else if (wishlistBtn) {
-            e.preventDefault();
-            const productId = wishlistBtn.getAttribute('data-product-id');
-            console.log('Adding product to wishlist:', productId);
-            // Add your wishlist logic here
-        }
-    });
-});
-        </script>
-
-    {{-- <script>
+    {{--
+    <script>
         document.addEventListener('DOMContentLoaded', function () {
             const categoryTabs = document.querySelectorAll('[data-category]');
             const allProducts = document.querySelectorAll('.product-item-wrapper');
@@ -4001,8 +3997,10 @@
         }
     </style>
 
-    {{-- <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
-    {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+    {{--
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
+    {{--
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <section class="services-section">
@@ -4026,503 +4024,512 @@
                     </div>
                 </div> --}}
                 <div class="content-section">
-    <div class="services-label-wrapper">
-        <span class="services-label-icon">💧</span>
-        <p class="services-label">OUR SERVICES</p>
-    </div>
-    
-    <h2 class="services-title">
-        Pure <span class="highlight">Aqua Tech</span><br>
-        <span class="highlight-underline">Services</span>
-    </h2>
-    
-    <p class="services-description">
-        We provide <strong>end-to-end water purifier solutions</strong> for your home and office — 
-        installation, repair, filter replacement, and more.
-    </p>
-    
-    <p class="services-description-extra">
-        Ensure pure water and peace of mind with our certified technicians and fast response service.
-    </p>
-    <style>
-        /* Button Enhancements */
-    .button-group {
-        display: flex;
-        gap: 15px;
-        flex-wrap: wrap;
-        margin-bottom: 35px;
-    }
-
-    .btn {
-        padding: 16px 32px;
-        font-size: 1rem;
-        font-weight: 600;
-        border-radius: 12px;
-        text-decoration: none;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.2);
-        transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-        left: 100%;
-    }
-
-    .btn-icon {
-        width: 20px;
-        height: 20px;
-        flex-shrink: 0;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        color: white;
-        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
-    }
-
-    .btn-secondary {
-        background: white;
-        color: #6366f1;
-        border: 2px solid #6366f1;
-    }
-
-    .btn-secondary:hover {
-        background: #6366f1;
-        color: white;
-        transform: translateY(-3px);
-        box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-    }
-
-/* Trust Indicators */
-    .trust-indicators {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 25px 0;
-        border-top: 2px solid #e5e7eb;
-    }
-
-    .trust-item {
-        text-align: center;
-        flex: 1;
-    }
-
-    .trust-number {
-        font-size: 1.8rem;
-        font-weight: 800;
-        color: #6366f1;
-        margin-bottom: 5px;
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .trust-label {
-        font-size: 0.85rem;
-        color: #6b7280;
-        font-weight: 500;
-    }
-
-    .trust-divider {
-        width: 1px;
-        height: 40px;
-        background: linear-gradient(180deg, transparent 0%, #d1d5db 50%, transparent 100%);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-        .content-section {
-            position: static;
-            padding: 30px;
-        }
-
-        .services-title {
-            font-size: 2.8rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .content-section {
-            padding: 25px;
-        }
-
-        .services-title {
-            font-size: 2.2rem;
-        }
-
-        .button-group {
-            flex-direction: column;
-        }
-
-        .btn {
-            width: 100%;
-            justify-content: center;
-        }
-
-        .trust-indicators {
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .trust-divider {
-            display: none;
-        }
-
-        .trust-item {
-            flex: 0 0 calc(50% - 10px);
-        }
-    }
-
-    @media (max-width: 480px) {
-        .services-title {
-            font-size: 1.9rem;
-        }
-
-        .services-label-wrapper {
-            justify-content: center;
-        }
-
-        .features-quick-list {
-            padding: 15px;
-        }
-
-        .trust-item {
-            flex: 0 0 100%;
-        }
-    }
-    </style>
-    
-    <div class="button-group">
-        <a href="#bookNow" class="btn btn-primary" onclick="openBookingModal()">
-            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                      d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-            </svg>
-            Book Service Now
-        </a>
-        <a href="#contact" class="btn btn-secondary">
-            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
-                      d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-            </svg>
-            Call Us
-        </a>
-    </div>
-    
-    <!-- Trust Indicators -->
-    <div class="trust-indicators">
-        <div class="trust-item">
-            <div class="trust-number">500+</div>
-            <div class="trust-label">Happy Customers</div>
-        </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-            <div class="trust-number">4.8★</div>
-            <div class="trust-label">Avg Rating</div>
-        </div>
-        <div class="trust-divider"></div>
-        <div class="trust-item">
-            <div class="trust-number">24/7</div>
-            <div class="trust-label">Support</div>
-        </div>
-    </div>
-</div>
-
-{{-- <style>
-    /* Left Half Content Section Styles */
-    .content-section {
-        position: sticky;
-        top: 100px;
-        max-width: 600px;
-    }
-
-    .services-label-wrapper {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        margin-bottom: 12px;
-    }
-
-    .services-label-icon {
-        font-size: 1.1rem;
-        animation: float 3s ease-in-out infinite;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
-    }
-
-    .services-label {
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: #6366f1;
-        letter-spacing: 2.5px;
-        text-transform: uppercase;
-        margin: 0;
-    }
-
-    .services-title {
-        font-size: 3.2rem;
-        font-weight: 800;
-        color: #1f2937;
-        line-height: 1.15;
-        margin-bottom: 20px;
-    }
-
-    .services-title .highlight {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .services-title .highlight-underline {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-        position: relative;
-        display: inline-block;
-    }
-
-    .services-title .highlight-underline::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 2px;
-        width: 100%;
-        height: 4px;
-        background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
-        border-radius: 2px;
-    }
-
-    .services-description {
-        font-size: 1.05rem;
-        color: #4b5563;
-        line-height: 1.7;
-        margin-bottom: 12px;
-    }
-
-    .services-description strong {
-        color: #1f2937;
-        font-weight: 600;
-    }
-
-    .services-description-extra {
-        font-size: 1rem;
-        color: #6b7280;
-        line-height: 1.7;
-        margin-bottom: 25px;
-    }
-
-    /* Feature Quick List */
-    .features-quick-list {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-bottom: 28px;
-        padding: 18px;
-        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
-        border-radius: 12px;
-        border-left: 4px solid #6366f1;
-    }
-
-    .feature-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        color: #1e293b;
-        font-weight: 500;
-        font-size: 0.95rem;
-    }
-
-    .check-icon {
-        width: 18px;
-        height: 18px;
-        color: #10b981;
-        flex-shrink: 0;
-        stroke-width: 3;
-    }
-
-    /* Button Enhancements */
-    .button-group {
-        display: flex;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-bottom: 30px;
-    }
-
-    .btn {
-        padding: 14px 28px;
-        font-size: 0.95rem;
-        font-weight: 600;
-        border-radius: 10px;
-        text-decoration: none;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        border: none;
-        cursor: pointer;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .btn::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: -100%;
-        width: 100%;
-        height: 100%;
-        background: rgba(255, 255, 255, 0.2);
-        transition: left 0.5s ease;
-    }
-
-    .btn:hover::before {
-        left: 100%;
-    }
-
-    .btn-icon {
-        width: 18px;
-        height: 18px;
-        flex-shrink: 0;
-    }
-
-    .btn-primary {
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        color: white;
-        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-    }
-
-    .btn-primary:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
-    }
-
-    .btn-secondary {
-        background: white;
-        color: #6366f1;
-        border: 2px solid #6366f1;
-    }
-
-    .btn-secondary:hover {
-        background: #6366f1;
-        color: white;
-        transform: translateY(-2px);
-        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
-    }
-
-    /* Trust Indicators */
-    .trust-indicators {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 20px 0 0 0;
-        border-top: 2px solid #e5e7eb;
-    }
-
-    .trust-item {
-        text-align: center;
-        flex: 1;
-    }
-
-    .trust-number {
-        font-size: 1.6rem;
-        font-weight: 800;
-        color: #6366f1;
-        margin-bottom: 4px;
-        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .trust-label {
-        font-size: 0.8rem;
-        color: #6b7280;
-        font-weight: 500;
-    }
-
-    .trust-divider {
-        width: 1px;
-        height: 35px;
-        background: linear-gradient(180deg, transparent 0%, #d1d5db 50%, transparent 100%);
-    }
-
-    /* Responsive Design */
-    @media (max-width: 1024px) {
-        .content-section {
-            position: static;
-            max-width: 100%;
-        }
-
-        .services-title {
-            font-size: 2.6rem;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .services-title {
-            font-size: 2.2rem;
-        }
-
-        .button-group {
-            flex-direction: column;
-        }
-
-        .btn {
-            width: 100%;
-            justify-content: center;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .services-title {
-            font-size: 1.9rem;
-        }
-
-        .trust-indicators {
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .trust-divider {
-            display: none;
-        }
-
-        .trust-item {
-            flex: 0 0 calc(50% - 7.5px);
-        }
-
-        .trust-item:last-child {
-            flex: 0 0 100%;
-        }
-    }
-</style> --}}
+                    <div class="services-label-wrapper">
+                        <span class="services-label-icon">💧</span>
+                        <p class="services-label">OUR SERVICES</p>
+                    </div>
+
+                    <h2 class="services-title">
+                        Pure <span class="highlight">Aqua Tech</span><br>
+                        <span class="highlight-underline">Services</span>
+                    </h2>
+
+                    <p class="services-description">
+                        We provide <strong>end-to-end water purifier solutions</strong> for your home and office —
+                        installation, repair, filter replacement, and more.
+                    </p>
+
+                    <p class="services-description-extra">
+                        Ensure pure water and peace of mind with our certified technicians and fast response service.
+                    </p>
+                    <style>
+                        /* Button Enhancements */
+                        .button-group {
+                            display: flex;
+                            gap: 15px;
+                            flex-wrap: wrap;
+                            margin-bottom: 35px;
+                        }
+
+                        .btn {
+                            padding: 16px 32px;
+                            font-size: 1rem;
+                            font-weight: 600;
+                            border-radius: 12px;
+                            text-decoration: none;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            display: inline-flex;
+                            align-items: center;
+                            gap: 10px;
+                            border: none;
+                            cursor: pointer;
+                            position: relative;
+                            overflow: hidden;
+                        }
+
+                        .btn::before {
+                            content: '';
+                            position: absolute;
+                            top: 0;
+                            left: -100%;
+                            width: 100%;
+                            height: 100%;
+                            background: rgba(255, 255, 255, 0.2);
+                            transition: left 0.5s ease;
+                        }
+
+                        .btn:hover::before {
+                            left: 100%;
+                        }
+
+                        .btn-icon {
+                            width: 20px;
+                            height: 20px;
+                            flex-shrink: 0;
+                        }
+
+                        .btn-primary {
+                            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                            color: white;
+                            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+                        }
+
+                        .btn-primary:hover {
+                            transform: translateY(-3px);
+                            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
+                        }
+
+                        .btn-secondary {
+                            background: white;
+                            color: #6366f1;
+                            border: 2px solid #6366f1;
+                        }
+
+                        .btn-secondary:hover {
+                            background: #6366f1;
+                            color: white;
+                            transform: translateY(-3px);
+                            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+                        }
+
+                        /* Trust Indicators */
+                        .trust-indicators {
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-between;
+                            padding: 25px 0;
+                            border-top: 2px solid #e5e7eb;
+                        }
+
+                        .trust-item {
+                            text-align: center;
+                            flex: 1;
+                        }
+
+                        .trust-number {
+                            font-size: 1.8rem;
+                            font-weight: 800;
+                            color: #6366f1;
+                            margin-bottom: 5px;
+                            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;
+                            background-clip: text;
+                        }
+
+                        .trust-label {
+                            font-size: 0.85rem;
+                            color: #6b7280;
+                            font-weight: 500;
+                        }
+
+                        .trust-divider {
+                            width: 1px;
+                            height: 40px;
+                            background: linear-gradient(180deg, transparent 0%, #d1d5db 50%, transparent 100%);
+                        }
+
+                        /* Responsive Design */
+                        @media (max-width: 1024px) {
+                            .content-section {
+                                position: static;
+                                padding: 30px;
+                            }
+
+                            .services-title {
+                                font-size: 2.8rem;
+                            }
+                        }
+
+                        @media (max-width: 768px) {
+                            .content-section {
+                                padding: 25px;
+                            }
+
+                            .services-title {
+                                font-size: 2.2rem;
+                            }
+
+                            .button-group {
+                                flex-direction: column;
+                            }
+
+                            .btn {
+                                width: 100%;
+                                justify-content: center;
+                            }
+
+                            .trust-indicators {
+                                flex-wrap: wrap;
+                                gap: 20px;
+                            }
+
+                            .trust-divider {
+                                display: none;
+                            }
+
+                            .trust-item {
+                                flex: 0 0 calc(50% - 10px);
+                            }
+                        }
+
+                        @media (max-width: 480px) {
+                            .services-title {
+                                font-size: 1.9rem;
+                            }
+
+                            .services-label-wrapper {
+                                justify-content: center;
+                            }
+
+                            .features-quick-list {
+                                padding: 15px;
+                            }
+
+                            .trust-item {
+                                flex: 0 0 100%;
+                            }
+                        }
+                    </style>
+
+                    <div class="button-group">
+                        <a href="#bookNow" class="btn btn-primary" onclick="openBookingModal()">
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
+                                </path>
+                            </svg>
+                            Book Service Now
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
+                                </path>
+                            </svg>
+                            Call Us
+                        </a>
+                    </div>
+
+                    <!-- Trust Indicators -->
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <div class="trust-number">500+</div>
+                            <div class="trust-label">Happy Customers</div>
+                        </div>
+                        <div class="trust-divider"></div>
+                        <div class="trust-item">
+                            <div class="trust-number">4.8★</div>
+                            <div class="trust-label">Avg Rating</div>
+                        </div>
+                        <div class="trust-divider"></div>
+                        <div class="trust-item">
+                            <div class="trust-number">24/7</div>
+                            <div class="trust-label">Support</div>
+                        </div>
+                    </div>
+                </div>
+
+                {{-- <style>
+                    /* Left Half Content Section Styles */
+                    .content-section {
+                        position: sticky;
+                        top: 100px;
+                        max-width: 600px;
+                    }
+
+                    .services-label-wrapper {
+                        display: flex;
+                        align-items: center;
+                        gap: 8px;
+                        margin-bottom: 12px;
+                    }
+
+                    .services-label-icon {
+                        font-size: 1.1rem;
+                        animation: float 3s ease-in-out infinite;
+                    }
+
+                    @keyframes float {
+
+                        0%,
+                        100% {
+                            transform: translateY(0px);
+                        }
+
+                        50% {
+                            transform: translateY(-5px);
+                        }
+                    }
+
+                    .services-label {
+                        font-size: 0.8rem;
+                        font-weight: 700;
+                        color: #6366f1;
+                        letter-spacing: 2.5px;
+                        text-transform: uppercase;
+                        margin: 0;
+                    }
+
+                    .services-title {
+                        font-size: 3.2rem;
+                        font-weight: 800;
+                        color: #1f2937;
+                        line-height: 1.15;
+                        margin-bottom: 20px;
+                    }
+
+                    .services-title .highlight {
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                    }
+
+                    .services-title .highlight-underline {
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                        position: relative;
+                        display: inline-block;
+                    }
+
+                    .services-title .highlight-underline::after {
+                        content: '';
+                        position: absolute;
+                        left: 0;
+                        bottom: 2px;
+                        width: 100%;
+                        height: 4px;
+                        background: linear-gradient(90deg, #6366f1 0%, #8b5cf6 100%);
+                        border-radius: 2px;
+                    }
+
+                    .services-description {
+                        font-size: 1.05rem;
+                        color: #4b5563;
+                        line-height: 1.7;
+                        margin-bottom: 12px;
+                    }
+
+                    .services-description strong {
+                        color: #1f2937;
+                        font-weight: 600;
+                    }
+
+                    .services-description-extra {
+                        font-size: 1rem;
+                        color: #6b7280;
+                        line-height: 1.7;
+                        margin-bottom: 25px;
+                    }
+
+                    /* Feature Quick List */
+                    .features-quick-list {
+                        display: flex;
+                        flex-direction: column;
+                        gap: 10px;
+                        margin-bottom: 28px;
+                        padding: 18px;
+                        background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+                        border-radius: 12px;
+                        border-left: 4px solid #6366f1;
+                    }
+
+                    .feature-item {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        color: #1e293b;
+                        font-weight: 500;
+                        font-size: 0.95rem;
+                    }
+
+                    .check-icon {
+                        width: 18px;
+                        height: 18px;
+                        color: #10b981;
+                        flex-shrink: 0;
+                        stroke-width: 3;
+                    }
+
+                    /* Button Enhancements */
+                    .button-group {
+                        display: flex;
+                        gap: 12px;
+                        flex-wrap: wrap;
+                        margin-bottom: 30px;
+                    }
+
+                    .btn {
+                        padding: 14px 28px;
+                        font-size: 0.95rem;
+                        font-weight: 600;
+                        border-radius: 10px;
+                        text-decoration: none;
+                        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                        display: inline-flex;
+                        align-items: center;
+                        gap: 8px;
+                        border: none;
+                        cursor: pointer;
+                        position: relative;
+                        overflow: hidden;
+                    }
+
+                    .btn::before {
+                        content: '';
+                        position: absolute;
+                        top: 0;
+                        left: -100%;
+                        width: 100%;
+                        height: 100%;
+                        background: rgba(255, 255, 255, 0.2);
+                        transition: left 0.5s ease;
+                    }
+
+                    .btn:hover::before {
+                        left: 100%;
+                    }
+
+                    .btn-icon {
+                        width: 18px;
+                        height: 18px;
+                        flex-shrink: 0;
+                    }
+
+                    .btn-primary {
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                        color: white;
+                        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+                    }
+
+                    .btn-primary:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.5);
+                    }
+
+                    .btn-secondary {
+                        background: white;
+                        color: #6366f1;
+                        border: 2px solid #6366f1;
+                    }
+
+                    .btn-secondary:hover {
+                        background: #6366f1;
+                        color: white;
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 20px rgba(99, 102, 241, 0.3);
+                    }
+
+                    /* Trust Indicators */
+                    .trust-indicators {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        padding: 20px 0 0 0;
+                        border-top: 2px solid #e5e7eb;
+                    }
+
+                    .trust-item {
+                        text-align: center;
+                        flex: 1;
+                    }
+
+                    .trust-number {
+                        font-size: 1.6rem;
+                        font-weight: 800;
+                        color: #6366f1;
+                        margin-bottom: 4px;
+                        background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;
+                        background-clip: text;
+                    }
+
+                    .trust-label {
+                        font-size: 0.8rem;
+                        color: #6b7280;
+                        font-weight: 500;
+                    }
+
+                    .trust-divider {
+                        width: 1px;
+                        height: 35px;
+                        background: linear-gradient(180deg, transparent 0%, #d1d5db 50%, transparent 100%);
+                    }
+
+                    /* Responsive Design */
+                    @media (max-width: 1024px) {
+                        .content-section {
+                            position: static;
+                            max-width: 100%;
+                        }
+
+                        .services-title {
+                            font-size: 2.6rem;
+                        }
+                    }
+
+                    @media (max-width: 768px) {
+                        .services-title {
+                            font-size: 2.2rem;
+                        }
+
+                        .button-group {
+                            flex-direction: column;
+                        }
+
+                        .btn {
+                            width: 100%;
+                            justify-content: center;
+                        }
+                    }
+
+                    @media (max-width: 480px) {
+                        .services-title {
+                            font-size: 1.9rem;
+                        }
+
+                        .trust-indicators {
+                            flex-wrap: wrap;
+                            gap: 15px;
+                        }
+
+                        .trust-divider {
+                            display: none;
+                        }
+
+                        .trust-item {
+                            flex: 0 0 calc(50% - 7.5px);
+                        }
+
+                        .trust-item:last-child {
+                            flex: 0 0 100%;
+                        }
+                    }
+                </style> --}}
 
                 <!-- Right Circular Section -->
 
@@ -4777,7 +4784,7 @@
     </script>
 
     <!-- Product Banner Start -->
-     <div class="container-fluid py-5">
+    <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-4">
                 {{-- <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
@@ -4798,7 +4805,7 @@
                     <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                         <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                             <div class="bg-primary rounded position-relative">
-                                <img src="{{ asset('storage/'. $percentageOffer->product->main_image) }}"
+                                <img src="{{ asset('storage/' . $percentageOffer->product->main_image) }}"
                                     class="img-fluid w-100 rounded" alt="{{ $amountOffer->title }}">
 
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center rounded p-4"
@@ -4838,7 +4845,7 @@
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                         <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                             <div class="text-center bg-primary rounded position-relative">
-                                <img src="{{ asset('storage/'. $percentageOffer->product->main_image) }}"
+                                <img src="{{ asset('storage/' . $percentageOffer->product->main_image) }}"
                                     class="img-fluid w-100 rounded" alt="{{ $percentageOffer->title }}">
 
                                 <div class="position-absolute top-0 start-0 w-100 h-100 d-flex flex-column justify-content-center rounded p-4"

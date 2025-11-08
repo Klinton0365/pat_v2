@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FestivalOffer;
 use App\Models\Product;
 use App\Models\Category;
 
@@ -9,7 +10,20 @@ class ShopController extends Controller
 {
     public function shop()
     {
-        return view('user.shop');
+        $products = Product::with('category')->get();
+        $categories = Category::with('products')->get();
+        
+        $amountOffer = FestivalOffer::with('product')
+            ->where('is_percentage', 0)
+            ->where('status', 1)
+            ->first();
+
+        $percentageOffer = FestivalOffer::with('product')
+            ->where('is_percentage', 1)
+            ->where('status', 1)
+            ->first();
+
+        return view('user.shop', compact('categories','products','amountOffer', 'percentageOffer'));
     }
 
     // public function show($id, $slug)
