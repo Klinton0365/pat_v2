@@ -73,14 +73,18 @@ Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/add/{product_id}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-    Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+    Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
+    Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    Route::post('/cart/apply-coupon', [CartController::class, 'applyCoupon'])->name('cart.apply-coupon');
+    Route::post('/cart/prepare-checkout', [CartController::class, 'prepareCheckout'])->name('cart.prepare-checkout');
+    Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
+    Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+    // Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
+    // Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
     // Checkout
     // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
-    Route::get('/checkout', [ShopController::class, 'checkout'])
-     ->middleware(['auth:sanctum'])
-     ->name('checkout');
+    Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
     Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.process');
     Route::post('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 
