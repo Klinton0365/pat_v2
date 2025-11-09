@@ -44,25 +44,43 @@ class CartController extends Controller
     //     return response()->json(['success' => true, 'message' => 'Product added to cart successfully!']);
     // }
 
-    public function addToCart(Request $request)
-    {
-        \Log::info('ADD TO CART: ', $request->all());
+    // public function addToCart(Request $request)
+    // {
+    //     \Log::info('ADD TO CART: ', $request->all());
 
-        $product = Product::findOrFail($request->product_id);
+    //     $product = Product::findOrFail($request->product_id);
 
-        // Use updateOrCreate but increment quantity properly
-        $cartItem = Cart::firstOrNew([
-            'user_id' => Auth::id(),
-            'product_id' => $product->id,
-        ]);
+    //     // Use updateOrCreate but increment quantity properly
+    //     $cartItem = Cart::firstOrNew([
+    //         'user_id' => Auth::id(),
+    //         'product_id' => $product->id,
+    //     ]);
 
-        $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
-        $cartItem->price = $product->price;
-        $cartItem->save();
+    //     $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
+    //     $cartItem->price = $product->price;
+    //     $cartItem->save();
 
-        // ✅ Redirect to cart page
-        return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
-    }
+    //     // ✅ Redirect to cart page
+    //     return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
+    // }
+    public function addToCart($product_id)
+{
+    \Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
+
+    $product = Product::findOrFail($product_id);
+
+    $cartItem = Cart::firstOrNew([
+        'user_id' => Auth::id(),
+        'product_id' => $product->id,
+    ]);
+
+    $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
+    $cartItem->price = $product->price;
+    $cartItem->save();
+
+    return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
+}
+
 
     public function remove($id)
     {

@@ -126,15 +126,6 @@ class AuthController extends Controller
     /**
      * Logout user
      */
-    // public function logout(Request $request)
-    // {
-    //     $request->user()->tokens()->delete();
-
-    //     return response()->json([
-    //         'message' => 'Logged out successfully',
-    //     ]);
-    // }
-
     public function logout(Request $request)
     {
         // ✅ If user has Sanctum tokens (API auth), delete them
@@ -162,6 +153,33 @@ class AuthController extends Controller
         return Socialite::driver('google')->redirect();
     }
 
+    // public function handleGoogleCallback()
+    // {
+    //     try {
+    //         $googleUser = Socialite::driver('google')->stateless()->user();
+
+    //         // Check if user already exists
+    //         $user = User::where('email', $googleUser->getEmail())->first();
+
+    //         if (! $user) {
+    //             // Create new user
+    //             $user = User::create([
+    //                 'first_name' => $googleUser->user['given_name'] ?? $googleUser->getName(),
+    //                 'last_name' => $googleUser->user['family_name'] ?? '',
+    //                 'email' => $googleUser->getEmail(),
+    //                 'password' => Hash::make(Str::random(16)), // random password
+    //                 'google_id' => $googleUser->getId(),
+    //             ]);
+    //         }
+
+    //         Auth::login($user);
+
+    //         return redirect()->route('home')->with('success', 'Logged in successfully with Google!');
+    //     } catch (\Exception $e) {
+    //         return redirect()->route('login')->with('error', 'Google login failed. Please try again.');
+    //     }
+    // }
+
     public function handleGoogleCallback()
     {
         try {
@@ -176,15 +194,20 @@ class AuthController extends Controller
                     'first_name' => $googleUser->user['given_name'] ?? $googleUser->getName(),
                     'last_name' => $googleUser->user['family_name'] ?? '',
                     'email' => $googleUser->getEmail(),
-                    'password' => Hash::make(Str::random(16)), // random password
+                    'password' => Hash::make(Str::random(16)),
                     'google_id' => $googleUser->getId(),
                 ]);
             }
 
             Auth::login($user);
 
-            return redirect()->route('home')->with('success', 'Logged in successfully with Google!');
+            // ✅ Redirect to intended URL (e.g. /cart/add/3)
+            return redirect()->intended(route('home'))
+                ->with('success', 'Logged in successfully with Google!');
+
         } catch (\Exception $e) {
+            \Log::error('Google login error', ['message' => $e->getMessage()]);
+
             return redirect()->route('login')->with('error', 'Google login failed. Please try again.');
         }
     }

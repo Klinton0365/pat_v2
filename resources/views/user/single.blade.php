@@ -171,7 +171,7 @@
                                 <small>Product SKU: {{ $product->sku ?? 'N/A' }}</small>
                                 <small>Available:
                                     <strong class="text-primary">{{ $product->stock > 0 ? $product->stock . ' items in
-                                                            stock' : 'Out of stock' }}</strong>
+                                                                stock' : 'Out of stock' }}</strong>
                                 </small>
                             </div>
 
@@ -189,14 +189,19 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('cart.add') }}" method="POST" class="d-inline">
+                            {{-- <form action="{{ route('cart.add') }}" method="POST" class="d-inline">
                                 @csrf
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
                                 <button type="submit"
                                     class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
                                     <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
                                 </button>
-                            </form>
+                            </form> --}}
+
+                            <a href="{{ route('cart.add', $product->id) }}"
+                                class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
+                                <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
+                            </a>
 
                             {{-- <a href="javascript:void(0);"
                                 class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary add-to-cart"
@@ -321,9 +326,9 @@
         }
 
         /* .product-card-minimal .badge.featured {
-                    background: #000;
-                    color: white;
-                } */
+                        background: #000;
+                        color: white;
+                    } */
         .product-card-minimal .badge.featured {
             background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
             color: white;
@@ -546,7 +551,8 @@
     @endif
     <!-- Related Product End -->
 
-    {{-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    {{--
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
             const buttons = document.querySelectorAll('.add-to-cart');
@@ -558,7 +564,7 @@
                     const productId = this.getAttribute('data-product-id');
                     console.log('Clicked Add to Cart for product:', productId);
 
-                    
+
                     fetch("{{ route('cart.add') }}", {
                         method: "POST",
                         headers: {

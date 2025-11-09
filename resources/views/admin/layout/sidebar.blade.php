@@ -27,6 +27,7 @@
                     <a href="{{ route('admin.festival-offers.index') }}" class="dropdown-item">Festival Offers</a>
                 </div>
             </div>
+            <a href="{{ route('admin.coupon.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coupon</a>
             <a href="{{ route('admin.customers.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
             <a href="{{ route('admin.technicians.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Technician</a>
             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Inventory</a>

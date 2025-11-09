@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminCategoryController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminCouponController;
 use App\Http\Controllers\Admin\AdminInventoryController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
@@ -69,8 +70,9 @@ Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
     // Cart
-    Route::get('/cart', [CartController::class, 'cart'])->name('cart');
-    Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'index'])->name('cart');
+    // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart/add/{product_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
     Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
@@ -121,6 +123,10 @@ Route::prefix('admin')->group(function () {
 
         // Named Resources
         Route::resource('festival-offers', FestivalOfferController::class)->names('admin.festival-offers');
+
+        Route::resource('coupons', AdminCouponController::class)->names('admin.coupon');
+
+
         Route::resource('customers', AdminUserController::class)->names('admin.customers');
         Route::resource('technicians', AdminTechnicianController::class)->names('admin.technicians');
 
