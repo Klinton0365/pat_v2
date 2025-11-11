@@ -112,7 +112,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AdminController::class, 'authenticate'])->name('admin.authenticate');
 
     // Protected Admin Area
-    Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::middleware(['isAdmin'])->group(function () {
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
@@ -130,16 +130,13 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('coupons', AdminCouponController::class)->names('admin.coupon');
 
-
         Route::resource('customers', AdminUserController::class)->names('admin.customers');
         Route::resource('technicians', AdminTechnicianController::class)->names('admin.technicians');
 
         // Additional Admin Utilities
-        Route::get('/get-product-details/{id}', [AdminProductController::class, 'getProductDetails'])
-            ->name('admin.getProductDetails');
+        Route::get('/get-product-details/{id}', [AdminProductController::class, 'getProductDetails'])->name('admin.getProductDetails');
 
-        Route::get('/user-details', [AdminProductController::class, 'userDetails'])
-            ->name('admin.user.details');
+        Route::get('/user-details', [AdminProductController::class, 'userDetails'])->name('admin.user.details');
     });
 });
 

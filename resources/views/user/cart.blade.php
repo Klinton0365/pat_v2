@@ -288,6 +288,141 @@
         @endif
     </div>
 
+    <!-- Shipping Address Modal -->
+    <div id="shippingModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.6); z-index: 9999; backdrop-filter: blur(4px); overflow-y: auto;">
+        <div style="min-height: 100%; display: flex; align-items: center; justify-content: center; padding: 2rem 1rem;">
+            <div style="background: white; border-radius: 20px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); max-width: 700px; width: 100%; animation: modalSlideIn 0.3s ease; max-height: 90vh; display: flex; flex-direction: column;">
+                <!-- Modal Header -->
+                <div style="padding: 2rem 2rem 1rem; border-bottom: 2px solid #f0f0f0;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <div>
+                            <h4 style="margin: 0 0 0.5rem 0; color: #2c3e50; font-weight: 700; font-size: 1.5rem;">
+                                <i class="bi bi-geo-alt-fill" style="color: #667eea; margin-right: 0.5rem;"></i>Shipping Address
+                            </h4>
+                            <p style="margin: 0; color: #7f8c8d; font-size: 0.9rem;">Please provide your shipping details</p>
+                        </div>
+                        <button id="closeShippingModal" style="background: #f8f9fa; border: none; width: 40px; height: 40px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s;">
+                            <i class="bi bi-x-lg" style="font-size: 1.2rem; color: #6c757d;"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Modal Body (Scrollable) -->
+                <div style="padding: 2rem; overflow-y: auto; flex: 1;">
+                    <form id="shippingForm">
+                        <div class="row g-3">
+                            <!-- First Name -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    First Name <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="text" name="first_name" id="first_name" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- Last Name -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    Last Name <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="text" name="last_name" id="last_name" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- Email -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    Email <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="email" name="email" id="email" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- Phone -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    Phone <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="tel" name="phone" id="phone" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- Address -->
+                            <div class="col-12">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    Address <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <textarea name="address" id="address" rows="3" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s; resize: vertical;"></textarea>
+                            </div>
+
+                            <!-- City -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    City <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="text" name="city" id="city" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- State -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    State <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="text" name="state" id="state" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- ZIP Code -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    ZIP Code <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="text" name="zip" id="zip" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- Country -->
+                            <div class="col-md-6">
+                                <label style="display: block; margin-bottom: 0.5rem; color: #2c3e50; font-weight: 600; font-size: 0.9rem;">
+                                    Country <span style="color: #e74c3c;">*</span>
+                                </label>
+                                <input type="text" name="country" id="country" value="India" required
+                                    style="width: 100%; padding: 0.75rem 1rem; border: 2px solid #e0e0e0; border-radius: 10px; font-size: 0.95rem; transition: all 0.3s;">
+                            </div>
+
+                            <!-- Save Address Checkbox -->
+                            <div class="col-12">
+                                <label style="display: flex; align-items: center; cursor: pointer; padding: 1rem; background: #f8f9fa; border-radius: 10px; margin-top: 0.5rem;">
+                                    <input type="checkbox" name="save_address" id="save_address" checked
+                                        style="width: 20px; height: 20px; cursor: pointer; margin-right: 0.75rem;">
+                                    <span style="color: #2c3e50; font-weight: 500; font-size: 0.95rem;">
+                                        Save this address for future orders
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Modal Footer -->
+                <div style="padding: 1.5rem 2rem; border-top: 2px solid #f0f0f0; background: #f8f9fa;">
+                    <div style="display: flex; gap: 1rem;">
+                        <button type="button" id="cancelShipping" 
+                            style="flex: 1; padding: 1rem; background: white; color: #6c757d; border: 2px solid #e0e0e0; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; font-size: 1rem;">
+                            Cancel
+                        </button>
+                        <button type="button" id="confirmShipping"
+                            style="flex: 2; padding: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; border: none; border-radius: 12px; font-weight: 600; cursor: pointer; transition: all 0.2s; box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3); font-size: 1rem;">
+                            <i class="bi bi-lock-fill" style="margin-right: 0.5rem;"></i>Proceed to Payment
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Custom Modal -->
     <div id="customModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 9999; backdrop-filter: blur(4px);">
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); background: white; border-radius: 16px; box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3); max-width: 400px; width: 90%; animation: modalSlideIn 0.3s ease;">
@@ -662,41 +797,71 @@
             }
 
             // Checkout
-            const checkoutBtn = document.getElementById('checkoutBtn');
-            if (checkoutBtn) {
-                checkoutBtn.addEventListener('click', function() {
-                    if (selectedItems.length === 0) {
-                        showModal('warning', 'No Items Selected', 'Please select at least one item to proceed to checkout', false);
-                        return;
-                    }
+            // const checkoutBtn = document.getElementById('checkoutBtn');
+            // if (checkoutBtn) {
+            //     checkoutBtn.addEventListener('click', function() {
+            //         if (selectedItems.length === 0) {
+            //             showModal('warning', 'No Items Selected', 'Please select at least one item to proceed to checkout', false);
+            //             return;
+            //         }
 
-                    // Store selected items in session and redirect
-                    fetch('/cart/prepare-checkout', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
-                        },
-                        body: JSON.stringify({ 
-                            items: selectedItems,
-                            coupon: appliedCoupon ? appliedCoupon.code : null
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(data => {
-                        if (data.success) {
-                            window.location.href = '{{ route("checkout") }}';
-                        } else {
-                            showModal('error', 'Error', data.message || 'Failed to proceed', false);
-                        }
-                    })
-                    .catch(error => {
-                        console.error('Error:', error);
-                        showModal('error', 'Error', 'Failed to proceed to checkout', false);
-                    });
-                });
+            //         // Store selected items in session and redirect
+            //         fetch('/cart/prepare-checkout', {
+            //             method: 'POST',
+            //             headers: {
+            //                 'Content-Type': 'application/json',
+            //                 'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            //             },
+            //             body: JSON.stringify({ 
+            //                 items: selectedItems,
+            //                 coupon: appliedCoupon ? appliedCoupon.code : null
+            //             })
+            //         })
+            //         .then(response => response.json())
+            //         .then(data => {
+            //             if (data.success) {
+            //                 window.location.href = '{{ route("checkout") }}';
+            //             } else {
+            //                 showModal('error', 'Error', data.message || 'Failed to proceed', false);
+            //             }
+            //         })
+            //         .catch(error => {
+            //             console.error('Error:', error);
+            //             showModal('error', 'Error', 'Failed to proceed to checkout', false);
+            //         });
+            //     });
+            // }
+
+            // Checkout - Direct proceed without any validation
+const checkoutBtn = document.getElementById('checkoutBtn');
+if (checkoutBtn) {
+    checkoutBtn.addEventListener('click', function() {
+        // Directly prepare checkout and redirect without any checks
+        fetch('/cart/prepare-checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+            },
+            body: JSON.stringify({ 
+                items: selectedItems,
+                coupon: appliedCoupon ? appliedCoupon.code : null
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                window.location.href = '{{ route("checkout") }}';
+            } else {
+                showModal('error', 'Error', data.message || 'Failed to proceed', false);
             }
-
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showModal('error', 'Error', 'Failed to proceed to checkout', false);
+        });
+    });
+}
             // Custom Modal
             function showModal(type, title, message, showConfirm, onConfirm = null) {
                 const modal = document.getElementById('customModal');

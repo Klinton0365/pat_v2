@@ -2,32 +2,34 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 
-class Admin extends Model
+class Admin extends Authenticatable
 {
-    use HasFactory;
+    use Notifiable;
 
-    protected $table = 'admins';
+    protected $guard = 'admin';
 
     protected $fillable = [
-        'user_id',
-        'role',
-        'is_active',
-        'permissions',
+        'user_id', 'role', 'is_active', 'permissions',
     ];
 
     protected $casts = [
-        'is_active'   => 'boolean',
-        'permissions' => 'array', // if stored as JSON
+        'permissions' => 'array',
+        'is_active' => 'boolean',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 
     /**
      * Relation: Admin belongs to a User
      */
-    public function user()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+    // public function user()
+    // {
+    //     return $this->belongsTo(User::class, 'user_id');
+    // }
 }

@@ -48,6 +48,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function admin()
+    {
+        return $this->hasOne(Admin::class);
+    }
+
     /**
      * Get the user's full name.
      */
