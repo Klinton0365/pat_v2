@@ -8,20 +8,19 @@ use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
 use App\Http\Controllers\Admin\AdminServiceRequestController;
 use App\Http\Controllers\Admin\AdminTechnicianController;
-use App\Http\Controllers\Admin\FestivalOfferController;
 use App\Http\Controllers\Admin\AdminUserController;
+use App\Http\Controllers\Admin\FestivalOfferController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BestSellerController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\ShopController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ServiceBookingController;
+use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ServiceController;
-use App\Http\Controllers\CheckoutController;
-
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ServiceBookingController;
 
 // Route::get('/', function () {
 //     return view('welcome');
@@ -63,7 +62,7 @@ Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('
 |--------------------------------------------------------------------------
 */
 // Route::middleware(['auth.ensure', 'auth:sanctum', 'verified'])->group(function () {
- Route::middleware(['auth.ensure'])->group(function () {
+Route::middleware(['auth.ensure'])->group(function () {
 
     // Profile & Logout
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
@@ -88,6 +87,10 @@ Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('
     Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.process');
     Route::post('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 
+    Route::get('/thankyou', function () {
+        return view('user.order.thank-you');
+    })->name('thankyou');
+
     // User Orders & Services
     Route::prefix('user')->group(function () {
         Route::resource('orders', OrderController::class)->names('user.orders');
@@ -97,6 +100,7 @@ Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('
 
 Route::get('/check-session', function (Request $request) {
     session(['foo' => 'bar']);
+
     return session('foo'); // Should return "bar"
 })->middleware('web');
 
@@ -140,7 +144,7 @@ Route::prefix('admin')->group(function () {
     });
 });
 
-//=====================================================================================================================
+// =====================================================================================================================
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
@@ -151,7 +155,6 @@ Route::prefix('admin')->group(function () {
 // // Google Login
 // Route::get('/auth/google', [AuthController::class, 'redirectToGoogle'])->name('google.login');
 // Route::get('/auth/google/callback', [AuthController::class, 'handleGoogleCallback'])->name('google.callback');
-
 
 // Route::get('/shop', [ShopController::class, 'shop'])->name('shop');
 
@@ -166,11 +169,8 @@ Route::prefix('admin')->group(function () {
 
 // Route::get('/best-seller', [BestSellerController::class, 'bestSeller'])->name('best-seller');
 
-
 // Route::get('/services', [ServiceBookingController::class, 'index'])->name('services');
 // Route::post('/service-book', [ServiceBookingController::class, 'store'])->name('service.book');
-
-
 
 // // Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 // Route::middleware(['auth.ensure', 'auth:sanctum', 'verified'])->group(function () {
@@ -189,13 +189,10 @@ Route::prefix('admin')->group(function () {
 //     // Route::get('/cart', [CartController::class, 'cart'])->name('cart');
 // });
 
-
-
 // // Route::middleware('auth')->group(function () {
 //     Route::get('/cart', [CartController::class, 'index'])->name('cart');
 //     // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
 
-    
 //     Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
 //     Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
@@ -204,11 +201,9 @@ Route::prefix('admin')->group(function () {
 //     Route::post('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 // // });
 
-
 // // ADMIN
 // Route::get('/admin/login', [AdminController::class, 'showLoginForm'])->name('admin.login');
 // Route::post('/admin/login', [AdminController::class, 'authenticate'])->name('admin.authenticate');
-
 
 // Route::middleware(['auth', 'isAdmin'])->group(function () {
 //     Route::get('/admin/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
@@ -228,7 +223,6 @@ Route::prefix('admin')->group(function () {
 //     Route::resource('customers', AdminUserController::class)->names('admin.customers');
 //     Route::resource('technicians', AdminTechnicianController::class)->names('admin.technicians');
 // });
-
 
 // // User Panel
 // Route::prefix('user')->middleware('auth')->group(function () {

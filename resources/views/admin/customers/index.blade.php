@@ -33,6 +33,7 @@
                                     <th>#</th>
                                     <th>Customer Code</th>
                                     <th>Name</th>
+                                    <th>Mobile</th>
                                     <th>Email</th>
                                     <th>Type</th>
                                     <th>Status</th>
@@ -47,6 +48,7 @@
                                         <td>{{ $customer->customer_code }}</td>
                                         <td>{{ $customer->user->first_name ?? '' }} {{ $customer->user->last_name ?? '' }}</td>
                                         <td>{{ $customer->user->email ?? '' }}</td>
+                                        <td>{{ $customer->user->phone ?? '' }}</td>
                                         <td>{{ ucfirst($customer->customer_type) }}</td>
                                         <td>
                                             <span

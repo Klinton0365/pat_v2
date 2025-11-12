@@ -14,18 +14,33 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable()->constrained()->onDelete('cascade');
+
+            // Core identifiers
             $table->string('order_number')->unique();
-            $table->decimal('total_amount', 10, 2);
-            $table->string('payment_status')->default('pending'); // pending, paid, failed
+            $table->string('invoice_no')->unique()->nullable(); // Generated after successful payment
+            $table->string('transaction_id')->nullable(); // Gateway transaction reference
             $table->string('razorpay_payment_id')->nullable();
 
             // Financial details
-            $table->decimal('subtotal', 10, 2);
+            $table->decimal('subtotal', 10, 2)->default(0);
             $table->decimal('discount_amount', 10, 2)->default(0);
             $table->decimal('coupon_discount', 10, 2)->default(0);
             $table->string('coupon_code')->nullable();
             $table->decimal('tax_amount', 10, 2)->default(0);
             $table->decimal('shipping_amount', 10, 2)->default(0);
+            $table->decimal('total_amount', 10, 2)->default(0);
+
+            // Payment and order tracking
+            $table->enum('payment_status', ['pending', 'paid', 'failed', 'refunded'])->default('pending');
+            $table->enum('order_status', [
+                'pending',
+                'processing',
+                'shipped',
+                'delivered',
+                'cancelled',
+                'returned',
+            ])->default('pending');
+            $table->timestamp('payment_date')->nullable();
 
             // Shipping details
             $table->string('shipping_first_name')->nullable();
@@ -37,6 +52,15 @@ return new class extends Migration
             $table->string('shipping_state')->nullable();
             $table->string('shipping_zip')->nullable();
             $table->string('shipping_country')->nullable();
+
+            // Other metadata
+            $table->string('payment_method')->nullable(); // Razorpay, COD, etc.
+            $table->string('currency')->default('INR');
+            $table->text('notes')->nullable();
+            $table->string('tracking_number')->nullable();
+            $table->timestamp('shipped_at')->nullable();
+            $table->timestamp('delivered_at')->nullable();
+            $table->timestamp('cancelled_at')->nullable();
 
             $table->timestamps();
         });
