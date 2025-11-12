@@ -1786,7 +1786,7 @@
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
                                         <img class="img-fluid"
-                                            src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800"
+                                            src="{{ asset('img/about/view-fantasy-tap.jpg') }}"
                                             alt="2010 Foundation" />
                                     </div>
                                 </div>
@@ -1808,7 +1808,7 @@
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
                                         <img class="img-fluid"
-                                            src="https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800"
+                                            src="{{ asset('img/about/rm373batch10-207.jpg') }}"
                                             alt="2015 Innovation" />
                                     </div>
                                 </div>
@@ -1829,7 +1829,7 @@
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
                                         <img class="img-fluid"
-                                            src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800"
+                                            src="{{ asset('img/about/2212.i121.024.jpg') }}"
                                             alt="2018 Expansion" />
                                     </div>
                                 </div>
@@ -1850,7 +1850,7 @@
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
                                         <img class="img-fluid"
-                                            src="https://images.unsplash.com/photo-1518770660439-4636190af475?w=800"
+                                            src="{{ asset('img/about/online-shopping-concept.jpg') }}"
                                             alt="2020 Smart Technology" />
                                     </div>
                                 </div>
@@ -1871,7 +1871,7 @@
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
                                         <img class="img-fluid"
-                                            src="https://images.unsplash.com/photo-1497436072909-60f360e1d4b1?w=800"
+                                            src="{{ asset('img/about/view-fantasy.jpg') }}"
                                             alt="2022 Sustainability" />
                                     </div>
                                 </div>
@@ -1892,7 +1892,7 @@
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
                                         <img class="img-fluid"
-                                            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800"
+                                            src="{{ asset('img/about/18375.jpg') }}"
                                             alt="2024 Recognition" />
                                     </div>
                                 </div>
@@ -1916,7 +1916,7 @@
                             <li data-target="#history-slid" data-slide-to="2">2018</li>
                             <li data-target="#history-slid" data-slide-to="3" class="active">2020</li>
                             <li data-target="#history-slid" data-slide-to="4">2022</li>
-                            <li data-target="#history-slid" data-slide-to="5">2024</li>
+                            <li data-target="#history-slid" data-slide-to="5">2025</li>
                         </ol>
                     </div>
                 </div>

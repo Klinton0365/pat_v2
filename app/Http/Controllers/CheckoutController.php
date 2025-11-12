@@ -63,7 +63,7 @@ class CheckoutController extends Controller
 
             Cart::where('user_id', Auth::id())->delete();
 
-            return redirect()->route('thankyou')->with('success', 'Payment Successful!');
+            return redirect()->route('order-thankyou')->with('success', 'Payment Successful!');
         }
 
         return redirect()->route('checkout')->with('error', 'Payment Failed!');

@@ -429,7 +429,7 @@
                     updates.</p>
                 <div class="newsletter-form">
                     <input type="email" placeholder="Enter your email">
-                    <button type="button">SignUp</button>
+                    <button type="button">Get It</button>
                 </div>
             </div>
 

@@ -18,16 +18,17 @@ return new class extends Migration
             $table->decimal('total_amount', 10, 2);
             $table->string('payment_status')->default('pending'); // pending, paid, failed
             $table->string('razorpay_payment_id')->nullable();
-            
-            $table->decimal('subtotal', 10, 2)->after('total_amount');
-            $table->decimal('discount_amount', 10, 2)->default(0)->after('subtotal');
-            $table->decimal('coupon_discount', 10, 2)->default(0)->after('discount_amount');
-            $table->string('coupon_code')->nullable()->after('coupon_discount');
-            $table->decimal('tax_amount', 10, 2)->default(0)->after('coupon_code');
-            $table->decimal('shipping_amount', 10, 2)->default(0)->after('tax_amount');
 
-            // Shipping address
-            $table->string('shipping_first_name')->nullable()->after('user_id');
+            // Financial details
+            $table->decimal('subtotal', 10, 2);
+            $table->decimal('discount_amount', 10, 2)->default(0);
+            $table->decimal('coupon_discount', 10, 2)->default(0);
+            $table->string('coupon_code')->nullable();
+            $table->decimal('tax_amount', 10, 2)->default(0);
+            $table->decimal('shipping_amount', 10, 2)->default(0);
+
+            // Shipping details
+            $table->string('shipping_first_name')->nullable();
             $table->string('shipping_last_name')->nullable();
             $table->string('shipping_email')->nullable();
             $table->string('shipping_phone')->nullable();
@@ -36,6 +37,7 @@ return new class extends Migration
             $table->string('shipping_state')->nullable();
             $table->string('shipping_zip')->nullable();
             $table->string('shipping_country')->nullable();
+
             $table->timestamps();
         });
 
