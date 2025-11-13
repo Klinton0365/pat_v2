@@ -17,6 +17,8 @@ return new class extends Migration
             // Link to customer & user (owner)
             $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
 
+            $table->foreignId('order_id')->nullable()->constrained('orders')->onDelete('set null');
+
             // If service is for an internal product
             $table->foreignId('product_id')->nullable()->constrained('products')->onDelete('set null');
 
@@ -30,6 +32,8 @@ return new class extends Migration
             // Service state
             $table->enum('status', ['pending', 'in_progress', 'completed', 'cancelled'])->default('pending');
             $table->timestamp('scheduled_date')->nullable();
+            $table->timestamp('next_service_date')->nullable();
+
             $table->timestamp('completed_at')->nullable();
 
             // Technician assignment

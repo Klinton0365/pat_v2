@@ -39,16 +39,34 @@
                             @endforeach
                         </ul>
                     </div>
-                    @if($product->colors && count(json_decode($product->colors)) > 0)
+                    {{-- @if($product->colors && count(json_decode($product->colors)) > 0)
+                    <div class="additional-product mb-4">
+                        <h4>Available Colors</h4>
+                        @foreach(json_decode($product->colors) as $color)
+                        <div class="additional-product-item">
+                            <input type="radio" class="me-2" id="color-{{ $loop->index }}" name="product-color"
+                                value="{{ $color }}">
+                            <label for="color-{{ $loop->index }}" class="text-dark">{{ ucfirst($color) }}</label>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif --}}
+
+                    @if($product->colors && count($product->colors) > 0)
                         <div class="additional-product mb-4">
                             <h4>Available Colors</h4>
-                            @foreach(json_decode($product->colors) as $color)
+
+                            @foreach($product->colors as $color)
                                 <div class="additional-product-item">
                                     <input type="radio" class="me-2" id="color-{{ $loop->index }}" name="product-color"
                                         value="{{ $color }}">
-                                    <label for="color-{{ $loop->index }}" class="text-dark">{{ ucfirst($color) }}</label>
+
+                                    <label for="color-{{ $loop->index }}" class="text-dark">
+                                        {{ ucfirst($color) }}
+                                    </label>
                                 </div>
                             @endforeach
+
                         </div>
                     @endif
 
@@ -132,8 +150,19 @@
                                     </div>
                                 </div>
 
-                                @if($product->product_images)
-                                    @foreach(json_decode($product->product_images) as $img)
+                                {{-- @if($product->product_images)
+                                @foreach(json_decode($product->product_images) as $img)
+                                <div class="single-item"
+                                    data-dot="<img class='img-fluid' src='{{ asset('storage/' . $img) }}' alt=''>">
+                                    <div class="single-inner bg-light rounded">
+                                        <img src="{{ asset('storage/' . $img) }}" class="img-fluid rounded"
+                                            style="max-height: 300px;" alt="{{ $product->name }}">
+                                    </div>
+                                </div>
+                                @endforeach
+                                @endif --}}
+                                @if($product->product_images && count($product->product_images) > 0)
+                                    @foreach($product->product_images as $img)
                                         <div class="single-item"
                                             data-dot="<img class='img-fluid' src='{{ asset('storage/' . $img) }}' alt=''>">
                                             <div class="single-inner bg-light rounded">
@@ -143,6 +172,7 @@
                                         </div>
                                     @endforeach
                                 @endif
+
                             </div>
                         </div>
 
@@ -171,7 +201,7 @@
                                 <small>Product SKU: {{ $product->sku ?? 'N/A' }}</small>
                                 <small>Available:
                                     <strong class="text-primary">{{ $product->stock > 0 ? $product->stock . ' items in
-                                                                stock' : 'Out of stock' }}</strong>
+                                                                    stock' : 'Out of stock' }}</strong>
                                 </small>
                             </div>
 
@@ -326,9 +356,9 @@
         }
 
         /* .product-card-minimal .badge.featured {
-                        background: #000;
-                        color: white;
-                    } */
+                            background: #000;
+                            color: white;
+                        } */
         .product-card-minimal .badge.featured {
             background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
             color: white;

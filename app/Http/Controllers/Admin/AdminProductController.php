@@ -94,16 +94,24 @@ class AdminProductController extends Controller
     //     return view('admin.products.edit', compact('product', 'categories'));
     // }
 
+    // public function edit(Product $product)
+    // {
+    //     $categories = Category::all();
+
+    //     // decode JSON fields before sending to view
+    //     $product->colors = json_decode($product->colors, true) ?? [];
+    //     $product->product_images = json_decode($product->product_images, true) ?? [];
+
+    //     return view('admin.products.edit', compact('product', 'categories'));
+    // }
+
     public function edit(Product $product)
-    {
-        $categories = Category::all();
+{
+    $categories = Category::all();
 
-        // decode JSON fields before sending to view
-        $product->colors = json_decode($product->colors, true) ?? [];
-        $product->product_images = json_decode($product->product_images, true) ?? [];
+    return view('admin.products.edit', compact('product', 'categories'));
+}
 
-        return view('admin.products.edit', compact('product', 'categories'));
-    }
 
     public function update(Request $request, Product $product)
     {

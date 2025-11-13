@@ -1252,7 +1252,7 @@
                                 Empty</h4>
                             <p style="color: #7f8c8d; margin-bottom: 2rem; font-size: 1rem; line-height: 1.6;">Looks like you
                                 haven't added any items to your cart yet. Start exploring our products!</p>
-                            <a href="{{ route('products.index') }}"
+                            <a href="{{ route('shop') }}"
                                 style="display: inline-flex; align-items: center; padding: 1rem 2.5rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1.05rem; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);">
                                 <i class="bi bi-shop" style="margin-right: 0.5rem; font-size: 1.2rem;"></i> Start Shopping
                             </a>

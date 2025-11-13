@@ -9,6 +9,7 @@ class Service extends Model
     protected $fillable = [
         'customer_id',
         'product_id',
+        'order_id',
         'service_code',
         'source_type',
         'external_product_name',
@@ -16,6 +17,7 @@ class Service extends Model
         'problem_description',
         'status',
         'scheduled_date',
+        'next_service_date',
         'completed_at',
         'technician_id',
     ];

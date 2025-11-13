@@ -47,8 +47,8 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $customer->customer_code }}</td>
                                         <td>{{ $customer->user->first_name ?? '' }} {{ $customer->user->last_name ?? '' }}</td>
-                                        <td>{{ $customer->user->email ?? '' }}</td>
                                         <td>{{ $customer->user->phone ?? '' }}</td>
+                                        <td>{{ $customer->user->email ?? '' }}</td>
                                         <td>{{ ucfirst($customer->customer_type) }}</td>
                                         <td>
                                             <span

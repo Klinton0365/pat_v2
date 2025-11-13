@@ -15,8 +15,8 @@ class Product extends Model
     ];
 
     protected $casts = [
+        'colors' => 'array',
         'product_images' => 'array',
-        'colors' => 'array', // ✅ auto decode JSON
     ];
 
     // Relationships
