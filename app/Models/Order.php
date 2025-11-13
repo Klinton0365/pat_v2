@@ -16,6 +16,8 @@ class Order extends Model
         'invoice_no',
         'transaction_id',
         'razorpay_payment_id',
+        'razorpay_order_id',
+        'razorpay_signature',
         'subtotal',
         'discount_amount',
         'coupon_discount',

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->string('invoice_no')->unique()->nullable(); // Generated after successful payment
             $table->string('transaction_id')->nullable(); // Gateway transaction reference
             $table->string('razorpay_payment_id')->nullable();
+            $table->string('razorpay_order_id')->nullable();
+            $table->string('razorpay_signature')->nullable();
 
             // Financial details
             $table->decimal('subtotal', 10, 2)->default(0);

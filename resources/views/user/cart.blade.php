@@ -1294,6 +1294,7 @@
                             @csrf
                             <input type="hidden" name="selected_items" id="selected_items">
                             <input type="hidden" name="coupon_code" id="coupon_code">
+                            
 
                             <div class="row g-3">
                                 @php
@@ -1740,6 +1741,12 @@
         document.getElementById('selectAll').checked = true;
         calculateTotals();
     });
+
+    document.getElementById('shippingForm').addEventListener('submit', function () {
+    document.getElementById('selected_items').value = JSON.stringify(selectedItems);
+    document.getElementById('coupon_code').value = appliedCoupon ? appliedCoupon.code : '';
+});
+
 </script>
 
     {{-- @push('scripts')
