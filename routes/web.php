@@ -130,6 +130,8 @@ Route::prefix('admin')->group(function () {
             'service-requests' => AdminServiceRequestController::class,
         ]);
 
+        Route::resource('orders', AdminOrderController::class)->names('admin.orders');
+
         // Named Resources
         Route::resource('festival-offers', FestivalOfferController::class)->names('admin.festival-offers');
 

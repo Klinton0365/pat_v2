@@ -83,6 +83,10 @@
 
                 </div>
             </div>
+            <a href="{{ route('admin.orders.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('admin.orders.*') ? 'active' : '' }}">
+                <i class="fa fa-th me-2"></i>Orders
+            </a>
 
             {{-- <a href="{{ route('admin.coupon.index') }}" class="nav-item nav-link"><i
                     class="fa fa-th me-2"></i>Coupon</a>

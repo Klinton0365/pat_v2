@@ -92,9 +92,157 @@
             </nav>
             <!-- Navbar End -->
 
-
             <!-- Sale & Revenue Start -->
             <div class="container-fluid pt-4 px-4">
+    <div class="row g-4">
+
+        <!-- Categories -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-list-alt fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Categories</p>
+                    <h6 class="mb-0">{{ $categoryCount }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Products -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-cubes fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Products</p>
+                    <h6 class="mb-0">{{ $productCount }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Users -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-users fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Users</p>
+                    <h6 class="mb-0">{{ $userCount }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Customers -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-user-check fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Customers</p>
+                    <h6 class="mb-0">{{ $customerCount }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Orders -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-shopping-cart fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Orders</p>
+                    <h6 class="mb-0">{{ $totalOrders }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Orders -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-hourglass-half fa-3x text-warning"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Pending Orders</p>
+                    <h6 class="mb-0">{{ $pendingOrders }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-rupee-sign fa-3x text-success"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Revenue</p>
+                    <h6 class="mb-0">₹{{ number_format($totalRevenue, 2) }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Today's Revenue -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-coins fa-3x text-success"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Today's Revenue</p>
+                    <h6 class="mb-0">₹{{ number_format($todayRevenue, 2) }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Services Summary -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-tools fa-3x text-info"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Total Services</p>
+                    <h6 class="mb-0">{{ $totalServices }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pending Services -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-clock fa-3x text-warning"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Pending Services</p>
+                    <h6 class="mb-0">{{ $pendingServices }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upcoming Services -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-calendar-week fa-3x text-primary"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Upcoming (7 Days)</p>
+                    <h6 class="mb-0">{{ $upcomingServices }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Overdue Services -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-exclamation-triangle fa-3x text-danger"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Follow-up Needed</p>
+                    <h6 class="mb-0">{{ $overdueServices }}</h6>
+                </div>
+            </div>
+        </div>
+
+        <!-- Booking Services -->
+        <div class="col-sm-6 col-xl-3">
+            <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
+                <i class="fa fa-book fa-3x text-info"></i>
+                <div class="ms-3">
+                    <p class="mb-2">Service Bookings</p>
+                    <h6 class="mb-0">{{ $bookingCount }}</h6>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+            {{-- <div class="container-fluid pt-4 px-4">
                 <div class="row g-4">
                     <div class="col-sm-6 col-xl-3">
                         <div class="bg-secondary rounded d-flex align-items-center justify-content-between p-4">
@@ -133,7 +281,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Sale & Revenue End -->
 
 
@@ -165,6 +313,80 @@
 
             <!-- Recent Sales Start -->
             <div class="container-fluid pt-4 px-4">
+    <div class="bg-secondary text-center rounded p-4">
+        <div class="d-flex align-items-center justify-content-between mb-4">
+            <h6 class="mb-0">Recent Orders</h6>
+            <a href="{{ route('admin.orders.index') }}">Show All</a>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table text-start align-middle table-bordered table-hover mb-0">
+                <thead>
+                    <tr class="text-white">
+                        <th scope="col"><input class="form-check-input" type="checkbox"></th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Invoice</th>
+                        <th scope="col">Customer</th>
+                        <th scope="col">Amount</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @forelse($recentOrders as $order)
+                        <tr>
+                            <td><input class="form-check-input" type="checkbox"></td>
+
+                            <!-- Order Date -->
+                            <td>{{ $order->created_at->format('d M Y') }}</td>
+
+                            <!-- Invoice -->
+                            <td>{{ $order->invoice_no ?? 'N/A' }}</td>
+
+                            <!-- Customer -->
+                            <td>
+                                {{ $order->user->first_name ?? 'Unknown' }}
+                                {{ $order->user->last_name ?? '' }}
+                            </td>
+
+                            <!-- Amount -->
+                            <td>₹{{ number_format($order->total_amount, 2) }}</td>
+
+                            <!-- Status -->
+                            <td>
+                                @if($order->payment_status === 'paid')
+                                    <span class="badge bg-success">Paid</span>
+                                @elseif($order->payment_status === 'pending')
+                                    <span class="badge bg-warning">Pending</span>
+                                @else
+                                    <span class="badge bg-danger">Failed</span>
+                                @endif
+                            </td>
+
+                            <!-- Action -->
+                            <td>
+                                <a class="btn btn-sm btn-primary"
+                                   href="{{ route('admin.orders.show', $order->id) }}">
+                                    Detail
+                                </a>
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="7" class="text-center text-light">
+                                No recent orders found.
+                            </td>
+                        </tr>
+                    @endforelse
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+</div>
+
+            {{-- <div class="container-fluid pt-4 px-4">
                 <div class="bg-secondary text-center rounded p-4">
                     <div class="d-flex align-items-center justify-content-between mb-4">
                         <h6 class="mb-0">Recent Salse</h6>
@@ -233,7 +455,7 @@
                         </table>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <!-- Recent Sales End -->
 
 
