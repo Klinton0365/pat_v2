@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\AdminCouponController;
 use App\Http\Controllers\Admin\AdminInventoryController;
 use App\Http\Controllers\Admin\AdminOrderController;
 use App\Http\Controllers\Admin\AdminProductController;
+use App\Http\Controllers\Admin\AdminServiceController;
 use App\Http\Controllers\Admin\AdminServiceRequestController;
 use App\Http\Controllers\Admin\AdminTechnicianController;
 use App\Http\Controllers\Admin\AdminUserController;
@@ -136,6 +137,15 @@ Route::prefix('admin')->group(function () {
 
         Route::resource('customers', AdminUserController::class)->names('admin.customers');
         Route::resource('technicians', AdminTechnicianController::class)->names('admin.technicians');
+
+        Route::resource('services', AdminServiceController::class)->names('admin.services');
+
+        // Extra service actions
+        Route::post('services/{service}/assign-technician', [AdminServiceController::class, 'assignTechnician'])
+            ->name('services.assignTechnician');
+
+        Route::post('services/{service}/update-status', [AdminServiceController::class, 'updateStatus'])
+            ->name('services.updateStatus');
 
         // Additional Admin Utilities
         Route::get('/get-product-details/{id}', [AdminProductController::class, 'getProductDetails'])->name('admin.getProductDetails');

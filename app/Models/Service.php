@@ -24,10 +24,15 @@ class Service extends Model
 
     protected $casts = [
         'scheduled_date' => 'datetime',
+        'next_service_date' => 'datetime',
         'completed_at' => 'datetime',
     ];
 
-    // Relationships
+    // protected $casts = [
+    //     'scheduled_date' => 'datetime',
+    //     'completed_at' => 'datetime',
+    // ];
+
     public function customer()
     {
         return $this->belongsTo(Customer::class);

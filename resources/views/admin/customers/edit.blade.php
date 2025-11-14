@@ -34,6 +34,33 @@
                                 <input type="text" name="phone" value="{{ $customer->user->phone }}" class="form-control">
                             </div>
 
+                            <div class="col-md-12 mb-3">
+                                <label>Address</label>
+                                <textarea name="address" class="form-control">{{ $customer->user->address }}</textarea>
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>City</label>
+                                <input type="text" name="city" class="form-control" value="{{ $customer->user->city }}">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>State</label>
+                                <input type="text" name="state" class="form-control" value="{{ $customer->user->state }}">
+                            </div>
+
+                            <div class="col-md-4 mb-3">
+                                <label>Zip</label>
+                                <input type="text" name="zip" class="form-control" value="{{ $customer->user->zip }}">
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                <label>Country</label>
+                                <input type="text" name="country" class="form-control"
+                                    value="{{ $customer->user->country }}">
+                            </div>
+
+
                             <div class="col-md-6 mb-3">
                                 <label>Customer Type *</label>
                                 <select name="customer_type" class="form-control" required>

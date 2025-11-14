@@ -17,19 +17,97 @@
             </div>
         </div>
         <div class="navbar-nav w-100">
-            <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active"><i class="fa fa-tachometer-alt me-2"></i>Dashboard</a>
-            <div class="nav-item dropdown">
-                <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
-                        class="fa fa-laptop me-2"></i>Products</a>
+            {{-- <a href="{{ route('admin.dashboard') }}" class="nav-item nav-link active"><i
+                    class="fa fa-tachometer-alt me-2"></i>Dashboard</a> --}}
+            <a href="{{ route('admin.dashboard') }}"
+                class="nav-item nav-link {{ request()->routeIs('admin.dashboard') ? 'active' : '' }}">
+                <i class="fa fa-tachometer-alt me-2"></i>Dashboard
+            </a>
+
+            {{-- <div class="nav-item dropdown">
+                <a href="#"
+                    class="nav-link dropdown-toggle {{ request()->routeIs('categories.*') || request()->routeIs('products.*') || request()->routeIs('admin.festival-offers.*') ? 'active' : '' }}"
+                    data-bs-toggle="dropdown">
+                    <i class="fa fa-laptop me-2"></i>Products
+                </a>
+
                 <div class="dropdown-menu bg-transparent border-0">
-                    <a href="{{ route('categories.index') }}" class="dropdown-item">Category</a>
-                    <a href="{{ route('products.index') }}" class="dropdown-item">Product</a>
-                    <a href="{{ route('admin.festival-offers.index') }}" class="dropdown-item">Festival Offers</a>
+                    <a href="{{ route('categories.index') }}"
+                        class="dropdown-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                        Category
+                    </a>
+
+                    <a href="{{ route('products.index') }}"
+                        class="dropdown-item {{ request()->routeIs('products.*') ? 'active' : '' }}">
+                        Product
+                    </a>
+
+                    <a href="{{ route('admin.festival-offers.index') }}"
+                        class="dropdown-item {{ request()->routeIs('admin.festival-offers.*') ? 'active' : '' }}">
+                        Festival Offers
+                    </a>
+                </div>
+
+            </div> --}}
+
+            <div class="nav-item dropdown">
+
+                @php
+                    $productActive =
+                        request()->routeIs('categories.*') ||
+                        request()->routeIs('products.*') ||
+                        request()->routeIs('admin.festival-offers.*');
+                @endphp
+
+                <a href="#" class="nav-link dropdown-toggle {{ $productActive ? 'active' : '' }}"
+                    data-bs-toggle="dropdown" aria-expanded="{{ $productActive ? 'true' : 'false' }}">
+                    <i class="fa fa-laptop me-2"></i>Products
+                </a>
+
+                <div class="dropdown-menu bg-transparent border-0 {{ $productActive ? 'show' : '' }}">
+
+                    <a href="{{ route('categories.index') }}"
+                        class="dropdown-item {{ request()->routeIs('categories.*') ? 'active' : '' }}">
+                        Category
+                    </a>
+
+                    <a href="{{ route('products.index') }}"
+                        class="dropdown-item {{ request()->routeIs('products.*') ? 'active' : '' }}">
+                        Product
+                    </a>
+
+                    <a href="{{ route('admin.festival-offers.index') }}"
+                        class="dropdown-item {{ request()->routeIs('admin.festival-offers.*') ? 'active' : '' }}">
+                        Festival Offers
+                    </a>
+
                 </div>
             </div>
-            <a href="{{ route('admin.coupon.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Coupon</a>
-            <a href="{{ route('admin.customers.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Users</a>
-            <a href="{{ route('admin.technicians.index') }}" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Technician</a>
+
+            {{-- <a href="{{ route('admin.coupon.index') }}" class="nav-item nav-link"><i
+                    class="fa fa-th me-2"></i>Coupon</a>
+            <a href="{{ route('admin.customers.index') }}" class="nav-item nav-link"><i
+                    class="fa fa-th me-2"></i>Customers</a> --}}
+            <a href="{{ route('admin.coupon.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('admin.coupon.*') ? 'active' : '' }}">
+                <i class="fa fa-th me-2"></i>Coupon
+            </a>
+            <a href="{{ route('admin.customers.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('admin.customers.*') ? 'active' : '' }}">
+                <i class="fa fa-th me-2"></i>Customers
+            </a>
+             <a href="{{ route('admin.services.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('admin.services.*') ? 'active' : '' }}">
+                <i class="fa fa-th me-2"></i>Services
+            </a>
+
+            {{-- <a href="{{ route('admin.technicians.index') }}" class="nav-item nav-link"><i
+                    class="fa fa-th me-2"></i>Technician</a> --}}
+            <a href="{{ route('admin.technicians.index') }}"
+                class="nav-item nav-link {{ request()->routeIs('admin.technicians.*') ? 'active' : '' }}">
+                <i class="fa fa-th me-2"></i>Technician
+            </a>
+
             <a href="widget.html" class="nav-item nav-link"><i class="fa fa-th me-2"></i>Inventory</a>
             <div class="nav-item dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown"><i
