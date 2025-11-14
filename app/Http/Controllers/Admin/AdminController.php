@@ -120,6 +120,7 @@ class AdminController extends Controller
         // Orders
         $totalOrders = Order::count();
         $pendingOrders = Order::where('order_status', 'pending')->count();
+        $deliveredOrders = Order::where('order_status', 'delivered')->count();
         $todayOrders = Order::whereDate('created_at', today())->count();
 
         // Revenue
@@ -157,7 +158,7 @@ class AdminController extends Controller
         return view('admin.dashboard', compact(
             'categoryCount', 'productCount', 'userCount', 'customerCount',
             'totalOrders', 'pendingOrders', 'todayOrders', 'totalRevenue', 'todayRevenue',
-            'totalServices', 'pendingServices', 'inProgressServices', 'completedServices',
+            'totalServices','deliveredOrders', 'pendingServices', 'inProgressServices', 'completedServices',
             'cancelledServices', 'upcomingServices', 'overdueServices', 'bookingCount','recentOrders'
         ));
     }

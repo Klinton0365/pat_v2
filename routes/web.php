@@ -21,6 +21,7 @@ use App\Http\Controllers\ServiceBookingController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\ServiceController;
+use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -94,8 +95,24 @@ Route::middleware(['auth.ensure'])->group(function () {
 
     // User Orders & Services
     Route::prefix('user')->group(function () {
+        Route::get('/dashboard', [UserDashboardController::class, 'dashboardIndex'])->name('user.dashboard');
+
+        // Profile View
+        Route::get('/profile', [UserDashboardController::class, 'profileIndex'])->name('user.profile');
+
+        // Profile Update
+        Route::post('/profile/update', [UserDashboardController::class, 'profileUpdate'])->name('user.profile.update');
+
         Route::resource('orders', OrderController::class)->names('user.orders');
         Route::resource('services', ServiceController::class)->names('user.services');
+
+        // Orders
+        Route::get('/orders', [UserDashboardController::class, 'orderIndex'])->name('user.orders.index');
+        Route::get('/orders/{order}', [UserDashboardController::class, 'serviceShow'])->name('user.orders.show');
+
+        // Services
+        Route::get('/services', [UserDashboardController::class, 'serviceIndex'])->name('user.services.index');
+        Route::get('/services/{service}', [UserDashboardController::class, 'serviceShow'])->name('user.services.show');
     });
 });
 
@@ -118,6 +135,10 @@ Route::prefix('admin')->group(function () {
 
     // Protected Admin Area
     Route::middleware(['isAdmin'])->group(function () {
+
+        Route::get('/profile', [AdminController::class, 'profile'])->name('admin.profile');
+        Route::get('/settings', [AdminController::class, 'settings'])->name('admin.settings');
+
         Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::post('/logout', [AdminController::class, 'logout'])->name('admin.logout');
 
