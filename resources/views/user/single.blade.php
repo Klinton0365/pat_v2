@@ -17,12 +17,7 @@
         <div class="container py-5">
             <div class="row g-4">
                 <div class="col-lg-5 col-xl-3 wow fadeInUp" data-wow-delay="0.1s">
-                    {{-- <div class="input-group w-100 mx-auto d-flex mb-4">
-                        <input type="search" class="form-control p-3" placeholder="keywords"
-                            aria-describedby="search-icon-1">
-                        <span id="search-icon-1" class="input-group-text p-3"><i class="fa fa-search"></i></span>
-                    </div> --}}
-
+                
                     <div class="product-categories mb-4">
                         <h4>Products Categories</h4>
                         <ul class="list-unstyled">
@@ -39,18 +34,6 @@
                             @endforeach
                         </ul>
                     </div>
-                    {{-- @if($product->colors && count(json_decode($product->colors)) > 0)
-                    <div class="additional-product mb-4">
-                        <h4>Available Colors</h4>
-                        @foreach(json_decode($product->colors) as $color)
-                        <div class="additional-product-item">
-                            <input type="radio" class="me-2" id="color-{{ $loop->index }}" name="product-color"
-                                value="{{ $color }}">
-                            <label for="color-{{ $loop->index }}" class="text-dark">{{ ucfirst($color) }}</label>
-                        </div>
-                        @endforeach
-                    </div>
-                    @endif --}}
 
                     @if($product->colors && count($product->colors) > 0)
                         <div class="additional-product mb-4">
@@ -70,71 +53,6 @@
                         </div>
                     @endif
 
-                    {{-- @if($featuredProducts && $featuredProducts->count() > 0)
-                    <div class="featured-product mb-4">
-                        <h4 class="mb-3">Featured products</h4>
-                        @foreach($featuredProducts as $featured)
-                        <div class="featured-product-item">
-                            <div class="rounded me-4" style="width: 100px; height: 100px;">
-                                <img src="{{ $featured->main_image ? asset('storage/' . $featured->main_image) : asset('img/default.png') }}"
-                                    class="img-fluid rounded" style="max-height: 300px;" alt="{{ $featured->name }}">
-                            </div>
-                            <div>
-                                <h6 class="mb-2">
-                                    <a href="{{ route('product.show', [$featured->id, $featured->slug]) }}"
-                                        class="text-dark">
-                                        {{ Str::limit($featured->name, 30) }}
-                                    </a>
-                                </h6>
-                                <div class="d-flex mb-2">
-                                    @for($i = 1; $i <= 5; $i++) <i
-                                        class="fa fa-star {{ $i <= round($featured->rating) ? 'text-secondary' : '' }}"></i>
-                                        @endfor
-                                </div>
-                                <div class="d-flex mb-2">
-                                    @if($featured->discount > 0)
-                                    <h5 class="fw-bold me-2">${{ number_format($featured->price - ($featured->price *
-                                        $featured->discount / 100), 2) }}</h5>
-                                    <h5 class="text-danger text-decoration-line-through">${{ number_format($featured->price,
-                                        2) }}</h5>
-                                    @else
-                                    <h5 class="fw-bold">${{ number_format($featured->price, 2) }}</h5>
-                                    @endif
-                                </div>
-                            </div>
-                        </div>
-                        @endforeach
-                        <div class="d-flex justify-content-center my-4">
-                            <a href="{{ route('shop') }}" class="btn btn-primary px-4 py-3 rounded-pill w-100">View More</a>
-                        </div>
-                    </div>
-                    @endif --}}
-
-                    <!-- Sale Banner -->
-                    <a href="{{ route('shop') }}">
-                        <div class="position-relative">
-                            <img src="{{ asset('img/product-banner-2.jpg') }}" class="img-fluid w-100 rounded" alt="Sale">
-                            <div class="text-center position-absolute d-flex flex-column align-items-center justify-content-center rounded p-4"
-                                style="width: 100%; height: 100%; top: 0; right: 0; background: rgba(242, 139, 0, 0.3);">
-                                <h5 class="display-6 text-primary">SALE</h5>
-                                <h4 class="text-secondary">Get UP To 50% Off</h4>
-                                <span class="btn btn-primary rounded-pill px-4">Shop Now</span>
-                            </div>
-                        </div>
-                    </a>
-
-                    <!-- Product Tags -->
-                    {{-- @if($productTags && count($productTags) > 0)
-                    <div class="product-tags my-4">
-                        <h4 class="mb-3">PRODUCT TAGS</h4>
-                        <div class="product-tags-items bg-light rounded p-3">
-                            @foreach($productTags as $tag)
-                            <a href="{{ route('shop', ['tag' => $tag]) }}" class="border rounded py-1 px-2 mb-2">{{ $tag
-                                }}</a>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif --}}
                 </div>
 
                 <div class="col-lg-7 col-xl-9 wow fadeInUp" data-wow-delay="0.1s">
@@ -149,18 +67,6 @@
                                             style="max-height: 300px;" alt="{{ $product->name }}">
                                     </div>
                                 </div>
-
-                                {{-- @if($product->product_images)
-                                @foreach(json_decode($product->product_images) as $img)
-                                <div class="single-item"
-                                    data-dot="<img class='img-fluid' src='{{ asset('storage/' . $img) }}' alt=''>">
-                                    <div class="single-inner bg-light rounded">
-                                        <img src="{{ asset('storage/' . $img) }}" class="img-fluid rounded"
-                                            style="max-height: 300px;" alt="{{ $product->name }}">
-                                    </div>
-                                </div>
-                                @endforeach
-                                @endif --}}
                                 @if($product->product_images && count($product->product_images) > 0)
                                     @foreach($product->product_images as $img)
                                         <div class="single-item"
@@ -218,27 +124,10 @@
                                             class="fa fa-plus"></i></button>
                                 </div>
                             </div>
-
-                            {{-- <form action="{{ route('cart.add') }}" method="POST" class="d-inline">
-                                @csrf
-                                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <button type="submit"
-                                    class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
-                                    <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
-                                </button>
-                            </form> --}}
-
                             <a href="{{ route('cart.add', $product->id) }}"
                                 class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary">
                                 <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
                             </a>
-
-                            {{-- <a href="javascript:void(0);"
-                                class="btn btn-primary border border-secondary rounded-pill px-4 py-2 mb-4 text-primary add-to-cart"
-                                data-product-id="{{ $product->id }}">
-                                <i class="fa fa-shopping-bag me-2 text-white"></i> Add to cart
-                            </a> --}}
-
                         </div>
                     </div>
                 </div>

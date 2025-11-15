@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Request;
 
 class UserDashboardController extends Controller
 {
@@ -35,7 +36,7 @@ class UserDashboardController extends Controller
 
      public function profileIndex()
     {
-        return view('user.profile');
+        return view('user.dashboard.profile');
     }
 
     public function profileUpdate(Request $request)

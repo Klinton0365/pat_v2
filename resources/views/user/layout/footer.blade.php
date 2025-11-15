@@ -437,12 +437,20 @@
             <div class="footer-section">
                 <h4>Customer Service</h4>
                 <ul class="footer-links">
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Contact Us</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Returns</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Order History</a></li>
+                    <li><a href="{{ route('contact') }}"><i class="fas fa-angle-right"></i>Contact Us</a></li>
+                    {{-- <li><a href="#"><i class="fas fa-angle-right"></i>Returns</a></li> --}}
+                    {{-- <li><a href="#"><i class="fas fa-angle-right"></i>Order History</a></li> --}}
                     <li><a href="#"><i class="fas fa-angle-right"></i>Site Map</a></li>
                     <li><a href="#"><i class="fas fa-angle-right"></i>Testimonials</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>My Account</a></li>
+
+                    @auth
+                        <li>
+                            <a href="{{ route('user.dashboard') }}">
+                                <i class="fas fa-angle-right"></i> My Account
+                            </a>
+                        </li>
+                    @endauth
+
                 </ul>
             </div>
 
@@ -451,11 +459,12 @@
                 <h4>Information</h4>
                 <ul class="footer-links">
                     <li><a href="#"><i class="fas fa-angle-right"></i>About Us</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Delivery Information</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Privacy Policy</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Terms & Conditions</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>Warranty</a></li>
-                    <li><a href="#"><i class="fas fa-angle-right"></i>FAQ</a></li>
+                    {{-- <li><a href="#"><i class="fas fa-angle-right"></i>Delivery Information</a></li> --}}
+                    <li><a href="{{ route('user.privacy') }}"><i class="fas fa-angle-right"></i>Privacy Policy</a></li>
+                    <li><a href="{{ route('user.terms') }}"><i class="fas fa-angle-right"></i>Terms & Conditions</a>
+                    </li>
+                    {{-- <li><a href="#"><i class="fas fa-angle-right"></i>Warranty</a></li> --}}
+                    <li><a href="{{ route('user.faq') }}"><i class="fas fa-angle-right"></i>FAQ</a></li>
                 </ul>
             </div>
 
@@ -484,12 +493,12 @@
         <div class="container">
             <div class="footer-bottom-content">
                 <div class="copyright">
-                    <i class="fas fa-copyright"></i> 2024 <a href="#">Your Site Name</a>. All rights reserved.
+                    <i class="fas fa-copyright"></i> 2024 <a href="#">Pure Aqua Tech</a>. All rights reserved.
                 </div>
-                <div class="footer-credits">
+                {{-- <div class="footer-credits">
                     Designed By <a href="https://htmlcodex.com">HTML Codex</a> |
                     Distributed By <a href="https://themewagon.com">ThemeWagon</a>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

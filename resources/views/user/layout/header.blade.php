@@ -12,9 +12,10 @@
             </div>
         </div>
         <div class="col-lg-4 text-center d-flex align-items-center justify-content-center">
-            <small class="text-dark">Call Us:</small>
-            <a href="#" class="text-muted">(+012) 1234 567890</a>
-        </div>
+    <small class="text-dark">Call Us:</small>
+    <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a>
+</div>
+
         
         <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
@@ -216,14 +217,14 @@
         </div>
     </div>
 </div>
-<div class="container-fluid px-5 py-4 d-none d-lg-block">
+<div class="container-fluid px-5 py-2 d-none d-lg-block">
     <div class="row gx-0 align-items-center text-center">
         <div class="col-md-4 col-lg-3 text-center text-lg-start">
             <div class="d-inline-flex align-items-center">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="display-5 text-primary m-0"><i
-                            class="fas fa-shopping-bag text-secondary me-2"></i>Electro</h1>
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                    {{-- <h1 class="display-5 text-primary m-0"><i
+                            class="fas fa-shopping-bag text-secondary me-2"></i>Electro</h1> --}}
+                        <img src="{{ asset('img/PATV2.png') }}" style="width:130px; height:80px;" alt="Logo">
                 </a>
             </div>
         </div>
@@ -298,8 +299,6 @@
     </a>
 @endauth
 
-
-
             </div>
         </div>
     </div>
@@ -361,8 +360,9 @@
                         <a href="{{ route('contact') }}" class="nav-item nav-link me-2">Contact</a>
 
                     </div>
-                    <a href="" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0"><i
-                            class="fa fa-mobile-alt me-2"></i> +0123 456 7890</a>
+                    <a href="tel:+919995969939" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
+                        <i class="fa fa-mobile-alt me-2"></i>+91 999 596 9939</a>
+                        {{-- <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a> --}}
                 </div>
             </nav>
         </div>

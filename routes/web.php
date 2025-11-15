@@ -20,6 +20,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ServiceBookingController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\OrderController;
+use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -53,6 +54,12 @@ Route::get('/product/{id}/{slug}', [ShopController::class, 'show'])->name('produ
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/contact/store', [ContactController::class, 'store'])->name('contact.store');
 Route::get('/best-seller', [BestSellerController::class, 'bestSeller'])->name('best-seller');
+
+Route::get('/terms-and-conditions', [PageController::class, 'terms'])->name('user.terms');
+
+Route::get('/privacy-policy', [PageController::class, 'privacy'])->name('user.privacy');
+
+Route::get('/faq', [PageController::class, 'faq'])->name('user.faq');
 
 // Services (Public Booking)
 Route::get('/services', [ServiceBookingController::class, 'index'])->name('services');
