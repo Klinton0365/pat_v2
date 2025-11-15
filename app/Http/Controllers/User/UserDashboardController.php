@@ -34,7 +34,34 @@ class UserDashboardController extends Controller
         return view('user.orders.index', compact('orders'));
     }
 
-     public function profileIndex()
+    // public function orderShow(Order $order)
+    // {
+    //     if ($order->user_id !== Auth::id()) {
+    //         abort(403);
+    //     }
+
+    //     $order->load('items.product');
+
+    //     return view('user.orders.show', compact('order'));
+    // }
+    public function orderShow($id)
+{
+    // Fetch order only if it belongs to the authenticated user
+    $order = Order::where('id', $id)
+        ->where('user_id', Auth::id())
+        ->with(['items.product'])
+        ->first();
+
+    // If no order found or unauthorized
+    if (! $order) {
+        abort(403, 'Unauthorized access to this order.');
+    }
+
+    return view('user.orders.show', compact('order'));
+}
+
+
+    public function profileIndex()
     {
         return view('user.dashboard.profile');
     }
@@ -42,30 +69,19 @@ class UserDashboardController extends Controller
     public function profileUpdate(Request $request)
     {
         $request->validate([
-            "first_name" => "required|string",
-            "last_name" => "nullable|string",
-            "phone" => "nullable|string",
-            "address" => "nullable|string",
-            "city" => "nullable|string",
-            "state" => "nullable|string",
-            "zip" => "nullable|string",
-            "country" => "nullable|string",
+            'first_name' => 'required|string',
+            'last_name' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'address' => 'nullable|string',
+            'city' => 'nullable|string',
+            'state' => 'nullable|string',
+            'zip' => 'nullable|string',
+            'country' => 'nullable|string',
         ]);
 
         Auth::user()->update($request->all());
 
         return back()->with('success', 'Profile updated successfully!');
-    }
-
-    public function orderShow(Order $order)
-    {
-        if ($order->user_id !== Auth::id()) {
-            abort(403);
-        }
-
-        $order->load('items.product');
-
-        return view('user.orders.show', compact('order'));
     }
 
     public function serviceIndex()

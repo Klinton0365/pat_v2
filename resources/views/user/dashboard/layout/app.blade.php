@@ -90,12 +90,12 @@
             <i class="fa fa-user"></i> Profile
         </a>
 
-        <a href="{{ route('logout') }}"
+        <a href="{{ route('user.logout') }}"
             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
             <i class="fa fa-sign-out-alt"></i> Logout
         </a>
 
-        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+        <form id="logout-form" action="{{ route('user.logout') }}" method="POST" class="d-none">
             @csrf
         </form>
     </div>
@@ -119,7 +119,7 @@
                 <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownUser">
                     <li><a class="dropdown-item" href="{{ route('user.profile') }}">Profile</a></li>
                     <li><a class="dropdown-item" 
-                           href="#" 
+                           href="{{ route('user.logout') }}" 
                            onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                         Logout
                     </a></li>

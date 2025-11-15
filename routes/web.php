@@ -75,7 +75,7 @@ Route::middleware(['auth.ensure'])->group(function () {
 
     // Profile & Logout
     Route::get('/profile', [AuthController::class, 'profile'])->name('profile');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('user.logout');
 
     // Cart
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
@@ -110,12 +110,12 @@ Route::middleware(['auth.ensure'])->group(function () {
         // Profile Update
         Route::post('/profile/update', [UserDashboardController::class, 'profileUpdate'])->name('user.profile.update');
 
-        Route::resource('orders', OrderController::class)->names('user.orders');
+        // Route::resource('orders', OrderController::class)->names('user.orders');
         Route::resource('services', ServiceController::class)->names('user.services');
 
         // Orders
         Route::get('/orders', [UserDashboardController::class, 'orderIndex'])->name('user.orders.index');
-        Route::get('/orders/{order}', [UserDashboardController::class, 'serviceShow'])->name('user.orders.show');
+        Route::get('/orders/{order}', [UserDashboardController::class, 'orderShow'])->name('user.orders.show');
 
         // Services
         Route::get('/services', [UserDashboardController::class, 'serviceIndex'])->name('user.services.index');

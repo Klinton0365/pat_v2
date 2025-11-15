@@ -205,7 +205,7 @@
 }
 
                 </style>
-<form action="{{ route('logout') }}" method="POST" class="d-inline">
+<form action="{{ route('user.logout') }}" method="POST" class="d-inline">
     @csrf
     <button type="submit" class="btn btn-outline-danger rounded-pill px-4 py-2">
         <i class="fas fa-sign-out-alt me-2"></i> Logout
