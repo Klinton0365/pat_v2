@@ -17,7 +17,7 @@
 </div>
 
         
-        <div class="col-lg-4 text-center text-lg-end">
+        {{-- <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
                @guest
                 <style>
@@ -214,7 +214,65 @@
 
                 @endguest
             </div>
-        </div>
+        </div> --}}
+        <div class="col-lg-4 text-center text-lg-end">
+    <div class="d-inline-flex align-items-center" style="height: 45px;">
+
+        @guest
+            <!-- Your existing login button stays as it is -->
+            <a href="{{ route('login') }}">
+                <button class="login-botton">
+                    <span class="span-mother">
+                        <span>L</span>
+                        <span>O</span>
+                        <span>G</span>
+                        <span>I</span>
+                        <span>N</span>
+                    </span>
+                    <span class="span-mother2">
+                        <span>L</span>
+                        <span>O</span>
+                        <span>G</span>
+                        <span>I</span>
+                        <span>N</span>
+                    </span>
+                </button>
+            </a>
+        @else
+            <!-- USER DROPDOWN -->
+            <div class="dropdown">
+                <button class="btn btn-light dropdown-toggle px-3 py-2 rounded-pill" type="button"
+                        id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-circle me-2"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
+                </button>
+
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                        </a>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('user.profile') }}">
+                            <i class="fas fa-user me-2"></i> My Account
+                        </a>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <form action="{{ route('user.logout') }}" method="POST">
+                            @csrf
+                            <button type="submit" class="dropdown-item text-danger">
+                                <i class="fas fa-sign-out-alt me-2"></i> Logout
+                            </button>
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        @endguest
+
+    </div>
+</div>
+
     </div>
 </div>
 <div class="container-fluid px-5 py-2 d-none d-lg-block">
