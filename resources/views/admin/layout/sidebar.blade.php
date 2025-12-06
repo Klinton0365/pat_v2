@@ -147,7 +147,7 @@
                 <i class="fa fa-user-cog me-2"></i>Technician
             </a>
 
-            <a href="#" class="nav-item nav-link">
+            <a href="{{ route('inventories.index') }}" class="nav-item nav-link">
                 <i class="fa fa-warehouse me-2"></i>Inventory
             </a>
 

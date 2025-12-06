@@ -11,12 +11,18 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('inventories', function (Blueprint $table) {
+        Schema::create('inventory_batches', function (Blueprint $table) {
             $table->id();
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
-            $table->integer('stock');
+            $table->string('batch_no')->nullable();
+            $table->integer('quantity');
+            $table->integer('remaining_quantity'); // decrements on sale
+            $table->decimal('purchase_price', 10, 2);
+            $table->date('arrival_date')->nullable();
+            $table->string('supplier_name')->nullable();
             $table->timestamps();
         });
+
     }
 
     /**
@@ -24,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('inventories');
+        Schema::dropIfExists('inventory_batches');
     }
 };
