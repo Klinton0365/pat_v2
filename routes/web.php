@@ -154,9 +154,12 @@ Route::prefix('admin')->group(function () {
             'categories' => AdminCategoryController::class,
             'products' => AdminProductController::class,
             'orders' => AdminOrderController::class,
-            'inventories' => AdminInventoryController::class,
+            // 'inventories' => AdminInventoryController::class,
             'service-requests' => AdminServiceRequestController::class,
         ]);
+
+        Route::resource('inventories', AdminInventoryController::class);
+        Route::get('inventory/logs/{product}', [AdminInventoryController::class, 'logs'])->name('inventories.logs');
 
         Route::resource('orders', AdminOrderController::class)->names('admin.orders');
 
