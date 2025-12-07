@@ -25,35 +25,8 @@ class AdminProductController extends Controller
         return view('admin.products.create', compact('categories'));
     }
 
-    // public function store(Request $request)
-    // {
-    //     $request->validate([
-    //         'category_id' => 'required|exists:categories,id',
-    //         'name' => 'required|string|max:255',
-    //         'price' => 'required|numeric',
-    //     ]);
-    //     Product::create($request->all());
-    //     return redirect()->route('products.index')->with('success', 'Product created successfully');
-    // }
-
     public function store(Request $request)
     {
-        // dd($request->all());
-        // ✅ Validate inputs
-        // $request->validate([
-        //     'category_id' => 'required|exists:categories,id',
-        //     'name' => 'required|string|max:255',
-        //     'slug' => 'required|string|max:255|unique:products,slug',
-        //     'price' => 'required|numeric',
-        //     'discount' => 'nullable|numeric|min:0|max:100',
-        //     'warranty_months' => 'nullable|integer',
-        //     'colors' => 'nullable|array',
-        //     'stock' => 'required|integer|min:0',
-        //     'sku' => 'nullable|string|max:100|unique:products,sku',
-        //     'main_image' => 'required|image|mimes:jpg,jpeg,png,webp|max:2048',
-        //     'product_images.*' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-        // ]);
-
         // ✅ Save main image
         $mainImagePath = $request->file('main_image')->store('products/main', 'public');
 
@@ -88,30 +61,12 @@ class AdminProductController extends Controller
         return redirect()->route('products.index')->with('success', 'Product created successfully.');
     }
 
-    // public function edit(Product $product)
-    // {
-    //     $categories = Category::all();
-    //     return view('admin.products.edit', compact('product', 'categories'));
-    // }
-
-    // public function edit(Product $product)
-    // {
-    //     $categories = Category::all();
-
-    //     // decode JSON fields before sending to view
-    //     $product->colors = json_decode($product->colors, true) ?? [];
-    //     $product->product_images = json_decode($product->product_images, true) ?? [];
-
-    //     return view('admin.products.edit', compact('product', 'categories'));
-    // }
-
     public function edit(Product $product)
-{
-    $categories = Category::all();
+    {
+        $categories = Category::all();
 
-    return view('admin.products.edit', compact('product', 'categories'));
-}
-
+        return view('admin.products.edit', compact('product', 'categories'));
+    }
 
     public function update(Request $request, Product $product)
     {
@@ -174,10 +129,10 @@ class AdminProductController extends Controller
 
     public function getProductDetails($id)
     {
-        //\Log::info('IDDD: ', $id);
+        // \Log::info('IDDD: ', $id);
         \Log::info('IDDD: ', ['id' => $id]);
 
-        $product = \App\Models\Product::find($id);
+        $product = Product::find($id);
 
         if ($product) {
             return response()->json([
@@ -187,5 +142,24 @@ class AdminProductController extends Controller
         } else {
             return response()->json(['error' => 'Product not found'], 404);
         }
+    }
+
+    public function deleteImage(Request $request, Product $product)
+    {
+        $image = $request->image;
+
+        // Remove from storage
+        if (Storage::exists('public/'.$image)) {
+            Storage::delete('public/'.$image);
+        }
+
+        // Update product_images array
+        $images = $product->product_images ?? [];
+        $updatedImages = array_diff($images, [$image]);
+
+        $product->product_images = array_values($updatedImages);
+        $product->save();
+
+        return back()->with('success', 'Image deleted successfully.');
     }
 }

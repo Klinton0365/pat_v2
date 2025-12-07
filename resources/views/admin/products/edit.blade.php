@@ -125,7 +125,7 @@
                         @enderror
                     </div>
 
-                    <div class="mb-3 text-start">
+                    {{-- <div class="mb-3 text-start">
                         <label for="product_images" class="form-label">Product Images (Multiple)</label>
                         <input type="file" name="product_images[]" class="form-control" accept="image/*" multiple>
                         @foreach ($product->product_images as $img)
@@ -136,7 +136,40 @@
                         @error('product_images')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
+                    </div> --}}
+                   <div class="mb-3 text-start">
+                        <label for="product_images" class="form-label">Product Images (Multiple)</label>
+
+                        {{-- Upload input (always visible) --}}
+                        <input type="file" name="product_images[]" class="form-control" accept="image/*" multiple>
+
+                        {{-- Existing images block --}}
+                        <div class="mt-2 d-flex flex-wrap">
+                            @foreach ($product->product_images as $img)
+                                <div class="image-box me-3 mb-3" style="position: relative;">
+                                    
+                                    <img src="{{ asset('storage/' . $img) }}" 
+                                        width="90" height="90" 
+                                        style="object-fit:cover;border:1px solid #666; border-radius:6px;">
+
+
+                                    <button type="button"
+                                            class="btn btn-sm btn-danger delete-image-btn"
+                                            data-image="{{ $img }}"
+                                            data-id="{{ $product->id }}"
+                                            style="position:absolute; top:-6px; right:-6px; padding:2px 6px; font-size:11px;">
+                                        X
+                                    </button>
+
+                                </div>
+                            @endforeach
+                        </div>
+
+                        @error('product_images')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
+
 
 
                     <button type="submit" class="btn btn-warning">Update</button>
@@ -145,4 +178,43 @@
             </div>
         </div>
     </div>
+    <script>
+document.addEventListener("DOMContentLoaded", function () {
+    document.querySelectorAll(".delete-image-btn").forEach(btn => {
+        btn.addEventListener("click", function () {
+            if (!confirm("Delete this image?")) return;
+
+            const img = this.dataset.image;
+            const id = this.dataset.id;
+
+            const form = document.createElement("form");
+            form.method = "POST";
+            form.action = `/admin/products/${id}/delete-image`;
+
+            const csrf = document.createElement("input");
+            csrf.type = "hidden";
+            csrf.name = "_token";
+            csrf.value = "{{ csrf_token() }}";
+
+            const method = document.createElement("input");
+            method.type = "hidden";
+            method.name = "_method";
+            method.value = "DELETE";
+
+            const input = document.createElement("input");
+            input.type = "hidden";
+            input.name = "image";
+            input.value = img;
+
+            form.appendChild(csrf);
+            form.appendChild(method);
+            form.appendChild(input);
+
+            document.body.appendChild(form);
+            form.submit();
+        });
+    });
+});
+</script>
+
 @endsection

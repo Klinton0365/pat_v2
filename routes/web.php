@@ -158,6 +158,10 @@ Route::prefix('admin')->group(function () {
             'service-requests' => AdminServiceRequestController::class,
         ]);
 
+        Route::delete('/products/{product}/delete-image', [AdminProductController::class, 'deleteImage'])
+    ->name('products.deleteImage');
+
+
         Route::resource('inventories', AdminInventoryController::class);
         Route::get('inventory/logs/{product}', [AdminInventoryController::class, 'logs'])->name('inventories.logs');
 
