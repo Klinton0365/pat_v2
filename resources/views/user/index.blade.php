@@ -2,10 +2,10 @@
 @section('content')
     <style>
         /* body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            line-height: 1.6;
-            color: #333;
-        } */
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                line-height: 1.6;
+                color: #333;
+            } */
 
         /* Header Styles */
         .header {
@@ -648,7 +648,7 @@
         </div>
     </div> --}}
     <!-- Carousel End -->
-    
+
     <style>
         canvas {
             position: fixed;
@@ -1046,75 +1046,75 @@
                         }
                     },
                     vertexShader: `
-                                                                                        varying vec2 vUv;
+                                                                                            varying vec2 vUv;
 
-                                                                                        void main() {
-                                                                                            vUv = uv;
-                                                                                            gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                                                                                        }
-                                                                                    `,
+                                                                                            void main() {
+                                                                                                vUv = uv;
+                                                                                                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                                                                                            }
+                                                                                        `,
                     fragmentShader: `
-                                                                                        uniform sampler2D waterTexture;
-                                                                                        uniform float rippleStrength;
-                                                                                        uniform vec2 resolution;
-                                                                                        uniform float time;
-                                                                                        uniform vec3 colorA1;
-                                                                                        uniform vec3 colorA2;
-                                                                                        uniform vec3 colorB1;
-                                                                                        uniform vec3 colorB2;
-                                                                                        varying vec2 vUv;
+                                                                                            uniform sampler2D waterTexture;
+                                                                                            uniform float rippleStrength;
+                                                                                            uniform vec2 resolution;
+                                                                                            uniform float time;
+                                                                                            uniform vec3 colorA1;
+                                                                                            uniform vec3 colorA2;
+                                                                                            uniform vec3 colorB1;
+                                                                                            uniform vec3 colorB2;
+                                                                                            varying vec2 vUv;
 
-                                                                                        float S(float a, float b, float t) {
-                                                                                            return smoothstep(a, b, t);
-                                                                                        }
+                                                                                            float S(float a, float b, float t) {
+                                                                                                return smoothstep(a, b, t);
+                                                                                            }
 
-                                                                                        mat2 Rot(float a) {
-                                                                                            float s = sin(a);
-                                                                                            float c = cos(a);
-                                                                                            return mat2(c, -s, s, c);
-                                                                                        }
+                                                                                            mat2 Rot(float a) {
+                                                                                                float s = sin(a);
+                                                                                                float c = cos(a);
+                                                                                                return mat2(c, -s, s, c);
+                                                                                            }
 
-                                                                                        float noise(vec2 p) {
-                                                                                            vec2 ip = floor(p);
-                                                                                            vec2 fp = fract(p);
-                                                                                            float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                            float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                            float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                            float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                            float noise(vec2 p) {
+                                                                                                vec2 ip = floor(p);
+                                                                                                vec2 fp = fract(p);
+                                                                                                float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                                float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                                float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                                                                                                float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
 
-                                                                                            fp = fp * fp * (3.0 - 2.0 * fp);
+                                                                                                fp = fp * fp * (3.0 - 2.0 * fp);
 
-                                                                                            return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-                                                                                        }
+                                                                                                return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+                                                                                            }
 
-                                                                                        void main() {
-                                                                                            float waterHeight = texture2D(waterTexture, vUv).r;
+                                                                                            void main() {
+                                                                                                float waterHeight = texture2D(waterTexture, vUv).r;
 
-                                                                                            float step = 1.0 / resolution.x;
-                                                                                            vec2 distortion = vec2(
-                                                                                                texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-                                                                                                texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-                                                                                            ) * rippleStrength * 5.0;
+                                                                                                float step = 1.0 / resolution.x;
+                                                                                                vec2 distortion = vec2(
+                                                                                                    texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+                                                                                                    texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+                                                                                                ) * rippleStrength * 5.0;
 
-                                                                                            vec2 tuv = vUv + distortion;
-                                                                                            tuv -= 0.5;
+                                                                                                vec2 tuv = vUv + distortion;
+                                                                                                tuv -= 0.5;
 
-                                                                                            float ratio = resolution.x / resolution.y;
-                                                                                            tuv.y *= 1.0/ratio;
+                                                                                                float ratio = resolution.x / resolution.y;
+                                                                                                tuv.y *= 1.0/ratio;
 
-                                                                                            vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                                            vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                                            vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+                                                                                                vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                                                vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                                                                                                vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
 
-                                                                                            float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-                                                                                            finalComp += vec3(noiseValue);
+                                                                                                float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+                                                                                                finalComp += vec3(noiseValue);
 
-                                                                                            float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-                                                                                            finalComp *= mix(0.95, 1.0, vignette);
+                                                                                                float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+                                                                                                finalComp *= mix(0.95, 1.0, vignette);
 
-                                                                                            gl_FragColor = vec4(finalComp, 1.0);
-                                                                                        }
-                                                                                    `
+                                                                                                gl_FragColor = vec4(finalComp, 1.0);
+                                                                                            }
+                                                                                        `
                 };
 
                 const geometry = new THREE.PlaneGeometry(
@@ -1785,8 +1785,7 @@
                             <div class="carousel-item row">
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
-                                        <img class="img-fluid"
-                                            src="{{ asset('img/about/view-fantasy-tap.jpg') }}"
+                                        <img class="img-fluid" src="{{ asset('img/about/view-fantasy-tap.jpg') }}"
                                             alt="2010 Foundation" />
                                     </div>
                                 </div>
@@ -1807,8 +1806,7 @@
                             <div class="carousel-item row">
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
-                                        <img class="img-fluid"
-                                            src="{{ asset('img/about/rm373batch10-207.jpg') }}"
+                                        <img class="img-fluid" src="{{ asset('img/about/rm373batch10-207.jpg') }}"
                                             alt="2015 Innovation" />
                                     </div>
                                 </div>
@@ -1828,8 +1826,7 @@
                             <div class="carousel-item row">
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
-                                        <img class="img-fluid"
-                                            src="{{ asset('img/about/2212.i121.024.jpg') }}"
+                                        <img class="img-fluid" src="{{ asset('img/about/2212.i121.024.jpg') }}"
                                             alt="2018 Expansion" />
                                     </div>
                                 </div>
@@ -1849,8 +1846,7 @@
                             <div class="carousel-item row active">
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
-                                        <img class="img-fluid"
-                                            src="{{ asset('img/about/online-shopping-concept.jpg') }}"
+                                        <img class="img-fluid" src="{{ asset('img/about/online-shopping-concept.jpg') }}"
                                             alt="2020 Smart Technology" />
                                     </div>
                                 </div>
@@ -1870,8 +1866,7 @@
                             <div class="carousel-item row">
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
-                                        <img class="img-fluid"
-                                            src="{{ asset('img/about/view-fantasy.jpg') }}"
+                                        <img class="img-fluid" src="{{ asset('img/about/view-fantasy.jpg') }}"
                                             alt="2022 Sustainability" />
                                     </div>
                                 </div>
@@ -1891,8 +1886,7 @@
                             <div class="carousel-item row">
                                 <div class="col-lg-6 col-md-12 pl-0">
                                     <div class="history-img">
-                                        <img class="img-fluid"
-                                            src="{{ asset('img/about/18375.jpg') }}"
+                                        <img class="img-fluid" src="{{ asset('img/about/18375.jpg') }}"
                                             alt="2024 Recognition" />
                                     </div>
                                 </div>
@@ -2005,9 +1999,9 @@
         }
 
         /* .product-card-minimal .badge.featured {
-                    background: #000;
-                    color: white;
-                } */
+                        background: #000;
+                        color: white;
+                    } */
         .product-card-minimal .badge.featured {
             background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
             color: white;
@@ -2239,14 +2233,14 @@
                                             <div class="price-section">
                                                 @if($product->discount > 0)
                                                     <span class="price-current">
-                                                        ${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
+                                                        ₹{{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
                                                     </span>
                                                     <span class="price-original">
-                                                        ${{ number_format($product->price, 2) }}
+                                                        ₹{{ number_format($product->price, 2) }}
                                                     </span>
                                                 @else
                                                     <span class="price-current">
-                                                        ${{ number_format($product->price, 2) }}
+                                                        ₹{{ number_format($product->price, 2) }}
                                                     </span>
                                                 @endif
                                             </div>
@@ -3297,7 +3291,7 @@
                     </div>
                 @endif
 
-                
+
                 @if($percentageOffer)
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                         <a href="{{ route('product.show', [$product->id, $product->slug]) }}">

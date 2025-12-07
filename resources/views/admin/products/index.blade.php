@@ -31,7 +31,7 @@
                                     <td><img src="{{ asset('storage/' . $product->main_image) }}" alt="Main Image" width="100">
                                     </td>
                                     <td>{{ $product->category->name }}</td>
-                                    <td>${{ number_format($product->price, 2) }}</td>
+                                    <td>₹{{ number_format($product->price, 2) }}</td>
                                     <td>{{ $product->warranty_months ?? 'N/A' }}</td>
                                     <td>{{ $product->created_at->format('d M Y') }}</td>
                                     <td>

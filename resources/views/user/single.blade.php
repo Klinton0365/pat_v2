@@ -87,11 +87,11 @@
                             <p class="mb-3">Category: {{ $product->category->name }}</p>
 
                             @if($product->discount > 0)
-                                <del class="me-2 fs-5">${{ number_format($product->price, 2) }}</del>
+                                <del class="me-2 fs-5">₹{{ number_format($product->price, 2) }}</del>
                                 <h5 class="fw-bold mb-3">
-                                    ${{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</h5>
+                                    ₹{{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}</h5>
                             @else
-                                <h5 class="fw-bold mb-3">${{ number_format($product->price, 2) }}</h5>
+                                <h5 class="fw-bold mb-3">₹{{ number_format($product->price, 2) }}</h5>
                             @endif
 
                             <div class="d-flex mb-4">
@@ -105,10 +105,10 @@
 
                             <div class="d-flex flex-column mb-3">
                                 <small>Product SKU: {{ $product->sku ?? 'N/A' }}</small>
-                                <small>Available:
+                                {{-- <small>Available:
                                     <strong class="text-primary">{{ $product->stock > 0 ? $product->stock . ' items in
                                                                     stock' : 'Out of stock' }}</strong>
-                                </small>
+                                </small> --}}
                             </div>
 
                             <p class="mb-4">{{ $product->description }}</p>
@@ -432,11 +432,11 @@
                                     <a href="{{ route('product.show', [$related->id, $related->slug]) }}"
                                         class="d-block h4 product-name">{{ $related->name }}</a>
                                     @if($related->discount > 0)
-                                        <del class="me-2 fs-5">${{ number_format($related->price, 2) }}</del>
+                                        <del class="me-2 fs-5">₹{{ number_format($related->price, 2) }}</del>
                                         <span
-                                            class="text-primary fs-5">${{ number_format($related->price - ($related->price * $related->discount / 100), 2) }}</span>
+                                            class="text-primary fs-5">₹{{ number_format($related->price - ($related->price * $related->discount / 100), 2) }}</span>
                                     @else
-                                        <span class="text-primary fs-5">${{ number_format($related->price, 2) }}</span>
+                                        <span class="text-primary fs-5">₹{{ number_format($related->price, 2) }}</span>
                                     @endif
                                 </div>
                             </div>

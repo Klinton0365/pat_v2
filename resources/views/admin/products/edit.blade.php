@@ -1,7 +1,6 @@
 @extends('admin.layout.app')
 
 @section('content')
-    {{-- @extends('admin.layout.navbar') --}}
     <div class="content">
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary text-center rounded p-4">
@@ -125,25 +124,11 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3 text-start">
-                        <label for="product_images" class="form-label">Product Images (Multiple)</label>
-                        <input type="file" name="product_images[]" class="form-control" accept="image/*" multiple>
-                        @foreach ($product->product_images as $img)
-                            <img src="{{ asset('storage/' . $img) }}" alt="Gallery Image" width="100"
-                                class="me-2 mb-2">
-                        @endforeach
-
-                        @error('product_images')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
                    <div class="mb-3 text-start">
                         <label for="product_images" class="form-label">Product Images (Multiple)</label>
 
-                        {{-- Upload input (always visible) --}}
                         <input type="file" name="product_images[]" class="form-control" accept="image/*" multiple>
 
-                        {{-- Existing images block --}}
                         <div class="mt-2 d-flex flex-wrap">
                             @foreach ($product->product_images as $img)
                                 <div class="image-box me-3 mb-3" style="position: relative;">
@@ -169,8 +154,6 @@
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-
-
 
                     <button type="submit" class="btn btn-warning">Update</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancel</a>
