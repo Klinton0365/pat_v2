@@ -492,9 +492,18 @@
     <div class="footer-bottom">
         <div class="container">
             <div class="footer-bottom-content">
-                <div class="copyright">
+                {{-- <div class="copyright">
                     <i class="fas fa-copyright"></i> 2024 <a href="#">Pure Aqua Tech</a>. All rights reserved.
-                </div>
+                </div> --}}
+                <div class="copyright">
+    © 2025 Pure Aqua Tech. All rights reserved.
+    <span style="color:#aaa;"> | Designed & Developed by 
+        <a href="https://wa.me/917339047488" target="_blank" style="color:#4facfe;">Klinton A</a>
+
+    </span>
+</div>
+
+
                 {{-- <div class="footer-credits">
                     Designed By <a href="https://htmlcodex.com">HTML Codex</a> |
                     Distributed By <a href="https://themewagon.com">ThemeWagon</a>

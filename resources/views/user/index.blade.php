@@ -3339,7 +3339,7 @@
     <!-- Product Banner End -->
 
     <!-- Product List Satrt -->
-    <div class="container-fluid products productList overflow-hidden">
+    <div class="container-fluid products productList overflow-hidden bg-light">
         <div class="container products-mini py-5">
             <div class="mx-auto text-center mb-5" style="max-width: 900px;">
                 <h4 class="text-primary border-bottom border-primary border-2 d-inline-block p-2 title-border-radius wow fadeInUp"
