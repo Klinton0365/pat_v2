@@ -21,13 +21,13 @@
                         </div>
 
                         <div class="col-md-6 mb-3">
-                            <label>Email *</label>
-                            <input type="email" name="email" class="form-control" required>
+                            <label>Email </label>
+                            <input type="email" name="email" class="form-control">
                         </div>
 
                         <div class="col-md-6 mb-3">
                             <label>Phone</label>
-                            <input type="text" name="phone" class="form-control">
+                            <input type="text" name="phone" class="form-control" required>
                         </div>
 
                         <!-- Address -->

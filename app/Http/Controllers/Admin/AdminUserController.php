@@ -27,10 +27,25 @@ class AdminUserController extends Controller
         DB::beginTransaction();
 
         try {
+            // $request->validate([
+            //     'first_name' => 'required|string|max:100',
+            //     'customer_type' => 'required',
+            // ]);
+
             $request->validate([
                 'first_name' => 'required|string|max:100',
-                'email' => 'required|email|unique:users,email',
-                'customer_type' => 'required',
+                'last_name' => 'nullable|string|max:100',
+                'email' => 'nullable|email|max:150',
+                'phone' => 'required|digits:10',
+                'address' => 'nullable|string|max:255',
+                'city' => 'nullable|string|max:100',
+                'state' => 'nullable|string|max:100',
+                'zip' => 'nullable|string|max:20',
+                'country' => 'nullable|string|max:100',
+
+                'customer_type' => 'required|in:individual,business',
+                'company_name' => 'required_if:customer_type,business|string|max:150',
+                'gst_number' => 'nullable|string|regex:/^[0-9A-Z]{15}$/i',
             ]);
 
             // Create User
@@ -49,7 +64,7 @@ class AdminUserController extends Controller
             // Create Customer
             Customer::create([
                 'user_id' => $user->id,
-                'customer_code' => 'CUST-'.str_pad($user->id, 5, '0', STR_PAD_LEFT),
+                'customer_code' => $this->generateUniqueCustomerCode(),
                 'customer_type' => $request->customer_type,
                 'company_name' => $request->company_name,
                 'gst_number' => $request->gst_number,
@@ -65,6 +80,15 @@ class AdminUserController extends Controller
 
             return back()->with('error', $e->getMessage());
         }
+    }
+
+    private function generateUniqueCustomerCode()
+    {
+        do {
+            $code = 'CST'.rand(100000, 999999); // CST + 6 digit number
+        } while (Customer::where('customer_code', $code)->exists());
+
+        return $code;
     }
 
     public function edit($id)
