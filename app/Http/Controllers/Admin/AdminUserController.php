@@ -12,7 +12,7 @@ class AdminUserController extends Controller
 {
     public function index()
     {
-        $customers = Customer::with('user')->latest()->paginate(10);
+        $customers = Customer::with('user')->latest()->get();
 
         return view('admin.customers.index', compact('customers'));
     }

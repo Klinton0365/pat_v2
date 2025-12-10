@@ -27,17 +27,20 @@
                     @endif
                     <div class="table-responsive">
 
-                        <table class="table table-bordered table-striped">
+                        <input type="text" id="searchInput" class="form-control w-25 mb-3"
+                            placeholder="Search customers...">
+
+                        <table class="table table-bordered table-striped" id="customersTable">
                             <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Customer Code</th>
                                     <th>Name</th>
                                     <th>Mobile</th>
-                                    <th>Email</th>
-                                    <th>Type</th>
+                                    <th>Address</th>
+                                    {{-- <th>Type</th> --}}
                                     <th>Status</th>
-                                    <th>Company</th>
+                                    {{-- <th>Company</th> --}}
                                     <th>Actions</th>
                                 </tr>
                             </thead>
@@ -48,15 +51,15 @@
                                         <td>{{ $customer->customer_code }}</td>
                                         <td>{{ $customer->user->first_name ?? '' }} {{ $customer->user->last_name ?? '' }}</td>
                                         <td>{{ $customer->user->phone ?? '' }}</td>
-                                        <td>{{ $customer->user->email ?? '' }}</td>
-                                        <td>{{ ucfirst($customer->customer_type) }}</td>
+                                        <td>{{ $customer->user->address ?? '' }}</td>
+                                        {{-- <td>{{ ucfirst($customer->customer_type) }}</td> --}}
                                         <td>
                                             <span
                                                 class="badge bg-{{ $customer->status == 'active' ? 'success' : 'secondary' }}">
                                                 {{ ucfirst($customer->status) }}
                                             </span>
                                         </td>
-                                        <td>{{ $customer->company_name ?? '-' }}</td>
+                                        {{-- <td>{{ $customer->company_name ?? '-' }}</td> --}}
                                         <td>
                                             <a href="{{ route('admin.customers.edit', $customer->id) }}"
                                                 class="btn btn-sm btn-info">Edit</a>
@@ -77,13 +80,22 @@
                             </tbody>
                         </table>
 
-                        {{-- <div class="mt-3">
-                            {{ $customers->links() }}
-                        </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+    <script>
+        document.getElementById("searchInput").addEventListener("keyup", function () {
+            let filter = this.value.toLowerCase();
+            let rows = document.querySelectorAll("#customersTable tbody tr");
+
+            rows.forEach(row => {
+                let text = row.innerText.toLowerCase();
+                row.style.display = text.includes(filter) ? "" : "none";
+            });
+        });
+    </script>
 
 @endsection
