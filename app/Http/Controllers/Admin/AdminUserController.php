@@ -24,6 +24,7 @@ class AdminUserController extends Controller
 
     public function store(Request $request)
     {
+        // dd($request->all());
         DB::beginTransaction();
 
         try {
@@ -32,21 +33,21 @@ class AdminUserController extends Controller
             //     'customer_type' => 'required',
             // ]);
 
-            $request->validate([
-                'first_name' => 'required|string|max:100',
-                'last_name' => 'nullable|string|max:100',
-                'email' => 'nullable|email|max:150',
-                'phone' => 'required|digits:10',
-                'address' => 'nullable|string|max:255',
-                'city' => 'nullable|string|max:100',
-                'state' => 'nullable|string|max:100',
-                'zip' => 'nullable|string|max:20',
-                'country' => 'nullable|string|max:100',
+            // $request->validate([
+            //     'first_name' => 'required|string|max:100',
+            //     'last_name' => 'nullable|string|max:100',
+            //     'email' => 'nullable|email|max:150',
+            //     'phone' => 'required|digits:10',
+            //     'address' => 'nullable|string|max:255',
+            //     'city' => 'nullable|string|max:100',
+            //     'state' => 'nullable|string|max:100',
+            //     'zip' => 'nullable|string|max:20',
+            //     'country' => 'nullable|string|max:100',
 
-                'customer_type' => 'required|in:individual,business',
-                'company_name' => 'required_if:customer_type,business|string|max:150',
-                'gst_number' => 'nullable|string|regex:/^[0-9A-Z]{15}$/i',
-            ]);
+            //     'customer_type' => 'required|in:individual,business',
+            //     'company_name' => 'required_if:customer_type,business|string|max:150',
+            //     'gst_number' => 'nullable|string|regex:/^[0-9A-Z]{15}$/i',
+            // ]);
 
             // Create User
             $user = User::create([
@@ -60,6 +61,8 @@ class AdminUserController extends Controller
                 'zip' => $request->zip,
                 'country' => $request->country,
             ]);
+
+            // dd($user);
 
             // Create Customer
             Customer::create([
