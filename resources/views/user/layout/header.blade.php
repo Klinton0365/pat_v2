@@ -366,7 +366,7 @@
 
     </div>
 </div>
-<div class="container-fluid px-5 py-2 d-none d-lg-block">
+<div class="container-fluid px-5 py-2 d-none d-lg-block" style="background-color: #18314f;">
     <div class="row gx-0 align-items-center text-center">
         <div class="col-md-4 col-lg-3 text-center text-lg-start">
             <div class="d-inline-flex align-items-center">
@@ -456,7 +456,16 @@
 
 <!-- Navbar & Hero Start -->
 <div class="container-fluid nav-bar p-0">
-    <div class="row gx-0 bg-primary px-5 align-items-center">
+    <style>
+        .bg-blur {
+    background: rgba(120, 193, 243, 0.45); /* transparent blue */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px); /* Safari support */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+    </style>
+    <div class="row gx-0 bg-blur px-5 align-items-center">
         <div class="col-lg-3 d-none d-lg-block">
             <nav class="navbar navbar-light position-relative" style="width: 250px;">
                 <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
@@ -482,7 +491,7 @@
 
         </div>
         <div class="col-12 col-lg-9">
-            <nav class="navbar navbar-expand-lg navbar-light bg-primary ">
+            <nav class="navbar navbar-expand-lg navbar-light">
                 <a href="" class="navbar-brand d-block d-lg-none">
                     <h1 class="display-5 text-secondary m-0"><i class="fas fa-shopping-bag text-white me-2"></i>Electro
                     </h1>
