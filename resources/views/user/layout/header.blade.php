@@ -373,7 +373,7 @@
                 <a href="" class="navbar-brand p-0">
                     {{-- <h1 class="display-5 text-primary m-0"><i
                             class="fas fa-shopping-bag text-secondary me-2"></i>Electro</h1> --}}
-                        <img src="{{ asset('img/PATV2.png') }}" style="width:130px; height:80px;" alt="Logo">
+                        <img src="{{ asset('img/logo/PNG.png') }}" style="width:130px; height:80px;" alt="Logo">
                 </a>
             </div>
         </div>
