@@ -88,16 +88,16 @@
 
         /* Hero Section */
         /* .hero {
-                                background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
-                                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
-                                background-size: cover;
-                                background-position: center;
-                                min-height: 100vh;
-                                display: flex;
-                                align-items: center;
-                                position: relative;
-                                overflow: hidden;
-                            } */
+                                    background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
+                                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
+                                    background-size: cover;
+                                    background-position: center;
+                                    min-height: 100vh;
+                                    display: flex;
+                                    align-items: center;
+                                    position: relative;
+                                    overflow: hidden;
+                                } */
 
         .hero {
             position: relative;
@@ -2031,9 +2031,9 @@
         }
 
         /* .product-card-minimal .badge.featured {
-                                            background: #000;
-                                            color: white;
-                                        } */
+                                                background: #000;
+                                                color: white;
+                                            } */
         .product-card-minimal .badge.featured {
             background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
             color: white;
@@ -2481,183 +2481,329 @@
     <!-- Our Products End -->
 
 
-    {{-- Service --}}
+    {{-- 
+    Professional Service Section - Human Psychology Based UI/UX
+    
+    Color Psychology Applied:
+    - Primary Blue (#1e40af): Trust, reliability, professionalism
+    - Accent Indigo (#4f46e5): Premium feel, innovation
+    - Success Green (#059669): Positive actions, eco-friendly water
+    - Clean whites/grays: Clarity, purity (fits water purifier theme)
+    
+    UX Psychology Principles:
+    - Social proof with trust indicators
+    - Visual engagement with animated circular menu
+    - Clear value proposition
+    - Easy booking flow with minimal friction
+--}}
+
     <style>
-        .services-section {
-            padding: 100px 0;
-            background: linear-gradient(135deg, #f5f7fa 0%, #ffffff 100%);
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --accent: #4f46e5;
+            --accent-light: #6366f1;
+            --success: #059669;
+            --success-light: #d1fae5;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #9ca3af;
+            --border: #e5e7eb;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
 
-        .container {
+        /* ==================== SERVICE SECTION ==================== */
+        .service-section {
+            padding: 80px 0;
+            background: linear-gradient(180deg, #ffffff 0%, var(--bg-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .service-section::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(79, 70, 229, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .service-container {
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        .services-wrapper {
+        .service-wrapper {
             display: grid;
-            grid-template-columns: 1fr 1.2fr;
+            grid-template-columns: 1fr 1.1fr;
             gap: 60px;
-            align-items: start;
+            align-items: center;
         }
 
-        /* Left Content Section */
-        .content-section {
+        /* ==================== LEFT CONTENT ==================== */
+        .service-content {
             position: sticky;
             top: 100px;
         }
 
-        .services-label {
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #9ca3af;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            margin-bottom: 15px;
-        }
-
-        .services-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            color: #1f2937;
-            line-height: 1.2;
-            margin-bottom: 25px;
-        }
-
-        .services-title .highlight {
-            color: #6366f1;
-        }
-
-        .services-description {
-            font-size: 1rem;
-            color: #6b7280;
-            line-height: 1.8;
-            margin-bottom: 15px;
-        }
-
-        .services-description-extra {
-            font-size: 1rem;
-            color: #6b7280;
-            line-height: 1.8;
-            margin-bottom: 35px;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 14px 35px;
-            font-size: 1rem;
-            font-weight: 600;
-            border-radius: 8px;
-            text-decoration: none;
-            transition: all 0.3s ease;
+        .service-badge {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
+        }
+
+        .service-badge-icon {
+            font-size: 1rem;
+        }
+
+        .service-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            line-height: 1.15;
+            margin-bottom: 24px;
+        }
+
+        .service-title .highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .service-title .underline-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .service-title .underline-text::after {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 0;
+            width: 100%;
+            height: 8px;
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.3) 0%, rgba(79, 70, 229, 0.3) 100%);
+            border-radius: 4px;
+            z-index: -1;
+        }
+
+        .service-description {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        .service-description strong {
+            color: var(--text-primary);
+        }
+
+        .service-description-extra {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+            margin-bottom: 32px;
+        }
+
+        /* Feature Pills */
+        .service-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 32px;
+        }
+
+        .feature-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            transition: all 0.2s;
+        }
+
+        .feature-pill:hover {
+            border-color: var(--primary-light);
+            color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .feature-pill i {
+            color: var(--success);
+            font-size: 0.9rem;
+        }
+
+        /* Buttons */
+        .service-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 40px;
+        }
+
+        .service-btn {
+            padding: 16px 32px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
             border: none;
             cursor: pointer;
+            position: relative;
+            overflow: hidden;
         }
 
-        .btn-primary {
-            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+        .service-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .service-btn:hover::before {
+            left: 100%;
+        }
+
+        .service-btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
             color: white;
-            box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+            box-shadow: 0 4px 20px rgba(30, 64, 175, 0.35);
         }
 
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(99, 102, 241, 0.4);
+        .service-btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(30, 64, 175, 0.45);
+            color: white;
         }
 
-        .btn-secondary {
-            background: #e0e7ff;
-            color: #6366f1;
+        .service-btn-secondary {
+            background: var(--bg-card);
+            color: var(--primary);
+            border: 2px solid var(--primary);
         }
 
-        .btn-secondary:hover {
-            background: #c7d2fe;
-            transform: translateY(-2px);
+        .service-btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.25);
         }
 
-        /* Right Services Grid */
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 25px;
+        .btn-icon {
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
         }
 
-        /* Responsive Design */
-        @media (max-width: 1024px) {
-            .services-wrapper {
-                grid-template-columns: 1fr;
-                gap: 50px;
-            }
-
-            .content-section {
-                position: static;
-            }
-
-            .services-title {
-                font-size: 2.8rem;
-            }
+        /* Trust Indicators */
+        .trust-indicators {
+            display: flex;
+            align-items: center;
+            gap: 0;
+            padding: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow);
         }
 
-        @media (max-width: 768px) {
-            .services-section {
-                padding: 60px 0;
-            }
-
-            .services-title {
-                font-size: 2.2rem;
-            }
-
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .button-group {
-                flex-direction: column;
-            }
-
-            .btn {
-                width: 100%;
-            }
+        .trust-item {
+            flex: 1;
+            text-align: center;
+            padding: 0 16px;
         }
 
-        @media (max-width: 480px) {
-            .services-title {
-                font-size: 1.8rem;
-            }
-
-            .service-card {
-                padding: 30px 20px;
-            }
-
-            .service-icon {
-                width: 60px;
-                height: 60px;
-            }
-
-            .service-icon svg {
-                width: 28px;
-                height: 28px;
-            }
+        .trust-number {
+            font-size: 1.75rem;
+            font-weight: 800;
+            margin-bottom: 4px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
-    </style>
 
-    <style>
-        .holderCircle {
-            width: 500px;
-            height: 500px;
-            border-radius: 100%;
-            margin: 60px auto;
+        .trust-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .trust-divider {
+            width: 1px;
+            height: 50px;
+            background: linear-gradient(180deg, transparent 0%, var(--border) 50%, transparent 100%);
+        }
+
+        /* ==================== CIRCULAR SERVICE MENU ==================== */
+        .service-circle-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             position: relative;
         }
 
+        .holderCircle {
+            width: 480px;
+            height: 480px;
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
 
         .dotCircle {
             width: 100%;
@@ -2668,405 +2814,657 @@
             left: 0;
             right: 0;
             bottom: 0;
-            border-radius: 100%;
+            border-radius: 50%;
             z-index: 20;
-        }
-
-        .dotCircle .itemDot {
-            display: block;
-            width: 80px;
-            height: 80px;
-            position: absolute;
-            background: #ffffff;
-            color: #7d4ac7;
-            border-radius: 20px;
-            text-align: center;
-            line-height: 80px;
-            font-size: 30px;
-            z-index: 3;
-            cursor: pointer;
-            border: 2px solid #e6e6e6;
-        }
-
-        .dotCircle .itemDot .forActive {
-            width: 56px;
-            height: 56px;
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            display: none;
-        }
-
-        .dotCircle .itemDot .forActive::after {
-            content: '';
-            width: 5px;
-            height: 5px;
-            border: 3px solid #7d4ac7;
-            bottom: -31px;
-            left: -14px;
-            filter: blur(1px);
-            position: absolute;
-            border-radius: 100%;
-        }
-
-        .dotCircle .itemDot .forActive::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            filter: blur(5px);
-            top: -15px;
-            position: absolute;
-            transform: rotate(-45deg);
-            border: 6px solid #a733bb;
-            right: -39px;
-        }
-
-        .dotCircle .itemDot.active .forActive {
-            display: block;
+            transition: transform 2s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .round {
             position: absolute;
             left: 40px;
-            top: 45px;
-            width: 410px;
-            height: 410px;
-            border: 2px dotted #a733bb;
-            border-radius: 100%;
-            -webkit-animation: rotation 100s infinite linear;
+            top: 40px;
+            width: 400px;
+            height: 400px;
+            border: 2px dashed var(--border);
+            border-radius: 50%;
+            animation: rotateRound 60s infinite linear;
         }
 
-        .dotCircle .itemDot:hover,
-        .dotCircle .itemDot.active {
-            color: #ffffff;
-            transition: 0.5s;
-            /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#7d4ac7+0,a733bb+100 */
-            background: #7d4ac7;
-            /* Old browsers */
-            background: -moz-linear-gradient(left, #7d4ac7 0%, #a733bb 100%);
-            /* FF3.6-15 */
-            background: -webkit-linear-gradient(left, #7d4ac7 0%, #a733bb 100%);
-            /* Chrome10-25,Safari5.1-6 */
-            background: linear-gradient(to right, #7d4ac7 0%, #a733bb 100%);
-            /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-            filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#7d4ac7', endColorstr='#a733bb', GradientType=1);
-            /* IE6-9 */
-            border: 2px solid #ffffff;
-            -webkit-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
-            -moz-box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
-            box-shadow: 0 30px 30px 0 rgba(0, 0, 0, .13);
+        @keyframes rotateRound {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
         }
 
-        .dotCircle .itemDot {
-            font-size: 40px;
-        }
-
-        .contentCircle {
-            width: 250px;
-            border-radius: 100%;
-            color: #222222;
-            position: relative;
-            top: 150px;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-
-        .contentCircle .CirItem {
-            border-radius: 100%;
-            color: #222222;
+        /* Service Dots */
+        .itemDot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 72px;
+            height: 72px;
             position: absolute;
-            text-align: center;
-            bottom: 0;
-            left: 0;
-            opacity: 0;
-            transform: scale(0);
-            transition: 0.5s;
-            font-size: 15px;
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            z-index: 3;
+            cursor: pointer;
+            border: 2px solid var(--border);
+            box-shadow: var(--shadow);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .itemDot:hover {
+            transform: scale(1.1);
+            border-color: var(--primary-light);
+            color: var(--primary);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .itemDot.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: 3px solid white;
+            box-shadow: 0 8px 30px rgba(30, 64, 175, 0.4);
+            transform: scale(1.15);
+        }
+
+        .itemDot .forActive {
+            display: none;
+        }
+
+        .itemDot.active .forActive {
+            display: block;
+            position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
-            right: 0;
-            margin: auto;
-            line-height: 250px;
+            left: 0;
+            border-radius: 50%;
+            animation: pulseRing 2s infinite;
+        }
+
+        @keyframes pulseRing {
+            0% {
+                box-shadow: 0 0 0 0 rgba(30, 64, 175, 0.4);
+            }
+
+            70% {
+                box-shadow: 0 0 0 15px rgba(30, 64, 175, 0);
+            }
+
+            100% {
+                box-shadow: 0 0 0 0 rgba(30, 64, 175, 0);
+            }
+        }
+
+        /* Content Circle (Center) */
+        .contentCircle {
+            width: 280px;
+            height: 280px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: var(--bg-card);
+            border-radius: 50%;
+            box-shadow: var(--shadow-xl);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10;
+        }
+
+        .CirItem {
+            position: absolute;
+            text-align: center;
+            padding: 30px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         .CirItem.active {
-            z-index: 1;
             opacity: 1;
             transform: scale(1);
-            transition: 0.5s;
         }
 
-        .contentCircle .CirItem i {
-            font-size: 180px;
+        .CirItem .service-icon-large {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+        }
+
+        .CirItem .service-icon-large i {
+            font-size: 1.5rem;
+            color: var(--primary);
+        }
+
+        .CirItem .title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .CirItem .title span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .CirItem p {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Progress Indicators */
+        .service-progress {
             position: absolute;
-            top: 0;
+            bottom: -40px;
             left: 50%;
-            margin-left: -90px;
-            color: #000000;
-            opacity: 0.1;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 8px;
         }
 
-        @media only screen and (min-width:300px) and (max-width:599px) {
-            .holderCircle {
-                /* width: 300px; height: 300px;*/
-                margin: 110px auto;
+        .progress-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--border);
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .progress-dot.active {
+            background: var(--primary);
+            width: 24px;
+            border-radius: 4px;
+        }
+
+        /* ==================== BOOKING MODAL ==================== */
+        .booking-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(4px);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .booking-modal-overlay.show {
+            display: flex;
+        }
+
+        .booking-modal {
+            background: var(--bg-card);
+            border-radius: var(--radius-xl);
+            width: 100%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+            animation: modalSlideIn 0.3s ease;
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
             }
 
-            .holderCircle::after {
-                width: 100%;
-                height: 100%;
-            }
-
-            .dotCircle {
-                width: 100%;
-                height: 100%;
-                top: 0;
-                right: 0;
-                bottom: 0;
-                left: 0;
-                margin: auto;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        @media only screen and (min-width:600px) and (max-width:767px) {}
+        .booking-modal-header {
+            padding: 24px 28px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
 
-        @media only screen and (min-width:768px) and (max-width:991px) {}
+        .booking-modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
 
-        @media only screen and (min-width:992px) and (max-width:1199px) {}
+        .booking-modal-header p {
+            font-size: 0.875rem;
+            opacity: 0.9;
+            margin: 4px 0 0 0;
+        }
 
-        @media only screen and (min-width:1200px) and (max-width:1499px) {}
+        .modal-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: white;
+            transition: all 0.2s;
+        }
 
-        .title-box .title {
+        .modal-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .booking-modal-body {
+            padding: 28px;
+            max-height: calc(90vh - 180px);
+            overflow-y: auto;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form-group.full-width {
+            grid-column: span 2;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
             font-weight: 600;
-            letter-spacing: 2px;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+
+        .form-label .required {
+            color: #dc2626;
+        }
+
+        .form-input,
+        .form-select {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            font-size: 0.925rem;
+            color: var(--text-primary);
+            background: var(--bg-card);
+            transition: all 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: var(--text-muted);
+        }
+
+        .booking-modal-footer {
+            padding: 20px 28px;
+            background: var(--bg-light);
+            border-top: 1px solid var(--border);
+            display: flex;
+            gap: 12px;
+        }
+
+        .modal-btn {
+            flex: 1;
+            padding: 14px 24px;
+            border-radius: var(--radius);
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .modal-btn-cancel {
+            background: var(--bg-card);
+            color: var(--text-secondary);
+            border: 1px solid var(--border);
+        }
+
+        .modal-btn-cancel:hover {
+            background: var(--bg-light);
+            border-color: var(--text-muted);
+        }
+
+        .modal-btn-submit {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            border: none;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .modal-btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        /* Service Type Cards in Modal */
+        .service-type-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 8px;
+        }
+
+        .service-type-option {
             position: relative;
-            z-index: -1;
         }
 
-        .title-box span {
-            text-shadow: 0 10px 10px rgba(0, 0, 0, .15);
-            font-weight: 800;
-            color: #640178;
+        .service-type-option input {
+            position: absolute;
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            z-index: 2;
         }
 
-        .title-box p {
-            font-size: 17px;
-            line-height: 2em;
+        .service-type-card {
+            padding: 14px 10px;
+            border: 2px solid var(--border);
+            border-radius: var(--radius);
+            text-align: center;
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+
+        .service-type-card i {
+            font-size: 1.25rem;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+            display: block;
+            transition: color 0.2s;
+        }
+
+        .service-type-card span {
+            font-size: 0.75rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+
+        .service-type-option input:checked+.service-type-card {
+            border-color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .service-type-option input:checked+.service-type-card i {
+            color: var(--primary);
+        }
+
+        .service-type-option input:checked+.service-type-card span {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1024px) {
+            .service-wrapper {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .service-content {
+                position: static;
+                text-align: center;
+            }
+
+            .service-features {
+                justify-content: center;
+            }
+
+            .service-buttons {
+                justify-content: center;
+            }
+
+            .trust-indicators {
+                max-width: 500px;
+                margin: 0 auto;
+            }
+
+            .service-title {
+                font-size: 2.5rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .service-section {
+                padding: 60px 0;
+            }
+
+            .service-title {
+                font-size: 2rem;
+            }
+
+            .service-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .service-btn {
+                width: 100%;
+                max-width: 300px;
+                justify-content: center;
+            }
+
+            .trust-indicators {
+                flex-wrap: wrap;
+                gap: 16px;
+            }
+
+            .trust-divider {
+                display: none;
+            }
+
+            .trust-item {
+                flex: 0 0 calc(33.333% - 12px);
+            }
+
+            .holderCircle {
+                width: 320px;
+                height: 320px;
+            }
+
+            .round {
+                width: 260px;
+                height: 260px;
+                left: 30px;
+                top: 30px;
+            }
+
+            .itemDot {
+                width: 56px;
+                height: 56px;
+                font-size: 1.2rem;
+            }
+
+            .contentCircle {
+                width: 180px;
+                height: 180px;
+            }
+
+            .CirItem {
+                padding: 15px;
+            }
+
+            .CirItem .service-icon-large {
+                width: 40px;
+                height: 40px;
+                margin-bottom: 10px;
+            }
+
+            .CirItem .service-icon-large i {
+                font-size: 1rem;
+            }
+
+            .CirItem .title {
+                font-size: 0.9rem;
+            }
+
+            .CirItem p {
+                font-size: 0.7rem;
+                display: none;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+
+            .service-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .service-title {
+                font-size: 1.75rem;
+            }
+
+            .service-badge {
+                font-size: 0.7rem;
+                padding: 6px 12px;
+            }
+
+            .trust-item {
+                flex: 0 0 100%;
+            }
+
+            .trust-number {
+                font-size: 1.5rem;
+            }
+
+            .holderCircle {
+                width: 280px;
+                height: 280px;
+            }
+
+            .round {
+                width: 220px;
+                height: 220px;
+                left: 30px;
+                top: 30px;
+            }
+
+            .itemDot {
+                width: 48px;
+                height: 48px;
+                font-size: 1rem;
+            }
+
+            .contentCircle {
+                width: 150px;
+                height: 150px;
+            }
+
+            .booking-modal-body {
+                padding: 20px;
+            }
+
+            .service-type-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
         }
     </style>
 
-    {{--
-    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"> --}}
-    {{--
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
-    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
-    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <section class="services-section">
-        <div class="container">
-            <div class="services-wrapper">
-                <!-- Left -->
-                <div class="content-section">
-                    <div class="services-label-wrapper">
-                        <span class="services-label-icon">💧</span>
-                        <p class="services-label">OUR SERVICES</p>
+    <!-- ==================== SERVICE SECTION ==================== -->
+    <section class="service-section" id="services">
+        <div class="service-container">
+            <div class="service-wrapper">
+                <!-- Left Content -->
+                <div class="service-content">
+                    <div class="service-badge">
+                        <span class="service-badge-icon">💧</span>
+                        <span>Our Services</span>
                     </div>
 
-                    <h2 class="services-title">
+                    <h2 class="service-title">
                         Pure <span class="highlight">Aqua Tech</span><br>
-                        <span class="highlight-underline">Services</span>
+                        <span class="underline-text">Services</span>
                     </h2>
 
-                    <p class="services-description">
+                    <p class="service-description">
                         We provide <strong>end-to-end water purifier solutions</strong> for your home and office —
                         installation, repair, filter replacement, and more.
                     </p>
 
-                    <p class="services-description-extra">
+                    <p class="service-description-extra">
                         Ensure pure water and peace of mind with our certified technicians and fast response service.
                     </p>
-                    <style>
-                        /* Button Enhancements */
-                        .button-group {
-                            display: flex;
-                            gap: 15px;
-                            flex-wrap: wrap;
-                            margin-bottom: 35px;
-                        }
 
-                        .btn {
-                            padding: 16px 32px;
-                            font-size: 1rem;
-                            font-weight: 600;
-                            border-radius: 12px;
-                            text-decoration: none;
-                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-                            display: inline-flex;
-                            align-items: center;
-                            gap: 10px;
-                            border: none;
-                            cursor: pointer;
-                            position: relative;
-                            overflow: hidden;
-                        }
+                    <!-- Feature Pills -->
+                    <div class="service-features">
+                        <span class="feature-pill"><i class="bi bi-check-circle-fill"></i> Certified Technicians</span>
+                        <span class="feature-pill"><i class="bi bi-check-circle-fill"></i> Genuine Parts</span>
+                        <span class="feature-pill"><i class="bi bi-check-circle-fill"></i> Same Day Service</span>
+                        <span class="feature-pill"><i class="bi bi-check-circle-fill"></i> Warranty Support</span>
+                    </div>
 
-                        .btn::before {
-                            content: '';
-                            position: absolute;
-                            top: 0;
-                            left: -100%;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(255, 255, 255, 0.2);
-                            transition: left 0.5s ease;
-                        }
-
-                        .btn:hover::before {
-                            left: 100%;
-                        }
-
-                        .btn-icon {
-                            width: 20px;
-                            height: 20px;
-                            flex-shrink: 0;
-                        }
-
-                        .btn-primary {
-                            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-                            color: white;
-                            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
-                        }
-
-                        .btn-primary:hover {
-                            transform: translateY(-3px);
-                            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.5);
-                        }
-
-                        .btn-secondary {
-                            background: white;
-                            color: #6366f1;
-                            border: 2px solid #6366f1;
-                        }
-
-                        .btn-secondary:hover {
-                            background: #6366f1;
-                            color: white;
-                            transform: translateY(-3px);
-                            box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
-                        }
-
-                        /* Trust Indicators */
-                        .trust-indicators {
-                            display: flex;
-                            align-items: center;
-                            justify-content: space-between;
-                            padding: 25px 0;
-                            border-top: 2px solid #e5e7eb;
-                        }
-
-                        .trust-item {
-                            text-align: center;
-                            flex: 1;
-                        }
-
-                        .trust-number {
-                            font-size: 1.8rem;
-                            font-weight: 800;
-                            color: #6366f1;
-                            margin-bottom: 5px;
-                            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-                            -webkit-background-clip: text;
-                            -webkit-text-fill-color: transparent;
-                            background-clip: text;
-                        }
-
-                        .trust-label {
-                            font-size: 0.85rem;
-                            color: #6b7280;
-                            font-weight: 500;
-                        }
-
-                        .trust-divider {
-                            width: 1px;
-                            height: 40px;
-                            background: linear-gradient(180deg, transparent 0%, #d1d5db 50%, transparent 100%);
-                        }
-
-                        /* Responsive Design */
-                        @media (max-width: 1024px) {
-                            .content-section {
-                                position: static;
-                                padding: 30px;
-                            }
-
-                            .services-title {
-                                font-size: 2.8rem;
-                            }
-                        }
-
-                        @media (max-width: 768px) {
-                            .content-section {
-                                padding: 25px;
-                            }
-
-                            .services-title {
-                                font-size: 2.2rem;
-                            }
-
-                            .button-group {
-                                flex-direction: column;
-                            }
-
-                            .btn {
-                                width: 100%;
-                                justify-content: center;
-                            }
-
-                            .trust-indicators {
-                                flex-wrap: wrap;
-                                gap: 20px;
-                            }
-
-                            .trust-divider {
-                                display: none;
-                            }
-
-                            .trust-item {
-                                flex: 0 0 calc(50% - 10px);
-                            }
-                        }
-
-                        @media (max-width: 480px) {
-                            .services-title {
-                                font-size: 1.9rem;
-                            }
-
-                            .services-label-wrapper {
-                                justify-content: center;
-                            }
-
-                            .features-quick-list {
-                                padding: 15px;
-                            }
-
-                            .trust-item {
-                                flex: 0 0 100%;
-                            }
-                        }
-                    </style>
-
-                    <div class="button-group">
-                        <a href="#bookNow" class="btn btn-primary" onclick="openBookingModal()">
+                    <!-- Buttons -->
+                    <div class="service-buttons">
+                        <button type="button" class="service-btn service-btn-primary" onclick="openBookingModal()">
                             <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z">
                                 </path>
                             </svg>
                             Book Service Now
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
+                        </button>
+                        <a href="#contact" class="service-btn service-btn-secondary">
                             <svg class="btn-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z">
@@ -3095,257 +3493,1304 @@
                     </div>
                 </div>
 
-                <!-- Right Circular Section -->
+                <!-- Right Circular Service Menu -->
+                <div class="service-circle-wrapper">
+                    <div class="holderCircle">
+                        <div class="round"></div>
+                        <div class="dotCircle">
+                            <span class="itemDot active itemDot1" data-tab="1">
+                                <i class="bi bi-tools"></i>
+                                <span class="forActive"></span>
+                            </span>
+                            <span class="itemDot itemDot2" data-tab="2">
+                                <i class="bi bi-droplet-fill"></i>
+                                <span class="forActive"></span>
+                            </span>
+                            <span class="itemDot itemDot3" data-tab="3">
+                                <i class="bi bi-arrow-repeat"></i>
+                                <span class="forActive"></span>
+                            </span>
+                            <span class="itemDot itemDot4" data-tab="4">
+                                <i class="bi bi-shield-check"></i>
+                                <span class="forActive"></span>
+                            </span>
+                            <span class="itemDot itemDot5" data-tab="5">
+                                <i class="bi bi-gear-fill"></i>
+                                <span class="forActive"></span>
+                            </span>
+                            <span class="itemDot itemDot6" data-tab="6">
+                                <i class="bi bi-headset"></i>
+                                <span class="forActive"></span>
+                            </span>
+                        </div>
 
-                <!------ Include the above in your HEAD tag ---------->
-                <section class="iq-features">
-                    <div class="container">
-                        <div class="row align-items-center">
-                            <div class="col-lg-3 col-md-12"></div>
-                            <div class="col-lg-6 col-md-12">
-                                <div class="holderCircle">
-                                    <div class="round"></div>
-                                    <div class="dotCircle">
-                                        <span class="itemDot active itemDot1" data-tab="1">
-                                            <i class="fa fa-wrench"></i>
-                                            <span class="forActive"></span>
-                                        </span>
-                                        <span class="itemDot itemDot2" data-tab="2">
-                                            <i class="fa fa-tint"></i>
-                                            <span class="forActive"></span>
-                                        </span>
-                                        <span class="itemDot itemDot3" data-tab="3">
-                                            <i class="fa fa-refresh"></i>
-                                            <span class="forActive"></span>
-                                        </span>
-                                        <span class="itemDot itemDot4" data-tab="4">
-                                            <i class="fa fa-shield"></i>
-                                            <span class="forActive"></span>
-                                        </span>
-                                        <span class="itemDot itemDot5" data-tab="5">
-                                            <i class="fa fa-cogs"></i>
-                                            <span class="forActive"></span>
-                                        </span>
-                                        <span class="itemDot itemDot6" data-tab="6">
-                                            <i class="fa fa-headset"></i>
-                                            <span class="forActive"></span>
-                                        </span>
-                                    </div>
-                                    <div class="contentCircle">
-                                        <div class="CirItem title-box active CirItem1">
-                                            <h2 class="title"><span>Installation</span></h2>
-                                            <p>Get expert installation of all types of water purifiers for your home or
-                                                office with quick, reliable service.</p>
-                                            <i class="fa fa-wrench"></i>
-                                        </div>
-                                        <div class="CirItem title-box CirItem2">
-                                            <h2 class="title"><span>Filter Replacement</span></h2>
-                                            <p>Keep your water pure with regular filter and membrane replacements by
-                                                certified technicians.</p>
-                                            <i class="fa fa-tint"></i>
-                                        </div>
-                                        <div class="CirItem title-box CirItem3">
-                                            <h2 class="title"><span>Maintenance</span></h2>
-                                            <p>Scheduled maintenance ensures your purifier performs efficiently and extends
-                                                its lifespan.</p>
-                                            <i class="fa fa-refresh"></i>
-                                        </div>
-                                        <div class="CirItem title-box CirItem4">
-                                            <h2 class="title"><span>Repairs</span></h2>
-                                            <p>We fix all major RO, UV, and UF purifier brands — fast diagnosis and genuine
-                                                parts guaranteed.</p>
-                                            <i class="fa fa-shield"></i>
-                                        </div>
-                                        <div class="CirItem title-box CirItem5">
-                                            <h2 class="title"><span>AMC Plans</span></h2>
-                                            <p>Enjoy year-round worry-free service with our affordable Annual Maintenance
-                                                Contracts.</p>
-                                            <i class="fa fa-cogs"></i>
-                                        </div>
-                                        <div class="CirItem title-box CirItem6">
-                                            <h2 class="title"><span>24/7 Support</span></h2>
-                                            <p>Our customer care team is available anytime for quick service bookings and
-                                                troubleshooting.</p>
-                                            <i class="fa fa-headset"></i>
-                                        </div>
-                                    </div>
+                        <div class="contentCircle">
+                            <div class="CirItem active CirItem1">
+                                <div class="service-icon-large">
+                                    <i class="bi bi-tools"></i>
                                 </div>
+                                <h3 class="title"><span>Installation</span></h3>
+                                <p>Expert installation of all types of water purifiers with quick, reliable service.</p>
                             </div>
-                            <div class="col-lg-3 col-md-12"></div>
+                            <div class="CirItem CirItem2">
+                                <div class="service-icon-large">
+                                    <i class="bi bi-droplet-fill"></i>
+                                </div>
+                                <h3 class="title"><span>Filter Replacement</span></h3>
+                                <p>Regular filter and membrane replacements by certified technicians.</p>
+                            </div>
+                            <div class="CirItem CirItem3">
+                                <div class="service-icon-large">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                </div>
+                                <h3 class="title"><span>Maintenance</span></h3>
+                                <p>Scheduled maintenance ensures efficient performance and extends lifespan.</p>
+                            </div>
+                            <div class="CirItem CirItem4">
+                                <div class="service-icon-large">
+                                    <i class="bi bi-shield-check"></i>
+                                </div>
+                                <h3 class="title"><span>Repairs</span></h3>
+                                <p>Fast diagnosis and genuine parts for all RO, UV, and UF brands.</p>
+                            </div>
+                            <div class="CirItem CirItem5">
+                                <div class="service-icon-large">
+                                    <i class="bi bi-gear-fill"></i>
+                                </div>
+                                <h3 class="title"><span>AMC Plans</span></h3>
+                                <p>Worry-free service with affordable Annual Maintenance Contracts.</p>
+                            </div>
+                            <div class="CirItem CirItem6">
+                                <div class="service-icon-large">
+                                    <i class="bi bi-headset"></i>
+                                </div>
+                                <h3 class="title"><span>24/7 Support</span></h3>
+                                <p>Customer care available anytime for quick service and troubleshooting.</p>
+                            </div>
+                        </div>
+
+                        <!-- Progress Dots -->
+                        <div class="service-progress">
+                            <span class="progress-dot active" data-tab="1"></span>
+                            <span class="progress-dot" data-tab="2"></span>
+                            <span class="progress-dot" data-tab="3"></span>
+                            <span class="progress-dot" data-tab="4"></span>
+                            <span class="progress-dot" data-tab="5"></span>
+                            <span class="progress-dot" data-tab="6"></span>
                         </div>
                     </div>
-                </section>
+                </div>
             </div>
         </div>
     </section>
 
-    <script>
-        let i = 2;
+    <!-- ==================== BOOKING MODAL ==================== -->
+    <div class="booking-modal-overlay" id="bookingModal">
+        <div class="booking-modal">
+            <div class="booking-modal-header">
+                <div>
+                    <h3><i class="bi bi-calendar-check"></i> Book Your Service</h3>
+                    <p>Fill in the details and we'll get back to you shortly</p>
+                </div>
+                <button class="modal-close-btn" onclick="closeBookingModal()">
+                    <i class="bi bi-x-lg"></i>
+                </button>
+            </div>
 
+            <form id="serviceBookingForm">
+                @csrf
+                <div class="booking-modal-body">
+                    <!-- Service Type Selection -->
+                    <div class="form-group">
+                        <label class="form-label">Select Service Type <span class="required">*</span></label>
+                        <div class="service-type-grid">
+                            <label class="service-type-option">
+                                <input type="radio" name="service_type" value="Installation" required>
+                                <div class="service-type-card">
+                                    <i class="bi bi-tools"></i>
+                                    <span>Installation</span>
+                                </div>
+                            </label>
+                            <label class="service-type-option">
+                                <input type="radio" name="service_type" value="Maintenance">
+                                <div class="service-type-card">
+                                    <i class="bi bi-arrow-repeat"></i>
+                                    <span>Maintenance</span>
+                                </div>
+                            </label>
+                            <label class="service-type-option">
+                                <input type="radio" name="service_type" value="Filter Change">
+                                <div class="service-type-card">
+                                    <i class="bi bi-droplet-fill"></i>
+                                    <span>Filter Change</span>
+                                </div>
+                            </label>
+                            <label class="service-type-option">
+                                <input type="radio" name="service_type" value="Repair">
+                                <div class="service-type-card">
+                                    <i class="bi bi-wrench-adjustable"></i>
+                                    <span>Repair</span>
+                                </div>
+                            </label>
+                            <label class="service-type-option">
+                                <input type="radio" name="service_type" value="Water Testing">
+                                <div class="service-type-card">
+                                    <i class="bi bi-clipboard2-pulse"></i>
+                                    <span>Water Testing</span>
+                                </div>
+                            </label>
+                            <label class="service-type-option">
+                                <input type="radio" name="service_type" value="AMC">
+                                <div class="service-type-card">
+                                    <i class="bi bi-shield-check"></i>
+                                    <span>AMC</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Full Name <span class="required">*</span></label>
+                            <input type="text" name="name" class="form-input" placeholder="Enter your name"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Phone Number <span class="required">*</span></label>
+                            <input type="tel" name="phone" class="form-input" placeholder="Enter phone number"
+                                required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Email Address</label>
+                        <input type="email" name="email" class="form-input" placeholder="Enter email (optional)">
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Preferred Date <span class="required">*</span></label>
+                            <input type="date" name="preferred_date" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Preferred Time <span class="required">*</span></label>
+                            <input type="time" name="preferred_time" class="form-input" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Address / Additional Notes</label>
+                        <textarea name="notes" class="form-input" rows="3"
+                            placeholder="Enter your address or any specific requirements..."></textarea>
+                    </div>
+
+                    <input type="hidden" name="latitude" id="latitude">
+                    <input type="hidden" name="longitude" id="longitude">
+                </div>
+
+                <div class="booking-modal-footer">
+                    <button type="button" class="modal-btn modal-btn-cancel" onclick="closeBookingModal()">
+                        Cancel
+                    </button>
+                    <button type="submit" class="modal-btn modal-btn-submit">
+                        <i class="bi bi-check2-circle"></i> Confirm Booking
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        let currentTab = 1;
+        const totalTabs = 6;
+        let autoRotateInterval;
 
         $(document).ready(function() {
-            var radius = 200;
-            var fields = $('.itemDot');
-            var container = $('.dotCircle');
-            var width = container.width();
-            radius = width / 2.5;
+            // Position dots in circle
+            positionDots();
 
-            var height = container.height();
-            var angle = 0,
-                step = (2 * Math.PI) / fields.length;
+            // Start auto rotation
+            startAutoRotate();
+
+            // Click on dots
+            $('.itemDot').click(function() {
+                const tab = $(this).data('tab');
+                setActiveTab(tab);
+                resetAutoRotate();
+            });
+
+            // Click on progress dots
+            $('.progress-dot').click(function() {
+                const tab = $(this).data('tab');
+                setActiveTab(tab);
+                resetAutoRotate();
+            });
+
+            // Set min date for booking
+            const today = new Date().toISOString().split('T')[0];
+            $('input[name="preferred_date"]').attr('min', today);
+        });
+
+        function positionDots() {
+            const container = $('.dotCircle');
+            const width = container.width();
+            const height = container.height();
+            const radius = width / 2.5;
+            const fields = $('.itemDot');
+            let angle = -Math.PI / 2; // Start from top
+            const step = (2 * Math.PI) / fields.length;
+
             fields.each(function() {
-                var x = Math.round(width / 2 + radius * Math.cos(angle) - $(this).width() / 2);
-                var y = Math.round(height / 2 + radius * Math.sin(angle) - $(this).height() / 2);
-                if (window.console) {
-                    console.log($(this).text(), x, y);
-                }
-
+                const x = Math.round(width / 2 + radius * Math.cos(angle) - $(this).width() / 2);
+                const y = Math.round(height / 2 + radius * Math.sin(angle) - $(this).height() / 2);
                 $(this).css({
                     left: x + 'px',
                     top: y + 'px'
                 });
                 angle += step;
             });
+        }
 
+        function setActiveTab(tab) {
+            currentTab = tab;
 
-            $('.itemDot').click(function() {
+            // Update dots
+            $('.itemDot').removeClass('active');
+            $(`.itemDot[data-tab="${tab}"]`).addClass('active');
 
-                var dataTab = $(this).data("tab");
-                $('.itemDot').removeClass('active');
-                $(this).addClass('active');
-                $('.CirItem').removeClass('active');
-                $('.CirItem' + dataTab).addClass('active');
-                i = dataTab;
+            // Update content
+            $('.CirItem').removeClass('active');
+            $(`.CirItem${tab}`).addClass('active');
 
-                $('.dotCircle').css({
-                    "transform": "rotate(" + (360 - (i - 1) * 36) + "deg)",
-                    "transition": "2s"
-                });
-                $('.itemDot').css({
-                    "transform": "rotate(" + ((i - 1) * 36) + "deg)",
-                    "transition": "1s"
-                });
+            // Update progress dots
+            $('.progress-dot').removeClass('active');
+            $(`.progress-dot[data-tab="${tab}"]`).addClass('active');
+        }
 
-
-            });
-
-            setInterval(function() {
-                var dataTab = $('.itemDot.active').data("tab");
-                if (dataTab > 6 || i > 6) {
-                    dataTab = 1;
-                    i = 1;
+        function startAutoRotate() {
+            autoRotateInterval = setInterval(function() {
+                currentTab++;
+                if (currentTab > totalTabs) {
+                    currentTab = 1;
                 }
-                $('.itemDot').removeClass('active');
-                $('[data-tab="' + i + '"]').addClass('active');
-                $('.CirItem').removeClass('active');
-                $('.CirItem' + i).addClass('active');
-                i++;
+                setActiveTab(currentTab);
+            }, 4000);
+        }
 
+        function resetAutoRotate() {
+            clearInterval(autoRotateInterval);
+            startAutoRotate();
+        }
 
-                $('.dotCircle').css({
-                    "transform": "rotate(" + (360 - (i - 2) * 36) + "deg)",
-                    "transition": "2s"
-                });
-                $('.itemDot').css({
-                    "transform": "rotate(" + ((i - 2) * 36) + "deg)",
-                    "transition": "1s"
-                });
-
-            }, 5000);
-
-        });
-    </script>
-
-    <!-- Booking Modal -->
-    <div id="bookingModal"
-        style="display:none; position:fixed; top:0; left:0; right:0; bottom:0; background:rgba(0,0,0,.6); z-index:9999; align-items:center; justify-content:center;">
-        <div style="background:#fff; padding:30px; border-radius:15px; width:90%; max-width:600px; position:relative;">
-            <h3 class="text-center mb-3">Book Your Service</h3>
-            <form id="serviceBookingForm">
-                @csrf
-                <div class="form-group mb-3">
-                    <label>Name</label>
-                    <input type="text" name="name" class="form-control" required />
-                </div>
-                <div class="form-group mb-3">
-                    <label>Email</label>
-                    <input type="email" name="email" class="form-control" />
-                </div>
-                <div class="form-group mb-3">
-                    <label>Phone</label>
-                    <input type="text" name="phone" class="form-control" required />
-                </div>
-                <div class="form-group mb-3">
-                    <label>Service Type</label>
-                    <select name="service_type" class="form-control" required>
-                        <option value="">Select Service</option>
-                        <option>Installation</option>
-                        <option>Maintenance</option>
-                        <option>Filter Change</option>
-                        <option>Repair</option>
-                        <option>Water Testing</option>
-                        <option>Customer Support</option>
-                    </select>
-                </div>
-                <div class="form-group mb-3">
-                    <label>Preferred Date</label>
-                    <input type="date" name="preferred_date" class="form-control" required />
-                </div>
-                <div class="form-group mb-3">
-                    <label>Preferred Time</label>
-                    <input type="time" name="preferred_time" class="form-control" required />
-                </div>
-                <input type="hidden" name="latitude" id="latitude" />
-                <input type="hidden" name="longitude" id="longitude" />
-                <div class="text-center">
-                    <button type="submit" class="btn btn-primary">Confirm Booking</button>
-                    <button type="button" class="btn btn-secondary" onclick="closeBookingModal()">Cancel</button>
-                </div>
-            </form>
-        </div>
-    </div>
-
-    <script>
+        // Modal Functions
         function openBookingModal() {
-            document.getElementById('bookingModal').style.display = 'flex';
+            document.getElementById('bookingModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
             getLocation();
         }
 
         function closeBookingModal() {
-            document.getElementById('bookingModal').style.display = 'none';
+            document.getElementById('bookingModal').classList.remove('show');
+            document.body.style.overflow = '';
         }
 
+        // Close modal on outside click
+        document.getElementById('bookingModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBookingModal();
+            }
+        });
+
+        // Geolocation
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((position) => {
-                    document.getElementById('latitude').value = position.coords.latitude;
-                    document.getElementById('longitude').value = position.coords.longitude;
-                });
-            } else {
-                alert("Geolocation is not supported by your browser.");
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        document.getElementById('latitude').value = position.coords.latitude;
+                        document.getElementById('longitude').value = position.coords.longitude;
+                    },
+                    (error) => {
+                        console.log('Geolocation error:', error);
+                    }
+                );
             }
         }
 
+        // Form submission
         $('#serviceBookingForm').on('submit', function(e) {
             e.preventDefault();
+
+            const submitBtn = $(this).find('.modal-btn-submit');
+            const originalText = submitBtn.html();
+            submitBtn.html('<i class="bi bi-hourglass-split"></i> Processing...').prop('disabled', true);
+
             $.ajax({
                 url: "{{ route('service.book') }}",
                 method: 'POST',
                 data: $(this).serialize(),
                 success: function(response) {
-                    alert(response.message);
-                    $('#serviceBookingForm')[0].reset();
-                    closeBookingModal();
+                    submitBtn.html('<i class="bi bi-check-circle-fill"></i> Booked!').css('background',
+                        'linear-gradient(135deg, #059669 0%, #10b981 100%)');
+
+                    setTimeout(() => {
+                        alert(response.message ||
+                            'Service booked successfully! We will contact you shortly.');
+                        $('#serviceBookingForm')[0].reset();
+                        closeBookingModal();
+                        submitBtn.html(originalText).css('background', '').prop('disabled',
+                            false);
+                    }, 1000);
                 },
                 error: function(xhr) {
+                    submitBtn.html(originalText).prop('disabled', false);
                     alert("Please fill all required fields correctly.");
                 }
             });
         });
+
+        // Recalculate positions on window resize
+        $(window).on('resize', function() {
+            positionDots();
+        });
     </script>
 
+    {{-- 
+    Professional Product Banner & Product List Design
+    
+    Color Psychology Applied:
+    - Primary Blue (#1e40af): Trust, reliability
+    - Accent colors for offers: Urgency (amber/red for sales)
+    - Clean whites/grays: Professional feel
+    
+    Design Principles:
+    - Consistent with other redesigned sections
+    - Clear visual hierarchy
+    - Engaging hover effects
+    - Professional typography
+--}}
+
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --accent: #4f46e5;
+            --success: #059669;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #9ca3af;
+            --border: #e5e7eb;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+        }
+
+        /* ==================== PRODUCT BANNER SECTION ==================== */
+        .promo-banner-section {
+            padding: 60px 0;
+            background: var(--bg-card);
+        }
+
+        .promo-banner-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .promo-banner-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        @media (max-width: 992px) {
+            .promo-banner-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Banner Card */
+        .promo-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .promo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .promo-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .promo-card:hover .promo-card-bg {
+            transform: scale(1.05);
+        }
+
+        /* Amount Offer Card - Style 1 */
+        .promo-card.style-amount {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+
+        .promo-card.style-amount .promo-card-overlay {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 60%, transparent 100%);
+        }
+
+        .promo-card.style-amount .promo-content {
+            max-width: 60%;
+        }
+
+        .promo-card.style-amount .promo-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .promo-card.style-amount .promo-title {
+            font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .promo-card.style-amount .promo-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .promo-card.style-amount .promo-price .current {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .promo-card.style-amount .promo-price .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .promo-card.style-amount .promo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .promo-card.style-amount .promo-btn:hover {
+            background: var(--primary-dark);
+            transform: translateX(4px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        .promo-card.style-amount .promo-btn i {
+            transition: transform 0.3s;
+        }
+
+        .promo-card.style-amount .promo-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Percentage Offer Card - Style 2 */
+        .promo-card.style-percent {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .promo-card.style-percent .promo-card-overlay {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.92) 0%, rgba(217, 119, 6, 0.88) 100%);
+        }
+
+        .promo-card.style-percent .sale-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: white;
+            color: var(--warning);
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .promo-card.style-percent .promo-discount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-card.style-percent .promo-discount-text {
+            font-size: 1.25rem;
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 24px;
+        }
+
+        .promo-card.style-percent .promo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: white;
+            color: var(--warning);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .promo-card.style-percent .promo-btn:hover {
+            background: var(--text-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .promo-card {
+                min-height: 280px;
+            }
+
+            .promo-card.style-amount .promo-card-overlay {
+                padding: 24px;
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            }
+
+            .promo-card.style-amount .promo-content {
+                max-width: 100%;
+            }
+
+            .promo-card.style-amount .promo-title {
+                font-size: 1.4rem;
+            }
+
+            .promo-card.style-amount .promo-price .current {
+                font-size: 1.5rem;
+            }
+
+            .promo-card.style-percent .promo-discount {
+                font-size: 2.5rem;
+            }
+
+            .promo-card.style-percent .promo-discount-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* ==================== PRODUCT LIST SECTION ==================== */
+        .category-products-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+            overflow: hidden;
+        }
+
+        .category-products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
+        }
+
+        .section-title .highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Owl Carousel Custom Styling */
+        .category-carousel.owl-carousel .owl-stage-outer {
+            overflow: visible;
+        }
+
+        .category-carousel.owl-carousel .owl-nav {
+            position: absolute;
+            top: -70px;
+            right: 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .category-carousel.owl-carousel .owl-nav button {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 50% !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary) !important;
+            font-size: 1.25rem !important;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
+        }
+
+        .category-carousel.owl-carousel .owl-nav button:hover {
+            background: var(--primary) !important;
+            border-color: var(--primary) !important;
+            color: white !important;
+            transform: scale(1.05);
+        }
+
+        .category-carousel.owl-carousel .owl-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
+        }
+
+        .category-carousel.owl-carousel .owl-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--border);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .category-carousel.owl-carousel .owl-dot.active {
+            background: var(--primary);
+            width: 28px;
+            border-radius: 5px;
+        }
+
+        /* Product Card - Mini Style */
+        .product-mini-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
+        }
+
+        .product-mini-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+
+        .product-mini-inner {
+            display: flex;
+        }
+
+        /* Product Image Side */
+        .product-mini-image {
+            position: relative;
+            width: 40%;
+            min-height: 180px;
+            background: var(--bg-light);
+            overflow: hidden;
+        }
+
+        .product-mini-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .product-mini-card:hover .product-mini-image img {
+            transform: scale(1.08);
+        }
+
+        .product-mini-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3;
+        }
+
+        .product-mini-card:hover .product-mini-view {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .product-mini-view a {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s;
+        }
+
+        .product-mini-view a:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Product Info Side */
+        .product-mini-info {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-mini-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .product-mini-category:hover {
+            color: var(--primary-dark);
+        }
+
+        .product-mini-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-decoration: none;
+            transition: color 0.2s;
+            min-height: 2.8em;
+        }
+
+        .product-mini-name:hover {
+            color: var(--primary);
+        }
+
+        .product-mini-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: auto;
+        }
+
+        .product-mini-price .current {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .product-mini-price .original {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
+        }
+
+        /* Product Actions */
+        .product-mini-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-light);
+        }
+
+        .product-mini-cart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .product-mini-cart-btn:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .product-mini-quick-actions {
+            display: flex;
+            gap: 8px;
+        }
+
+        .product-mini-quick-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .product-mini-quick-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eff6ff;
+        }
+
+        .product-mini-quick-btn.wishlist:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: #fef2f2;
+        }
+
+        /* Inner Carousel (Products within category) */
+        .products-inner-carousel.owl-carousel .owl-nav {
+            display: none;
+        }
+
+        .products-inner-carousel.owl-carousel .owl-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+        }
+
+        .products-inner-carousel.owl-carousel .owl-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .products-inner-carousel.owl-carousel .owl-dot.active {
+            background: var(--primary);
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .category-carousel.owl-carousel .owl-nav {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .category-products-section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .product-mini-inner {
+                flex-direction: column;
+            }
+
+            .product-mini-image {
+                width: 100%;
+                min-height: 200px;
+            }
+
+            .product-mini-info {
+                padding: 16px;
+            }
+
+            .product-mini-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .product-mini-cart-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header {
+                margin-bottom: 30px;
+            }
+
+            .section-badge {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+
+    <!-- ==================== PRODUCT BANNER SECTION ==================== -->
+    <section class="promo-banner-section">
+        <div class="promo-banner-container">
+            <div class="promo-banner-grid">
+
+                @if ($amountOffer)
+                    <a href="{{ route('product.show', [$amountOffer->product->id, $amountOffer->product->slug]) }}"
+                        class="promo-card style-amount wow fadeInLeft" data-wow-delay="0.1s">
+                        <img src="{{ asset('storage/' . $amountOffer->product->main_image) }}" class="promo-card-bg"
+                            alt="{{ $amountOffer->title }}">
+                        <div class="promo-card-overlay">
+                            <div class="promo-content">
+                                <span class="promo-badge">
+                                    <i class="bi bi-lightning-charge-fill"></i> Special Offer
+                                </span>
+                                <h3 class="promo-title">{{ $amountOffer->title }}</h3>
+                                <div class="promo-price">
+                                    <span class="current">₹{{ number_format($amountOffer->offer_price, 2) }}</span>
+                                    <span class="label">Special Price</span>
+                                </div>
+                                <span class="promo-btn">
+                                    Shop Now <i class="bi bi-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                @endif
+
+                @if ($percentageOffer)
+                    <a href="{{ route('product.show', [$percentageOffer->product->id, $percentageOffer->product->slug]) }}"
+                        class="promo-card style-percent wow fadeInRight" data-wow-delay="0.2s">
+                        <img src="{{ asset('storage/' . $percentageOffer->product->main_image) }}" class="promo-card-bg"
+                            alt="{{ $percentageOffer->title }}">
+                        <div class="promo-card-overlay">
+                            <span class="sale-badge">🔥 Hot Sale</span>
+                            <div class="promo-discount">
+                                {{ $percentageOffer->offer_price }}% OFF
+                            </div>
+                            <p class="promo-discount-text">Get Up To {{ $percentageOffer->offer_price }}% Discount</p>
+                            <span class="promo-btn">
+                                <i class="bi bi-bag-check"></i> Shop Now
+                            </span>
+                        </div>
+                    </a>
+                @endif
+
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== CATEGORY PRODUCTS SECTION ==================== -->
+    <section class="category-products-section">
+        <div class="category-products-container">
+            <!-- Section Header -->
+            <div class="section-header">
+                <span class="section-badge wow fadeInUp" data-wow-delay="0.1s">
+                    <i class="bi bi-grid-3x3-gap-fill"></i> Browse Collection
+                </span>
+                <h2 class="section-title wow fadeInUp" data-wow-delay="0.2s">
+                    All <span class="highlight">Category</span> Products
+                </h2>
+            </div>
+
+            <!-- Category Carousel -->
+            <div class="category-carousel owl-carousel productList-carousel wow fadeInUp" data-wow-delay="0.3s">
+                @foreach ($categories as $category)
+                    <!-- Products Inner Carousel for each category -->
+                    <div class="products-inner-carousel owl-carousel productImg-carousel">
+                        @foreach ($category->products as $categoryProduct)
+                            <div class="product-mini-card">
+                                <div class="product-mini-inner">
+                                    <!-- Product Image -->
+                                    <div class="product-mini-image">
+                                        <img src="{{ asset('storage/' . $categoryProduct->main_image) }}"
+                                            alt="{{ $categoryProduct->name }}">
+                                        <div class="product-mini-view">
+                                            <a
+                                                href="{{ route('product.show', [$categoryProduct->id, $categoryProduct->slug]) }}">
+                                                <i class="bi bi-eye"></i>
+                                            </a>
+                                        </div>
+                                    </div>
+
+                                    <!-- Product Info -->
+                                    <div class="product-mini-info">
+                                        <a href="#" class="product-mini-category">{{ $category->name }}</a>
+                                        <a href="{{ route('product.show', [$categoryProduct->id, $categoryProduct->slug]) }}"
+                                            class="product-mini-name">
+                                            {{ $categoryProduct->name }}
+                                        </a>
+                                        <div class="product-mini-price">
+                                            @if ($categoryProduct->discount > 0)
+                                                <span class="current">
+                                                    ₹{{ number_format($categoryProduct->price - ($categoryProduct->price * $categoryProduct->discount) / 100, 2) }}
+                                                </span>
+                                                <span class="original">
+                                                    ₹{{ number_format($categoryProduct->price, 2) }}
+                                                </span>
+                                            @else
+                                                <span class="current">
+                                                    ₹{{ number_format($categoryProduct->price, 2) }}
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Product Actions -->
+                                <div class="product-mini-actions">
+                                    <a href="{{ route('cart.add', $categoryProduct->id) }}"
+                                        class="product-mini-cart-btn add-to-cart"
+                                        data-product-id="{{ $categoryProduct->id }}">
+                                        <i class="bi bi-cart-plus"></i> Add to Cart
+                                    </a>
+                                    <div class="product-mini-quick-actions">
+                                        <a href="#" class="product-mini-quick-btn compare"
+                                            data-product-id="{{ $categoryProduct->id }}" title="Compare">
+                                            <i class="bi bi-arrow-left-right"></i>
+                                        </a>
+                                        <a href="#" class="product-mini-quick-btn wishlist"
+                                            data-product-id="{{ $categoryProduct->id }}" title="Add to Wishlist">
+                                            <i class="bi bi-heart"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize Owl Carousel for Category List
+            if (typeof $.fn.owlCarousel !== 'undefined') {
+                // Main category carousel
+                $('.productList-carousel').owlCarousel({
+                    loop: true,
+                    margin: 24,
+                    nav: true,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 5000,
+                    autoplayHoverPause: true,
+                    navText: [
+                        '<i class="bi bi-chevron-left"></i>',
+                        '<i class="bi bi-chevron-right"></i>'
+                    ],
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        768: {
+                            items: 2
+                        },
+                        1024: {
+                            items: 2
+                        },
+                        1200: {
+                            items: 3
+                        }
+                    }
+                });
+
+                // Inner product carousel within each category
+                $('.productImg-carousel').owlCarousel({
+                    loop: true,
+                    margin: 16,
+                    nav: false,
+                    dots: true,
+                    autoplay: true,
+                    autoplayTimeout: 4000,
+                    autoplayHoverPause: true,
+                    items: 1
+                });
+            }
+
+            // Add to Cart functionality
+            document.querySelectorAll('.product-mini-cart-btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const productId = this.getAttribute('data-product-id');
+                    const originalText = this.innerHTML;
+
+                    this.innerHTML = '<i class="bi bi-hourglass-split"></i> Adding...';
+                    this.style.pointerEvents = 'none';
+
+                    fetch(`/cart/add/${productId}`, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(data => {
+                                    throw data;
+                                });
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                this.innerHTML = '<i class="bi bi-check-lg"></i> Added!';
+                                this.style.background = '#059669';
+
+                                setTimeout(() => {
+                                    this.innerHTML = originalText;
+                                    this.style.background = '';
+                                    this.style.pointerEvents = 'auto';
+                                }, 2000);
+                            }
+                        })
+                        .catch(error => {
+                            if (error.redirect) {
+                                window.location.href = error.redirect;
+                            } else {
+                                this.innerHTML = '<i class="bi bi-x-lg"></i> Error';
+                                this.style.background = '#dc2626';
+
+                                setTimeout(() => {
+                                    this.innerHTML = originalText;
+                                    this.style.background = '';
+                                    this.style.pointerEvents = 'auto';
+                                }, 2000);
+                            }
+                        });
+                });
+            });
+
+            // Wishlist toggle
+            document.querySelectorAll('.product-mini-quick-btn.wishlist').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const icon = this.querySelector('i');
+
+                    if (icon.classList.contains('bi-heart')) {
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                        this.style.background = '#fef2f2';
+                        this.style.borderColor = '#dc2626';
+                        this.style.color = '#dc2626';
+                    } else {
+                        icon.classList.remove('bi-heart-fill');
+                        icon.classList.add('bi-heart');
+                        this.style.background = '';
+                        this.style.borderColor = '';
+                        this.style.color = '';
+                    }
+                });
+            });
+        });
+    </script>
+    {{-- ============================================================================ --}}
+    {{-- USEDDDDDDDDD --}}
     <!-- Product Banner Start -->
-    <div class="container-fluid py-5">
+    {{-- <div class="container-fluid py-5">
         <div class="container">
             <div class="row g-4">
 
@@ -3494,8 +4939,10 @@
             </div>
 
         </div>
-    </div>
+    </div> --}}
     <!-- Product List End -->
+    {{-- USEDDDDDDDDD ENDDDDDD --}}
+    {{-- ============================================================================ --}}
 
     <!-- Bestseller Products Start -->
     {{-- <div class="container-fluid products pb-5">
