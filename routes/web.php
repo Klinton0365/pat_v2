@@ -23,6 +23,7 @@ use App\Http\Controllers\User\OrderController;
 use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\User\UserDashboardController;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -80,6 +81,7 @@ Route::middleware(['auth.ensure'])->group(function () {
     // Cart
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
     // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
+    // Route::get('/cart/add/{product_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/add/{product_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');

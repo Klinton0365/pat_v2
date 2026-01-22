@@ -12,11 +12,11 @@
             </div>
         </div>
         <div class="col-lg-4 text-center d-flex align-items-center justify-content-center">
-    <small class="text-dark">Call Us:</small>
-    <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a>
-</div>
+            <small class="text-dark">Call Us:</small>
+            <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a>
+        </div>
 
-        
+
         {{-- <div class="col-lg-4 text-center text-lg-end">
             <div class="d-inline-flex align-items-center" style="height: 45px;">
                @guest
@@ -216,153 +216,156 @@
             </div>
         </div> --}}
         <div class="col-lg-4 text-center text-lg-end">
-    <div class="d-inline-flex align-items-center" style="height: 45px;">
+            <div class="d-inline-flex align-items-center" style="height: 45px;">
 
-        @guest
-        <style>
-                    .login-botton {
-                        font-weight: bold;
-                        color: white;
-                        border-radius: 2rem;
-                        cursor: pointer;
-                        width: 95.02px;
-                        height: 32px;
-                        padding: 5px 0;
-                        border: none;
-                        background-color: #3653f8;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
+                @guest
+                    <style>
+                        .login-botton {
+                            font-weight: bold;
+                            color: white;
+                            border-radius: 2rem;
+                            cursor: pointer;
+                            width: 95.02px;
+                            height: 32px;
+                            padding: 5px 0;
+                            border: none;
+                            background-color: #3653f8;
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                        }
 
-                    .login-botton .span-mother {
-                        display: flex;
-                        overflow: hidden;
-                    }
+                        .login-botton .span-mother {
+                            display: flex;
+                            overflow: hidden;
+                        }
 
-                    .login-botton:hover .span-mother {
-                        position: absolute;
-                    }
+                        .login-botton:hover .span-mother {
+                            position: absolute;
+                        }
 
-                    .login-botton:hover .span-mother span {
-                        transform: translateY(1.2em);
-                    }
+                        .login-botton:hover .span-mother span {
+                            transform: translateY(1.2em);
+                        }
 
-                    .login-botton .span-mother span:nth-child(1) {
-                        transition: 0.2s;
-                    }
+                        .login-botton .span-mother span:nth-child(1) {
+                            transition: 0.2s;
+                        }
 
-                    .login-botton .span-mother span:nth-child(2) {
-                        transition: 0.3s;
-                    }
+                        .login-botton .span-mother span:nth-child(2) {
+                            transition: 0.3s;
+                        }
 
-                    .login-botton .span-mother span:nth-child(3) {
-                        transition: 0.4s;
-                    }
+                        .login-botton .span-mother span:nth-child(3) {
+                            transition: 0.4s;
+                        }
 
-                    .login-botton .span-mother span:nth-child(4) {
-                        transition: 0.5s;
-                    }
+                        .login-botton .span-mother span:nth-child(4) {
+                            transition: 0.5s;
+                        }
 
-                    .login-botton .span-mother span:nth-child(5) {
-                        transition: 0.6s;
-                    }
+                        .login-botton .span-mother span:nth-child(5) {
+                            transition: 0.6s;
+                        }
 
-                    .login-botton .span-mother span:nth-child(6) {
-                        transition: 0.7s;
-                    }
+                        .login-botton .span-mother span:nth-child(6) {
+                            transition: 0.7s;
+                        }
 
-                    .login-botton .span-mother2 {
-                        display: flex;
-                        position: absolute;
-                        overflow: hidden;
-                    }
+                        .login-botton .span-mother2 {
+                            display: flex;
+                            position: absolute;
+                            overflow: hidden;
+                        }
 
-                    .login-botton .span-mother2 span {
-                        transform: translateY(-1.2em);
-                    }
+                        .login-botton .span-mother2 span {
+                            transform: translateY(-1.2em);
+                        }
 
-                    .login-botton:hover .span-mother2 span {
-                        transform: translateY(0);
-                    }
+                        .login-botton:hover .span-mother2 span {
+                            transform: translateY(0);
+                        }
 
-                    .login-botton .span-mother2 span {
-                        transition: 0.2s;
-                    }
+                        .login-botton .span-mother2 span {
+                            transition: 0.2s;
+                        }
 
-                    .login-botton .span-mother2 span:nth-child(2) {
-                        transition: 0.3s;
-                    }
+                        .login-botton .span-mother2 span:nth-child(2) {
+                            transition: 0.3s;
+                        }
 
-                    .login-botton .span-mother2 span:nth-child(3) {
-                        transition: 0.4s;
-                    }
+                        .login-botton .span-mother2 span:nth-child(3) {
+                            transition: 0.4s;
+                        }
 
-                    .login-botton .span-mother2 span:nth-child(4) {
-                        transition: 0.5s;
-                    }
+                        .login-botton .span-mother2 span:nth-child(4) {
+                            transition: 0.5s;
+                        }
 
-                    .login-botton .span-mother2 span:nth-child(5) {
-                        transition: 0.6s;
-                    }
+                        .login-botton .span-mother2 span:nth-child(5) {
+                            transition: 0.6s;
+                        }
 
-                    .login-botton .span-mother2 span:nth-child(6) {
-                        transition: 0.7s;
-                    }
-                </style>
-            <!-- Your existing login button stays as it is -->
-            <a href="{{ route('login') }}">
-                <button class="login-botton">
-                    <span class="span-mother">
-                        <span>L</span>
-                        <span>O</span>
-                        <span>G</span>
-                        <span>I</span>
-                        <span>N</span>
-                    </span>
-                    <span class="span-mother2">
-                        <span>L</span>
-                        <span>O</span>
-                        <span>G</span>
-                        <span>I</span>
-                        <span>N</span>
-                    </span>
-                </button>
-            </a>
-        @else
-            <!-- USER DROPDOWN -->
-            <div class="dropdown">
-                <button class="btn btn-light dropdown-toggle px-3 py-2 rounded-pill" type="button"
-                        id="userMenu" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user-circle me-2"></i> {{ Auth::user()->first_name }} {{ Auth::user()->last_name }}
-                </button>
+                        .login-botton .span-mother2 span:nth-child(6) {
+                            transition: 0.7s;
+                        }
+                    </style>
+                    <!-- Your existing login button stays as it is -->
+                    <a href="{{ route('login') }}">
+                        <button class="login-botton">
+                            <span class="span-mother">
+                                <span>L</span>
+                                <span>O</span>
+                                <span>G</span>
+                                <span>I</span>
+                                <span>N</span>
+                            </span>
+                            <span class="span-mother2">
+                                <span>L</span>
+                                <span>O</span>
+                                <span>G</span>
+                                <span>I</span>
+                                <span>N</span>
+                            </span>
+                        </button>
+                    </a>
+                @else
+                    <!-- USER DROPDOWN -->
+                    <div class="dropdown">
+                        <button class="btn btn-light dropdown-toggle px-3 py-2 rounded-pill" type="button" id="userMenu"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-2"></i> {{ Auth::user()->first_name }}
+                            {{ Auth::user()->last_name }}
+                        </button>
 
-                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
-                    <li>
-                        <a class="dropdown-item" href="{{ route('user.dashboard') }}">
-                            <i class="fas fa-tachometer-alt me-2"></i> Dashboard
-                        </a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="{{ route('user.profile') }}">
-                            <i class="fas fa-user me-2"></i> My Account
-                        </a>
-                    </li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li>
-                        <form action="{{ route('user.logout') }}" method="POST">
-                            @csrf
-                            <button type="submit" class="dropdown-item text-danger">
-                                <i class="fas fa-sign-out-alt me-2"></i> Logout
-                            </button>
-                        </form>
-                    </li>
-                </ul>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userMenu">
+                            <li>
+                                <a class="dropdown-item" href="{{ route('user.dashboard') }}">
+                                    <i class="fas fa-tachometer-alt me-2"></i> Dashboard
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" href="{{ route('user.profile') }}">
+                                    <i class="fas fa-user me-2"></i> My Account
+                                </a>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li>
+                                <form action="{{ route('user.logout') }}" method="POST">
+                                    @csrf
+                                    <button type="submit" class="dropdown-item text-danger">
+                                        <i class="fas fa-sign-out-alt me-2"></i> Logout
+                                    </button>
+                                </form>
+                            </li>
+                        </ul>
+                    </div>
+                @endguest
+
             </div>
-        @endguest
-
-    </div>
-</div>
+        </div>
 
     </div>
 </div>
@@ -373,7 +376,7 @@
                 <a href="" class="navbar-brand p-0">
                     {{-- <h1 class="display-5 text-primary m-0"><i
                             class="fas fa-shopping-bag text-secondary me-2"></i>Electro</h1> --}}
-                        <img src="{{ asset('img/logo/PNG.png') }}" style="width:130px; height:80px;" alt="Logo">
+                    <img src="{{ asset('img/logo/PNG.png') }}" style="width:130px; height:80px;" alt="Logo">
                 </a>
             </div>
         </div>
@@ -384,7 +387,7 @@
                         data-bs-target="#dropdownToggle123" placeholder="Search Looking For?">
                     <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
                         <option value=""> Categories</option>
-                        @foreach($categories as $category)
+                        @foreach ($categories as $category)
                             <option value="{{ $category->id }}">{{ $category->name }}</option>
                         @endforeach
                     </select>
@@ -395,58 +398,56 @@
             </div>
         </div> --}}
         <div class="col-md-4 col-lg-6 text-center">
-    <div class="position-relative ps-4">
-        <div class="d-flex border rounded-pill">
+            <div class="position-relative ps-4">
+                <div class="d-flex border rounded-pill">
 
-            <input class="form-control border-0 rounded-pill w-100 py-3" 
-                   type="text" placeholder="Search Looking For?">
+                    <input class="form-control border-0 rounded-pill w-100 py-3" type="text"
+                        placeholder="Search Looking For?">
 
-            @php
-                // ✅ Fetch categories directly from DB
-                $categories = \App\Models\Category::orderBy('name', 'asc')->get();
-            @endphp
+                    @php
+                        // ✅ Fetch categories directly from DB
+                        $categories = \App\Models\Category::orderBy('name', 'asc')->get();
+                    @endphp
 
-            <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
-                <option value="">Categories</option>
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            </select>
+                    <select class="form-select text-dark border-0 border-start rounded-0 p-3" style="width: 200px;">
+                        <option value="">Categories</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
+                    </select>
 
-            <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;">
-                <i class="fas fa-search"></i>
-            </button>
+                    <button type="button" class="btn btn-primary rounded-pill py-3 px-5" style="border: 0;">
+                        <i class="fas fa-search"></i>
+                    </button>
 
+                </div>
+            </div>
         </div>
-    </div>
-</div>
 
         <div class="col-md-4 col-lg-3 text-center text-lg-end">
             <div class="d-inline-flex align-items-center">
-                
+
                 {{-- <a href="#" class="text-muted d-flex align-items-center justify-content-center"><span
                         class="rounded-circle btn-md-square border"><i class="fas fa-shopping-cart"></i></span>
                     <span class="text-dark ms-2">$0.00</span></a> --}}
-                   
-    @auth
-    @php
-        $cartTotal = \App\Models\Cart::where('user_id', auth()->id())
-                        ->count();
-    @endphp
 
-    <a href="{{ route('cart') }}" 
-       class="text-muted d-flex align-items-center justify-content-center">
-        <span class="rounded-circle btn-md-square border">
-            <i class="fas fa-shopping-cart"></i>
-            <span class="text-dark ms-2">
-            {{ $cartTotal }}
-        </span>
-        </span>
-        {{-- <span class="text-dark ms-2">
+                @auth
+                    @php
+                        $cartTotal = \App\Models\Cart::where('user_id', auth()->id())->count();
+                    @endphp
+
+                    <a href="{{ route('cart') }}" class="text-muted d-flex align-items-center justify-content-center">
+                        <span class="rounded-circle btn-md-square border">
+                            <i class="fas fa-shopping-cart"></i>
+                            <span class="text-dark ms-2">
+                                {{ $cartTotal }}
+                            </span>
+                        </span>
+                        {{-- <span class="text-dark ms-2">
             {{ $cartTotal }}
         </span> --}}
-    </a>
-@endauth
+                    </a>
+                @endauth
 
             </div>
         </div>
@@ -458,25 +459,26 @@
 <div class="container-fluid nav-bar p-0">
     <style>
         .bg-blur {
-    background: rgba(120, 193, 243, 0.45); /* transparent blue */
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px); /* Safari support */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.25);
-}
-
+            background: rgba(120, 193, 243, 0.45);
+            /* transparent blue */
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            /* Safari support */
+            border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+        }
     </style>
     <div class="row gx-0 bg-blur px-5 align-items-center">
-        <div class="col-lg-3 d-none d-lg-block">
+        {{-- <div class="col-lg-3 d-none d-lg-block">
             <nav class="navbar navbar-light position-relative" style="width: 250px;">
                 <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
                     data-bs-toggle="collapse" data-bs-target="#allCat">
-                    <h4 class="m-0"><i class="fa fa-bars me-2"></i>All Categories</h4>
+                    <h4 class="m-0"><i class="fa fa-bars me-2"></i>ALL CATEGORIES</h4>
                 </button>
 
                 <div class="collapse navbar-collapse rounded-bottom" id="allCat">
                     <div class="navbar-nav ms-auto py-0">
                         <ul class="list-unstyled categories-bars">
-                            @foreach($categories as $category)
+                            @foreach ($categories as $category)
                                 <li>
                                     <div class="categories-bars-item">
                                         <a href="#">{{ $category->name }}</a>
@@ -489,7 +491,7 @@
                 </div>
             </nav>
 
-        </div>
+        </div> --}}
         <div class="col-12 col-lg-9">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a href="" class="navbar-brand d-block d-lg-none">
@@ -503,8 +505,8 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav ms-auto py-0">
-                        <a href="{{ route('home') }}" class="nav-item nav-link active">Home</a>
-                        <a href="{{ route('shop') }}" class="nav-item nav-link">Shop</a>
+                        <a href="{{ route('home') }}" class="nav-item nav-link active">HOME</a>
+                        <a href="{{ route('shop') }}" class="nav-item nav-link">SHOP</a>
                         {{-- <a href="{{ route('single-product') }}" class="nav-item nav-link">Single Page</a> --}}
                         {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
@@ -515,12 +517,13 @@
                                 <a href="{{ route('shop') }}" class="dropdown-item">404 Page</a>
                             </div>
                         </div> --}}
-                        <a href="{{ route('contact') }}" class="nav-item nav-link me-2">Contact</a>
+                        <a href="{{ route('contact') }}" class="nav-item nav-link me-2">CONTACT</a>
 
                     </div>
-                    <a href="tel:+919995969939" class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
+                    <a href="tel:+919995969939"
+                        class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
                         <i class="fa fa-mobile-alt me-2"></i>+91 999 596 9939</a>
-                        {{-- <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a> --}}
+                    {{-- <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a> --}}
                 </div>
             </nav>
         </div>

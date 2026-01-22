@@ -65,23 +65,64 @@ class CartController extends Controller
     //     return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
     // }
 
+    // public function addToCart($product_id)
+    // {
+    //     \Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
+
+    //     $product = Product::findOrFail($product_id);
+
+    //     $cartItem = Cart::firstOrNew([
+    //         'user_id' => Auth::id(),
+    //         'product_id' => $product->id,
+    //     ]);
+
+    //     $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
+    //     $cartItem->price = $product->price;
+    //     $cartItem->save();
+
+    //     return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
+    // }
+
     public function addToCart($product_id)
-    {
-        \Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
-
-        $product = Product::findOrFail($product_id);
-
-        $cartItem = Cart::firstOrNew([
-            'user_id' => Auth::id(),
-            'product_id' => $product->id,
-        ]);
-
-        $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
-        $cartItem->price = $product->price;
-        $cartItem->save();
-
-        return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
+{
+    // Check if user is logged in
+    if (!Auth::check()) {
+        if (request()->ajax() || request()->wantsJson()) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Please login to add items to cart',
+                'redirect' => route('login')
+            ], 401);
+        }
+        return redirect()->route('login')->with('error', 'Please login to add items to cart');
     }
+
+    \Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
+
+    $product = Product::findOrFail($product_id);
+
+    $cartItem = Cart::firstOrNew([
+        'user_id' => Auth::id(),
+        'product_id' => $product->id,
+    ]);
+
+    $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
+    $cartItem->price = $product->price;
+    $cartItem->save();
+
+    // Return JSON for AJAX requests
+    if (request()->ajax() || request()->wantsJson()) {
+        $cartCount = Cart::where('user_id', Auth::id())->sum('quantity');
+        
+        return response()->json([
+            'success' => true,
+            'message' => 'Product added to cart successfully!',
+            'cart_count' => $cartCount
+        ]);
+    }
+
+    return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
+}
 
     // Update cart quantity
     public function update(Request $request, $id)

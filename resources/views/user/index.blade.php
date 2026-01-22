@@ -88,16 +88,16 @@
 
         /* Hero Section */
         /* .hero {
-                            background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
-                                url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
-                            background-size: cover;
-                            background-position: center;
-                            min-height: 100vh;
-                            display: flex;
-                            align-items: center;
-                            position: relative;
-                            overflow: hidden;
-                        } */
+                                background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
+                                    url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
+                                background-size: cover;
+                                background-position: center;
+                                min-height: 100vh;
+                                display: flex;
+                                align-items: center;
+                                position: relative;
+                                overflow: hidden;
+                            } */
 
         .hero {
             position: relative;
@@ -957,7 +957,10 @@
                     colorB2: [0.2, 0.4, 0.7]
                 };
 
-                this.lastMousePosition = { x: 0, y: 0 };
+                this.lastMousePosition = {
+                    x: 0,
+                    y: 0
+                };
                 this.mouseThrottleTime = 0;
 
                 this.init();
@@ -1022,12 +1025,18 @@
             createBackground() {
                 const backgroundShader = {
                     uniforms: {
-                        waterTexture: { value: this.waterTexture },
-                        rippleStrength: { value: this.settings.rippleStrength },
+                        waterTexture: {
+                            value: this.waterTexture
+                        },
+                        rippleStrength: {
+                            value: this.settings.rippleStrength
+                        },
                         resolution: {
                             value: new THREE.Vector2(window.innerWidth, window.innerHeight)
                         },
-                        time: { value: 0 },
+                        time: {
+                            value: 0
+                        },
                         colorA1: {
                             value: new THREE.Vector3(
                                 this.gradientColors.colorA1[0],
@@ -1144,8 +1153,15 @@
             }
 
             updateWaterSimulation() {
-                const { current, previous } = this.waterBuffers;
-                const { damping, tension, resolution } = this.settings;
+                const {
+                    current,
+                    previous
+                } = this.waterBuffers;
+                const {
+                    damping,
+                    tension,
+                    resolution
+                } = this.settings;
 
                 const safeTension = Math.min(tension, 0.05);
 
@@ -1176,7 +1192,10 @@
             }
 
             addRipple(x, y, strength = 1.0) {
-                const { resolution, rippleRadius } = this.settings;
+                const {
+                    resolution,
+                    rippleRadius
+                } = this.settings;
 
                 const normalizedX = x / window.innerWidth;
                 const normalizedY = 1.0 - y / window.innerHeight;
@@ -1947,7 +1966,8 @@
 
         // Observe all elements with animation classes
         document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll('.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
+            const animatedElements = document.querySelectorAll(
+                '.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
             animatedElements.forEach(el => observer.observe(el));
         });
     </script>
@@ -2011,9 +2031,9 @@
         }
 
         /* .product-card-minimal .badge.featured {
-                                        background: #000;
-                                        color: white;
-                                    } */
+                                            background: #000;
+                                            color: white;
+                                        } */
         .product-card-minimal .badge.featured {
             background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
             color: white;
@@ -2188,7 +2208,7 @@
                             </li>
 
                             <!-- Dynamic Category Tabs -->
-                            @foreach($categories as $index => $category)
+                            @foreach ($categories as $index => $category)
                                 <li class="nav-item mb-4">
                                     <a class="d-flex py-2 mx-2 bg-light rounded-pill" data-bs-toggle="pill"
                                         href="#tab-{{ $category->id }}" data-category="{{ $category->id }}">
@@ -2205,7 +2225,7 @@
                     <!-- All Products Tab -->
                     <div id="tab-all" class="tab-pane fade show p-0 active">
                         <div class="row g-4" id="products-container">
-                            @foreach($products as $product)
+                            @foreach ($products as $product)
                                 <div class="col-md-6 col-lg-4 col-xl-3 product-item-wrapper"
                                     data-category="{{ $product->category_id }}">
 
@@ -2217,10 +2237,10 @@
 
                                             {{-- Badges --}}
                                             <div class="badges">
-                                                @if($product->featured)
+                                                @if ($product->featured)
                                                     <span class="badge featured">Featured</span>
                                                 @endif
-                                                {{-- @if($product->discount > 0)
+                                                {{-- @if ($product->discount > 0)
                                                 <span class="badge sale">Sale</span>
                                                 @endif --}}
                                             </div>
@@ -2243,9 +2263,9 @@
 
                                             {{-- Price Section --}}
                                             <div class="price-section">
-                                                @if($product->discount > 0)
+                                                @if ($product->discount > 0)
                                                     <span class="price-current">
-                                                        ₹{{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
+                                                        ₹{{ number_format($product->price - ($product->price * $product->discount) / 100, 2) }}
                                                     </span>
                                                     <span class="price-original">
                                                         ₹{{ number_format($product->price, 2) }}
@@ -2259,8 +2279,8 @@
 
                                             {{-- Rating Stars --}}
                                             <div class="rating-stars">
-                                                @for($i = 1; $i <= 5; $i++)
-                                                    @if($i <= ($product->rating ?? 4))
+                                                @for ($i = 1; $i <= 5; $i++)
+                                                    @if ($i <= ($product->rating ?? 4))
                                                         <i class="fas fa-star text-primary"></i>
                                                     @else
                                                         <i class="fas fa-star" style="color: #d1d5db;"></i>
@@ -2274,7 +2294,8 @@
                                                     class="btn-add-cart add-to-cart">
                                                     <i class="fas fa-shopping-cart me-2"></i> Add to Cart
                                                 </a> --}}
-                                                <a href="{{ route('cart.add', $product->id) }}" class="btn-add-cart add-to-cart"
+                                                <a href="{{ route('cart.add', $product->id) }}"
+                                                    class="btn-add-cart add-to-cart"
                                                     data-product-id="{{ $product->id }}">
                                                     <i class="fas fa-shopping-cart me-2"></i> Add to Cart
                                                 </a>
@@ -2291,7 +2312,7 @@
                     </div>
 
                     <!-- Individual Category Tabs -->
-                    @foreach($categories as $category)
+                    @foreach ($categories as $category)
                         <div id="tab-{{ $category->id }}" class="tab-pane fade show p-0">
                             <div class="row g-4">
                                 <!-- Products will be filtered and shown here via JavaScript -->
@@ -2304,13 +2325,13 @@
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
             // Only select the actual navigation tab links, not product wrappers
             const categoryTabs = document.querySelectorAll('.nav-pills [data-category]');
             const allProducts = document.querySelectorAll('.product-item-wrapper');
 
             categoryTabs.forEach(tab => {
-                tab.addEventListener('click', function (e) {
+                tab.addEventListener('click', function(e) {
                     e.preventDefault();
 
                     const categoryId = this.getAttribute('data-category');
@@ -2351,7 +2372,8 @@
             });
 
             // Add to cart functionality
-            document.addEventListener('click', function (e) {
+            // Add to cart functionality
+            document.addEventListener('click', function(e) {
                 const addToCartBtn = e.target.closest('.add-to-cart');
                 const wishlistBtn = e.target.closest('.wishlist-btn');
 
@@ -2360,25 +2382,54 @@
                     const productId = addToCartBtn.getAttribute('data-product-id');
                     const cartUrl = addToCartBtn.getAttribute('href');
 
-                    console.log('Adding product to cart:', productId);
-                    console.log('Cart URL:', cartUrl);
+                    // Disable button to prevent double clicks
+                    addToCartBtn.style.pointerEvents = 'none';
+                    addToCartBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i> Adding...';
 
-                    // Make GET request instead of POST
                     fetch(cartUrl, {
-                        method: 'GET',
-                        headers: {
-                            'Accept': 'application/json',
-                            'X-Requested-With': 'XMLHttpRequest'
-                        }
-                    })
-                        .then(response => response.json())
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(data => {
+                                    throw data;
+                                });
+                            }
+                            return response.json();
+                        })
                         .then(data => {
-                            console.log('Success:', data);
-                            alert('Product added to cart successfully!');
-                            // Optionally reload or update cart count
+                            if (data.success) {
+                                // Show success message (you can use toast/notification library)
+                                alert(data.message);
+
+                                // Update cart count in navbar if you have one
+                                const cartCountEl = document.querySelector('.cart-count');
+                                if (cartCountEl && data.cart_count !== undefined) {
+                                    cartCountEl.textContent = data.cart_count;
+                                }
+                            }
                         })
                         .catch(error => {
                             console.error('Error:', error);
+
+                            // If not logged in, redirect to login
+                            if (error.redirect) {
+                                window.location.href = error.redirect;
+                            } else if (error.message) {
+                                alert(error.message);
+                            } else {
+                                alert('Something went wrong. Please try again.');
+                            }
+                        })
+                        .finally(() => {
+                            // Re-enable button
+                            addToCartBtn.style.pointerEvents = 'auto';
+                            addToCartBtn.innerHTML =
+                                '<i class="fas fa-shopping-cart me-2"></i> Add to Cart';
                         });
 
                 } else if (wishlistBtn) {
@@ -3129,11 +3180,10 @@
     </section>
 
     <script>
-
         let i = 2;
 
 
-        $(document).ready(function () {
+        $(document).ready(function() {
             var radius = 200;
             var fields = $('.itemDot');
             var container = $('.dotCircle');
@@ -3141,8 +3191,9 @@
             radius = width / 2.5;
 
             var height = container.height();
-            var angle = 0, step = (2 * Math.PI) / fields.length;
-            fields.each(function () {
+            var angle = 0,
+                step = (2 * Math.PI) / fields.length;
+            fields.each(function() {
                 var x = Math.round(width / 2 + radius * Math.cos(angle) - $(this).width() / 2);
                 var y = Math.round(height / 2 + radius * Math.sin(angle) - $(this).height() / 2);
                 if (window.console) {
@@ -3157,7 +3208,7 @@
             });
 
 
-            $('.itemDot').click(function () {
+            $('.itemDot').click(function() {
 
                 var dataTab = $(this).data("tab");
                 $('.itemDot').removeClass('active');
@@ -3178,7 +3229,7 @@
 
             });
 
-            setInterval(function () {
+            setInterval(function() {
                 var dataTab = $('.itemDot.active').data("tab");
                 if (dataTab > 6 || i > 6) {
                     dataTab = 1;
@@ -3203,9 +3254,6 @@
             }, 5000);
 
         });
-
-
-
     </script>
 
     <!-- Booking Modal -->
@@ -3278,18 +3326,18 @@
             }
         }
 
-        $('#serviceBookingForm').on('submit', function (e) {
+        $('#serviceBookingForm').on('submit', function(e) {
             e.preventDefault();
             $.ajax({
                 url: "{{ route('service.book') }}",
                 method: 'POST',
                 data: $(this).serialize(),
-                success: function (response) {
+                success: function(response) {
                     alert(response.message);
                     $('#serviceBookingForm')[0].reset();
                     closeBookingModal();
                 },
-                error: function (xhr) {
+                error: function(xhr) {
                     alert("Please fill all required fields correctly.");
                 }
             });
@@ -3301,7 +3349,7 @@
         <div class="container">
             <div class="row g-4">
 
-                @if($amountOffer)
+                @if ($amountOffer)
                     <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.1s">
                         <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                             <div class="bg-primary rounded position-relative">
@@ -3328,7 +3376,7 @@
                 @endif
 
 
-                @if($percentageOffer)
+                @if ($percentageOffer)
                     <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
                         <a href="{{ route('product.show', [$product->id, $product->slug]) }}">
                             <div class="text-center bg-primary rounded position-relative">
@@ -3367,10 +3415,10 @@
                 <h1 class="mb-0 display-3 wow fadeInUp" data-wow-delay="0.3s">All Category Products</h1>
             </div>
             <div class="productList-carousel owl-carousel pt-4 wow fadeInUp" data-wow-delay="0.3s">
-                @foreach($categories as $category)
+                @foreach ($categories as $category)
                     <div class="productImg-carousel owl-carousel productList-item">
 
-                        @foreach($category->products as $categoryProduct)
+                        @foreach ($category->products as $categoryProduct)
                             <div class="productImg-item products-mini-item border">
                                 <div class="row g-0">
                                     <div class="col-5">
@@ -3407,13 +3455,15 @@
                                                 class="d-block h4 product-name">
                                                 {{ $categoryProduct->name }}
                                             </a>
-                                            @if($categoryProduct->discount > 0)
-                                                <del class="me-2 fs-5">₹{{ number_format($categoryProduct->price, 2) }}</del>
+                                            @if ($categoryProduct->discount > 0)
+                                                <del
+                                                    class="me-2 fs-5">₹{{ number_format($categoryProduct->price, 2) }}</del>
                                                 <span class="text-primary fs-5">
-                                                    ₹{{ number_format($categoryProduct->price - ($categoryProduct->price * $categoryProduct->discount / 100), 2) }}
+                                                    ₹{{ number_format($categoryProduct->price - ($categoryProduct->price * $categoryProduct->discount) / 100, 2) }}
                                                 </span>
                                             @else
-                                                <span class="text-primary fs-5">₹{{ number_format($categoryProduct->price, 2) }}</span>
+                                                <span
+                                                    class="text-primary fs-5">₹{{ number_format($categoryProduct->price, 2) }}</span>
                                             @endif
                                         </div>
                                     </div>
@@ -3423,12 +3473,14 @@
                                         <i class="fas fa-shopping-cart me-2"></i> Add To Cart
                                     </a>
                                     <div class="d-flex">
-                                        <a href="#" class="text-primary d-flex align-items-center justify-content-center me-3">
+                                        <a href="#"
+                                            class="text-primary d-flex align-items-center justify-content-center me-3">
                                             <span class="rounded-circle btn-sm-square border">
                                                 <i class="fas fa-random"></i>
                                             </span>
                                         </a>
-                                        <a href="#" class="text-primary d-flex align-items-center justify-content-center me-0">
+                                        <a href="#"
+                                            class="text-primary d-flex align-items-center justify-content-center me-0">
                                             <span class="rounded-circle btn-sm-square border">
                                                 <i class="fas fa-heart"></i>
                                             </span>
