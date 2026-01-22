@@ -886,7 +886,7 @@
 
 
     <!-- Products Offer Start -->
-    {{-- <div class="container-fluid bg-light py-5">
+    <div class="container-fluid bg-light py-5">
         <div class="container">
             <div class="row g-4">
                 <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
@@ -913,7 +913,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
     <!-- Products Offer End -->
 
 

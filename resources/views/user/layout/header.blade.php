@@ -468,14 +468,14 @@
         }
     </style>
     <div class="row gx-0 bg-blur px-5 align-items-center">
-        {{-- <div class="col-lg-3 d-none d-lg-block">
+        <div class="col-lg-3 d-none d-lg-block">
             <nav class="navbar navbar-light position-relative" style="width: 250px;">
                 <button class="navbar-toggler border-0 fs-4 w-100 px-0 text-start" type="button"
                     data-bs-toggle="collapse" data-bs-target="#allCat">
                     <h4 class="m-0"><i class="fa fa-bars me-2"></i>ALL CATEGORIES</h4>
                 </button>
 
-                <div class="collapse navbar-collapse rounded-bottom" id="allCat">
+                {{-- <div class="collapse navbar-collapse rounded-bottom" id="allCat">
                     <div class="navbar-nav ms-auto py-0">
                         <ul class="list-unstyled categories-bars">
                             @foreach ($categories as $category)
@@ -488,10 +488,10 @@
                             @endforeach
                         </ul>
                     </div>
-                </div>
+                </div> --}}
             </nav>
 
-        </div> --}}
+        </div>
         <div class="col-12 col-lg-9">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a href="" class="navbar-brand d-block d-lg-none">
