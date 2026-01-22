@@ -58,7 +58,7 @@
 
 <body>
     {{-- Header --}}
-    @include('user.layout.header')
+    @include('user.layout.header-new')
 
     {{-- Sidebar (if you want a left menu) --}}
     {{-- @include('user-layout.sidebar') --}}
