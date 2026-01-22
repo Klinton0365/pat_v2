@@ -88,16 +88,16 @@
 
         /* Hero Section */
         /* .hero {
-                                    background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
-                                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
-                                    background-size: cover;
-                                    background-position: center;
-                                    min-height: 100vh;
-                                    display: flex;
-                                    align-items: center;
-                                    position: relative;
-                                    overflow: hidden;
-                                } */
+                                        background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
+                                            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
+                                        background-size: cover;
+                                        background-position: center;
+                                        min-height: 100vh;
+                                        display: flex;
+                                        align-items: center;
+                                        position: relative;
+                                        overflow: hidden;
+                                    } */
 
         .hero {
             position: relative;
@@ -1571,7 +1571,7 @@
     <!-- Searvices End -->
 
     {{-- About Us --}}
-    <style>
+    {{-- <style>
         .history-area {
             background: #f7f9fb;
             padding: 100px 0;
@@ -1970,7 +1970,1736 @@
                 '.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
             animatedElements.forEach(el => observer.observe(el));
         });
-    </script>
+    </script> --}}
+    {{-- 
+    Professional About Us / History Section with Horizontal Timeline
+    
+    Features:
+    - Horizontal scrollable timeline
+    - Interactive year markers
+    - Smooth animations on scroll
+    - Mobile-responsive vertical fallback
+    
+    Color Psychology:
+    - Primary Blue (#1e40af): Trust, professionalism
+    - Success Green (#059669): Growth, progress
+    - Clean design: Modern, premium feel
+--}}
+
+<style>
+    :root {
+        --timeline-primary: #1e40af;
+        --timeline-primary-light: #3b82f6;
+        --timeline-primary-dark: #1e3a8a;
+        --timeline-accent: #4f46e5;
+        --timeline-success: #059669;
+        --timeline-warning: #f59e0b;
+        --timeline-text-primary: #111827;
+        --timeline-text-secondary: #4b5563;
+        --timeline-text-muted: #9ca3af;
+        --timeline-border: #e5e7eb;
+        --timeline-bg-light: #f8fafc;
+        --timeline-bg-card: #ffffff;
+        --timeline-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --timeline-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --timeline-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --timeline-radius: 12px;
+        --timeline-radius-lg: 16px;
+        --timeline-radius-xl: 24px;
+    }
+
+    /* ==================== ABOUT SECTION ==================== */
+    .about-section {
+        padding: 100px 0;
+        background: linear-gradient(180deg, var(--timeline-bg-light) 0%, #ffffff 50%, var(--timeline-bg-light) 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .about-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Section Header */
+    .about-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .about-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+        color: white;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+    }
+
+    .about-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--timeline-text-primary);
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .about-title .highlight {
+        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .about-subtitle {
+        font-size: 1.15rem;
+        color: var(--timeline-text-secondary);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    /* ==================== HORIZONTAL TIMELINE ==================== */
+    .timeline-wrapper {
+        position: relative;
+        padding: 40px 0;
+    }
+
+    /* Timeline Navigation Arrows */
+    .timeline-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 50px;
+        height: 50px;
+        background: var(--timeline-bg-card);
+        border: 1px solid var(--timeline-border);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        z-index: 10;
+        transition: all 0.3s;
+        box-shadow: var(--timeline-shadow-lg);
+    }
+
+    .timeline-nav:hover {
+        background: var(--timeline-primary);
+        border-color: var(--timeline-primary);
+        color: white;
+        transform: translateY(-50%) scale(1.1);
+    }
+
+    .timeline-nav.prev {
+        left: -25px;
+    }
+
+    .timeline-nav.next {
+        right: -25px;
+    }
+
+    .timeline-nav i {
+        font-size: 1.25rem;
+        color: var(--timeline-text-secondary);
+        transition: color 0.3s;
+    }
+
+    .timeline-nav:hover i {
+        color: white;
+    }
+
+    /* Timeline Track */
+    .timeline-track-wrapper {
+        overflow: hidden;
+        padding: 20px 0;
+    }
+
+    .timeline-track {
+        display: flex;
+        gap: 0;
+        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* Timeline Line */
+    .timeline-line-container {
+        position: relative;
+        height: 60px;
+        margin-bottom: 60px;
+    }
+
+    .timeline-line {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        height: 4px;
+        background: linear-gradient(90deg, var(--timeline-border) 0%, var(--timeline-primary-light) 50%, var(--timeline-border) 100%);
+        border-radius: 2px;
+        transform: translateY(-50%);
+    }
+
+    .timeline-line::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        background: var(--timeline-primary);
+        border-radius: 50%;
+    }
+
+    .timeline-line::after {
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 12px solid var(--timeline-primary);
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+
+    /* Year Markers */
+    .timeline-years {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        padding: 0 20px;
+    }
+
+    .timeline-year {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    .timeline-year-dot {
+        width: 20px;
+        height: 20px;
+        background: var(--timeline-bg-card);
+        border: 3px solid var(--timeline-border);
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s;
+    }
+
+    .timeline-year-dot::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 8px;
+        height: 8px;
+        background: var(--timeline-border);
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+
+    .timeline-year:hover .timeline-year-dot,
+    .timeline-year.active .timeline-year-dot {
+        border-color: var(--timeline-primary);
+        transform: scale(1.2);
+    }
+
+    .timeline-year:hover .timeline-year-dot::before,
+    .timeline-year.active .timeline-year-dot::before {
+        background: var(--timeline-primary);
+    }
+
+    .timeline-year.active .timeline-year-dot {
+        box-shadow: 0 0 0 6px rgba(30, 64, 175, 0.2);
+    }
+
+    .timeline-year-label {
+        margin-top: 16px;
+        padding: 8px 16px;
+        background: var(--timeline-bg-card);
+        border: 1px solid var(--timeline-border);
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--timeline-text-secondary);
+        transition: all 0.3s;
+        box-shadow: var(--timeline-shadow);
+    }
+
+    .timeline-year:hover .timeline-year-label,
+    .timeline-year.active .timeline-year-label {
+        background: var(--timeline-primary);
+        border-color: var(--timeline-primary);
+        color: white;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
+    }
+
+    /* Timeline Content Cards */
+    .timeline-content-wrapper {
+        margin-top: 60px;
+        position: relative;
+        min-height: 500px;
+    }
+
+    .timeline-card {
+        display: none;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .timeline-card.active {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .timeline-card-image {
+        position: relative;
+        border-radius: var(--timeline-radius-xl);
+        overflow: hidden;
+        box-shadow: var(--timeline-shadow-xl);
+    }
+
+    .timeline-card-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
+        z-index: 1;
+    }
+
+    .timeline-card-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s;
+    }
+
+    .timeline-card:hover .timeline-card-image img {
+        transform: scale(1.05);
+    }
+
+    .timeline-card-image-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--timeline-primary);
+        z-index: 2;
+        box-shadow: var(--timeline-shadow);
+    }
+
+    .timeline-card-content {
+        padding: 20px 0;
+    }
+
+    .timeline-card-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border: 1px solid #bfdbfe;
+        color: var(--timeline-primary);
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .timeline-card-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--timeline-text-primary);
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .timeline-card-title .highlight {
+        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .timeline-card-text {
+        font-size: 1rem;
+        color: var(--timeline-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+
+    .timeline-card-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .timeline-feature {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--timeline-bg-card);
+        border: 1px solid var(--timeline-border);
+        border-radius: var(--timeline-radius);
+        font-size: 0.85rem;
+        color: var(--timeline-text-secondary);
+        transition: all 0.2s;
+    }
+
+    .timeline-feature:hover {
+        border-color: var(--timeline-primary-light);
+        color: var(--timeline-primary);
+        background: #eff6ff;
+    }
+
+    .timeline-feature i {
+        color: var(--timeline-success);
+    }
+
+    /* Stats Row */
+    .timeline-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--timeline-border);
+    }
+
+    .timeline-stat {
+        text-align: left;
+    }
+
+    .timeline-stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--timeline-primary);
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    .timeline-stat-label {
+        font-size: 0.85rem;
+        color: var(--timeline-text-muted);
+    }
+
+    /* Progress Indicator */
+    .timeline-progress {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 40px;
+    }
+
+    .timeline-progress-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--timeline-border);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .timeline-progress-dot:hover {
+        background: var(--timeline-primary-light);
+    }
+
+    .timeline-progress-dot.active {
+        width: 32px;
+        border-radius: 5px;
+        background: var(--timeline-primary);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1200px) {
+        .timeline-nav.prev {
+            left: 10px;
+        }
+
+        .timeline-nav.next {
+            right: 10px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+        }
+
+        .timeline-card.active {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .timeline-card-image img {
+            height: 300px;
+        }
+
+        .timeline-card-title {
+            font-size: 1.75rem;
+        }
+
+        .timeline-years {
+            overflow-x: auto;
+            padding-bottom: 10px;
+            gap: 20px;
+            justify-content: flex-start;
+        }
+
+        .timeline-year {
+            flex-shrink: 0;
+        }
+
+        .timeline-nav {
+            display: none;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .about-header {
+            margin-bottom: 50px;
+        }
+
+        .about-title {
+            font-size: 2rem;
+        }
+
+        .about-subtitle {
+            font-size: 1rem;
+        }
+
+        .timeline-line-container {
+            display: none;
+        }
+
+        .timeline-years {
+            gap: 12px;
+        }
+
+        .timeline-year-label {
+            font-size: 0.8rem;
+            padding: 6px 12px;
+        }
+
+        .timeline-card-content {
+            padding: 0;
+        }
+
+        .timeline-stats {
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .timeline-stat {
+            flex: 0 0 calc(50% - 10px);
+        }
+    }
+
+    @media (max-width: 576px) {
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .about-title {
+            font-size: 1.75rem;
+        }
+
+        .about-badge {
+            font-size: 0.75rem;
+            padding: 8px 16px;
+        }
+
+        .timeline-card-image img {
+            height: 250px;
+        }
+
+        .timeline-card-title {
+            font-size: 1.5rem;
+        }
+
+        .timeline-card-features {
+            flex-direction: column;
+        }
+
+        .timeline-feature {
+            width: 100%;
+        }
+    }
+
+    /* Animation Classes */
+    .animate-fade-in {
+        animation: fadeIn 0.8s ease forwards;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+{{-- 
+    Professional About Us / History Section with Horizontal Timeline
+    
+    Features:
+    - Horizontal scrollable timeline
+    - Interactive year markers
+    - Smooth animations on scroll
+    - Mobile-responsive vertical fallback
+    
+    Color Psychology:
+    - Primary Blue (#1e40af): Trust, professionalism
+    - Success Green (#059669): Growth, progress
+    - Clean design: Modern, premium feel
+--}}
+
+<style>
+    :root {
+        --timeline-primary: #1e40af;
+        --timeline-primary-light: #3b82f6;
+        --timeline-primary-dark: #1e3a8a;
+        --timeline-accent: #4f46e5;
+        --timeline-success: #059669;
+        --timeline-warning: #f59e0b;
+        --timeline-text-primary: #111827;
+        --timeline-text-secondary: #4b5563;
+        --timeline-text-muted: #9ca3af;
+        --timeline-border: #e5e7eb;
+        --timeline-bg-light: #f8fafc;
+        --timeline-bg-card: #ffffff;
+        --timeline-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+        --timeline-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+        --timeline-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+        --timeline-radius: 12px;
+        --timeline-radius-lg: 16px;
+        --timeline-radius-xl: 24px;
+    }
+
+    /* ==================== ABOUT SECTION ==================== */
+    .about-section {
+        padding: 100px 0;
+        background: linear-gradient(180deg, var(--timeline-bg-light) 0%, #ffffff 50%, var(--timeline-bg-light) 100%);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .about-section::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+            radial-gradient(circle at 90% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
+        pointer-events: none;
+    }
+
+    .about-container {
+        max-width: 1400px;
+        margin: 0 auto;
+        padding: 0 20px;
+        position: relative;
+        z-index: 1;
+    }
+
+    /* Section Header */
+    .about-header {
+        text-align: center;
+        margin-bottom: 80px;
+    }
+
+    .about-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 24px;
+        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+        color: white;
+        border-radius: 50px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        margin-bottom: 24px;
+        box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+    }
+
+    .about-title {
+        font-size: 3rem;
+        font-weight: 800;
+        color: var(--timeline-text-primary);
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .about-title .highlight {
+        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .about-subtitle {
+        font-size: 1.15rem;
+        color: var(--timeline-text-secondary);
+        max-width: 700px;
+        margin: 0 auto;
+        line-height: 1.8;
+    }
+
+    /* ==================== HORIZONTAL TIMELINE ==================== */
+    .timeline-wrapper {
+        position: relative;
+        padding: 40px 0;
+    }
+
+    /* Timeline Container - Holds line and year markers together */
+    .timeline-container {
+        position: relative;
+        padding: 60px 40px 80px;
+    }
+
+    /* Timeline Line - The horizontal bar */
+    .timeline-line {
+        position: absolute;
+        top: 60px;
+        left: 20px;
+        right: 20px;
+        height: 3px;
+        background: linear-gradient(90deg, var(--timeline-primary) 0%, var(--timeline-primary-light) 50%, #cbd5e1 100%);
+        border-radius: 2px;
+    }
+
+    /* Start dot */
+    .timeline-line::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 14px;
+        height: 14px;
+        background: var(--timeline-primary);
+        border-radius: 50%;
+    }
+
+    /* End arrow */
+    .timeline-line::after {
+        content: '';
+        position: absolute;
+        right: -8px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 0;
+        height: 0;
+        border-left: 14px solid #cbd5e1;
+        border-top: 8px solid transparent;
+        border-bottom: 8px solid transparent;
+    }
+
+    /* Year Markers Container */
+    .timeline-years {
+        display: flex;
+        justify-content: space-between;
+        position: relative;
+        z-index: 2;
+    }
+
+    /* Individual Year Marker */
+    .timeline-year {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        transition: all 0.3s;
+        position: relative;
+    }
+
+    /* The dot that sits ON the line */
+    .timeline-year-dot {
+        width: 24px;
+        height: 24px;
+        background: var(--timeline-bg-card);
+        border: 3px solid #cbd5e1;
+        border-radius: 50%;
+        position: relative;
+        z-index: 2;
+        transition: all 0.3s;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    /* Inner dot */
+    .timeline-year-dot::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        background: #cbd5e1;
+        border-radius: 50%;
+        transition: all 0.3s;
+    }
+
+    /* Connecting line from dot to label */
+    .timeline-year-connector {
+        width: 2px;
+        height: 30px;
+        background: #e5e7eb;
+        transition: all 0.3s;
+    }
+
+    /* Year label box */
+    .timeline-year-label {
+        margin-top: 8px;
+        padding: 10px 20px;
+        background: var(--timeline-bg-card);
+        border: 2px solid var(--timeline-border);
+        border-radius: 10px;
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--timeline-text-secondary);
+        transition: all 0.3s;
+        box-shadow: var(--timeline-shadow);
+    }
+
+    /* Hover States */
+    .timeline-year:hover .timeline-year-dot {
+        border-color: var(--timeline-primary-light);
+        transform: scale(1.15);
+    }
+
+    .timeline-year:hover .timeline-year-dot::before {
+        background: var(--timeline-primary-light);
+    }
+
+    .timeline-year:hover .timeline-year-connector {
+        background: var(--timeline-primary-light);
+    }
+
+    .timeline-year:hover .timeline-year-label {
+        border-color: var(--timeline-primary-light);
+        color: var(--timeline-primary);
+    }
+
+    /* Active State */
+    .timeline-year.active .timeline-year-dot {
+        border-color: var(--timeline-primary);
+        background: var(--timeline-bg-card);
+        transform: scale(1.2);
+        box-shadow: 0 0 0 8px rgba(30, 64, 175, 0.15);
+    }
+
+    .timeline-year.active .timeline-year-dot::before {
+        background: var(--timeline-primary);
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-year.active .timeline-year-connector {
+        background: var(--timeline-primary);
+        width: 3px;
+    }
+
+    .timeline-year.active .timeline-year-label {
+        background: var(--timeline-primary);
+        border-color: var(--timeline-primary);
+        color: white;
+        transform: translateY(-4px);
+        box-shadow: 0 8px 25px rgba(30, 64, 175, 0.35);
+    }
+
+    /* Timeline Content Cards */
+    .timeline-content-wrapper {
+        margin-top: 60px;
+        position: relative;
+        min-height: 500px;
+    }
+
+    .timeline-card {
+        display: none;
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .timeline-card.active {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .timeline-card-image {
+        position: relative;
+        border-radius: var(--timeline-radius-xl);
+        overflow: hidden;
+        box-shadow: var(--timeline-shadow-xl);
+    }
+
+    .timeline-card-image::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
+        z-index: 1;
+    }
+
+    .timeline-card-image img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover;
+        display: block;
+        transition: transform 0.5s;
+    }
+
+    .timeline-card:hover .timeline-card-image img {
+        transform: scale(1.05);
+    }
+
+    .timeline-card-image-badge {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        padding: 8px 16px;
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 700;
+        color: var(--timeline-primary);
+        z-index: 2;
+        box-shadow: var(--timeline-shadow);
+    }
+
+    .timeline-card-content {
+        padding: 20px 0;
+    }
+
+    .timeline-card-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 8px 16px;
+        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+        border: 1px solid #bfdbfe;
+        color: var(--timeline-primary);
+        border-radius: 50px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+    }
+
+    .timeline-card-title {
+        font-size: 2.25rem;
+        font-weight: 800;
+        color: var(--timeline-text-primary);
+        margin-bottom: 20px;
+        line-height: 1.2;
+    }
+
+    .timeline-card-title .highlight {
+        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .timeline-card-text {
+        font-size: 1rem;
+        color: var(--timeline-text-secondary);
+        line-height: 1.8;
+        margin-bottom: 16px;
+    }
+
+    .timeline-card-features {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 24px;
+    }
+
+    .timeline-feature {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        background: var(--timeline-bg-card);
+        border: 1px solid var(--timeline-border);
+        border-radius: var(--timeline-radius);
+        font-size: 0.85rem;
+        color: var(--timeline-text-secondary);
+        transition: all 0.2s;
+    }
+
+    .timeline-feature:hover {
+        border-color: var(--timeline-primary-light);
+        color: var(--timeline-primary);
+        background: #eff6ff;
+    }
+
+    .timeline-feature i {
+        color: var(--timeline-success);
+    }
+
+    /* Stats Row */
+    .timeline-stats {
+        display: flex;
+        gap: 32px;
+        margin-top: 32px;
+        padding-top: 32px;
+        border-top: 1px solid var(--timeline-border);
+    }
+
+    .timeline-stat {
+        text-align: left;
+    }
+
+    .timeline-stat-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--timeline-primary);
+        line-height: 1;
+        margin-bottom: 4px;
+    }
+
+    .timeline-stat-label {
+        font-size: 0.85rem;
+        color: var(--timeline-text-muted);
+    }
+
+    /* Progress Indicator */
+    .timeline-progress {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 40px;
+    }
+
+    .timeline-progress-dot {
+        width: 10px;
+        height: 10px;
+        background: var(--timeline-border);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .timeline-progress-dot:hover {
+        background: var(--timeline-primary-light);
+    }
+
+    .timeline-progress-dot.active {
+        width: 32px;
+        border-radius: 5px;
+        background: var(--timeline-primary);
+    }
+
+    /* ==================== RESPONSIVE ==================== */
+    @media (max-width: 1200px) {
+        .timeline-container {
+            padding: 60px 30px 80px;
+        }
+    }
+
+    @media (max-width: 992px) {
+        .about-section {
+            padding: 80px 0;
+        }
+
+        .about-title {
+            font-size: 2.5rem;
+        }
+
+        .timeline-card.active {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .timeline-card-image img {
+            height: 300px;
+        }
+
+        .timeline-card-title {
+            font-size: 1.75rem;
+        }
+
+        .timeline-container {
+            padding: 50px 20px 70px;
+        }
+
+        .timeline-year-label {
+            padding: 8px 14px;
+            font-size: 0.85rem;
+        }
+
+        .timeline-year-connector {
+            height: 24px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .about-header {
+            margin-bottom: 50px;
+        }
+
+        .about-title {
+            font-size: 2rem;
+        }
+
+        .about-subtitle {
+            font-size: 1rem;
+        }
+
+        .timeline-container {
+            padding: 40px 15px 60px;
+            overflow-x: auto;
+        }
+
+        .timeline-years {
+            min-width: 700px;
+            padding: 0 10px;
+        }
+
+        .timeline-line {
+            left: 10px;
+            right: 10px;
+        }
+
+        .timeline-year-dot {
+            width: 20px;
+            height: 20px;
+        }
+
+        .timeline-year-dot::before {
+            width: 6px;
+            height: 6px;
+        }
+
+        .timeline-year-connector {
+            height: 20px;
+        }
+
+        .timeline-year-label {
+            padding: 6px 12px;
+            font-size: 0.8rem;
+        }
+
+        .timeline-card-content {
+            padding: 0;
+        }
+
+        .timeline-stats {
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .timeline-stat {
+            flex: 0 0 calc(50% - 10px);
+        }
+    }
+
+    @media (max-width: 576px) {
+        .about-section {
+            padding: 60px 0;
+        }
+
+        .about-title {
+            font-size: 1.75rem;
+        }
+
+        .about-badge {
+            font-size: 0.75rem;
+            padding: 8px 16px;
+        }
+
+        .timeline-card-image img {
+            height: 250px;
+        }
+
+        .timeline-card-title {
+            font-size: 1.5rem;
+        }
+
+        .timeline-card-features {
+            flex-direction: column;
+        }
+
+        .timeline-feature {
+            width: 100%;
+        }
+
+        .timeline-container {
+            padding: 35px 10px 50px;
+        }
+
+        .timeline-years {
+            min-width: 600px;
+        }
+    }
+
+    /* Animation Classes */
+    .animate-fade-in {
+        animation: fadeIn 0.8s ease forwards;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+        }
+        to {
+            opacity: 1;
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
+
+<!-- ==================== ABOUT / HISTORY SECTION ==================== -->
+<section class="about-section" id="about">
+    <div class="about-container">
+        <!-- Section Header -->
+        <div class="about-header">
+            <span class="about-badge">
+                <i class="bi bi-building"></i> About Us
+            </span>
+            <h2 class="about-title">
+                Our <span class="highlight">Journey</span> Through Time
+            </h2>
+            <p class="about-subtitle">
+                From humble beginnings to industry leadership, discover how Pure Aqua Tech has been 
+                revolutionizing water purification technology for over a decade.
+            </p>
+        </div>
+
+        <!-- Timeline -->
+        <div class="timeline-wrapper">
+            <!-- Timeline Container with Line and Years -->
+            <div class="timeline-container">
+                <!-- Timeline Line -->
+                <div class="timeline-line"></div>
+
+                <!-- Year Markers -->
+                <div class="timeline-years" id="timelineYears">
+                    <div class="timeline-year" data-year="0">
+                        <div class="timeline-year-dot"></div>
+                        <div class="timeline-year-connector"></div>
+                        <span class="timeline-year-label">2010</span>
+                    </div>
+                    <div class="timeline-year" data-year="1">
+                        <div class="timeline-year-dot"></div>
+                        <div class="timeline-year-connector"></div>
+                        <span class="timeline-year-label">2015</span>
+                    </div>
+                    <div class="timeline-year" data-year="2">
+                        <div class="timeline-year-dot"></div>
+                        <div class="timeline-year-connector"></div>
+                        <span class="timeline-year-label">2018</span>
+                    </div>
+                    <div class="timeline-year active" data-year="3">
+                        <div class="timeline-year-dot"></div>
+                        <div class="timeline-year-connector"></div>
+                        <span class="timeline-year-label">2020</span>
+                    </div>
+                    <div class="timeline-year" data-year="4">
+                        <div class="timeline-year-dot"></div>
+                        <div class="timeline-year-connector"></div>
+                        <span class="timeline-year-label">2022</span>
+                    </div>
+                    <div class="timeline-year" data-year="5">
+                        <div class="timeline-year-dot"></div>
+                        <div class="timeline-year-connector"></div>
+                        <span class="timeline-year-label">2025</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Cards -->
+            <div class="timeline-content-wrapper">
+                <!-- 2010 -->
+                <div class="timeline-card" data-card="0">
+                    <div class="timeline-card-image">
+                        <span class="timeline-card-image-badge">
+                            <i class="bi bi-calendar-event"></i> 2010
+                        </span>
+                        <img src="{{ asset('img/about/view-fantasy-tap.jpg') }}" alt="Foundation Year">
+                    </div>
+                    <div class="timeline-card-content">
+                        <span class="timeline-card-badge">
+                            <i class="bi bi-flag-fill"></i> Foundation Year
+                        </span>
+                        <h3 class="timeline-card-title">
+                            The <span class="highlight">Beginning</span>
+                        </h3>
+                        <p class="timeline-card-text">
+                            Pure Aqua Tech was established with a vision to provide clean, safe drinking 
+                            water solutions to communities across the region.
+                        </p>
+                        <p class="timeline-card-text">
+                            Starting with a small team of dedicated engineers, we began our journey to 
+                            revolutionize water purification technology and make clean water accessible to all.
+                        </p>
+                        <div class="timeline-card-features">
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Founded Company</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> First Product Line</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 5 Team Members</span>
+                        </div>
+                        <div class="timeline-stats">
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">5</div>
+                                <div class="timeline-stat-label">Team Members</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">1</div>
+                                <div class="timeline-stat-label">City Covered</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">100+</div>
+                                <div class="timeline-stat-label">First Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2015 -->
+                <div class="timeline-card" data-card="1">
+                    <div class="timeline-card-image">
+                        <span class="timeline-card-image-badge">
+                            <i class="bi bi-calendar-event"></i> 2015
+                        </span>
+                        <img src="{{ asset('img/about/rm373batch10-207.jpg') }}" alt="Innovation Milestone">
+                    </div>
+                    <div class="timeline-card-content">
+                        <span class="timeline-card-badge">
+                            <i class="bi bi-lightbulb-fill"></i> Innovation Milestone
+                        </span>
+                        <h3 class="timeline-card-title">
+                            Advanced <span class="highlight">RO Technology</span>
+                        </h3>
+                        <p class="timeline-card-text">
+                            Launched our first advanced Reverse Osmosis system with multi-stage filtration, 
+                            achieving 99.9% purification efficiency.
+                        </p>
+                        <p class="timeline-card-text">
+                            This breakthrough technology set new industry standards and earned us ISO 
+                            certification for quality excellence and customer satisfaction.
+                        </p>
+                        <div class="timeline-card-features">
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> ISO Certified</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 99.9% Purity</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Multi-Stage RO</span>
+                        </div>
+                        <div class="timeline-stats">
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">25</div>
+                                <div class="timeline-stat-label">Team Members</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">10</div>
+                                <div class="timeline-stat-label">Cities Covered</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">5K+</div>
+                                <div class="timeline-stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2018 -->
+                <div class="timeline-card" data-card="2">
+                    <div class="timeline-card-image">
+                        <span class="timeline-card-image-badge">
+                            <i class="bi bi-calendar-event"></i> 2018
+                        </span>
+                        <img src="{{ asset('img/about/2212.i121.024.jpg') }}" alt="Market Expansion">
+                    </div>
+                    <div class="timeline-card-content">
+                        <span class="timeline-card-badge">
+                            <i class="bi bi-graph-up-arrow"></i> Market Expansion
+                        </span>
+                        <h3 class="timeline-card-title">
+                            Regional <span class="highlight">Growth</span>
+                        </h3>
+                        <p class="timeline-card-text">
+                            Expanded operations to serve over 50 cities, installing water purification 
+                            systems in thousands of homes and businesses nationwide.
+                        </p>
+                        <p class="timeline-card-text">
+                            Established dedicated service centers to provide 24/7 customer support and 
+                            maintenance services across all regions we operate in.
+                        </p>
+                        <div class="timeline-card-features">
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 50+ Cities</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Service Centers</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 24/7 Support</span>
+                        </div>
+                        <div class="timeline-stats">
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">75</div>
+                                <div class="timeline-stat-label">Team Members</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">50+</div>
+                                <div class="timeline-stat-label">Cities Covered</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">25K+</div>
+                                <div class="timeline-stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2020 (Active by default) -->
+                <div class="timeline-card active" data-card="3">
+                    <div class="timeline-card-image">
+                        <span class="timeline-card-image-badge">
+                            <i class="bi bi-calendar-event"></i> 2020
+                        </span>
+                        <img src="{{ asset('img/about/online-shopping-concept.jpg') }}" alt="Smart Technology">
+                    </div>
+                    <div class="timeline-card-content">
+                        <span class="timeline-card-badge">
+                            <i class="bi bi-cpu-fill"></i> Digital Revolution
+                        </span>
+                        <h3 class="timeline-card-title">
+                            Smart <span class="highlight">IoT Systems</span>
+                        </h3>
+                        <p class="timeline-card-text">
+                            Introduced IoT-enabled water purifiers with real-time monitoring, automatic 
+                            filter alerts, and mobile app connectivity for enhanced user experience.
+                        </p>
+                        <p class="timeline-card-text">
+                            Our smart systems allow users to track water quality, consumption patterns, 
+                            and schedule maintenance through their smartphones seamlessly.
+                        </p>
+                        <div class="timeline-card-features">
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> IoT Enabled</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Mobile App</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Real-time Monitoring</span>
+                        </div>
+                        <div class="timeline-stats">
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">150</div>
+                                <div class="timeline-stat-label">Team Members</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">75+</div>
+                                <div class="timeline-stat-label">Cities Covered</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">50K+</div>
+                                <div class="timeline-stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2022 -->
+                <div class="timeline-card" data-card="4">
+                    <div class="timeline-card-image">
+                        <span class="timeline-card-image-badge">
+                            <i class="bi bi-calendar-event"></i> 2022
+                        </span>
+                        <img src="{{ asset('img/about/view-fantasy.jpg') }}" alt="Green Initiative">
+                    </div>
+                    <div class="timeline-card-content">
+                        <span class="timeline-card-badge">
+                            <i class="bi bi-leaf-fill"></i> Green Initiative
+                        </span>
+                        <h3 class="timeline-card-title">
+                            Eco-Friendly <span class="highlight">Solutions</span>
+                        </h3>
+                        <p class="timeline-card-text">
+                            Launched our sustainable water purification line with zero-waste technology 
+                            and energy-efficient operations to protect the environment.
+                        </p>
+                        <p class="timeline-card-text">
+                            Committed to reducing plastic waste by promoting reusable filter systems and 
+                            eco-conscious manufacturing processes throughout production.
+                        </p>
+                        <div class="timeline-card-features">
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Zero Waste</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Energy Efficient</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Eco Manufacturing</span>
+                        </div>
+                        <div class="timeline-stats">
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">200</div>
+                                <div class="timeline-stat-label">Team Members</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">100+</div>
+                                <div class="timeline-stat-label">Cities Covered</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">75K+</div>
+                                <div class="timeline-stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2025 -->
+                <div class="timeline-card" data-card="5">
+                    <div class="timeline-card-image">
+                        <span class="timeline-card-image-badge">
+                            <i class="bi bi-calendar-event"></i> 2025
+                        </span>
+                        <img src="{{ asset('img/about/18375.jpg') }}" alt="Industry Leader">
+                    </div>
+                    <div class="timeline-card-content">
+                        <span class="timeline-card-badge">
+                            <i class="bi bi-trophy-fill"></i> Industry Leader
+                        </span>
+                        <h3 class="timeline-card-title">
+                            Award <span class="highlight">Winning</span>
+                        </h3>
+                        <p class="timeline-card-text">
+                            Recognized as the leading water purification company with multiple industry 
+                            awards for innovation and exceptional customer satisfaction.
+                        </p>
+                        <p class="timeline-card-text">
+                            Achieved NSF International certification and became the trusted choice for 
+                            over 100,000 satisfied customers nationwide and growing.
+                        </p>
+                        <div class="timeline-card-features">
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> NSF Certified</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Award Winning</span>
+                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Market Leader</span>
+                        </div>
+                        <div class="timeline-stats">
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">300+</div>
+                                <div class="timeline-stat-label">Team Members</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">150+</div>
+                                <div class="timeline-stat-label">Cities Covered</div>
+                            </div>
+                            <div class="timeline-stat">
+                                <div class="timeline-stat-value">100K+</div>
+                                <div class="timeline-stat-label">Customers</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Progress Dots -->
+            <div class="timeline-progress" id="timelineProgress">
+                <span class="timeline-progress-dot" data-year="0"></span>
+                <span class="timeline-progress-dot" data-year="1"></span>
+                <span class="timeline-progress-dot" data-year="2"></span>
+                <span class="timeline-progress-dot active" data-year="3"></span>
+                <span class="timeline-progress-dot" data-year="4"></span>
+                <span class="timeline-progress-dot" data-year="5"></span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const timelineYears = document.querySelectorAll('.timeline-year');
+    const timelineCards = document.querySelectorAll('.timeline-card');
+    const progressDots = document.querySelectorAll('.timeline-progress-dot');
+    let currentIndex = 3; // Start at 2020
+
+    function setActiveYear(index) {
+        // Update year markers
+        timelineYears.forEach((year, i) => {
+            year.classList.toggle('active', i === index);
+        });
+
+        // Update cards with animation
+        timelineCards.forEach((card, i) => {
+            if (i === index) {
+                card.classList.add('active');
+            } else {
+                card.classList.remove('active');
+            }
+        });
+
+        // Update progress dots
+        progressDots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === index);
+        });
+
+        currentIndex = index;
+    }
+
+    // Click on year markers
+    timelineYears.forEach((year, index) => {
+        year.addEventListener('click', () => {
+            setActiveYear(index);
+        });
+    });
+
+    // Click on progress dots
+    progressDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            setActiveYear(index);
+        });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowRight' && currentIndex < timelineYears.length - 1) {
+            setActiveYear(currentIndex + 1);
+        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+            setActiveYear(currentIndex - 1);
+        }
+    });
+
+    // Touch swipe support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    const contentWrapper = document.querySelector('.timeline-content-wrapper');
+
+    contentWrapper.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+    }, false);
+
+    contentWrapper.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+    }, false);
+
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0 && currentIndex < timelineYears.length - 1) {
+                // Swipe left - next
+                setActiveYear(currentIndex + 1);
+            } else if (diff < 0 && currentIndex > 0) {
+                // Swipe right - previous
+                setActiveYear(currentIndex - 1);
+            }
+        }
+    }
+
+    // Auto-rotate (optional - uncomment to enable)
+    /*
+    let autoRotateInterval = setInterval(() => {
+        let nextIndex = (currentIndex + 1) % timelineYears.length;
+        setActiveYear(nextIndex);
+    }, 5000);
+
+    // Stop auto-rotate on user interaction
+    document.querySelector('.timeline-wrapper').addEventListener('click', () => {
+        clearInterval(autoRotateInterval);
+    });
+    */
+
+    // Intersection Observer for scroll animations
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-slide-up');
+            }
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.about-header, .timeline-container, .timeline-years').forEach(el => {
+        observer.observe(el);
+    });
+});
+</script>
 
 
     {{-- Add this CSS to your main stylesheet --}}
@@ -2031,9 +3760,9 @@
         }
 
         /* .product-card-minimal .badge.featured {
-                                                background: #000;
-                                                color: white;
-                                            } */
+                                                    background: #000;
+                                                    color: white;
+                                                } */
         .product-card-minimal .badge.featured {
             background: linear-gradient(135deg, #3dcbffff 0%, #75c4ebff 100%);
             color: white;

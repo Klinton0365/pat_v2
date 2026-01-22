@@ -86,7 +86,7 @@
 
             <!-- Action Buttons -->
             <div style="display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; animation: fadeInUp 0.6s ease 0.6s both;">
-                <a href="{{ route('orders.index') }}" 
+                <a href="{{ route('user.orders.index') }}" 
                     style="display: inline-flex; align-items: center; padding: 1rem 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1rem; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);">
                     <i class="bi bi-box-seam" style="margin-right: 0.5rem; font-size: 1.1rem;"></i> View My Orders
                 </a>
