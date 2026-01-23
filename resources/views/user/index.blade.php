@@ -88,16 +88,16 @@
 
         /* Hero Section */
         /* .hero {
-                                        background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
-                                            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
-                                        background-size: cover;
-                                        background-position: center;
-                                        min-height: 100vh;
-                                        display: flex;
-                                        align-items: center;
-                                        position: relative;
-                                        overflow: hidden;
-                                    } */
+                                                        background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
+                                                            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
+                                                        background-size: cover;
+                                                        background-position: center;
+                                                        min-height: 100vh;
+                                                        display: flex;
+                                                        align-items: center;
+                                                        position: relative;
+                                                        overflow: hidden;
+                                                    } */
 
         .hero {
             position: relative;
@@ -1570,2141 +1570,2963 @@
     </div>
     <!-- Searvices End -->
 
-    {{-- About Us --}}
+
+
+    {{-- Professional About Us / History Section with Horizontal Timeline
+    
+    Features:
+    - Horizontal scrollable timeline
+    - Interactive year markers
+    - Smooth animations on scroll
+    - Mobile-responsive vertical fallback
+    
+    Color Psychology:
+    - Primary Blue (#1e40af): Trust, professionalism
+    - Success Green (#059669): Growth, progress
+    - Clean design: Modern, premium feel
+    --}}
+
     {{-- <style>
-        .history-area {
-            background: #f7f9fb;
+        :root {
+            --timeline-primary: #1e40af;
+            --timeline-primary-light: #3b82f6;
+            --timeline-primary-dark: #1e3a8a;
+            --timeline-accent: #4f46e5;
+            --timeline-success: #059669;
+            --timeline-warning: #f59e0b;
+            --timeline-text-primary: #111827;
+            --timeline-text-secondary: #4b5563;
+            --timeline-text-muted: #9ca3af;
+            --timeline-border: #e5e7eb;
+            --timeline-bg-light: #f8fafc;
+            --timeline-bg-card: #ffffff;
+            --timeline-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --timeline-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --timeline-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --timeline-radius: 12px;
+            --timeline-radius-lg: 16px;
+            --timeline-radius-xl: 24px;
+        }
+
+        /* ==================== ABOUT SECTION ==================== */
+        .about-section {
             padding: 100px 0;
+            background: linear-gradient(180deg, var(--timeline-bg-light) 0%, #ffffff 50%, var(--timeline-bg-light) 100%);
             position: relative;
-            min-height: 100vh;
+            overflow: hidden;
         }
 
-        .title-bg-small {
-            font-size: 14px;
-            font-weight: 700;
-            line-height: 24px;
-            margin-bottom: 15px;
-            color: #fff;
-            background: #4facfe;
-            display: inline-block;
-            padding: 3px 18px;
-            text-transform: uppercase;
-        }
-
-        .section-title {
-            font-size: 36px;
-            font-weight: 300;
-            color: #101010;
-            margin-bottom: 70px;
-        }
-
-        .section-title span {
-            font-weight: 700;
-        }
-
-        .primary-bg {
-            background: #4facfe;
-        }
-
-        .column-title {
-            font-size: 36px;
-            font-weight: 300;
-            color: #101010;
-            margin-bottom: 30px;
-        }
-
-        .column-title span {
-            font-weight: 700;
-        }
-
-        #history-slid .history-content {
-            background: #fff;
-            padding: 35px;
-            padding-left: 14px;
-        }
-
-        #history-slid .carousel-inner {
-            margin-bottom: 45px;
-        }
-
-        #history-slid .carousel-item {
-            background: #fff;
-        }
-
-        #history-slid .carousel-indicators {
-            position: relative;
-            left: 0%;
-            z-index: 5;
-            width: 100%;
-            padding-left: 0;
-            margin-left: 0%;
-            text-align: center;
-            list-style: none;
-        }
-
-        #history-slid .carousel-indicators:before {
-            content: "";
-            width: 100%;
-            height: 2px;
+        .about-section::before {
+            content: '';
             position: absolute;
+            top: 0;
             left: 0;
-            top: 15px;
-            background-color: #ddd;
-            z-index: -1;
-        }
-
-        #history-slid .carousel-indicators li {
-            display: inline-block;
-            width: 70px;
-            height: 35px;
-            line-height: 35px;
-            margin: 0 35px;
-            text-indent: 0px;
-            cursor: pointer;
-            color: #101010;
-            border: 0px solid #fff;
-            border-radius: 0px;
-            margin-top: 40px;
-            font-weight: 700;
-            font-size: 16px;
-            position: relative;
-            background: transparent;
-            transition: all 0.3s ease;
-        }
-
-        #history-slid .carousel-indicators li:hover {
-            transform: translateY(-3px);
-        }
-
-        #history-slid .carousel-indicators li:before {
-            position: absolute;
-            top: -30px;
-            left: 50%;
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            content: "";
-            border-radius: 50%;
-            background: #101010;
-            margin-left: -7px;
-            transition: all 0.3s ease;
-        }
-
-        #history-slid .carousel-indicators li.active {
-            line-height: 35px;
-            box-shadow: 0px 20px 30px 0px rgba(0, 0, 0, 0.15);
-            color: #4facfe;
-            background: #fff;
-        }
-
-        #history-slid .carousel-indicators li.active::before {
-            background: #4facfe;
-        }
-
-        #history-slid .carousel-indicators li.active:after {
-            position: absolute;
-            top: -34px;
-            left: 44%;
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            content: "";
-            border-radius: 50%;
-            margin-left: -7px;
-            border: 1px solid #4facfe;
-        }
-
-        #history-slid .carousel-item-next,
-        #history-slid .carousel-item-prev,
-        #history-slid .carousel-item.active {
-            display: flex;
-        }
-
-        .history-img img {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            background:
+                radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
+            pointer-events: none;
         }
 
-        /* Scroll Animation Styles */
-        .fade-in-up {
+        .about-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Section Header */
+        .about-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .about-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .about-title {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--timeline-text-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .about-title .highlight {
+            background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-subtitle {
+            font-size: 1.15rem;
+            color: var(--timeline-text-secondary);
+            max-width: 700px;
+            margin: 0 auto;
+            line-height: 1.8;
+        }
+
+        /* ==================== HORIZONTAL TIMELINE ==================== */
+        .timeline-wrapper {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        /* Timeline Container - Holds line and year markers together */
+        .timeline-container {
+            position: relative;
+            padding: 60px 40px 80px;
+        }
+
+        /* Timeline Line - The horizontal bar */
+        .timeline-line {
+            position: absolute;
+            top: 60px;
+            left: 20px;
+            right: 20px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--timeline-primary) 0%, var(--timeline-primary-light) 50%, #cbd5e1 100%);
+            border-radius: 2px;
+        }
+
+        /* Start dot */
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 14px;
+            height: 14px;
+            background: var(--timeline-primary);
+            border-radius: 50%;
+        }
+
+        /* End arrow */
+        .timeline-line::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: 14px solid #cbd5e1;
+            border-top: 8px solid transparent;
+            border-bottom: 8px solid transparent;
+        }
+
+        /* Year Markers Container */
+        .timeline-years {
+            display: flex;
+            justify-content: space-between;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Individual Year Marker */
+        .timeline-year {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        /* The dot that sits ON the line */
+        .timeline-year-dot {
+            width: 24px;
+            height: 24px;
+            background: var(--timeline-bg-card);
+            border: 3px solid #cbd5e1;
+            border-radius: 50%;
+            position: relative;
+            z-index: 2;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Inner dot */
+        .timeline-year-dot::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: #cbd5e1;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        /* Connecting line from dot to label */
+        .timeline-year-connector {
+            width: 2px;
+            height: 30px;
+            background: #e5e7eb;
+            transition: all 0.3s;
+        }
+
+        /* Year label box */
+        .timeline-year-label {
+            margin-top: 8px;
+            padding: 10px 20px;
+            background: var(--timeline-bg-card);
+            border: 2px solid var(--timeline-border);
+            border-radius: 10px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--timeline-text-secondary);
+            transition: all 0.3s;
+            box-shadow: var(--timeline-shadow);
+        }
+
+        /* Hover States */
+        .timeline-year:hover .timeline-year-dot {
+            border-color: var(--timeline-primary-light);
+            transform: scale(1.15);
+        }
+
+        .timeline-year:hover .timeline-year-dot::before {
+            background: var(--timeline-primary-light);
+        }
+
+        .timeline-year:hover .timeline-year-connector {
+            background: var(--timeline-primary-light);
+        }
+
+        .timeline-year:hover .timeline-year-label {
+            border-color: var(--timeline-primary-light);
+            color: var(--timeline-primary);
+        }
+
+        /* Active State */
+        .timeline-year.active .timeline-year-dot {
+            border-color: var(--timeline-primary);
+            background: var(--timeline-bg-card);
+            transform: scale(1.2);
+            box-shadow: 0 0 0 8px rgba(30, 64, 175, 0.15);
+        }
+
+        .timeline-year.active .timeline-year-dot::before {
+            background: var(--timeline-primary);
+            width: 10px;
+            height: 10px;
+        }
+
+        .timeline-year.active .timeline-year-connector {
+            background: var(--timeline-primary);
+            width: 3px;
+        }
+
+        .timeline-year.active .timeline-year-label {
+            background: var(--timeline-primary);
+            border-color: var(--timeline-primary);
+            color: white;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 25px rgba(30, 64, 175, 0.35);
+        }
+
+        /* Timeline Content Cards */
+        .timeline-content-wrapper {
+            margin-top: 60px;
+            position: relative;
+            min-height: 500px;
+        }
+
+        .timeline-card {
+            display: none;
             opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+            transform: translateY(30px);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .fade-in-up.visible {
+        .timeline-card.active {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
             opacity: 1;
             transform: translateY(0);
         }
 
-        .fade-in-left {
-            opacity: 0;
-            transform: translateX(-50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        .timeline-card-image {
+            position: relative;
+            border-radius: var(--timeline-radius-xl);
+            overflow: hidden;
+            box-shadow: var(--timeline-shadow-xl);
         }
 
-        .fade-in-left.visible {
-            opacity: 1;
-            transform: translateX(0);
+        .timeline-card-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
+            z-index: 1;
         }
 
-        .fade-in-right {
-            opacity: 0;
-            transform: translateX(50px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        .timeline-card-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.5s;
         }
 
-        .fade-in-right.visible {
-            opacity: 1;
-            transform: translateX(0);
+        .timeline-card:hover .timeline-card-image img {
+            transform: scale(1.05);
         }
 
-        .scale-in {
-            opacity: 0;
-            transform: scale(0.9);
-            transition: opacity 0.8s ease, transform 0.8s ease;
+        .timeline-card-image-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 8px 16px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--timeline-primary);
+            z-index: 2;
+            box-shadow: var(--timeline-shadow);
         }
 
-        .scale-in.visible {
-            opacity: 1;
-            transform: scale(1);
+        .timeline-card-content {
+            padding: 20px 0;
         }
 
-        .delay-1 {
-            transition-delay: 0.1s;
+        .timeline-card-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            color: var(--timeline-primary);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 20px;
         }
 
-        .delay-2 {
-            transition-delay: 0.2s;
+        .timeline-card-title {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: var(--timeline-text-primary);
+            margin-bottom: 20px;
+            line-height: 1.2;
         }
 
-        .delay-3 {
-            transition-delay: 0.3s;
+        .timeline-card-title .highlight {
+            background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .delay-4 {
-            transition-delay: 0.4s;
+        .timeline-card-text {
+            font-size: 1rem;
+            color: var(--timeline-text-secondary);
+            line-height: 1.8;
+            margin-bottom: 16px;
         }
 
-        @media (max-width: 991px) {
-            #history-slid .carousel-item {
+        .timeline-card-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        .timeline-feature {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 16px;
+            background: var(--timeline-bg-card);
+            border: 1px solid var(--timeline-border);
+            border-radius: var(--timeline-radius);
+            font-size: 0.85rem;
+            color: var(--timeline-text-secondary);
+            transition: all 0.2s;
+        }
+
+        .timeline-feature:hover {
+            border-color: var(--timeline-primary-light);
+            color: var(--timeline-primary);
+            background: #eff6ff;
+        }
+
+        .timeline-feature i {
+            color: var(--timeline-success);
+        }
+
+        /* Stats Row */
+        .timeline-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+            padding-top: 32px;
+            border-top: 1px solid var(--timeline-border);
+        }
+
+        .timeline-stat {
+            text-align: left;
+        }
+
+        .timeline-stat-value {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--timeline-primary);
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+
+        .timeline-stat-label {
+            font-size: 0.85rem;
+            color: var(--timeline-text-muted);
+        }
+
+        /* Progress Indicator */
+        .timeline-progress {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 40px;
+        }
+
+        .timeline-progress-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--timeline-border);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .timeline-progress-dot:hover {
+            background: var(--timeline-primary-light);
+        }
+
+        .timeline-progress-dot.active {
+            width: 32px;
+            border-radius: 5px;
+            background: var(--timeline-primary);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1200px) {
+            .timeline-container {
+                padding: 60px 30px 80px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .about-section {
+                padding: 80px 0;
+            }
+
+            .about-title {
+                font-size: 2.5rem;
+            }
+
+            .timeline-card.active {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .timeline-card-image img {
+                height: 300px;
+            }
+
+            .timeline-card-title {
+                font-size: 1.75rem;
+            }
+
+            .timeline-container {
+                padding: 50px 20px 70px;
+            }
+
+            .timeline-year-label {
+                padding: 8px 14px;
+                font-size: 0.85rem;
+            }
+
+            .timeline-year-connector {
+                height: 24px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .about-header {
+                margin-bottom: 50px;
+            }
+
+            .about-title {
+                font-size: 2rem;
+            }
+
+            .about-subtitle {
+                font-size: 1rem;
+            }
+
+            .timeline-container {
+                padding: 40px 15px 60px;
+                overflow-x: auto;
+            }
+
+            .timeline-years {
+                min-width: 700px;
+                padding: 0 10px;
+            }
+
+            .timeline-line {
+                left: 10px;
+                right: 10px;
+            }
+
+            .timeline-year-dot {
+                width: 20px;
+                height: 20px;
+            }
+
+            .timeline-year-dot::before {
+                width: 6px;
+                height: 6px;
+            }
+
+            .timeline-year-connector {
+                height: 20px;
+            }
+
+            .timeline-year-label {
+                padding: 6px 12px;
+                font-size: 0.8rem;
+            }
+
+            .timeline-card-content {
+                padding: 0;
+            }
+
+            .timeline-stats {
+                flex-wrap: wrap;
+                gap: 20px;
+            }
+
+            .timeline-stat {
+                flex: 0 0 calc(50% - 10px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .about-section {
+                padding: 60px 0;
+            }
+
+            .about-title {
+                font-size: 1.75rem;
+            }
+
+            .about-badge {
+                font-size: 0.75rem;
+                padding: 8px 16px;
+            }
+
+            .timeline-card-image img {
+                height: 250px;
+            }
+
+            .timeline-card-title {
+                font-size: 1.5rem;
+            }
+
+            .timeline-card-features {
                 flex-direction: column;
             }
 
-            #history-slid .carousel-indicators li {
-                margin: 0 15px;
-                width: 60px;
+            .timeline-feature {
+                width: 100%;
+            }
+
+            .timeline-container {
+                padding: 35px 10px 50px;
+            }
+
+            .timeline-years {
+                min-width: 600px;
+            }
+        }
+
+        /* Animation Classes */
+        .animate-fade-in {
+            animation: fadeIn 0.8s ease forwards;
+        }
+
+        .animate-slide-up {
+            animation: slideUp 0.8s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 
-    <section class="history-area">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12 text-center">
-                    <p class="title-bg-small fade-in-up">About us</p>
-                    <h3 class="section-title fade-in-up delay-1">Our <span>History</span></h3>
-                </div>
+    <!-- ==================== ABOUT / HISTORY SECTION ==================== -->
+    <section class="about-section" id="about">
+        <div class="about-container">
+            <!-- Section Header -->
+            <div class="about-header">
+                <span class="about-badge">
+                    <i class="bi bi-building"></i> About Us
+                </span>
+                <h2 class="about-title">
+                    Our <span class="highlight">Journey</span> Through Time
+                </h2>
+                <p class="about-subtitle">
+                    From humble beginnings to industry leadership, discover how Pure Aqua Tech has been
+                    revolutionizing water purification technology for over a decade.
+                </p>
             </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <div id="history-slid" class="carousel slide" data-ride="carousel" data-interval="false">
-                        <!-- Wrapper for slides -->
-                        <div class="carousel-inner scale-in delay-2">
-                            <!-- 2010 -->
-                            <div class="carousel-item row">
-                                <div class="col-lg-6 col-md-12 pl-0">
-                                    <div class="history-img">
-                                        <img class="img-fluid" src="{{ asset('img/about/view-fantasy-tap.jpg') }}"
-                                            alt="2010 Foundation" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 pr-0">
-                                    <div class="history-content">
-                                        <p class="title-bg-small primary-bg">Foundation Year</p>
-                                        <h2 class="column-title">The <span>Beginning</span></h2>
-                                        <p>Pure Aqua Tech was established with a vision to provide clean, safe drinking
-                                            water solutions to communities across the region.</p>
-                                        <p>Starting with a small team of dedicated engineers, we began our journey to
-                                            revolutionize water purification technology and make clean water accessible to
-                                            all.</p>
-                                    </div>
-                                </div>
-                            </div>
 
-                            <!-- 2015 -->
-                            <div class="carousel-item row">
-                                <div class="col-lg-6 col-md-12 pl-0">
-                                    <div class="history-img">
-                                        <img class="img-fluid" src="{{ asset('img/about/rm373batch10-207.jpg') }}"
-                                            alt="2015 Innovation" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 pr-0">
-                                    <div class="history-content">
-                                        <p class="title-bg-small primary-bg">Innovation Milestone</p>
-                                        <h2 class="column-title">Advanced <span>RO Technology</span></h2>
-                                        <p>Launched our first advanced Reverse Osmosis system with multi-stage filtration,
-                                            achieving 99.9% purification efficiency.</p>
-                                        <p>This breakthrough technology set new industry standards and earned us ISO
-                                            certification for quality excellence and customer satisfaction.</p>
-                                    </div>
-                                </div>
-                            </div>
+            <!-- Timeline -->
+            <div class="timeline-wrapper">
+                <!-- Timeline Container with Line and Years -->
+                <div class="timeline-container">
+                    <!-- Timeline Line -->
+                    <div class="timeline-line"></div>
 
-                            <!-- 2018 -->
-                            <div class="carousel-item row">
-                                <div class="col-lg-6 col-md-12 pl-0">
-                                    <div class="history-img">
-                                        <img class="img-fluid" src="{{ asset('img/about/2212.i121.024.jpg') }}"
-                                            alt="2018 Expansion" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 pr-0">
-                                    <div class="history-content">
-                                        <p class="title-bg-small primary-bg">Market Expansion</p>
-                                        <h2 class="column-title">Regional <span>Growth</span></h2>
-                                        <p>Expanded operations to serve over 50 cities, installing water purification
-                                            systems in thousands of homes and businesses nationwide.</p>
-                                        <p>Established dedicated service centers to provide 24/7 customer support and
-                                            maintenance services across all regions we operate in.</p>
-                                    </div>
-                                </div>
-                            </div>
+                    <!-- Year Markers -->
+                    <div class="timeline-years" id="timelineYears">
+                        <div class="timeline-year" data-year="0">
+                            <div class="timeline-year-dot"></div>
+                            <div class="timeline-year-connector"></div>
+                            <span class="timeline-year-label">2010</span>
+                        </div>
+                        <div class="timeline-year" data-year="1">
+                            <div class="timeline-year-dot"></div>
+                            <div class="timeline-year-connector"></div>
+                            <span class="timeline-year-label">2015</span>
+                        </div>
+                        <div class="timeline-year" data-year="2">
+                            <div class="timeline-year-dot"></div>
+                            <div class="timeline-year-connector"></div>
+                            <span class="timeline-year-label">2018</span>
+                        </div>
+                        <div class="timeline-year active" data-year="3">
+                            <div class="timeline-year-dot"></div>
+                            <div class="timeline-year-connector"></div>
+                            <span class="timeline-year-label">2020</span>
+                        </div>
+                        <div class="timeline-year" data-year="4">
+                            <div class="timeline-year-dot"></div>
+                            <div class="timeline-year-connector"></div>
+                            <span class="timeline-year-label">2022</span>
+                        </div>
+                        <div class="timeline-year" data-year="5">
+                            <div class="timeline-year-dot"></div>
+                            <div class="timeline-year-connector"></div>
+                            <span class="timeline-year-label">2025</span>
+                        </div>
+                    </div>
+                </div>
 
-                            <!-- 2020 - Active -->
-                            <div class="carousel-item row active">
-                                <div class="col-lg-6 col-md-12 pl-0">
-                                    <div class="history-img">
-                                        <img class="img-fluid" src="{{ asset('img/about/online-shopping-concept.jpg') }}"
-                                            alt="2020 Smart Technology" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 pr-0">
-                                    <div class="history-content">
-                                        <p class="title-bg-small primary-bg">Digital Revolution</p>
-                                        <h2 class="column-title">Smart <span>IoT Systems</span></h2>
-                                        <p>Introduced IoT-enabled water purifiers with real-time monitoring, automatic
-                                            filter alerts, and mobile app connectivity for enhanced user experience.</p>
-                                        <p>Our smart systems allow users to track water quality, consumption patterns, and
-                                            schedule maintenance through their smartphones seamlessly.</p>
-                                    </div>
-                                </div>
+                <!-- Content Cards -->
+                <div class="timeline-content-wrapper">
+                    <!-- 2010 -->
+                    <div class="timeline-card" data-card="0">
+                        <div class="timeline-card-image">
+                            <span class="timeline-card-image-badge">
+                                <i class="bi bi-calendar-event"></i> 2010
+                            </span>
+                            <img src="{{ asset('img/about/view-fantasy-tap.jpg') }}" alt="Foundation Year">
+                        </div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-badge">
+                                <i class="bi bi-flag-fill"></i> Foundation Year
+                            </span>
+                            <h3 class="timeline-card-title">
+                                The <span class="highlight">Beginning</span>
+                            </h3>
+                            <p class="timeline-card-text">
+                                Pure Aqua Tech was established with a vision to provide clean, safe drinking
+                                water solutions to communities across the region.
+                            </p>
+                            <p class="timeline-card-text">
+                                Starting with a small team of dedicated engineers, we began our journey to
+                                revolutionize water purification technology and make clean water accessible to all.
+                            </p>
+                            <div class="timeline-card-features">
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Founded
+                                    Company</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> First Product
+                                    Line</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 5 Team
+                                    Members</span>
                             </div>
-
-                            <!-- 2022 -->
-                            <div class="carousel-item row">
-                                <div class="col-lg-6 col-md-12 pl-0">
-                                    <div class="history-img">
-                                        <img class="img-fluid" src="{{ asset('img/about/view-fantasy.jpg') }}"
-                                            alt="2022 Sustainability" />
-                                    </div>
+                            <div class="timeline-stats">
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">5</div>
+                                    <div class="timeline-stat-label">Team Members</div>
                                 </div>
-                                <div class="col-lg-6 col-md-12 pr-0">
-                                    <div class="history-content">
-                                        <p class="title-bg-small primary-bg">Green Initiative</p>
-                                        <h2 class="column-title">Eco-Friendly <span>Solutions</span></h2>
-                                        <p>Launched our sustainable water purification line with zero-waste technology and
-                                            energy-efficient operations to protect the environment.</p>
-                                        <p>Committed to reducing plastic waste by promoting reusable filter systems and
-                                            eco-conscious manufacturing processes throughout production.</p>
-                                    </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">1</div>
+                                    <div class="timeline-stat-label">City Covered</div>
                                 </div>
-                            </div>
-
-                            <!-- 2024 -->
-                            <div class="carousel-item row">
-                                <div class="col-lg-6 col-md-12 pl-0">
-                                    <div class="history-img">
-                                        <img class="img-fluid" src="{{ asset('img/about/18375.jpg') }}"
-                                            alt="2024 Recognition" />
-                                    </div>
-                                </div>
-                                <div class="col-lg-6 col-md-12 pr-0">
-                                    <div class="history-content">
-                                        <p class="title-bg-small primary-bg">Industry Leader</p>
-                                        <h2 class="column-title">Award <span>Winning</span></h2>
-                                        <p>Recognized as the leading water purification company with multiple industry
-                                            awards for innovation and exceptional customer satisfaction.</p>
-                                        <p>Achieved NSF International certification and became the trusted choice for over
-                                            100,000 satisfied customers nationwide and growing.</p>
-                                    </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">100+</div>
+                                    <div class="timeline-stat-label">First Customers</div>
                                 </div>
                             </div>
                         </div>
-
-                        <!-- Indicators -->
-                        <ol class="carousel-indicators text-center fade-in-up delay-3">
-                            <li data-target="#history-slid" data-slide-to="0">2010</li>
-                            <li data-target="#history-slid" data-slide-to="1">2015</li>
-                            <li data-target="#history-slid" data-slide-to="2">2018</li>
-                            <li data-target="#history-slid" data-slide-to="3" class="active">2020</li>
-                            <li data-target="#history-slid" data-slide-to="4">2022</li>
-                            <li data-target="#history-slid" data-slide-to="5">2025</li>
-                        </ol>
                     </div>
+
+                    <!-- 2015 -->
+                    <div class="timeline-card" data-card="1">
+                        <div class="timeline-card-image">
+                            <span class="timeline-card-image-badge">
+                                <i class="bi bi-calendar-event"></i> 2015
+                            </span>
+                            <img src="{{ asset('img/about/rm373batch10-207.jpg') }}" alt="Innovation Milestone">
+                        </div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-badge">
+                                <i class="bi bi-lightbulb-fill"></i> Innovation Milestone
+                            </span>
+                            <h3 class="timeline-card-title">
+                                Advanced <span class="highlight">RO Technology</span>
+                            </h3>
+                            <p class="timeline-card-text">
+                                Launched our first advanced Reverse Osmosis system with multi-stage filtration,
+                                achieving 99.9% purification efficiency.
+                            </p>
+                            <p class="timeline-card-text">
+                                This breakthrough technology set new industry standards and earned us ISO
+                                certification for quality excellence and customer satisfaction.
+                            </p>
+                            <div class="timeline-card-features">
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> ISO
+                                    Certified</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 99.9% Purity</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Multi-Stage
+                                    RO</span>
+                            </div>
+                            <div class="timeline-stats">
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">25</div>
+                                    <div class="timeline-stat-label">Team Members</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">10</div>
+                                    <div class="timeline-stat-label">Cities Covered</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">5K+</div>
+                                    <div class="timeline-stat-label">Customers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2018 -->
+                    <div class="timeline-card" data-card="2">
+                        <div class="timeline-card-image">
+                            <span class="timeline-card-image-badge">
+                                <i class="bi bi-calendar-event"></i> 2018
+                            </span>
+                            <img src="{{ asset('img/about/2212.i121.024.jpg') }}" alt="Market Expansion">
+                        </div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-badge">
+                                <i class="bi bi-graph-up-arrow"></i> Market Expansion
+                            </span>
+                            <h3 class="timeline-card-title">
+                                Regional <span class="highlight">Growth</span>
+                            </h3>
+                            <p class="timeline-card-text">
+                                Expanded operations to serve over 50 cities, installing water purification
+                                systems in thousands of homes and businesses nationwide.
+                            </p>
+                            <p class="timeline-card-text">
+                                Established dedicated service centers to provide 24/7 customer support and
+                                maintenance services across all regions we operate in.
+                            </p>
+                            <div class="timeline-card-features">
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 50+ Cities</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Service
+                                    Centers</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 24/7 Support</span>
+                            </div>
+                            <div class="timeline-stats">
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">75</div>
+                                    <div class="timeline-stat-label">Team Members</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">50+</div>
+                                    <div class="timeline-stat-label">Cities Covered</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">25K+</div>
+                                    <div class="timeline-stat-label">Customers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2020 (Active by default) -->
+                    <div class="timeline-card active" data-card="3">
+                        <div class="timeline-card-image">
+                            <span class="timeline-card-image-badge">
+                                <i class="bi bi-calendar-event"></i> 2020
+                            </span>
+                            <img src="{{ asset('img/about/online-shopping-concept.jpg') }}" alt="Smart Technology">
+                        </div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-badge">
+                                <i class="bi bi-cpu-fill"></i> Digital Revolution
+                            </span>
+                            <h3 class="timeline-card-title">
+                                Smart <span class="highlight">IoT Systems</span>
+                            </h3>
+                            <p class="timeline-card-text">
+                                Introduced IoT-enabled water purifiers with real-time monitoring, automatic
+                                filter alerts, and mobile app connectivity for enhanced user experience.
+                            </p>
+                            <p class="timeline-card-text">
+                                Our smart systems allow users to track water quality, consumption patterns,
+                                and schedule maintenance through their smartphones seamlessly.
+                            </p>
+                            <div class="timeline-card-features">
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> IoT Enabled</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Mobile App</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Real-time
+                                    Monitoring</span>
+                            </div>
+                            <div class="timeline-stats">
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">150</div>
+                                    <div class="timeline-stat-label">Team Members</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">75+</div>
+                                    <div class="timeline-stat-label">Cities Covered</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">50K+</div>
+                                    <div class="timeline-stat-label">Customers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2022 -->
+                    <div class="timeline-card" data-card="4">
+                        <div class="timeline-card-image">
+                            <span class="timeline-card-image-badge">
+                                <i class="bi bi-calendar-event"></i> 2022
+                            </span>
+                            <img src="{{ asset('img/about/view-fantasy.jpg') }}" alt="Green Initiative">
+                        </div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-badge">
+                                <i class="bi bi-leaf-fill"></i> Green Initiative
+                            </span>
+                            <h3 class="timeline-card-title">
+                                Eco-Friendly <span class="highlight">Solutions</span>
+                            </h3>
+                            <p class="timeline-card-text">
+                                Launched our sustainable water purification line with zero-waste technology
+                                and energy-efficient operations to protect the environment.
+                            </p>
+                            <p class="timeline-card-text">
+                                Committed to reducing plastic waste by promoting reusable filter systems and
+                                eco-conscious manufacturing processes throughout production.
+                            </p>
+                            <div class="timeline-card-features">
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Zero Waste</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Energy
+                                    Efficient</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Eco
+                                    Manufacturing</span>
+                            </div>
+                            <div class="timeline-stats">
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">200</div>
+                                    <div class="timeline-stat-label">Team Members</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">100+</div>
+                                    <div class="timeline-stat-label">Cities Covered</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">75K+</div>
+                                    <div class="timeline-stat-label">Customers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2025 -->
+                    <div class="timeline-card" data-card="5">
+                        <div class="timeline-card-image">
+                            <span class="timeline-card-image-badge">
+                                <i class="bi bi-calendar-event"></i> 2025
+                            </span>
+                            <img src="{{ asset('img/about/18375.jpg') }}" alt="Industry Leader">
+                        </div>
+                        <div class="timeline-card-content">
+                            <span class="timeline-card-badge">
+                                <i class="bi bi-trophy-fill"></i> Industry Leader
+                            </span>
+                            <h3 class="timeline-card-title">
+                                Award <span class="highlight">Winning</span>
+                            </h3>
+                            <p class="timeline-card-text">
+                                Recognized as the leading water purification company with multiple industry
+                                awards for innovation and exceptional customer satisfaction.
+                            </p>
+                            <p class="timeline-card-text">
+                                Achieved NSF International certification and became the trusted choice for
+                                over 100,000 satisfied customers nationwide and growing.
+                            </p>
+                            <div class="timeline-card-features">
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> NSF
+                                    Certified</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Award
+                                    Winning</span>
+                                <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Market
+                                    Leader</span>
+                            </div>
+                            <div class="timeline-stats">
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">300+</div>
+                                    <div class="timeline-stat-label">Team Members</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">150+</div>
+                                    <div class="timeline-stat-label">Cities Covered</div>
+                                </div>
+                                <div class="timeline-stat">
+                                    <div class="timeline-stat-value">100K+</div>
+                                    <div class="timeline-stat-label">Customers</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Progress Dots -->
+                <div class="timeline-progress" id="timelineProgress">
+                    <span class="timeline-progress-dot" data-year="0"></span>
+                    <span class="timeline-progress-dot" data-year="1"></span>
+                    <span class="timeline-progress-dot" data-year="2"></span>
+                    <span class="timeline-progress-dot active" data-year="3"></span>
+                    <span class="timeline-progress-dot" data-year="4"></span>
+                    <span class="timeline-progress-dot" data-year="5"></span>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        // Scroll Animation Observer
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
+        document.addEventListener('DOMContentLoaded', function() {
+            const timelineYears = document.querySelectorAll('.timeline-year');
+            const timelineCards = document.querySelectorAll('.timeline-card');
+            const progressDots = document.querySelectorAll('.timeline-progress-dot');
+            let currentIndex = 3; // Start at 2020
 
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
+            function setActiveYear(index) {
+                // Update year markers
+                timelineYears.forEach((year, i) => {
+                    year.classList.toggle('active', i === index);
+                });
+
+                // Update cards with animation
+                timelineCards.forEach((card, i) => {
+                    if (i === index) {
+                        card.classList.add('active');
+                    } else {
+                        card.classList.remove('active');
+                    }
+                });
+
+                // Update progress dots
+                progressDots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                currentIndex = index;
+            }
+
+            // Click on year markers
+            timelineYears.forEach((year, index) => {
+                year.addEventListener('click', () => {
+                    setActiveYear(index);
+                });
+            });
+
+            // Click on progress dots
+            progressDots.forEach((dot, index) => {
+                dot.addEventListener('click', () => {
+                    setActiveYear(index);
+                });
+            });
+
+            // Keyboard navigation
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowRight' && currentIndex < timelineYears.length - 1) {
+                    setActiveYear(currentIndex + 1);
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    setActiveYear(currentIndex - 1);
                 }
             });
-        }, observerOptions);
 
-        // Observe all elements with animation classes
-        document.addEventListener('DOMContentLoaded', () => {
-            const animatedElements = document.querySelectorAll(
-                '.fade-in-up, .fade-in-left, .fade-in-right, .scale-in');
-            animatedElements.forEach(el => observer.observe(el));
+            // Touch swipe support for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            const contentWrapper = document.querySelector('.timeline-content-wrapper');
+
+            contentWrapper.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, false);
+
+            contentWrapper.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, false);
+
+            function handleSwipe() {
+                const swipeThreshold = 50;
+                const diff = touchStartX - touchEndX;
+
+                if (Math.abs(diff) > swipeThreshold) {
+                    if (diff > 0 && currentIndex < timelineYears.length - 1) {
+                        // Swipe left - next
+                        setActiveYear(currentIndex + 1);
+                    } else if (diff < 0 && currentIndex > 0) {
+                        // Swipe right - previous
+                        setActiveYear(currentIndex - 1);
+                    }
+                }
+            }
+
+            // Auto-rotate (optional - uncomment to enable)
+            /*
+            let autoRotateInterval = setInterval(() => {
+                let nextIndex = (currentIndex + 1) % timelineYears.length;
+                setActiveYear(nextIndex);
+            }, 5000);
+
+            // Stop auto-rotate on user interaction
+            document.querySelector('.timeline-wrapper').addEventListener('click', () => {
+                clearInterval(autoRotateInterval);
+            });
+            */
+
+            // Intersection Observer for scroll animations
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-slide-up');
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            document.querySelectorAll('.about-header, .timeline-container, .timeline-years').forEach(el => {
+                observer.observe(el);
+            });
         });
     </script> --}}
-    {{-- 
-    Professional About Us / History Section with Horizontal Timeline
-    
-    Features:
-    - Horizontal scrollable timeline
-    - Interactive year markers
-    - Smooth animations on scroll
-    - Mobile-responsive vertical fallback
-    
-    Color Psychology:
-    - Primary Blue (#1e40af): Trust, professionalism
-    - Success Green (#059669): Growth, progress
-    - Clean design: Modern, premium feel
---}}
 
-<style>
-    :root {
-        --timeline-primary: #1e40af;
-        --timeline-primary-light: #3b82f6;
-        --timeline-primary-dark: #1e3a8a;
-        --timeline-accent: #4f46e5;
-        --timeline-success: #059669;
-        --timeline-warning: #f59e0b;
-        --timeline-text-primary: #111827;
-        --timeline-text-secondary: #4b5563;
-        --timeline-text-muted: #9ca3af;
-        --timeline-border: #e5e7eb;
-        --timeline-bg-light: #f8fafc;
-        --timeline-bg-card: #ffffff;
-        --timeline-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-        --timeline-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --timeline-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        --timeline-radius: 12px;
-        --timeline-radius-lg: 16px;
-        --timeline-radius-xl: 24px;
-    }
-
-    /* ==================== ABOUT SECTION ==================== */
-    .about-section {
-        padding: 100px 0;
-        background: linear-gradient(180deg, var(--timeline-bg-light) 0%, #ffffff 50%, var(--timeline-bg-light) 100%);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .about-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 90% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
-        pointer-events: none;
-    }
-
-    .about-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 20px;
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Section Header */
-    .about-header {
-        text-align: center;
-        margin-bottom: 80px;
-    }
-
-    .about-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 24px;
-        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
-        color: white;
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 24px;
-        box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
-    }
-
-    .about-title {
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--timeline-text-primary);
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-
-    .about-title .highlight {
-        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .about-subtitle {
-        font-size: 1.15rem;
-        color: var(--timeline-text-secondary);
-        max-width: 700px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
-
-    /* ==================== HORIZONTAL TIMELINE ==================== */
-    .timeline-wrapper {
-        position: relative;
-        padding: 40px 0;
-    }
-
-    /* Timeline Navigation Arrows */
-    .timeline-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 50px;
-        height: 50px;
-        background: var(--timeline-bg-card);
-        border: 1px solid var(--timeline-border);
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        z-index: 10;
-        transition: all 0.3s;
-        box-shadow: var(--timeline-shadow-lg);
-    }
-
-    .timeline-nav:hover {
-        background: var(--timeline-primary);
-        border-color: var(--timeline-primary);
-        color: white;
-        transform: translateY(-50%) scale(1.1);
-    }
-
-    .timeline-nav.prev {
-        left: -25px;
-    }
-
-    .timeline-nav.next {
-        right: -25px;
-    }
-
-    .timeline-nav i {
-        font-size: 1.25rem;
-        color: var(--timeline-text-secondary);
-        transition: color 0.3s;
-    }
-
-    .timeline-nav:hover i {
-        color: white;
-    }
-
-    /* Timeline Track */
-    .timeline-track-wrapper {
-        overflow: hidden;
-        padding: 20px 0;
-    }
-
-    .timeline-track {
-        display: flex;
-        gap: 0;
-        transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    /* Timeline Line */
-    .timeline-line-container {
-        position: relative;
-        height: 60px;
-        margin-bottom: 60px;
-    }
-
-    .timeline-line {
-        position: absolute;
-        top: 50%;
-        left: 0;
-        right: 0;
-        height: 4px;
-        background: linear-gradient(90deg, var(--timeline-border) 0%, var(--timeline-primary-light) 50%, var(--timeline-border) 100%);
-        border-radius: 2px;
-        transform: translateY(-50%);
-    }
-
-    .timeline-line::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 12px;
-        height: 12px;
-        background: var(--timeline-primary);
-        border-radius: 50%;
-    }
-
-    .timeline-line::after {
-        content: '';
-        position: absolute;
-        right: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-left: 12px solid var(--timeline-primary);
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-    }
-
-    /* Year Markers */
-    .timeline-years {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        padding: 0 20px;
-    }
-
-    .timeline-year {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-        transition: all 0.3s;
-        position: relative;
-    }
-
-    .timeline-year-dot {
-        width: 20px;
-        height: 20px;
-        background: var(--timeline-bg-card);
-        border: 3px solid var(--timeline-border);
-        border-radius: 50%;
-        position: relative;
-        z-index: 2;
-        transition: all 0.3s;
-    }
-
-    .timeline-year-dot::before {
-        content: '';
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        width: 8px;
-        height: 8px;
-        background: var(--timeline-border);
-        border-radius: 50%;
-        transition: all 0.3s;
-    }
-
-    .timeline-year:hover .timeline-year-dot,
-    .timeline-year.active .timeline-year-dot {
-        border-color: var(--timeline-primary);
-        transform: scale(1.2);
-    }
-
-    .timeline-year:hover .timeline-year-dot::before,
-    .timeline-year.active .timeline-year-dot::before {
-        background: var(--timeline-primary);
-    }
-
-    .timeline-year.active .timeline-year-dot {
-        box-shadow: 0 0 0 6px rgba(30, 64, 175, 0.2);
-    }
-
-    .timeline-year-label {
-        margin-top: 16px;
-        padding: 8px 16px;
-        background: var(--timeline-bg-card);
-        border: 1px solid var(--timeline-border);
-        border-radius: 8px;
-        font-size: 0.9rem;
-        font-weight: 700;
-        color: var(--timeline-text-secondary);
-        transition: all 0.3s;
-        box-shadow: var(--timeline-shadow);
-    }
-
-    .timeline-year:hover .timeline-year-label,
-    .timeline-year.active .timeline-year-label {
-        background: var(--timeline-primary);
-        border-color: var(--timeline-primary);
-        color: white;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 20px rgba(30, 64, 175, 0.3);
-    }
-
-    /* Timeline Content Cards */
-    .timeline-content-wrapper {
-        margin-top: 60px;
-        position: relative;
-        min-height: 500px;
-    }
-
-    .timeline-card {
-        display: none;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .timeline-card.active {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .timeline-card-image {
-        position: relative;
-        border-radius: var(--timeline-radius-xl);
-        overflow: hidden;
-        box-shadow: var(--timeline-shadow-xl);
-    }
-
-    .timeline-card-image::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
-        z-index: 1;
-    }
-
-    .timeline-card-image img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s;
-    }
-
-    .timeline-card:hover .timeline-card-image img {
-        transform: scale(1.05);
-    }
-
-    .timeline-card-image-badge {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 8px 16px;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--timeline-primary);
-        z-index: 2;
-        box-shadow: var(--timeline-shadow);
-    }
-
-    .timeline-card-content {
-        padding: 20px 0;
-    }
-
-    .timeline-card-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
-        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-        border: 1px solid #bfdbfe;
-        color: var(--timeline-primary);
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-    }
-
-    .timeline-card-title {
-        font-size: 2.25rem;
-        font-weight: 800;
-        color: var(--timeline-text-primary);
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-
-    .timeline-card-title .highlight {
-        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .timeline-card-text {
-        font-size: 1rem;
-        color: var(--timeline-text-secondary);
-        line-height: 1.8;
-        margin-bottom: 16px;
-    }
-
-    .timeline-card-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
-    }
-
-    .timeline-feature {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        background: var(--timeline-bg-card);
-        border: 1px solid var(--timeline-border);
-        border-radius: var(--timeline-radius);
-        font-size: 0.85rem;
-        color: var(--timeline-text-secondary);
-        transition: all 0.2s;
-    }
-
-    .timeline-feature:hover {
-        border-color: var(--timeline-primary-light);
-        color: var(--timeline-primary);
-        background: #eff6ff;
-    }
-
-    .timeline-feature i {
-        color: var(--timeline-success);
-    }
-
-    /* Stats Row */
-    .timeline-stats {
-        display: flex;
-        gap: 32px;
-        margin-top: 32px;
-        padding-top: 32px;
-        border-top: 1px solid var(--timeline-border);
-    }
-
-    .timeline-stat {
-        text-align: left;
-    }
-
-    .timeline-stat-value {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--timeline-primary);
-        line-height: 1;
-        margin-bottom: 4px;
-    }
-
-    .timeline-stat-label {
-        font-size: 0.85rem;
-        color: var(--timeline-text-muted);
-    }
-
-    /* Progress Indicator */
-    .timeline-progress {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 40px;
-    }
-
-    .timeline-progress-dot {
-        width: 10px;
-        height: 10px;
-        background: var(--timeline-border);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .timeline-progress-dot:hover {
-        background: var(--timeline-primary-light);
-    }
-
-    .timeline-progress-dot.active {
-        width: 32px;
-        border-radius: 5px;
-        background: var(--timeline-primary);
-    }
-
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 1200px) {
-        .timeline-nav.prev {
-            left: 10px;
+    <!-- ==================== PRODUCT BANNER SECTION ==================== -->
+    <style>
+        :root {
+            --primary: #1e40af;
+            --primary-light: #3b82f6;
+            --primary-dark: #1e3a8a;
+            --accent: #4f46e5;
+            --success: #059669;
+            --warning: #f59e0b;
+            --danger: #dc2626;
+            --text-primary: #111827;
+            --text-secondary: #4b5563;
+            --text-muted: #9ca3af;
+            --border: #e5e7eb;
+            --bg-light: #f8fafc;
+            --bg-card: #ffffff;
+            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --radius: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
         }
 
-        .timeline-nav.next {
-            right: 10px;
-        }
-    }
-
-    @media (max-width: 992px) {
-        .about-section {
-            padding: 80px 0;
+        /* ==================== PRODUCT BANNER SECTION ==================== */
+        .promo-banner-section {
+            padding: 60px 0;
+            background: var(--bg-card);
         }
 
-        .about-title {
-            font-size: 2.5rem;
+        .promo-banner-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
-        .timeline-card.active {
-            grid-template-columns: 1fr;
-            gap: 40px;
+        .promo-banner-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
         }
 
-        .timeline-card-image img {
-            height: 300px;
+        @media (max-width: 992px) {
+            .promo-banner-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
-        .timeline-card-title {
+        /* Banner Card */
+        .promo-card {
+            position: relative;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            min-height: 320px;
+            display: flex;
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .promo-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .promo-card-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .promo-card:hover .promo-card-bg {
+            transform: scale(1.05);
+        }
+
+        /* Amount Offer Card - Style 1 */
+        .promo-card.style-amount {
+            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+        }
+
+        .promo-card.style-amount .promo-card-overlay {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 60%, transparent 100%);
+        }
+
+        .promo-card.style-amount .promo-content {
+            max-width: 60%;
+        }
+
+        .promo-card.style-amount .promo-badge {
+            display: inline-block;
+            padding: 6px 14px;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            color: white;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            margin-bottom: 16px;
+        }
+
+        .promo-card.style-amount .promo-title {
             font-size: 1.75rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            line-height: 1.2;
         }
 
-        .timeline-years {
-            overflow-x: auto;
-            padding-bottom: 10px;
-            gap: 20px;
-            justify-content: flex-start;
+        .promo-card.style-amount .promo-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-bottom: 20px;
         }
 
-        .timeline-year {
-            flex-shrink: 0;
+        .promo-card.style-amount .promo-price .current {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary);
         }
 
-        .timeline-nav {
-            display: none;
+        .promo-card.style-amount .promo-price .label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
         }
-    }
 
-    @media (max-width: 768px) {
-        .about-header {
+        .promo-card.style-amount .promo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .promo-card.style-amount .promo-btn:hover {
+            background: var(--primary-dark);
+            transform: translateX(4px);
+            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
+        }
+
+        .promo-card.style-amount .promo-btn i {
+            transition: transform 0.3s;
+        }
+
+        .promo-card.style-amount .promo-btn:hover i {
+            transform: translateX(4px);
+        }
+
+        /* Percentage Offer Card - Style 2 */
+        .promo-card.style-percent {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+        }
+
+        .promo-card.style-percent .promo-card-overlay {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px;
+            background: linear-gradient(135deg, rgba(245, 158, 11, 0.92) 0%, rgba(217, 119, 6, 0.88) 100%);
+        }
+
+        .promo-card.style-percent .sale-badge {
+            display: inline-block;
+            padding: 8px 24px;
+            background: white;
+            color: var(--warning);
+            font-size: 1rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            border-radius: 50px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .promo-card.style-percent .promo-discount {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: white;
+            line-height: 1;
+            margin-bottom: 8px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .promo-card.style-percent .promo-discount-text {
+            font-size: 1.25rem;
+            color: white;
+            opacity: 0.95;
+            margin-bottom: 24px;
+        }
+
+        .promo-card.style-percent .promo-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 14px 32px;
+            background: white;
+            color: var(--warning);
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .promo-card.style-percent .promo-btn:hover {
+            background: var(--text-primary);
+            color: white;
+            transform: scale(1.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .promo-card {
+                min-height: 280px;
+            }
+
+            .promo-card.style-amount .promo-card-overlay {
+                padding: 24px;
+                background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
+            }
+
+            .promo-card.style-amount .promo-content {
+                max-width: 100%;
+            }
+
+            .promo-card.style-amount .promo-title {
+                font-size: 1.4rem;
+            }
+
+            .promo-card.style-amount .promo-price .current {
+                font-size: 1.5rem;
+            }
+
+            .promo-card.style-percent .promo-discount {
+                font-size: 2.5rem;
+            }
+
+            .promo-card.style-percent .promo-discount-text {
+                font-size: 1rem;
+            }
+        }
+
+        /* ==================== PRODUCT LIST SECTION ==================== */
+        .category-products-section {
+            padding: 80px 0;
+            background: var(--bg-light);
+            overflow: hidden;
+        }
+
+        .category-products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Header */
+        .section-header {
+            text-align: center;
             margin-bottom: 50px;
         }
 
-        .about-title {
-            font-size: 2rem;
-        }
-
-        .about-subtitle {
-            font-size: 1rem;
-        }
-
-        .timeline-line-container {
-            display: none;
-        }
-
-        .timeline-years {
-            gap: 12px;
-        }
-
-        .timeline-year-label {
-            font-size: 0.8rem;
-            padding: 6px 12px;
-        }
-
-        .timeline-card-content {
-            padding: 0;
-        }
-
-        .timeline-stats {
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-
-        .timeline-stat {
-            flex: 0 0 calc(50% - 10px);
-        }
-    }
-
-    @media (max-width: 576px) {
-        .about-section {
-            padding: 60px 0;
-        }
-
-        .about-title {
-            font-size: 1.75rem;
-        }
-
-        .about-badge {
-            font-size: 0.75rem;
-            padding: 8px 16px;
-        }
-
-        .timeline-card-image img {
-            height: 250px;
-        }
-
-        .timeline-card-title {
-            font-size: 1.5rem;
-        }
-
-        .timeline-card-features {
-            flex-direction: column;
-        }
-
-        .timeline-feature {
-            width: 100%;
-        }
-    }
-
-    /* Animation Classes */
-    .animate-fade-in {
-        animation: fadeIn 0.8s ease forwards;
-    }
-
-    .animate-slide-up {
-        animation: slideUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-        }
-        to {
-            opacity: 1;
-        }
-    }
-
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-</style>
-
-{{-- 
-    Professional About Us / History Section with Horizontal Timeline
-    
-    Features:
-    - Horizontal scrollable timeline
-    - Interactive year markers
-    - Smooth animations on scroll
-    - Mobile-responsive vertical fallback
-    
-    Color Psychology:
-    - Primary Blue (#1e40af): Trust, professionalism
-    - Success Green (#059669): Growth, progress
-    - Clean design: Modern, premium feel
---}}
-
-<style>
-    :root {
-        --timeline-primary: #1e40af;
-        --timeline-primary-light: #3b82f6;
-        --timeline-primary-dark: #1e3a8a;
-        --timeline-accent: #4f46e5;
-        --timeline-success: #059669;
-        --timeline-warning: #f59e0b;
-        --timeline-text-primary: #111827;
-        --timeline-text-secondary: #4b5563;
-        --timeline-text-muted: #9ca3af;
-        --timeline-border: #e5e7eb;
-        --timeline-bg-light: #f8fafc;
-        --timeline-bg-card: #ffffff;
-        --timeline-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-        --timeline-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-        --timeline-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-        --timeline-radius: 12px;
-        --timeline-radius-lg: 16px;
-        --timeline-radius-xl: 24px;
-    }
-
-    /* ==================== ABOUT SECTION ==================== */
-    .about-section {
-        padding: 100px 0;
-        background: linear-gradient(180deg, var(--timeline-bg-light) 0%, #ffffff 50%, var(--timeline-bg-light) 100%);
-        position: relative;
-        overflow: hidden;
-    }
-
-    .about-section::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: 
-            radial-gradient(circle at 10% 20%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
-            radial-gradient(circle at 90% 80%, rgba(79, 70, 229, 0.05) 0%, transparent 50%);
-        pointer-events: none;
-    }
-
-    .about-container {
-        max-width: 1400px;
-        margin: 0 auto;
-        padding: 0 20px;
-        position: relative;
-        z-index: 1;
-    }
-
-    /* Section Header */
-    .about-header {
-        text-align: center;
-        margin-bottom: 80px;
-    }
-
-    .about-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 24px;
-        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
-        color: white;
-        border-radius: 50px;
-        font-size: 0.85rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1.5px;
-        margin-bottom: 24px;
-        box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
-    }
-
-    .about-title {
-        font-size: 3rem;
-        font-weight: 800;
-        color: var(--timeline-text-primary);
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-
-    .about-title .highlight {
-        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .about-subtitle {
-        font-size: 1.15rem;
-        color: var(--timeline-text-secondary);
-        max-width: 700px;
-        margin: 0 auto;
-        line-height: 1.8;
-    }
-
-    /* ==================== HORIZONTAL TIMELINE ==================== */
-    .timeline-wrapper {
-        position: relative;
-        padding: 40px 0;
-    }
-
-    /* Timeline Container - Holds line and year markers together */
-    .timeline-container {
-        position: relative;
-        padding: 60px 40px 80px;
-    }
-
-    /* Timeline Line - The horizontal bar */
-    .timeline-line {
-        position: absolute;
-        top: 60px;
-        left: 20px;
-        right: 20px;
-        height: 3px;
-        background: linear-gradient(90deg, var(--timeline-primary) 0%, var(--timeline-primary-light) 50%, #cbd5e1 100%);
-        border-radius: 2px;
-    }
-
-    /* Start dot */
-    .timeline-line::before {
-        content: '';
-        position: absolute;
-        left: 0;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 14px;
-        height: 14px;
-        background: var(--timeline-primary);
-        border-radius: 50%;
-    }
-
-    /* End arrow */
-    .timeline-line::after {
-        content: '';
-        position: absolute;
-        right: -8px;
-        top: 50%;
-        transform: translateY(-50%);
-        width: 0;
-        height: 0;
-        border-left: 14px solid #cbd5e1;
-        border-top: 8px solid transparent;
-        border-bottom: 8px solid transparent;
-    }
-
-    /* Year Markers Container */
-    .timeline-years {
-        display: flex;
-        justify-content: space-between;
-        position: relative;
-        z-index: 2;
-    }
-
-    /* Individual Year Marker */
-    .timeline-year {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        cursor: pointer;
-        transition: all 0.3s;
-        position: relative;
-    }
-
-    /* The dot that sits ON the line */
-    .timeline-year-dot {
-        width: 24px;
-        height: 24px;
-        background: var(--timeline-bg-card);
-        border: 3px solid #cbd5e1;
-        border-radius: 50%;
-        position: relative;
-        z-index: 2;
-        transition: all 0.3s;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    /* Inner dot */
-    .timeline-year-dot::before {
-        content: '';
-        width: 8px;
-        height: 8px;
-        background: #cbd5e1;
-        border-radius: 50%;
-        transition: all 0.3s;
-    }
-
-    /* Connecting line from dot to label */
-    .timeline-year-connector {
-        width: 2px;
-        height: 30px;
-        background: #e5e7eb;
-        transition: all 0.3s;
-    }
-
-    /* Year label box */
-    .timeline-year-label {
-        margin-top: 8px;
-        padding: 10px 20px;
-        background: var(--timeline-bg-card);
-        border: 2px solid var(--timeline-border);
-        border-radius: 10px;
-        font-size: 0.95rem;
-        font-weight: 700;
-        color: var(--timeline-text-secondary);
-        transition: all 0.3s;
-        box-shadow: var(--timeline-shadow);
-    }
-
-    /* Hover States */
-    .timeline-year:hover .timeline-year-dot {
-        border-color: var(--timeline-primary-light);
-        transform: scale(1.15);
-    }
-
-    .timeline-year:hover .timeline-year-dot::before {
-        background: var(--timeline-primary-light);
-    }
-
-    .timeline-year:hover .timeline-year-connector {
-        background: var(--timeline-primary-light);
-    }
-
-    .timeline-year:hover .timeline-year-label {
-        border-color: var(--timeline-primary-light);
-        color: var(--timeline-primary);
-    }
-
-    /* Active State */
-    .timeline-year.active .timeline-year-dot {
-        border-color: var(--timeline-primary);
-        background: var(--timeline-bg-card);
-        transform: scale(1.2);
-        box-shadow: 0 0 0 8px rgba(30, 64, 175, 0.15);
-    }
-
-    .timeline-year.active .timeline-year-dot::before {
-        background: var(--timeline-primary);
-        width: 10px;
-        height: 10px;
-    }
-
-    .timeline-year.active .timeline-year-connector {
-        background: var(--timeline-primary);
-        width: 3px;
-    }
-
-    .timeline-year.active .timeline-year-label {
-        background: var(--timeline-primary);
-        border-color: var(--timeline-primary);
-        color: white;
-        transform: translateY(-4px);
-        box-shadow: 0 8px 25px rgba(30, 64, 175, 0.35);
-    }
-
-    /* Timeline Content Cards */
-    .timeline-content-wrapper {
-        margin-top: 60px;
-        position: relative;
-        min-height: 500px;
-    }
-
-    .timeline-card {
-        display: none;
-        opacity: 0;
-        transform: translateY(30px);
-        transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-    }
-
-    .timeline-card.active {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 60px;
-        align-items: center;
-        opacity: 1;
-        transform: translateY(0);
-    }
-
-    .timeline-card-image {
-        position: relative;
-        border-radius: var(--timeline-radius-xl);
-        overflow: hidden;
-        box-shadow: var(--timeline-shadow-xl);
-    }
-
-    .timeline-card-image::before {
-        content: '';
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: linear-gradient(135deg, rgba(30, 64, 175, 0.1) 0%, transparent 50%);
-        z-index: 1;
-    }
-
-    .timeline-card-image img {
-        width: 100%;
-        height: 400px;
-        object-fit: cover;
-        display: block;
-        transition: transform 0.5s;
-    }
-
-    .timeline-card:hover .timeline-card-image img {
-        transform: scale(1.05);
-    }
-
-    .timeline-card-image-badge {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        padding: 8px 16px;
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(10px);
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 700;
-        color: var(--timeline-primary);
-        z-index: 2;
-        box-shadow: var(--timeline-shadow);
-    }
-
-    .timeline-card-content {
-        padding: 20px 0;
-    }
-
-    .timeline-card-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        padding: 8px 16px;
-        background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-        border: 1px solid #bfdbfe;
-        color: var(--timeline-primary);
-        border-radius: 50px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-        margin-bottom: 20px;
-    }
-
-    .timeline-card-title {
-        font-size: 2.25rem;
-        font-weight: 800;
-        color: var(--timeline-text-primary);
-        margin-bottom: 20px;
-        line-height: 1.2;
-    }
-
-    .timeline-card-title .highlight {
-        background: linear-gradient(135deg, var(--timeline-primary) 0%, var(--timeline-accent) 100%);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
-    }
-
-    .timeline-card-text {
-        font-size: 1rem;
-        color: var(--timeline-text-secondary);
-        line-height: 1.8;
-        margin-bottom: 16px;
-    }
-
-    .timeline-card-features {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 12px;
-        margin-top: 24px;
-    }
-
-    .timeline-feature {
-        display: inline-flex;
-        align-items: center;
-        gap: 8px;
-        padding: 10px 16px;
-        background: var(--timeline-bg-card);
-        border: 1px solid var(--timeline-border);
-        border-radius: var(--timeline-radius);
-        font-size: 0.85rem;
-        color: var(--timeline-text-secondary);
-        transition: all 0.2s;
-    }
-
-    .timeline-feature:hover {
-        border-color: var(--timeline-primary-light);
-        color: var(--timeline-primary);
-        background: #eff6ff;
-    }
-
-    .timeline-feature i {
-        color: var(--timeline-success);
-    }
-
-    /* Stats Row */
-    .timeline-stats {
-        display: flex;
-        gap: 32px;
-        margin-top: 32px;
-        padding-top: 32px;
-        border-top: 1px solid var(--timeline-border);
-    }
-
-    .timeline-stat {
-        text-align: left;
-    }
-
-    .timeline-stat-value {
-        font-size: 2rem;
-        font-weight: 800;
-        color: var(--timeline-primary);
-        line-height: 1;
-        margin-bottom: 4px;
-    }
-
-    .timeline-stat-label {
-        font-size: 0.85rem;
-        color: var(--timeline-text-muted);
-    }
-
-    /* Progress Indicator */
-    .timeline-progress {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-        margin-top: 40px;
-    }
-
-    .timeline-progress-dot {
-        width: 10px;
-        height: 10px;
-        background: var(--timeline-border);
-        border-radius: 50%;
-        cursor: pointer;
-        transition: all 0.3s;
-    }
-
-    .timeline-progress-dot:hover {
-        background: var(--timeline-primary-light);
-    }
-
-    .timeline-progress-dot.active {
-        width: 32px;
-        border-radius: 5px;
-        background: var(--timeline-primary);
-    }
-
-    /* ==================== RESPONSIVE ==================== */
-    @media (max-width: 1200px) {
-        .timeline-container {
-            padding: 60px 30px 80px;
-        }
-    }
-
-    @media (max-width: 992px) {
-        .about-section {
-            padding: 80px 0;
-        }
-
-        .about-title {
-            font-size: 2.5rem;
-        }
-
-        .timeline-card.active {
-            grid-template-columns: 1fr;
-            gap: 40px;
-        }
-
-        .timeline-card-image img {
-            height: 300px;
-        }
-
-        .timeline-card-title {
-            font-size: 1.75rem;
-        }
-
-        .timeline-container {
-            padding: 50px 20px 70px;
-        }
-
-        .timeline-year-label {
-            padding: 8px 14px;
+        .section-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border: 1px solid #bfdbfe;
+            border-radius: 50px;
             font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
         }
 
-        .timeline-year-connector {
-            height: 24px;
-        }
-    }
-
-    @media (max-width: 768px) {
-        .about-header {
-            margin-bottom: 50px;
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-primary);
+            margin: 0;
+            line-height: 1.2;
         }
 
-        .about-title {
-            font-size: 2rem;
+        .section-title .highlight {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .about-subtitle {
-            font-size: 1rem;
+        /* Owl Carousel Custom Styling */
+        .category-carousel.owl-carousel .owl-stage-outer {
+            overflow: visible;
         }
 
-        .timeline-container {
-            padding: 40px 15px 60px;
-            overflow-x: auto;
+        .category-carousel.owl-carousel .owl-nav {
+            position: absolute;
+            top: -70px;
+            right: 0;
+            display: flex;
+            gap: 10px;
         }
 
-        .timeline-years {
-            min-width: 700px;
-            padding: 0 10px;
+        .category-carousel.owl-carousel .owl-nav button {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card) !important;
+            border: 1px solid var(--border) !important;
+            border-radius: 50% !important;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary) !important;
+            font-size: 1.25rem !important;
+            transition: all 0.3s;
+            box-shadow: var(--shadow);
         }
 
-        .timeline-line {
-            left: 10px;
-            right: 10px;
+        .category-carousel.owl-carousel .owl-nav button:hover {
+            background: var(--primary) !important;
+            border-color: var(--primary) !important;
+            color: white !important;
+            transform: scale(1.05);
         }
 
-        .timeline-year-dot {
-            width: 20px;
-            height: 20px;
+        .category-carousel.owl-carousel .owl-dots {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin-top: 30px;
         }
 
-        .timeline-year-dot::before {
-            width: 6px;
-            height: 6px;
+        .category-carousel.owl-carousel .owl-dot {
+            width: 10px;
+            height: 10px;
+            background: var(--border);
+            border-radius: 50%;
+            transition: all 0.3s;
         }
 
-        .timeline-year-connector {
-            height: 20px;
+        .category-carousel.owl-carousel .owl-dot.active {
+            background: var(--primary);
+            width: 28px;
+            border-radius: 5px;
         }
 
-        .timeline-year-label {
-            padding: 6px 12px;
-            font-size: 0.8rem;
+        /* Product Card - Mini Style */
+        .product-mini-card {
+            background: var(--bg-card);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
-        .timeline-card-content {
-            padding: 0;
+        .product-mini-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
         }
 
-        .timeline-stats {
-            flex-wrap: wrap;
-            gap: 20px;
+        .product-mini-inner {
+            display: flex;
         }
 
-        .timeline-stat {
-            flex: 0 0 calc(50% - 10px);
-        }
-    }
-
-    @media (max-width: 576px) {
-        .about-section {
-            padding: 60px 0;
-        }
-
-        .about-title {
-            font-size: 1.75rem;
+        /* Product Image Side */
+        .product-mini-image {
+            position: relative;
+            width: 40%;
+            min-height: 180px;
+            background: var(--bg-light);
+            overflow: hidden;
         }
 
-        .about-badge {
-            font-size: 0.75rem;
-            padding: 8px 16px;
+        .product-mini-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
         }
 
-        .timeline-card-image img {
-            height: 250px;
+        .product-mini-card:hover .product-mini-image img {
+            transform: scale(1.08);
         }
 
-        .timeline-card-title {
-            font-size: 1.5rem;
+        .product-mini-view {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            opacity: 0;
+            transition: all 0.3s ease;
+            z-index: 3;
         }
 
-        .timeline-card-features {
+        .product-mini-card:hover .product-mini-view {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+
+        .product-mini-view a {
+            width: 44px;
+            height: 44px;
+            background: var(--bg-card);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            text-decoration: none;
+            box-shadow: var(--shadow-md);
+            transition: all 0.2s;
+        }
+
+        .product-mini-view a:hover {
+            background: var(--primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        /* Product Info Side */
+        .product-mini-info {
+            flex: 1;
+            padding: 20px;
+            display: flex;
             flex-direction: column;
         }
 
-        .timeline-feature {
-            width: 100%;
+        .product-mini-category {
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--primary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.2s;
         }
 
-        .timeline-container {
-            padding: 35px 10px 50px;
+        .product-mini-category:hover {
+            color: var(--primary-dark);
         }
 
-        .timeline-years {
-            min-width: 600px;
+        .product-mini-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            line-height: 1.4;
+            margin-bottom: 12px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-decoration: none;
+            transition: color 0.2s;
+            min-height: 2.8em;
         }
-    }
 
-    /* Animation Classes */
-    .animate-fade-in {
-        animation: fadeIn 0.8s ease forwards;
-    }
-
-    .animate-slide-up {
-        animation: slideUp 0.8s ease forwards;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
+        .product-mini-name:hover {
+            color: var(--primary);
         }
-        to {
-            opacity: 1;
+
+        .product-mini-price {
+            display: flex;
+            align-items: baseline;
+            gap: 8px;
+            margin-top: auto;
         }
-    }
 
-    @keyframes slideUp {
-        from {
-            opacity: 0;
-            transform: translateY(30px);
+        .product-mini-price .current {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: var(--text-primary);
         }
-        to {
-            opacity: 1;
-            transform: translateY(0);
+
+        .product-mini-price .original {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            text-decoration: line-through;
         }
-    }
-</style>
 
-<!-- ==================== ABOUT / HISTORY SECTION ==================== -->
-<section class="about-section" id="about">
-    <div class="about-container">
-        <!-- Section Header -->
-        <div class="about-header">
-            <span class="about-badge">
-                <i class="bi bi-building"></i> About Us
-            </span>
-            <h2 class="about-title">
-                Our <span class="highlight">Journey</span> Through Time
-            </h2>
-            <p class="about-subtitle">
-                From humble beginnings to industry leadership, discover how Pure Aqua Tech has been 
-                revolutionizing water purification technology for over a decade.
-            </p>
-        </div>
+        /* Product Actions */
+        .product-mini-actions {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 16px 20px;
+            border-top: 1px solid var(--border);
+            background: var(--bg-light);
+        }
 
-        <!-- Timeline -->
-        <div class="timeline-wrapper">
-            <!-- Timeline Container with Line and Years -->
-            <div class="timeline-container">
-                <!-- Timeline Line -->
-                <div class="timeline-line"></div>
+        .product-mini-cart-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: var(--radius);
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
 
-                <!-- Year Markers -->
-                <div class="timeline-years" id="timelineYears">
-                    <div class="timeline-year" data-year="0">
-                        <div class="timeline-year-dot"></div>
-                        <div class="timeline-year-connector"></div>
-                        <span class="timeline-year-label">2010</span>
-                    </div>
-                    <div class="timeline-year" data-year="1">
-                        <div class="timeline-year-dot"></div>
-                        <div class="timeline-year-connector"></div>
-                        <span class="timeline-year-label">2015</span>
-                    </div>
-                    <div class="timeline-year" data-year="2">
-                        <div class="timeline-year-dot"></div>
-                        <div class="timeline-year-connector"></div>
-                        <span class="timeline-year-label">2018</span>
-                    </div>
-                    <div class="timeline-year active" data-year="3">
-                        <div class="timeline-year-dot"></div>
-                        <div class="timeline-year-connector"></div>
-                        <span class="timeline-year-label">2020</span>
-                    </div>
-                    <div class="timeline-year" data-year="4">
-                        <div class="timeline-year-dot"></div>
-                        <div class="timeline-year-connector"></div>
-                        <span class="timeline-year-label">2022</span>
-                    </div>
-                    <div class="timeline-year" data-year="5">
-                        <div class="timeline-year-dot"></div>
-                        <div class="timeline-year-connector"></div>
-                        <span class="timeline-year-label">2025</span>
-                    </div>
-                </div>
-            </div>
+        .product-mini-cart-btn:hover {
+            background: var(--primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
 
-            <!-- Content Cards -->
-            <div class="timeline-content-wrapper">
-                <!-- 2010 -->
-                <div class="timeline-card" data-card="0">
-                    <div class="timeline-card-image">
-                        <span class="timeline-card-image-badge">
-                            <i class="bi bi-calendar-event"></i> 2010
-                        </span>
-                        <img src="{{ asset('img/about/view-fantasy-tap.jpg') }}" alt="Foundation Year">
-                    </div>
-                    <div class="timeline-card-content">
-                        <span class="timeline-card-badge">
-                            <i class="bi bi-flag-fill"></i> Foundation Year
-                        </span>
-                        <h3 class="timeline-card-title">
-                            The <span class="highlight">Beginning</span>
-                        </h3>
-                        <p class="timeline-card-text">
-                            Pure Aqua Tech was established with a vision to provide clean, safe drinking 
-                            water solutions to communities across the region.
-                        </p>
-                        <p class="timeline-card-text">
-                            Starting with a small team of dedicated engineers, we began our journey to 
-                            revolutionize water purification technology and make clean water accessible to all.
-                        </p>
-                        <div class="timeline-card-features">
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Founded Company</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> First Product Line</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 5 Team Members</span>
-                        </div>
-                        <div class="timeline-stats">
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">5</div>
-                                <div class="timeline-stat-label">Team Members</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">1</div>
-                                <div class="timeline-stat-label">City Covered</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">100+</div>
-                                <div class="timeline-stat-label">First Customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        .product-mini-quick-actions {
+            display: flex;
+            gap: 8px;
+        }
 
-                <!-- 2015 -->
-                <div class="timeline-card" data-card="1">
-                    <div class="timeline-card-image">
-                        <span class="timeline-card-image-badge">
-                            <i class="bi bi-calendar-event"></i> 2015
-                        </span>
-                        <img src="{{ asset('img/about/rm373batch10-207.jpg') }}" alt="Innovation Milestone">
-                    </div>
-                    <div class="timeline-card-content">
-                        <span class="timeline-card-badge">
-                            <i class="bi bi-lightbulb-fill"></i> Innovation Milestone
-                        </span>
-                        <h3 class="timeline-card-title">
-                            Advanced <span class="highlight">RO Technology</span>
-                        </h3>
-                        <p class="timeline-card-text">
-                            Launched our first advanced Reverse Osmosis system with multi-stage filtration, 
-                            achieving 99.9% purification efficiency.
-                        </p>
-                        <p class="timeline-card-text">
-                            This breakthrough technology set new industry standards and earned us ISO 
-                            certification for quality excellence and customer satisfaction.
-                        </p>
-                        <div class="timeline-card-features">
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> ISO Certified</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 99.9% Purity</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Multi-Stage RO</span>
-                        </div>
-                        <div class="timeline-stats">
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">25</div>
-                                <div class="timeline-stat-label">Team Members</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">10</div>
-                                <div class="timeline-stat-label">Cities Covered</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">5K+</div>
-                                <div class="timeline-stat-label">Customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        .product-mini-quick-btn {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: all 0.2s;
+        }
 
-                <!-- 2018 -->
-                <div class="timeline-card" data-card="2">
-                    <div class="timeline-card-image">
-                        <span class="timeline-card-image-badge">
-                            <i class="bi bi-calendar-event"></i> 2018
-                        </span>
-                        <img src="{{ asset('img/about/2212.i121.024.jpg') }}" alt="Market Expansion">
-                    </div>
-                    <div class="timeline-card-content">
-                        <span class="timeline-card-badge">
-                            <i class="bi bi-graph-up-arrow"></i> Market Expansion
-                        </span>
-                        <h3 class="timeline-card-title">
-                            Regional <span class="highlight">Growth</span>
-                        </h3>
-                        <p class="timeline-card-text">
-                            Expanded operations to serve over 50 cities, installing water purification 
-                            systems in thousands of homes and businesses nationwide.
-                        </p>
-                        <p class="timeline-card-text">
-                            Established dedicated service centers to provide 24/7 customer support and 
-                            maintenance services across all regions we operate in.
-                        </p>
-                        <div class="timeline-card-features">
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 50+ Cities</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Service Centers</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> 24/7 Support</span>
-                        </div>
-                        <div class="timeline-stats">
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">75</div>
-                                <div class="timeline-stat-label">Team Members</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">50+</div>
-                                <div class="timeline-stat-label">Cities Covered</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">25K+</div>
-                                <div class="timeline-stat-label">Customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        .product-mini-quick-btn:hover {
+            border-color: var(--primary);
+            color: var(--primary);
+            background: #eff6ff;
+        }
 
-                <!-- 2020 (Active by default) -->
-                <div class="timeline-card active" data-card="3">
-                    <div class="timeline-card-image">
-                        <span class="timeline-card-image-badge">
-                            <i class="bi bi-calendar-event"></i> 2020
-                        </span>
-                        <img src="{{ asset('img/about/online-shopping-concept.jpg') }}" alt="Smart Technology">
-                    </div>
-                    <div class="timeline-card-content">
-                        <span class="timeline-card-badge">
-                            <i class="bi bi-cpu-fill"></i> Digital Revolution
-                        </span>
-                        <h3 class="timeline-card-title">
-                            Smart <span class="highlight">IoT Systems</span>
-                        </h3>
-                        <p class="timeline-card-text">
-                            Introduced IoT-enabled water purifiers with real-time monitoring, automatic 
-                            filter alerts, and mobile app connectivity for enhanced user experience.
-                        </p>
-                        <p class="timeline-card-text">
-                            Our smart systems allow users to track water quality, consumption patterns, 
-                            and schedule maintenance through their smartphones seamlessly.
-                        </p>
-                        <div class="timeline-card-features">
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> IoT Enabled</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Mobile App</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Real-time Monitoring</span>
-                        </div>
-                        <div class="timeline-stats">
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">150</div>
-                                <div class="timeline-stat-label">Team Members</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">75+</div>
-                                <div class="timeline-stat-label">Cities Covered</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">50K+</div>
-                                <div class="timeline-stat-label">Customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        .product-mini-quick-btn.wishlist:hover {
+            border-color: var(--danger);
+            color: var(--danger);
+            background: #fef2f2;
+        }
 
-                <!-- 2022 -->
-                <div class="timeline-card" data-card="4">
-                    <div class="timeline-card-image">
-                        <span class="timeline-card-image-badge">
-                            <i class="bi bi-calendar-event"></i> 2022
-                        </span>
-                        <img src="{{ asset('img/about/view-fantasy.jpg') }}" alt="Green Initiative">
-                    </div>
-                    <div class="timeline-card-content">
-                        <span class="timeline-card-badge">
-                            <i class="bi bi-leaf-fill"></i> Green Initiative
-                        </span>
-                        <h3 class="timeline-card-title">
-                            Eco-Friendly <span class="highlight">Solutions</span>
-                        </h3>
-                        <p class="timeline-card-text">
-                            Launched our sustainable water purification line with zero-waste technology 
-                            and energy-efficient operations to protect the environment.
-                        </p>
-                        <p class="timeline-card-text">
-                            Committed to reducing plastic waste by promoting reusable filter systems and 
-                            eco-conscious manufacturing processes throughout production.
-                        </p>
-                        <div class="timeline-card-features">
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Zero Waste</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Energy Efficient</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Eco Manufacturing</span>
-                        </div>
-                        <div class="timeline-stats">
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">200</div>
-                                <div class="timeline-stat-label">Team Members</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">100+</div>
-                                <div class="timeline-stat-label">Cities Covered</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">75K+</div>
-                                <div class="timeline-stat-label">Customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        /* Inner Carousel (Products within category) */
+        .products-inner-carousel.owl-carousel .owl-nav {
+            display: none;
+        }
 
-                <!-- 2025 -->
-                <div class="timeline-card" data-card="5">
-                    <div class="timeline-card-image">
-                        <span class="timeline-card-image-badge">
-                            <i class="bi bi-calendar-event"></i> 2025
-                        </span>
-                        <img src="{{ asset('img/about/18375.jpg') }}" alt="Industry Leader">
-                    </div>
-                    <div class="timeline-card-content">
-                        <span class="timeline-card-badge">
-                            <i class="bi bi-trophy-fill"></i> Industry Leader
-                        </span>
-                        <h3 class="timeline-card-title">
-                            Award <span class="highlight">Winning</span>
-                        </h3>
-                        <p class="timeline-card-text">
-                            Recognized as the leading water purification company with multiple industry 
-                            awards for innovation and exceptional customer satisfaction.
-                        </p>
-                        <p class="timeline-card-text">
-                            Achieved NSF International certification and became the trusted choice for 
-                            over 100,000 satisfied customers nationwide and growing.
-                        </p>
-                        <div class="timeline-card-features">
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> NSF Certified</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Award Winning</span>
-                            <span class="timeline-feature"><i class="bi bi-check-circle-fill"></i> Market Leader</span>
-                        </div>
-                        <div class="timeline-stats">
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">300+</div>
-                                <div class="timeline-stat-label">Team Members</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">150+</div>
-                                <div class="timeline-stat-label">Cities Covered</div>
-                            </div>
-                            <div class="timeline-stat">
-                                <div class="timeline-stat-value">100K+</div>
-                                <div class="timeline-stat-label">Customers</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        .products-inner-carousel.owl-carousel .owl-dots {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+        }
 
-            <!-- Progress Dots -->
-            <div class="timeline-progress" id="timelineProgress">
-                <span class="timeline-progress-dot" data-year="0"></span>
-                <span class="timeline-progress-dot" data-year="1"></span>
-                <span class="timeline-progress-dot" data-year="2"></span>
-                <span class="timeline-progress-dot active" data-year="3"></span>
-                <span class="timeline-progress-dot" data-year="4"></span>
-                <span class="timeline-progress-dot" data-year="5"></span>
+        .products-inner-carousel.owl-carousel .owl-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--border);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .products-inner-carousel.owl-carousel .owl-dot.active {
+            background: var(--primary);
+            width: 20px;
+            border-radius: 4px;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .category-carousel.owl-carousel .owl-nav {
+                position: static;
+                justify-content: center;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .category-products-section {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .product-mini-inner {
+                flex-direction: column;
+            }
+
+            .product-mini-image {
+                width: 100%;
+                min-height: 200px;
+            }
+
+            .product-mini-info {
+                padding: 16px;
+            }
+
+            .product-mini-actions {
+                flex-direction: column;
+                gap: 12px;
+            }
+
+            .product-mini-cart-btn {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .section-header {
+                margin-bottom: 30px;
+            }
+
+            .section-badge {
+                font-size: 0.75rem;
+                padding: 6px 14px;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+    <section class="promo-banner-section">
+        <div class="promo-banner-container">
+            <div class="promo-banner-grid">
+
+                @if ($amountOffer)
+                    <a href="{{ route('product.show', [$amountOffer->product->id, $amountOffer->product->slug]) }}"
+                        class="promo-card style-amount wow fadeInLeft" data-wow-delay="0.1s">
+                        <img src="{{ asset('storage/' . $amountOffer->product->main_image) }}" class="promo-card-bg"
+                            alt="{{ $amountOffer->title }}">
+                        <div class="promo-card-overlay">
+                            <div class="promo-content">
+                                <span class="promo-badge">
+                                    <i class="bi bi-lightning-charge-fill"></i> Special Offer
+                                </span>
+                                <h3 class="promo-title">{{ $amountOffer->title }}</h3>
+                                <div class="promo-price">
+                                    <span class="current">₹{{ number_format($amountOffer->offer_price, 2) }}</span>
+                                    <span class="label">Special Price</span>
+                                </div>
+                                <span class="promo-btn">
+                                    Shop Now <i class="bi bi-arrow-right"></i>
+                                </span>
+                            </div>
+                        </div>
+                    </a>
+                @endif
+
+                @if ($percentageOffer)
+                    <a href="{{ route('product.show', [$percentageOffer->product->id, $percentageOffer->product->slug]) }}"
+                        class="promo-card style-percent wow fadeInRight" data-wow-delay="0.2s">
+                        <img src="{{ asset('storage/' . $percentageOffer->product->main_image) }}" class="promo-card-bg"
+                            alt="{{ $percentageOffer->title }}">
+                        <div class="promo-card-overlay">
+                            <span class="sale-badge">🔥 Hot Sale</span>
+                            <div class="promo-discount">
+                                {{ $percentageOffer->offer_price }}% OFF
+                            </div>
+                            <p class="promo-discount-text">Get Up To {{ $percentageOffer->offer_price }}% Discount</p>
+                            <span class="promo-btn">
+                                <i class="bi bi-bag-check"></i> Shop Now
+                            </span>
+                        </div>
+                    </a>
+                @endif
+
             </div>
         </div>
-    </div>
-</section>
-
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    const timelineYears = document.querySelectorAll('.timeline-year');
-    const timelineCards = document.querySelectorAll('.timeline-card');
-    const progressDots = document.querySelectorAll('.timeline-progress-dot');
-    let currentIndex = 3; // Start at 2020
-
-    function setActiveYear(index) {
-        // Update year markers
-        timelineYears.forEach((year, i) => {
-            year.classList.toggle('active', i === index);
-        });
-
-        // Update cards with animation
-        timelineCards.forEach((card, i) => {
-            if (i === index) {
-                card.classList.add('active');
-            } else {
-                card.classList.remove('active');
-            }
-        });
-
-        // Update progress dots
-        progressDots.forEach((dot, i) => {
-            dot.classList.toggle('active', i === index);
-        });
-
-        currentIndex = index;
-    }
-
-    // Click on year markers
-    timelineYears.forEach((year, index) => {
-        year.addEventListener('click', () => {
-            setActiveYear(index);
-        });
-    });
-
-    // Click on progress dots
-    progressDots.forEach((dot, index) => {
-        dot.addEventListener('click', () => {
-            setActiveYear(index);
-        });
-    });
-
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-        if (e.key === 'ArrowRight' && currentIndex < timelineYears.length - 1) {
-            setActiveYear(currentIndex + 1);
-        } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
-            setActiveYear(currentIndex - 1);
-        }
-    });
-
-    // Touch swipe support for mobile
-    let touchStartX = 0;
-    let touchEndX = 0;
-    const contentWrapper = document.querySelector('.timeline-content-wrapper');
-
-    contentWrapper.addEventListener('touchstart', (e) => {
-        touchStartX = e.changedTouches[0].screenX;
-    }, false);
-
-    contentWrapper.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        handleSwipe();
-    }, false);
-
-    function handleSwipe() {
-        const swipeThreshold = 50;
-        const diff = touchStartX - touchEndX;
-
-        if (Math.abs(diff) > swipeThreshold) {
-            if (diff > 0 && currentIndex < timelineYears.length - 1) {
-                // Swipe left - next
-                setActiveYear(currentIndex + 1);
-            } else if (diff < 0 && currentIndex > 0) {
-                // Swipe right - previous
-                setActiveYear(currentIndex - 1);
-            }
-        }
-    }
-
-    // Auto-rotate (optional - uncomment to enable)
-    /*
-    let autoRotateInterval = setInterval(() => {
-        let nextIndex = (currentIndex + 1) % timelineYears.length;
-        setActiveYear(nextIndex);
-    }, 5000);
-
-    // Stop auto-rotate on user interaction
-    document.querySelector('.timeline-wrapper').addEventListener('click', () => {
-        clearInterval(autoRotateInterval);
-    });
-    */
-
-    // Intersection Observer for scroll animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('animate-slide-up');
-            }
-        });
-    }, { threshold: 0.1 });
-
-    document.querySelectorAll('.about-header, .timeline-container, .timeline-years').forEach(el => {
-        observer.observe(el);
-    });
-});
-</script>
+    </section>
 
 
     {{-- Add this CSS to your main stylesheet --}}
 
+
+    {{-- 
+    Product Section - Category-wise Carousel Layout
+    
+    Features:
+    - Each category displayed in its own section
+    - Horizontal carousel for products exceeding screen width
+    - Smooth scroll/swipe navigation
+    - Navigation arrows for desktop
+    
+    Design: Professional, clean, consistent with other sections
+--}}
+
     <style>
+        :root {
+            --product-primary: #1e40af;
+            --product-primary-light: #3b82f6;
+            --product-primary-dark: #1e3a8a;
+            --product-accent: #4f46e5;
+            --product-success: #059669;
+            --product-danger: #dc2626;
+            --product-warning: #f59e0b;
+            --product-text-primary: #111827;
+            --product-text-secondary: #4b5563;
+            --product-text-muted: #9ca3af;
+            --product-border: #e5e7eb;
+            --product-bg-light: #f8fafc;
+            --product-bg-card: #ffffff;
+            --product-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+            --product-shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            --product-shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+            --product-shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+            --product-radius: 12px;
+            --product-radius-lg: 16px;
+        }
+
+        /* ==================== PRODUCTS SECTION ==================== */
+        .products-section {
+            padding: 80px 0;
+            background: var(--product-bg-card);
+        }
+
+        .products-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Section Header */
+        .products-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .products-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 24px;
+            background: linear-gradient(135deg, var(--product-primary) 0%, var(--product-accent) 100%);
+            color: white;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
+        }
+
+        .products-title {
+            font-size: 2.75rem;
+            font-weight: 800;
+            color: var(--product-text-primary);
+            margin-bottom: 16px;
+        }
+
+        .products-title .highlight {
+            background: linear-gradient(135deg, var(--product-primary) 0%, var(--product-accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .products-subtitle {
+            font-size: 1.1rem;
+            color: var(--product-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* ==================== CATEGORY ROW ==================== */
+        .category-row {
+            margin-bottom: 60px;
+        }
+
+        .category-row:last-child {
+            margin-bottom: 0;
+        }
+
+        /* Category Header */
+        .category-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 24px;
+            padding: 0 4px;
+        }
+
+        .category-title-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .category-icon {
+            width: 48px;
+            height: 48px;
+            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--product-primary);
+            font-size: 1.25rem;
+        }
+
+        .category-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--product-text-primary);
+            margin: 0;
+        }
+
+        .category-count {
+            font-size: 0.9rem;
+            color: var(--product-text-muted);
+            font-weight: 400;
+            margin-left: 8px;
+        }
+
+        .category-view-all {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 10px 20px;
+            background: var(--product-bg-light);
+            border: 1px solid var(--product-border);
+            border-radius: 50px;
+            color: var(--product-text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .category-view-all:hover {
+            background: var(--product-primary);
+            border-color: var(--product-primary);
+            color: white;
+            transform: translateX(4px);
+        }
+
+        .category-view-all i {
+            font-size: 0.8rem;
+            transition: transform 0.3s;
+        }
+
+        .category-view-all:hover i {
+            transform: translateX(4px);
+        }
+
+        /* ==================== CAROUSEL CONTAINER ==================== */
+        .carousel-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Navigation Arrows */
+        .carousel-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 48px;
+            height: 48px;
+            background: var(--product-bg-card);
+            border: 1px solid var(--product-border);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s;
+            box-shadow: var(--product-shadow-lg);
+            opacity: 0;
+        }
+
+        .carousel-container:hover .carousel-nav {
+            opacity: 1;
+        }
+
+        .carousel-nav:hover {
+            background: var(--product-primary);
+            border-color: var(--product-primary);
+            color: white;
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .carousel-nav.prev {
+            left: 10px;
+        }
+
+        .carousel-nav.next {
+            right: 10px;
+        }
+
+        .carousel-nav i {
+            font-size: 1.1rem;
+            color: var(--product-text-secondary);
+            transition: color 0.3s;
+        }
+
+        .carousel-nav:hover i {
+            color: white;
+        }
+
+        .carousel-nav.disabled {
+            opacity: 0.3;
+            pointer-events: none;
+        }
+
+        /* Carousel Track */
+        .carousel-track {
+            display: flex;
+            gap: 24px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            padding: 10px 4px 20px;
+        }
+
+        .carousel-track::-webkit-scrollbar {
+            display: none;
+        }
+
+        /* ==================== PRODUCT CARD ==================== */
+        .product-card {
+            flex: 0 0 280px;
+            background: var(--product-bg-card);
+            border-radius: var(--product-radius-lg);
+            overflow: hidden;
+            border: 1px solid var(--product-border);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--product-shadow-xl);
+            border-color: transparent;
+        }
+
+        /* Product Image */
+        .product-card-image {
+            position: relative;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: var(--product-bg-light);
+        }
+
+        .product-card-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-card-image img {
+            transform: scale(1.08);
+        }
+
+        /* Badges */
+        .product-badges {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2;
+        }
+
+        .product-badge {
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .product-badge.featured {
+            background: linear-gradient(135deg, var(--product-primary) 0%, var(--product-accent) 100%);
+            color: white;
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .product-badge.sale {
+            background: var(--product-danger);
+            color: white;
+        }
+
+        .product-badge.new {
+            background: var(--product-success);
+            color: white;
+        }
+
+        /* Quick Actions */
+        .product-quick-actions {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            z-index: 2;
+            opacity: 0;
+            transform: translateX(10px);
+            transition: all 0.3s;
+        }
+
+        .product-card:hover .product-quick-actions {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .quick-action-btn {
+            width: 40px;
+            height: 40px;
+            background: var(--product-bg-card);
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--product-shadow-md);
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--product-text-secondary);
+        }
+
+        .quick-action-btn:hover {
+            background: var(--product-primary);
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .quick-action-btn.wishlist:hover {
+            background: var(--product-danger);
+        }
+
+        /* Quick View Overlay */
+        .product-quick-view {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 16px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.7));
+            transform: translateY(100%);
+            transition: transform 0.3s;
+        }
+
+        .product-card:hover .product-quick-view {
+            transform: translateY(0);
+        }
+
+        .quick-view-btn {
+            width: 100%;
+            padding: 12px;
+            background: var(--product-bg-card);
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--product-text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .quick-view-btn:hover {
+            background: var(--product-primary);
+            color: white;
+        }
+
+        /* Product Info */
+        .product-card-info {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card-name {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--product-text-primary);
+            margin-bottom: 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            line-height: 1.4;
+            min-height: 2.8em;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .product-card-name:hover {
+            color: var(--product-primary);
+        }
+
+        /* Rating */
+        .product-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .product-stars {
+            display: flex;
+            gap: 2px;
+        }
+
+        .product-stars i {
+            font-size: 0.85rem;
+            color: #fbbf24;
+        }
+
+        .product-stars i.empty {
+            color: #e5e7eb;
+        }
+
+        .product-reviews {
+            font-size: 0.8rem;
+            color: var(--product-text-muted);
+        }
+
+        /* Price */
+        .product-price {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 16px;
+        }
+
+        .product-price-current {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--product-text-primary);
+        }
+
+        .product-price-original {
+            font-size: 0.95rem;
+            color: var(--product-text-muted);
+            text-decoration: line-through;
+        }
+
+        .product-price-discount {
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: var(--product-success);
+            background: #d1fae5;
+            padding: 2px 8px;
+            border-radius: 4px;
+        }
+
+        /* Actions */
+        .product-card-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: auto;
+        }
+
+        .btn-add-cart {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: var(--product-primary);
+            color: white;
+            border: none;
+            border-radius: var(--product-radius);
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-decoration: none;
+        }
+
+        .btn-add-cart:hover {
+            background: var(--product-primary-dark);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
+        }
+
+        .btn-add-cart.loading {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .btn-add-cart.success {
+            background: var(--product-success);
+        }
+
+        .btn-wishlist {
+            width: 48px;
+            height: 48px;
+            background: var(--product-bg-light);
+            border: 1px solid var(--product-border);
+            border-radius: var(--product-radius);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-decoration: none;
+            color: var(--product-text-secondary);
+        }
+
+        .btn-wishlist:hover {
+            background: #fef2f2;
+            border-color: var(--product-danger);
+            color: var(--product-danger);
+        }
+
+        .btn-wishlist.active {
+            background: var(--product-danger);
+            border-color: var(--product-danger);
+            color: white;
+        }
+
+        /* ==================== SCROLL INDICATOR ==================== */
+        .scroll-indicator {
+            display: flex;
+            justify-content: center;
+            gap: 6px;
+            margin-top: 16px;
+        }
+
+        .scroll-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--product-border);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .scroll-dot.active {
+            width: 24px;
+            border-radius: 4px;
+            background: var(--product-primary);
+        }
+
+        /* ==================== RESPONSIVE ==================== */
+        @media (max-width: 1200px) {
+            .product-card {
+                flex: 0 0 260px;
+            }
+        }
+
+        @media (max-width: 992px) {
+            .products-section {
+                padding: 60px 0;
+            }
+
+            .products-title {
+                font-size: 2.25rem;
+            }
+
+            .category-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+
+            .product-card {
+                flex: 0 0 240px;
+            }
+
+            .carousel-nav {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .products-header {
+                margin-bottom: 40px;
+            }
+
+            .products-title {
+                font-size: 1.75rem;
+            }
+
+            .category-row {
+                margin-bottom: 40px;
+            }
+
+            .category-title {
+                font-size: 1.25rem;
+            }
+
+            .category-title-wrapper {
+                gap: 12px;
+            }
+
+            .carousel-track {
+                gap: 16px;
+                padding: 8px 4px 16px;
+            }
+
+            /* Show 2.5 cards on tablet for peek effect */
+            .product-card {
+                flex: 0 0 calc(40% - 8px);
+                min-width: calc(40% - 8px);
+            }
+        }
+
+        @media (max-width: 576px) {
+            .products-section {
+                padding: 50px 0;
+            }
+
+            .products-container {
+                padding: 0 12px;
+            }
+
+            .products-title {
+                font-size: 1.5rem;
+            }
+
+            .products-badge {
+                font-size: 0.75rem;
+                padding: 8px 16px;
+            }
+
+            .category-header {
+                padding: 0;
+            }
+
+            .category-icon {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .category-title {
+                font-size: 1.1rem;
+            }
+
+            .category-count {
+                display: block;
+                margin-left: 0;
+                font-size: 0.8rem;
+            }
+
+            .category-view-all {
+                padding: 8px 14px;
+                font-size: 0.8rem;
+            }
+
+            /* Show exactly 2 products in mobile view */
+            .carousel-track {
+                gap: 12px;
+                padding: 8px 2px 16px;
+            }
+
+            .product-card {
+                /* Calculate width: 50% minus half the gap */
+                flex: 0 0 calc(50% - 6px);
+                min-width: calc(50% - 6px);
+            }
+
+            .product-card-image {
+                aspect-ratio: 1;
+            }
+
+            .product-badges {
+                top: 8px;
+                left: 8px;
+                gap: 4px;
+            }
+
+            .product-badge {
+                padding: 4px 8px;
+                font-size: 0.65rem;
+            }
+
+            .product-quick-actions {
+                top: 8px;
+                right: 8px;
+                gap: 6px;
+            }
+
+            .quick-action-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+
+            .product-card-info {
+                padding: 12px;
+            }
+
+            .product-card-name {
+                font-size: 0.85rem;
+                min-height: 2.4em;
+                margin-bottom: 6px;
+                -webkit-line-clamp: 2;
+            }
+
+            .product-rating {
+                margin-bottom: 8px;
+            }
+
+            .product-stars i {
+                font-size: 0.7rem;
+            }
+
+            .product-reviews {
+                font-size: 0.7rem;
+            }
+
+            .product-price {
+                flex-wrap: wrap;
+                gap: 4px;
+                margin-bottom: 12px;
+            }
+
+            .product-price-current {
+                font-size: 1rem;
+            }
+
+            .product-price-original {
+                font-size: 0.8rem;
+            }
+
+            .product-price-discount {
+                font-size: 0.65rem;
+                padding: 2px 6px;
+            }
+
+            .product-card-actions {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .btn-add-cart {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+                width: 100%;
+            }
+
+            .btn-add-cart i {
+                font-size: 0.9rem;
+            }
+
+            .btn-wishlist {
+                display: none;
+                /* Hide wishlist button on mobile to save space, it's in quick actions */
+            }
+        }
+
+        /* Extra small devices - still show 2 cards */
+        @media (max-width: 380px) {
+            .products-container {
+                padding: 0 8px;
+            }
+
+            .carousel-track {
+                gap: 8px;
+            }
+
+            .product-card {
+                flex: 0 0 calc(50% - 4px);
+                min-width: calc(50% - 4px);
+            }
+
+            .product-card-info {
+                padding: 10px;
+            }
+
+            .product-card-name {
+                font-size: 0.8rem;
+            }
+
+            .product-price-current {
+                font-size: 0.95rem;
+            }
+
+            .btn-add-cart {
+                padding: 8px 10px;
+                font-size: 0.75rem;
+            }
+        }
+    </style>
+
+    <!-- ==================== PRODUCTS SECTION ==================== -->
+    <section class="products-section" id="products">
+        <div class="products-container">
+            <!-- Section Header -->
+            <div class="products-header">
+                <span class="products-badge">
+                    <i class="bi bi-box-seam"></i> Our Collection
+                </span>
+                <h2 class="products-title">
+                    Explore Our <span class="highlight">Products</span>
+                </h2>
+                <p class="products-subtitle">
+                    Discover our premium range of water purification products designed for your home and office.
+                </p>
+            </div>
+
+            <!-- Category-wise Product Rows -->
+            @foreach ($categories as $category)
+                @if ($category->products->count() > 0)
+                    <div class="category-row" data-category-id="{{ $category->id }}">
+                        <!-- Category Header -->
+                        <div class="category-header">
+                            <div class="category-title-wrapper">
+                                <div class="category-icon">
+                                    <i class="bi bi-droplet-fill"></i>
+                                </div>
+                                <h3 class="category-title">
+                                    {{ $category->name }}
+                                    <span class="category-count">({{ $category->products->count() }} Products)</span>
+                                </h3>
+                            </div>
+                            <a href="{{ route('shop', ['category' => $category->id]) }}" class="category-view-all">
+                                View All <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <!-- Carousel Container -->
+                        <div class="carousel-container">
+                            <!-- Navigation Arrows -->
+                            <button class="carousel-nav prev" onclick="scrollCarousel(this, -1)">
+                                <i class="bi bi-chevron-left"></i>
+                            </button>
+                            <button class="carousel-nav next" onclick="scrollCarousel(this, 1)">
+                                <i class="bi bi-chevron-right"></i>
+                            </button>
+
+                            <!-- Products Track -->
+                            <div class="carousel-track">
+                                @foreach ($category->products as $product)
+                                    <div class="product-card">
+                                        <!-- Product Image -->
+                                        <div class="product-card-image">
+                                            <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
+                                                alt="{{ $product->name }}">
+
+                                            <!-- Badges -->
+                                            <div class="product-badges">
+                                                @if ($product->featured)
+                                                    <span class="product-badge featured">Featured</span>
+                                                @endif
+                                                @if ($product->discount > 0)
+                                                    <span class="product-badge sale">{{ $product->discount }}% OFF</span>
+                                                @endif
+                                                @if ($product->created_at->diffInDays(now()) < 30)
+                                                    <span class="product-badge new">New</span>
+                                                @endif
+                                            </div>
+
+                                            <!-- Quick Actions -->
+                                            <div class="product-quick-actions">
+                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
+                                                    class="quick-action-btn" title="Quick View">
+                                                    <i class="bi bi-eye"></i>
+                                                </a>
+                                                <button class="quick-action-btn wishlist"
+                                                    data-product-id="{{ $product->id }}" title="Add to Wishlist">
+                                                    <i class="bi bi-heart"></i>
+                                                </button>
+                                            </div>
+
+                                            <!-- Quick View Overlay -->
+                                            <div class="product-quick-view">
+                                                <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
+                                                    class="quick-view-btn">
+                                                    <i class="bi bi-eye"></i> Quick View
+                                                </a>
+                                            </div>
+                                        </div>
+
+                                        <!-- Product Info -->
+                                        <div class="product-card-info">
+                                            <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
+                                                class="product-card-name">
+                                                {{ $product->name }}
+                                            </a>
+
+                                            <!-- Rating -->
+                                            <div class="product-rating">
+                                                <div class="product-stars">
+                                                    @for ($i = 1; $i <= 5; $i++)
+                                                        @if ($i <= ($product->rating ?? 4))
+                                                            <i class="bi bi-star-fill"></i>
+                                                        @else
+                                                            <i class="bi bi-star-fill empty"></i>
+                                                        @endif
+                                                    @endfor
+                                                </div>
+                                                <span
+                                                    class="product-reviews">({{ $product->reviews_count ?? rand(10, 50) }})</span>
+                                            </div>
+
+                                            <!-- Price -->
+                                            <div class="product-price">
+                                                @if ($product->discount > 0)
+                                                    @php
+                                                        $discountedPrice =
+                                                            $product->price -
+                                                            ($product->price * $product->discount) / 100;
+                                                    @endphp
+                                                    <span
+                                                        class="product-price-current">₹{{ number_format($discountedPrice, 2) }}</span>
+                                                    <span
+                                                        class="product-price-original">₹{{ number_format($product->price, 2) }}</span>
+                                                    <span class="product-price-discount">Save
+                                                        {{ $product->discount }}%</span>
+                                                @else
+                                                    <span
+                                                        class="product-price-current">₹{{ number_format($product->price, 2) }}</span>
+                                                @endif
+                                            </div>
+
+                                            <!-- Actions -->
+                                            <div class="product-card-actions">
+                                                <button class="btn-add-cart" data-product-id="{{ $product->id }}"
+                                                    data-url="{{ route('cart.add', $product->id) }}">
+                                                    <i class="bi bi-cart-plus"></i> Add to Cart
+                                                </button>
+                                                <button class="btn-wishlist" data-product-id="{{ $product->id }}">
+                                                    <i class="bi bi-heart"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Carousel Navigation
+            window.scrollCarousel = function(button, direction) {
+                const container = button.closest('.carousel-container');
+                const track = container.querySelector('.carousel-track');
+                const cardWidth = track.querySelector('.product-card').offsetWidth + 24; // card width + gap
+                const scrollAmount = cardWidth * 2; // Scroll 2 cards at a time
+
+                track.scrollBy({
+                    left: scrollAmount * direction,
+                    behavior: 'smooth'
+                });
+
+                // Update nav button states after scroll
+                setTimeout(() => updateNavButtons(container), 300);
+            };
+
+            // Update navigation button states
+            function updateNavButtons(container) {
+                const track = container.querySelector('.carousel-track');
+                const prevBtn = container.querySelector('.carousel-nav.prev');
+                const nextBtn = container.querySelector('.carousel-nav.next');
+
+                if (prevBtn && nextBtn) {
+                    prevBtn.classList.toggle('disabled', track.scrollLeft <= 0);
+                    nextBtn.classList.toggle('disabled',
+                        track.scrollLeft >= track.scrollWidth - track.clientWidth - 10);
+                }
+            }
+
+            // Initialize all carousels
+            document.querySelectorAll('.carousel-container').forEach(container => {
+                const track = container.querySelector('.carousel-track');
+
+                // Initial state
+                updateNavButtons(container);
+
+                // Update on scroll
+                track.addEventListener('scroll', () => {
+                    updateNavButtons(container);
+                });
+
+                // Touch/Mouse drag for mobile
+                let isDown = false;
+                let startX;
+                let scrollLeft;
+
+                track.addEventListener('mousedown', (e) => {
+                    isDown = true;
+                    track.style.cursor = 'grabbing';
+                    startX = e.pageX - track.offsetLeft;
+                    scrollLeft = track.scrollLeft;
+                });
+
+                track.addEventListener('mouseleave', () => {
+                    isDown = false;
+                    track.style.cursor = 'grab';
+                });
+
+                track.addEventListener('mouseup', () => {
+                    isDown = false;
+                    track.style.cursor = 'grab';
+                });
+
+                track.addEventListener('mousemove', (e) => {
+                    if (!isDown) return;
+                    e.preventDefault();
+                    const x = e.pageX - track.offsetLeft;
+                    const walk = (x - startX) * 1.5;
+                    track.scrollLeft = scrollLeft - walk;
+                });
+            });
+
+            // Add to Cart functionality
+            document.addEventListener('click', function(e) {
+                const addToCartBtn = e.target.closest('.btn-add-cart');
+
+                if (addToCartBtn) {
+                    e.preventDefault();
+                    const productId = addToCartBtn.getAttribute('data-product-id');
+                    const cartUrl = addToCartBtn.getAttribute('data-url');
+                    const originalHTML = addToCartBtn.innerHTML;
+
+                    // Loading state
+                    addToCartBtn.classList.add('loading');
+                    addToCartBtn.innerHTML = '<i class="bi bi-hourglass-split"></i> Adding...';
+
+                    fetch(cartUrl, {
+                            method: 'GET',
+                            headers: {
+                                'Accept': 'application/json',
+                                'X-Requested-With': 'XMLHttpRequest'
+                            }
+                        })
+                        .then(response => {
+                            if (!response.ok) {
+                                return response.json().then(data => {
+                                    throw data;
+                                });
+                            }
+                            return response.json();
+                        })
+                        .then(data => {
+                            if (data.success) {
+                                // Success state
+                                addToCartBtn.classList.remove('loading');
+                                addToCartBtn.classList.add('success');
+                                addToCartBtn.innerHTML = '<i class="bi bi-check-lg"></i> Added!';
+
+                                // Update cart count
+                                const cartCountEl = document.querySelector('.cart-count');
+                                if (cartCountEl && data.cart_count !== undefined) {
+                                    cartCountEl.textContent = data.cart_count;
+                                }
+
+                                // Reset button after delay
+                                setTimeout(() => {
+                                    addToCartBtn.classList.remove('success');
+                                    addToCartBtn.innerHTML = originalHTML;
+                                }, 2000);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            addToCartBtn.classList.remove('loading');
+                            addToCartBtn.innerHTML = originalHTML;
+
+                            if (error.redirect) {
+                                window.location.href = error.redirect;
+                            } else {
+                                alert(error.message || 'Something went wrong. Please try again.');
+                            }
+                        });
+                }
+            });
+
+            // Wishlist functionality
+            document.addEventListener('click', function(e) {
+                const wishlistBtn = e.target.closest('.btn-wishlist, .quick-action-btn.wishlist');
+
+                if (wishlistBtn) {
+                    e.preventDefault();
+                    const icon = wishlistBtn.querySelector('i');
+
+                    wishlistBtn.classList.toggle('active');
+
+                    if (wishlistBtn.classList.contains('active')) {
+                        icon.classList.remove('bi-heart');
+                        icon.classList.add('bi-heart-fill');
+                    } else {
+                        icon.classList.remove('bi-heart-fill');
+                        icon.classList.add('bi-heart');
+                    }
+                }
+            });
+        });
+    </script>
+
+    {{-- USED --}}
+    {{-- <style>
         .product-card-minimal {
             background: white;
             border-radius: 16px;
@@ -3958,23 +4780,21 @@ document.addEventListener('DOMContentLoaded', function() {
                                 <div class="col-md-6 col-lg-4 col-xl-3 product-item-wrapper"
                                     data-category="{{ $product->category_id }}">
 
-                                    {{-- Minimal/Clean Product Card --}}
+                                    <!-- Minimal/Clean Product Card -->
                                     <div class="product-card-minimal">
                                         <div class="image-wrapper">
                                             <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
                                                 class="product-img" alt="{{ $product->name }}">
 
-                                            {{-- Badges --}}
+                                            <!-- Badges -->
                                             <div class="badges">
                                                 @if ($product->featured)
                                                     <span class="badge featured">Featured</span>
                                                 @endif
-                                                {{-- @if ($product->discount > 0)
-                                                <span class="badge sale">Sale</span>
-                                                @endif --}}
+                                               
                                             </div>
 
-                                            {{-- Quick View Button --}}
+                                            <!-- Quick View Button -->
                                             <div class="quick-view">
                                                 <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
                                                     class="quick-view-btn">
@@ -3984,13 +4804,13 @@ document.addEventListener('DOMContentLoaded', function() {
                                         </div>
 
                                         <div class="product-info">
-                                            {{-- Product Name --}}
+                                            <!-- Product Name -->
                                             <a href="{{ route('product.show', [$product->id, $product->slug]) }}"
                                                 class="product-name">
                                                 {{ $product->name }}
                                             </a>
 
-                                            {{-- Price Section --}}
+                                            <!-- Price Section -->
                                             <div class="price-section">
                                                 @if ($product->discount > 0)
                                                     <span class="price-current">
@@ -4006,7 +4826,7 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 @endif
                                             </div>
 
-                                            {{-- Rating Stars --}}
+                                            <!-- Rating Stars -->
                                             <div class="rating-stars">
                                                 @for ($i = 1; $i <= 5; $i++)
                                                     @if ($i <= ($product->rating ?? 4))
@@ -4017,12 +4837,9 @@ document.addEventListener('DOMContentLoaded', function() {
                                                 @endfor
                                             </div>
 
-                                            {{-- Actions --}}
+                                            <!-- Actions -->
                                             <div class="actions">
-                                                {{-- <a href="{{ route('cart.add', $product->id) }}"
-                                                    class="btn-add-cart add-to-cart">
-                                                    <i class="fas fa-shopping-cart me-2"></i> Add to Cart
-                                                </a> --}}
+
                                                 <a href="{{ route('cart.add', $product->id) }}"
                                                     class="btn-add-cart add-to-cart"
                                                     data-product-id="{{ $product->id }}">
@@ -4206,7 +5023,8 @@ document.addEventListener('DOMContentLoaded', function() {
         .nav-pills .nav-link.active span {
             color: white !important;
         }
-    </style>
+    </style> --}}
+
     <!-- Our Products End -->
 
 
@@ -5599,716 +6417,9 @@ document.addEventListener('DOMContentLoaded', function() {
     - Professional typography
 --}}
 
-    <style>
-        :root {
-            --primary: #1e40af;
-            --primary-light: #3b82f6;
-            --primary-dark: #1e3a8a;
-            --accent: #4f46e5;
-            --success: #059669;
-            --warning: #f59e0b;
-            --danger: #dc2626;
-            --text-primary: #111827;
-            --text-secondary: #4b5563;
-            --text-muted: #9ca3af;
-            --border: #e5e7eb;
-            --bg-light: #f8fafc;
-            --bg-card: #ffffff;
-            --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-            --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-            --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-            --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-            --radius: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 24px;
-        }
 
-        /* ==================== PRODUCT BANNER SECTION ==================== */
-        .promo-banner-section {
-            padding: 60px 0;
-            background: var(--bg-card);
-        }
 
-        .promo-banner-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
 
-        .promo-banner-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        @media (max-width: 992px) {
-            .promo-banner-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        /* Banner Card */
-        .promo-card {
-            position: relative;
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            min-height: 320px;
-            display: flex;
-            text-decoration: none;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .promo-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .promo-card-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.6s ease;
-        }
-
-        .promo-card:hover .promo-card-bg {
-            transform: scale(1.05);
-        }
-
-        /* Amount Offer Card - Style 1 */
-        .promo-card.style-amount {
-            background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
-        }
-
-        .promo-card.style-amount .promo-card-overlay {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            display: flex;
-            align-items: center;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.85) 60%, transparent 100%);
-        }
-
-        .promo-card.style-amount .promo-content {
-            max-width: 60%;
-        }
-
-        .promo-card.style-amount .promo-badge {
-            display: inline-block;
-            padding: 6px 14px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            color: white;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border-radius: 50px;
-            margin-bottom: 16px;
-        }
-
-        .promo-card.style-amount .promo-title {
-            font-size: 1.75rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin-bottom: 12px;
-            line-height: 1.2;
-        }
-
-        .promo-card.style-amount .promo-price {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            margin-bottom: 20px;
-        }
-
-        .promo-card.style-amount .promo-price .current {
-            font-size: 2rem;
-            font-weight: 800;
-            color: var(--primary);
-        }
-
-        .promo-card.style-amount .promo-price .label {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .promo-card.style-amount .promo-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 12px 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(30, 64, 175, 0.3);
-        }
-
-        .promo-card.style-amount .promo-btn:hover {
-            background: var(--primary-dark);
-            transform: translateX(4px);
-            box-shadow: 0 6px 20px rgba(30, 64, 175, 0.4);
-        }
-
-        .promo-card.style-amount .promo-btn i {
-            transition: transform 0.3s;
-        }
-
-        .promo-card.style-amount .promo-btn:hover i {
-            transform: translateX(4px);
-        }
-
-        /* Percentage Offer Card - Style 2 */
-        .promo-card.style-percent {
-            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
-        }
-
-        .promo-card.style-percent .promo-card-overlay {
-            position: relative;
-            z-index: 2;
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 40px;
-            background: linear-gradient(135deg, rgba(245, 158, 11, 0.92) 0%, rgba(217, 119, 6, 0.88) 100%);
-        }
-
-        .promo-card.style-percent .sale-badge {
-            display: inline-block;
-            padding: 8px 24px;
-            background: white;
-            color: var(--warning);
-            font-size: 1rem;
-            font-weight: 800;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .promo-card.style-percent .promo-discount {
-            font-size: 3.5rem;
-            font-weight: 900;
-            color: white;
-            line-height: 1;
-            margin-bottom: 8px;
-            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .promo-card.style-percent .promo-discount-text {
-            font-size: 1.25rem;
-            color: white;
-            opacity: 0.95;
-            margin-bottom: 24px;
-        }
-
-        .promo-card.style-percent .promo-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 14px 32px;
-            background: white;
-            color: var(--warning);
-            border-radius: 50px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-        }
-
-        .promo-card.style-percent .promo-btn:hover {
-            background: var(--text-primary);
-            color: white;
-            transform: scale(1.05);
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .promo-card {
-                min-height: 280px;
-            }
-
-            .promo-card.style-amount .promo-card-overlay {
-                padding: 24px;
-                background: linear-gradient(180deg, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.9) 100%);
-            }
-
-            .promo-card.style-amount .promo-content {
-                max-width: 100%;
-            }
-
-            .promo-card.style-amount .promo-title {
-                font-size: 1.4rem;
-            }
-
-            .promo-card.style-amount .promo-price .current {
-                font-size: 1.5rem;
-            }
-
-            .promo-card.style-percent .promo-discount {
-                font-size: 2.5rem;
-            }
-
-            .promo-card.style-percent .promo-discount-text {
-                font-size: 1rem;
-            }
-        }
-
-        /* ==================== PRODUCT LIST SECTION ==================== */
-        .category-products-section {
-            padding: 80px 0;
-            background: var(--bg-light);
-            overflow: hidden;
-        }
-
-        .category-products-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* Section Header */
-        .section-header {
-            text-align: center;
-            margin-bottom: 50px;
-        }
-
-        .section-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 8px 20px;
-            background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
-            border: 1px solid #bfdbfe;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            color: var(--text-primary);
-            margin: 0;
-            line-height: 1.2;
-        }
-
-        .section-title .highlight {
-            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        /* Owl Carousel Custom Styling */
-        .category-carousel.owl-carousel .owl-stage-outer {
-            overflow: visible;
-        }
-
-        .category-carousel.owl-carousel .owl-nav {
-            position: absolute;
-            top: -70px;
-            right: 0;
-            display: flex;
-            gap: 10px;
-        }
-
-        .category-carousel.owl-carousel .owl-nav button {
-            width: 44px;
-            height: 44px;
-            background: var(--bg-card) !important;
-            border: 1px solid var(--border) !important;
-            border-radius: 50% !important;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-secondary) !important;
-            font-size: 1.25rem !important;
-            transition: all 0.3s;
-            box-shadow: var(--shadow);
-        }
-
-        .category-carousel.owl-carousel .owl-nav button:hover {
-            background: var(--primary) !important;
-            border-color: var(--primary) !important;
-            color: white !important;
-            transform: scale(1.05);
-        }
-
-        .category-carousel.owl-carousel .owl-dots {
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin-top: 30px;
-        }
-
-        .category-carousel.owl-carousel .owl-dot {
-            width: 10px;
-            height: 10px;
-            background: var(--border);
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .category-carousel.owl-carousel .owl-dot.active {
-            background: var(--primary);
-            width: 28px;
-            border-radius: 5px;
-        }
-
-        /* Product Card - Mini Style */
-        .product-mini-card {
-            background: var(--bg-card);
-            border-radius: var(--radius-lg);
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            border: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .product-mini-card:hover {
-            transform: translateY(-4px);
-            box-shadow: var(--shadow-lg);
-            border-color: transparent;
-        }
-
-        .product-mini-inner {
-            display: flex;
-        }
-
-        /* Product Image Side */
-        .product-mini-image {
-            position: relative;
-            width: 40%;
-            min-height: 180px;
-            background: var(--bg-light);
-            overflow: hidden;
-        }
-
-        .product-mini-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .product-mini-card:hover .product-mini-image img {
-            transform: scale(1.08);
-        }
-
-        .product-mini-view {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) scale(0);
-            opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 3;
-        }
-
-        .product-mini-card:hover .product-mini-view {
-            transform: translate(-50%, -50%) scale(1);
-            opacity: 1;
-        }
-
-        .product-mini-view a {
-            width: 44px;
-            height: 44px;
-            background: var(--bg-card);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-primary);
-            text-decoration: none;
-            box-shadow: var(--shadow-md);
-            transition: all 0.2s;
-        }
-
-        .product-mini-view a:hover {
-            background: var(--primary);
-            color: white;
-            transform: scale(1.1);
-        }
-
-        /* Product Info Side */
-        .product-mini-info {
-            flex: 1;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .product-mini-category {
-            font-size: 0.75rem;
-            font-weight: 600;
-            color: var(--primary);
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 8px;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .product-mini-category:hover {
-            color: var(--primary-dark);
-        }
-
-        .product-mini-name {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            line-height: 1.4;
-            margin-bottom: 12px;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-            overflow: hidden;
-            text-decoration: none;
-            transition: color 0.2s;
-            min-height: 2.8em;
-        }
-
-        .product-mini-name:hover {
-            color: var(--primary);
-        }
-
-        .product-mini-price {
-            display: flex;
-            align-items: baseline;
-            gap: 8px;
-            margin-top: auto;
-        }
-
-        .product-mini-price .current {
-            font-size: 1.15rem;
-            font-weight: 700;
-            color: var(--text-primary);
-        }
-
-        .product-mini-price .original {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-            text-decoration: line-through;
-        }
-
-        /* Product Actions */
-        .product-mini-actions {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 16px 20px;
-            border-top: 1px solid var(--border);
-            background: var(--bg-light);
-        }
-
-        .product-mini-cart-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 10px 20px;
-            background: var(--primary);
-            color: white;
-            border: none;
-            border-radius: var(--radius);
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .product-mini-cart-btn:hover {
-            background: var(--primary-dark);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(30, 64, 175, 0.3);
-        }
-
-        .product-mini-quick-actions {
-            display: flex;
-            gap: 8px;
-        }
-
-        .product-mini-quick-btn {
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--text-muted);
-            text-decoration: none;
-            transition: all 0.2s;
-        }
-
-        .product-mini-quick-btn:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-            background: #eff6ff;
-        }
-
-        .product-mini-quick-btn.wishlist:hover {
-            border-color: var(--danger);
-            color: var(--danger);
-            background: #fef2f2;
-        }
-
-        /* Inner Carousel (Products within category) */
-        .products-inner-carousel.owl-carousel .owl-nav {
-            display: none;
-        }
-
-        .products-inner-carousel.owl-carousel .owl-dots {
-            display: flex;
-            justify-content: center;
-            gap: 6px;
-            margin-top: 16px;
-        }
-
-        .products-inner-carousel.owl-carousel .owl-dot {
-            width: 8px;
-            height: 8px;
-            background: var(--border);
-            border-radius: 50%;
-            transition: all 0.3s;
-        }
-
-        .products-inner-carousel.owl-carousel .owl-dot.active {
-            background: var(--primary);
-            width: 20px;
-            border-radius: 4px;
-        }
-
-        /* Responsive */
-        @media (max-width: 992px) {
-            .section-title {
-                font-size: 2rem;
-            }
-
-            .category-carousel.owl-carousel .owl-nav {
-                position: static;
-                justify-content: center;
-                margin-bottom: 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .category-products-section {
-                padding: 50px 0;
-            }
-
-            .section-title {
-                font-size: 1.75rem;
-            }
-
-            .product-mini-inner {
-                flex-direction: column;
-            }
-
-            .product-mini-image {
-                width: 100%;
-                min-height: 200px;
-            }
-
-            .product-mini-info {
-                padding: 16px;
-            }
-
-            .product-mini-actions {
-                flex-direction: column;
-                gap: 12px;
-            }
-
-            .product-mini-cart-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-
-        @media (max-width: 576px) {
-            .section-header {
-                margin-bottom: 30px;
-            }
-
-            .section-badge {
-                font-size: 0.75rem;
-                padding: 6px 14px;
-            }
-
-            .section-title {
-                font-size: 1.5rem;
-            }
-        }
-    </style>
-
-    <!-- ==================== PRODUCT BANNER SECTION ==================== -->
-    <section class="promo-banner-section">
-        <div class="promo-banner-container">
-            <div class="promo-banner-grid">
-
-                @if ($amountOffer)
-                    <a href="{{ route('product.show', [$amountOffer->product->id, $amountOffer->product->slug]) }}"
-                        class="promo-card style-amount wow fadeInLeft" data-wow-delay="0.1s">
-                        <img src="{{ asset('storage/' . $amountOffer->product->main_image) }}" class="promo-card-bg"
-                            alt="{{ $amountOffer->title }}">
-                        <div class="promo-card-overlay">
-                            <div class="promo-content">
-                                <span class="promo-badge">
-                                    <i class="bi bi-lightning-charge-fill"></i> Special Offer
-                                </span>
-                                <h3 class="promo-title">{{ $amountOffer->title }}</h3>
-                                <div class="promo-price">
-                                    <span class="current">₹{{ number_format($amountOffer->offer_price, 2) }}</span>
-                                    <span class="label">Special Price</span>
-                                </div>
-                                <span class="promo-btn">
-                                    Shop Now <i class="bi bi-arrow-right"></i>
-                                </span>
-                            </div>
-                        </div>
-                    </a>
-                @endif
-
-                @if ($percentageOffer)
-                    <a href="{{ route('product.show', [$percentageOffer->product->id, $percentageOffer->product->slug]) }}"
-                        class="promo-card style-percent wow fadeInRight" data-wow-delay="0.2s">
-                        <img src="{{ asset('storage/' . $percentageOffer->product->main_image) }}" class="promo-card-bg"
-                            alt="{{ $percentageOffer->title }}">
-                        <div class="promo-card-overlay">
-                            <span class="sale-badge">🔥 Hot Sale</span>
-                            <div class="promo-discount">
-                                {{ $percentageOffer->offer_price }}% OFF
-                            </div>
-                            <p class="promo-discount-text">Get Up To {{ $percentageOffer->offer_price }}% Discount</p>
-                            <span class="promo-btn">
-                                <i class="bi bi-bag-check"></i> Shop Now
-                            </span>
-                        </div>
-                    </a>
-                @endif
-
-            </div>
-        </div>
-    </section>
 
     <!-- ==================== CATEGORY PRODUCTS SECTION ==================== -->
     <section class="category-products-section">
