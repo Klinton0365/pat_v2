@@ -1047,7 +1047,7 @@
         <div class="topbar-left">
             <div class="topbar-item">
                 <i class="bi bi-file-text"></i>
-                <span>GST: XXXXXXXXXXXXXXX</span>
+                <span>GST: 8734982342</span>
             </div>
         </div>
 
