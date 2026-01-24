@@ -8,7 +8,7 @@
                 <a href="#" class="text-muted ms-2"> Contact</a>
             </div> -->
             <div class="d-inline-flex align-items-center" style="height: 45px;">
-                <a href="#" class="text-muted me-2"> GST : </a><small></small>
+                <a href="#" class="text-muted me-2"> GST : </a><small>3874983274</small>
             </div>
         </div>
         <div class="col-lg-4 text-center d-flex align-items-center justify-content-center">
