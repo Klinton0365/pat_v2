@@ -96,7 +96,7 @@ class AdminController extends Controller
         Auth::guard('admin')->login($admin, $request->filled('remember'));
 
         // Step 4: Redirect to dashboard
-        return redirect()->route('admin.dashboard')->with('success', 'Welcome Admin!');
+        return redirect()->intended(route('admin.dashboard'))->with('success', 'Welcome Admin!');
     }
 
     /**
