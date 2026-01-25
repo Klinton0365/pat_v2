@@ -1052,9 +1052,9 @@
         </div>
 
         <div class="topbar-center">
-            <a href="tel:+919995969939" class="topbar-phone">
+            <a href="tel:+919994969939" class="topbar-phone">
                 <i class="bi bi-telephone-fill"></i>
-                <span>+91 999 596 9939</span>
+                <span>+91 9994969939</span>
             </a>
         </div>
 
@@ -1253,7 +1253,7 @@
         </div>
 
         <!-- CTA -->
-        <a href="tel:+919995969939" class="nav-cta">
+        <a href="tel:+919994969939" class="nav-cta">
             <i class="bi bi-headset"></i>
             <span>24/7 Support</span>
         </a>
@@ -1364,9 +1364,9 @@
     </div>
 
     <div class="mobile-sidebar-footer">
-        <a href="tel:+919995969939" class="mobile-sidebar-cta">
+        <a href="tel:+919994969939" class="mobile-sidebar-cta">
             <i class="bi bi-telephone"></i>
-            <span>Call: +91 999 596 9939</span>
+            <span>Call: +91 9994969939</span>
         </a>
     </div>
 </div>

@@ -24,11 +24,35 @@ use App\Http\Controllers\User\PageController;
 use App\Http\Controllers\User\ServiceController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
 //     return view('welcome');
 // });
+
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    Artisan::call('config:clear');
+    Artisan::call('view:clear');
+
+    return 'Cache is cleared';
+});
+Route::get('migrate', function () {
+    Artisan::call('migrate');
+
+    return 'Migrate Completed!';
+});
+Route::get('optimize', function () {
+    Artisan::call('optimize');
+
+    return 'optimized!';
+});
+Route::get('storage-link', function () {
+    Artisan::call('storage:link');
+
+    return 'storage-linked!';
+});
 
 /*
 |--------------------------------------------------------------------------

@@ -13,7 +13,7 @@
         </div>
         <div class="col-lg-4 text-center d-flex align-items-center justify-content-center">
             <small class="text-dark">Call Us:</small>
-            <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a>
+            <a href="tel:+919994969939" class="text-muted">+91 9994969939</a>
         </div>
 
         <div class="col-lg-4 text-center text-lg-end">
@@ -321,9 +321,9 @@
                         <a href="{{ route('contact') }}" class="nav-item nav-link me-2">CONTACT</a>
 
                     </div>
-                    <a href="tel:+919995969939"
+                    <a href="tel:+919994969939"
                         class="btn btn-secondary rounded-pill py-2 px-4 px-lg-3 mb-3 mb-md-3 mb-lg-0">
-                        <i class="fa fa-mobile-alt me-2"></i>+91 999 596 9939</a>
+                        <i class="fa fa-mobile-alt me-2"></i>+91 9994969939</a>
                     {{-- <a href="tel:+919995969939" class="text-muted">+91 999 596 9939</a> --}}
                 </div>
             </nav>
