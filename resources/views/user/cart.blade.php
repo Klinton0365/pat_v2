@@ -1192,12 +1192,14 @@
         border-radius: var(--radius-sm);
         overflow: hidden;
         background: var(--bg-light);
-        width: 100%;
+        /* width: 100%; */
+        width:40%;
     }
 
     .cart-item-image img {
         width: 100%;
-        height: 120px;
+        /* height: 120px; */
+        height: 90px;
         object-fit: cover;
         display: block;
         transition: transform 0.3s ease;
@@ -2039,8 +2041,8 @@
 
                                     <!-- Product Image + Quantity Controls (Stacked) -->
                                     <div class="cart-item-image-wrapper">
-                                        <a href="{{ route('product.show', [$item->product->id, $item->product->slug]) }}" class="cart-item-image">
-                                            <img src="{{ $item->product->main_image ? asset('storage/' . $item->product->main_image) : asset('images/no-image.png') }}"
+                                        <a href="{{ route('product.show', [$item->product->id, $item->product->slug]) }}" style="height:90px;" class="cart-item-image">
+                                            <img src="{{ $item->product->main_image ? asset($item->product->main_image) : asset('images/no-image.png') }}"
                                                 alt="{{ $item->product->name }}">
                                             @if ($item->product->discount > 0)
                                                 <span class="discount-badge">-{{ number_format($item->product->discount, 0) }}%</span>
