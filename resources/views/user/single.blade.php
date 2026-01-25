@@ -1167,24 +1167,45 @@
                             </button>
                         </div>
 
-                        <img src="{{ asset('storage/' . $product->main_image) }}" alt="{{ $product->name }}" id="mainImage">
+                        <img src="{{ asset($product->main_image) }}" alt="{{ $product->name }}" id="mainImage">
                     </div>
 
                     <!-- Thumbnails -->
-                    <div class="sp-thumbnails">
+                    {{-- <div class="sp-thumbnails">
                         <div class="sp-thumbnail active"
-                            onclick="changeMainImage(this, '{{ asset('storage/' . $product->main_image) }}')">
-                            <img src="{{ asset('storage/' . $product->main_image) }}" alt="{{ $product->name }}">
+                            onclick="changeMainImage(this, '{{ asset($product->main_image) }}')">
+                            <img src="{{ asset($product->main_image) }}" alt="{{ $product->name }}">
                         </div>
                         @if ($product->product_images && count($product->product_images) > 0)
                             @foreach ($product->product_images as $img)
                                 <div class="sp-thumbnail"
-                                    onclick="changeMainImage(this, '{{ asset('storage/' . $img) }}')">
-                                    <img src="{{ asset('storage/' . $img) }}" alt="{{ $product->name }}">
+                                    onclick="changeMainImage(this, '{{ asset($img) }}')">
+                                    <img src="{{ asset($img) }}" alt="{{ $product->name }}">
+                                </div>
+                            @endforeach
+                        @endif
+                    </div> --}}
+                    @php
+                        $galleryImages = is_array($product->product_images)
+                            ? $product->product_images
+                            : json_decode($product->product_images, true) ?? [];
+                    @endphp
+
+                    <div class="sp-thumbnails">
+                        <div class="sp-thumbnail active"
+                            onclick="changeMainImage(this, '{{ asset($product->main_image) }}')">
+                            <img src="{{ asset($product->main_image) }}" alt="{{ $product->name }}">
+                        </div>
+
+                        @if (count($galleryImages) > 0)
+                            @foreach ($galleryImages as $img)
+                                <div class="sp-thumbnail" onclick="changeMainImage(this, '{{ asset($img) }}')">
+                                    <img src="{{ asset($img) }}" alt="{{ $product->name }}">
                                 </div>
                             @endforeach
                         @endif
                     </div>
+
                 </div>
 
                 <!-- Product Info -->
@@ -1272,7 +1293,7 @@
                     </div>
 
                     <!-- Color Options -->
-                    @if ($product->colors && count($product->colors) > 0)
+                    {{-- @if ($product->colors && count($product->colors) > 0)
                         <div class="sp-colors">
                             <h4 class="sp-colors-title">Select Color</h4>
                             <div class="sp-color-options">
@@ -1289,7 +1310,32 @@
                                 @endforeach
                             </div>
                         </div>
+                    @endif --}}
+                    @php
+                        $colors = is_array($product->colors)
+                            ? $product->colors
+                            : json_decode($product->colors, true) ?? [];
+                    @endphp
+
+                    @if (count($colors) > 0)
+                        <div class="sp-colors">
+                            <h4 class="sp-colors-title">Select Color</h4>
+                            <div class="sp-color-options">
+                                @foreach ($colors as $index => $color)
+                                    <label class="sp-color-option">
+                                        <input type="radio" name="product_color" value="{{ $color }}"
+                                            {{ $index === 0 ? 'checked' : '' }}>
+                                        <span class="sp-color-label">
+                                            <span class="sp-color-swatch"
+                                                style="background: {{ strtolower($color) }};"></span>
+                                            {{ ucfirst($color) }}
+                                        </span>
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
                     @endif
+
 
                     <!-- Quantity & Add to Cart -->
                     <div class="sp-actions">

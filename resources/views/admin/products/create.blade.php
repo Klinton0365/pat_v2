@@ -1,7 +1,6 @@
 @extends('admin.layout.app')
 
 @section('content')
-    {{-- @extends('admin.layout.navbar') --}}
     <div class="content">
         <div class="container-fluid pt-4 px-4">
             <div class="bg-secondary text-center rounded p-4">
@@ -78,7 +77,6 @@
                         <small class="text-muted">Hold CTRL (Windows) or CMD (Mac) to select multiple</small>
                     </div>
 
-
                     <div class="mb-3">
                         <label for="sku" class="form-label">SKU(Stock Keeping Unit) - Unique Identifier</label>
                         <input type="text" name="sku" class="form-control"
@@ -108,7 +106,6 @@
                         <input type="number" name="rating" id="rating" class="form-control" step="0.1"
                             min="0" max="5" value="{{ old('rating', 0) }}">
                     </div>
-
 
                     <div class="mb-3 text-start">
                         <label for="main_image" class="form-label">Main Image</label>

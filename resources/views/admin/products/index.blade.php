@@ -28,7 +28,7 @@
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $product->name }}</td>
-                                    <td><img src="{{ asset('storage/' . $product->main_image) }}" alt="Main Image" width="100">
+                                    <td><img src="{{ asset($product->main_image) }}" alt="Main Image" width="100">
                                     </td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>₹{{ number_format($product->price, 2) }}</td>

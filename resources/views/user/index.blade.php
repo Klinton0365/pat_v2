@@ -4266,7 +4266,7 @@
                                     <div class="product-card">
                                         <!-- Product Image -->
                                         <div class="product-card-image">
-                                            <img src="{{ $product->main_image ? asset('storage/' . $product->main_image) : asset('img/product-default.png') }}"
+                                            <img src="{{ $product->main_image ? asset($product->main_image) : asset('img/product-default.png') }}"
                                                 alt="{{ $product->name }}">
 
                                             <!-- Badges -->
