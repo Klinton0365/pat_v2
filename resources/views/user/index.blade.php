@@ -4275,7 +4275,7 @@
                                                     <span class="product-badge featured">Featured</span>
                                                 @endif
                                                 @if ($product->discount > 0)
-                                                    <span class="product-badge sale">{{ $product->discount }}% OFF</span>
+                                                    <span class="product-badge sale">{{ round($product->discount) }}% OFF</span>
                                                 @endif
                                                 @if ($product->created_at->diffInDays(now()) < 30)
                                                     <span class="product-badge new">New</span>
@@ -4334,14 +4334,14 @@
                                                             ($product->price * $product->discount) / 100;
                                                     @endphp
                                                     <span
-                                                        class="product-price-current">₹{{ number_format($discountedPrice, 2) }}</span>
+                                                        class="product-price-current">₹{{ round($discountedPrice) }}</span>
                                                     <span
-                                                        class="product-price-original">₹{{ number_format($product->price, 2) }}</span>
+                                                        class="product-price-original">₹{{ round($product->price) }}</span>
                                                     <span class="product-price-discount">Save
-                                                        {{ $product->discount }}%</span>
+                                                        {{ round($product->discount) }}%</span>
                                                 @else
                                                     <span
-                                                        class="product-price-current">₹{{ number_format($product->price, 2) }}</span>
+                                                        class="product-price-current">₹{{ round($product->price) }}</span>
                                                 @endif
                                             </div>
 
