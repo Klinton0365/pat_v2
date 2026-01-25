@@ -1192,13 +1192,11 @@
         border-radius: var(--radius-sm);
         overflow: hidden;
         background: var(--bg-light);
-        /* width: 100%; */
-        width:40%;
+        width: 100%;
     }
 
     .cart-item-image img {
         width: 100%;
-        /* height: 120px; */
         height: 90px;
         object-fit: cover;
         display: block;
