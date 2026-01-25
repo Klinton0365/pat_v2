@@ -1929,11 +1929,11 @@
                                 max="{{ $maxPrice ?? 100000 }}" 
                                 value="{{ $maxPrice ?? 100000 }}">
                             <div class="price-display">
-                                <span>₹{{ number_format($minPrice ?? 0) }}</span>
-                                <span>₹{{ number_format($maxPrice ?? 100000) }}</span>
+                                <span>₹{{ round($minPrice ?? 0) }}</span>
+                                <span>₹{{ round($maxPrice ?? 100000) }}</span>
                             </div>
                             <div class="price-current">
-                                Max: ₹<span id="priceValue">{{ number_format($maxPrice ?? 100000) }}</span>
+                                Max: ₹<span id="priceValue">{{ round($maxPrice ?? 100000) }}</span>
                             </div>
                         </div>
                         <button type="button" class="filter-btn" id="applyPriceFilter">
@@ -1965,10 +1965,10 @@
                                     </div>
                                     <div class="featured-item-price">
                                         @if($featuredProduct->discount > 0)
-                                            <span class="current">₹{{ number_format($featuredProduct->price - ($featuredProduct->price * $featuredProduct->discount / 100)) }}</span>
-                                            <span class="original">₹{{ number_format($featuredProduct->price) }}</span>
+                                            <span class="current">₹{{ round($featuredProduct->price - ($featuredProduct->price * $featuredProduct->discount / 100)) }}</span>
+                                            <span class="original">₹{{ round($featuredProduct->price) }}</span>
                                         @else
-                                            <span class="current">₹{{ number_format($featuredProduct->price) }}</span>
+                                            <span class="current">₹{{ round($featuredProduct->price) }}</span>
                                         @endif
                                     </div>
                                 </div>
@@ -2025,7 +2025,7 @@
                                         <span class="product-badge featured">Featured</span>
                                     @endif
                                     @if($product->discount > 0)
-                                        <span class="product-badge sale">-{{ $product->discount }}%</span>
+                                        <span class="product-badge sale">{{ round($product->discount) }}%</span>
                                     @endif
                                 </div>
 
@@ -2065,21 +2065,21 @@
                                 <div class="product-price">
                                     @if($product->discount > 0)
                                         <span class="product-price-current discounted">
-                                            ₹{{ number_format($product->price - ($product->price * $product->discount / 100), 2) }}
+                                            ₹{{ round($product->price - ($product->price * $product->discount / 100)) }}
                                         </span>
                                         <span class="product-price-original">
-                                            ₹{{ number_format($product->price, 2) }}
+                                            ₹{{ round($product->price) }}
                                         </span>
                                     @else
                                         <span class="product-price-current">
-                                            ₹{{ number_format($product->price, 2) }}
+                                            ₹{{ round($product->price) }}
                                         </span>
                                     @endif
                                 </div>
 
                                 @if($product->discount > 0)
                                     <span class="product-price-savings">
-                                        <i class="bi bi-tag-fill"></i> Save ₹{{ number_format(($product->price * $product->discount / 100), 2) }}
+                                        <i class="bi bi-tag-fill"></i> Save ₹{{ round($product->price * $product->discount / 100) }}
                                     </span>
                                 @endif
 

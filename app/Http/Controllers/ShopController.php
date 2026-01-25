@@ -8,24 +8,6 @@ use App\Models\Product;
 
 class ShopController extends Controller
 {
-    // public function shop()
-    // {
-    //     $products = Product::with('category')->get();
-    //     $categories = Category::with('products')->get();
-
-    //     $amountOffer = FestivalOffer::with('product')
-    //         ->where('is_percentage', 0)
-    //         ->where('status', 1)
-    //         ->first();
-
-    //     $percentageOffer = FestivalOffer::with('product')
-    //         ->where('is_percentage', 1)
-    //         ->where('status', 1)
-    //         ->first();
-
-    //     return view('user.shop', compact('categories','products','amountOffer', 'percentageOffer'));
-    // }
-
     public function shop()
     {
         $products = Product::with('category')->where('is_published', 1)->get();

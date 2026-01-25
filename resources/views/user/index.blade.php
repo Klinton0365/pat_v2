@@ -88,16 +88,16 @@
 
         /* Hero Section */
         /* .hero {
-                                                        background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
-                                                            url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
-                                                        background-size: cover;
-                                                        background-position: center;
-                                                        min-height: 100vh;
-                                                        display: flex;
-                                                        align-items: center;
-                                                        position: relative;
-                                                        overflow: hidden;
-                                                    } */
+                                                                    background: linear-gradient(135deg, rgba(49, 130, 206, 0.9), rgba(72, 187, 120, 0.8)),
+                                                                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23f7fafc" width="1200" height="600"/><polygon fill="%23e2e8f0" points="0,600 300,400 600,450 900,300 1200,350 1200,600"/><polygon fill="%23cbd5e0" points="0,600 400,500 800,520 1200,400 1200,600"/></svg>');
+                                                                    background-size: cover;
+                                                                    background-position: center;
+                                                                    min-height: 100vh;
+                                                                    display: flex;
+                                                                    align-items: center;
+                                                                    position: relative;
+                                                                    overflow: hidden;
+                                                                } */
 
         .hero {
             position: relative;
@@ -1067,75 +1067,75 @@
                         }
                     },
                     vertexShader: `
-                                                                                                            varying vec2 vUv;
+                            varying vec2 vUv;
 
-                                                                                                            void main() {
-                                                                                                                vUv = uv;
-                                                                                                                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
-                                                                                                            }
-                                                                                                        `,
+                            void main() {
+                                vUv = uv;
+                                gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
+                            }
+                        `,
                     fragmentShader: `
-                                                                                                            uniform sampler2D waterTexture;
-                                                                                                            uniform float rippleStrength;
-                                                                                                            uniform vec2 resolution;
-                                                                                                            uniform float time;
-                                                                                                            uniform vec3 colorA1;
-                                                                                                            uniform vec3 colorA2;
-                                                                                                            uniform vec3 colorB1;
-                                                                                                            uniform vec3 colorB2;
-                                                                                                            varying vec2 vUv;
+                uniform sampler2D waterTexture;
+                uniform float rippleStrength;
+                uniform vec2 resolution;
+                uniform float time;
+                uniform vec3 colorA1;
+                uniform vec3 colorA2;
+                uniform vec3 colorB1;
+                uniform vec3 colorB2;
+                varying vec2 vUv;
 
-                                                                                                            float S(float a, float b, float t) {
-                                                                                                                return smoothstep(a, b, t);
-                                                                                                            }
+                float S(float a, float b, float t) {
+                    return smoothstep(a, b, t);
+                }
 
-                                                                                                            mat2 Rot(float a) {
-                                                                                                                float s = sin(a);
-                                                                                                                float c = cos(a);
-                                                                                                                return mat2(c, -s, s, c);
-                                                                                                            }
+                mat2 Rot(float a) {
+                    float s = sin(a);
+                    float c = cos(a);
+                    return mat2(c, -s, s, c);
+                }
 
-                                                                                                            float noise(vec2 p) {
-                                                                                                                vec2 ip = floor(p);
-                                                                                                                vec2 fp = fract(p);
-                                                                                                                float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                                                float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                                                float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
-                                                                                                                float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                float noise(vec2 p) {
+                    vec2 ip = floor(p);
+                    vec2 fp = fract(p);
+                    float a = fract(sin(dot(ip, vec2(12.9898, 78.233))) * 43758.5453);
+                    float b = fract(sin(dot(ip + vec2(1.0, 0.0), vec2(12.9898, 78.233))) * 43758.5453);
+                    float c = fract(sin(dot(ip + vec2(0.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
+                    float d = fract(sin(dot(ip + vec2(1.0, 1.0), vec2(12.9898, 78.233))) * 43758.5453);
 
-                                                                                                                fp = fp * fp * (3.0 - 2.0 * fp);
+                    fp = fp * fp * (3.0 - 2.0 * fp);
 
-                                                                                                                return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
-                                                                                                            }
+                    return mix(mix(a, b, fp.x), mix(c, d, fp.x), fp.y);
+                }
 
-                                                                                                            void main() {
-                                                                                                                float waterHeight = texture2D(waterTexture, vUv).r;
+                void main() {
+                    float waterHeight = texture2D(waterTexture, vUv).r;
 
-                                                                                                                float step = 1.0 / resolution.x;
-                                                                                                                vec2 distortion = vec2(
-                                                                                                                    texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
-                                                                                                                    texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
-                                                                                                                ) * rippleStrength * 5.0;
+                    float step = 1.0 / resolution.x;
+                    vec2 distortion = vec2(
+                        texture2D(waterTexture, vec2(vUv.x + step, vUv.y)).r - texture2D(waterTexture, vec2(vUv.x - step, vUv.y)).r,
+                        texture2D(waterTexture, vec2(vUv.x, vUv.y + step)).r - texture2D(waterTexture, vec2(vUv.x, vUv.y - step)).r
+                    ) * rippleStrength * 5.0;
 
-                                                                                                                vec2 tuv = vUv + distortion;
-                                                                                                                tuv -= 0.5;
+                    vec2 tuv = vUv + distortion;
+                    tuv -= 0.5;
 
-                                                                                                                float ratio = resolution.x / resolution.y;
-                                                                                                                tuv.y *= 1.0/ratio;
+                    float ratio = resolution.x / resolution.y;
+                    tuv.y *= 1.0/ratio;
 
-                                                                                                                vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                                                                vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
-                                                                                                                vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
+                    vec3 layer1 = mix(colorA1, colorA2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                    vec3 layer2 = mix(colorB1, colorB2, S(-0.3, 0.2, (tuv*Rot(radians(-5.0))).x));
+                    vec3 finalComp = mix(layer1, layer2, S(0.5, -0.3, tuv.y));
 
-                                                                                                                float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
-                                                                                                                finalComp += vec3(noiseValue);
+                    float noiseValue = noise(tuv * 20.0 + time * 0.1) * 0.03;
+                    finalComp += vec3(noiseValue);
 
-                                                                                                                float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
-                                                                                                                finalComp *= mix(0.95, 1.0, vignette);
+                    float vignette = 1.0 - smoothstep(0.5, 1.5, length(tuv * 1.5));
+                    finalComp *= mix(0.95, 1.0, vignette);
 
-                                                                                                                gl_FragColor = vec4(finalComp, 1.0);
-                                                                                                            }
-                                                                                                        `
+                    gl_FragColor = vec4(finalComp, 1.0);
+                }
+            `
                 };
 
                 const geometry = new THREE.PlaneGeometry(
@@ -4275,7 +4275,8 @@
                                                     <span class="product-badge featured">Featured</span>
                                                 @endif
                                                 @if ($product->discount > 0)
-                                                    <span class="product-badge sale">{{ round($product->discount) }}% OFF</span>
+                                                    <span class="product-badge sale">{{ round($product->discount) }}%
+                                                        OFF</span>
                                                 @endif
                                                 @if ($product->created_at->diffInDays(now()) < 30)
                                                     <span class="product-badge new">New</span>
