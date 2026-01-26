@@ -1116,6 +1116,440 @@
         }
     </style>
 
+    {{-- Buy Now --}}
+    <style>
+        /* Buy Now Product Summary */
+        .buy-now-product-summary {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
+        .buy-now-product-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 8px;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        .buy-now-product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .buy-now-product-info {
+            flex: 1;
+        }
+
+        .buy-now-product-info h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .buy-now-product-meta {
+            display: flex;
+            gap: 1rem;
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .buy-now-price .price-current {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #059669;
+        }
+
+        .buy-now-price .price-original {
+            font-size: 0.9rem;
+            color: #9ca3af;
+            text-decoration: line-through;
+            margin-left: 0.5rem;
+        }
+
+        /* Buy Now Order Summary */
+        .buy-now-order-summary {
+            background: #f0fdf4;
+            border-radius: 12px;
+            padding: 1rem;
+        }
+
+        .buy-now-order-summary .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            font-size: 0.9rem;
+            color: #4b5563;
+        }
+
+        .buy-now-order-summary .summary-row.discount {
+            color: #059669;
+        }
+
+        .buy-now-order-summary .summary-row.total {
+            border-top: 2px solid #059669;
+            margin-top: 0.5rem;
+            padding-top: 0.75rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #059669;
+        }
+
+        /* Modal Styles (reuse from cart page) */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 9999;
+            backdrop-filter: blur(4px);
+        }
+
+        .modal-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100%;
+            padding: 1rem;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 16px;
+            width: 100%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            padding: 1.5rem;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .modal-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #1f2937;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-header h3 i {
+            color: #f59e0b;
+        }
+
+        .modal-header p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 0.25rem;
+        }
+
+        .modal-close {
+            background: #f3f4f6;
+            border: none;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .modal-close:hover {
+            background: #e5e7eb;
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-top: 1px solid #e5e7eb;
+            background: #f9fafb;
+        }
+
+        .btn-cancel {
+            flex: 1;
+            padding: 0.875rem;
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-weight: 600;
+            color: #6b7280;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel:hover {
+            background: #f3f4f6;
+        }
+
+        .btn-submit {
+            flex: 2;
+            padding: 0.875rem;
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            transition: all 0.2s;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(5, 150, 105, 0.4);
+        }
+
+        /* Form Styles */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #374151;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-label .required {
+            color: #ef4444;
+        }
+
+        .form-input,
+        .form-textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+        }
+
+        .form-input:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: #059669;
+            box-shadow: 0 0 0 3px rgba(5, 150, 105, 0.1);
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .payment-option {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+            text-align: center;
+        }
+
+        .payment-option:hover {
+            border-color: #059669;
+        }
+
+        .payment-option.selected {
+            border-color: #059669;
+            background: #f0fdf4;
+        }
+
+        .payment-option input {
+            display: none;
+        }
+
+        .payment-option span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: 500;
+            color: #374151;
+        }
+
+        /* Coupon Section Styles */
+        .buy-now-coupon-section {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: #f8fafc;
+            border-radius: 10px;
+            border: 2px dashed #e5e7eb;
+        }
+
+        .coupon-input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .coupon-input {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            transition: all 0.2s;
+        }
+
+        .coupon-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .coupon-input::placeholder {
+            text-transform: none;
+        }
+
+        .coupon-apply-btn {
+            padding: 0.75rem 1.25rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .coupon-apply-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .coupon-apply-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .coupon-message {
+            margin-top: 0.5rem;
+            font-size: 0.85rem;
+            min-height: 1.25rem;
+        }
+
+        .coupon-message.success {
+            color: #059669;
+        }
+
+        .coupon-message.error {
+            color: #dc2626;
+        }
+
+        /* Coupon Row in Summary */
+        .summary-row.coupon-row {
+            color: #059669;
+            background: #f0fdf4;
+            margin: 0.5rem -1rem;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+        }
+
+        .summary-row.coupon-row span:first-child {
+            display: flex;
+            align-items: center;
+            gap: 0.35rem;
+        }
+
+        .remove-coupon-btn {
+            background: none;
+            border: none;
+            color: #dc2626;
+            cursor: pointer;
+            padding: 0;
+            margin-left: 0.5rem;
+            font-size: 1rem;
+            line-height: 1;
+            opacity: 0.7;
+            transition: opacity 0.2s;
+        }
+
+        .remove-coupon-btn:hover {
+            opacity: 1;
+        }
+
+        /* Success Animation for Coupon */
+        @keyframes couponSuccess {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        .coupon-applied {
+            animation: couponSuccess 0.3s ease;
+        }
+
+        @media (max-width: 576px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .payment-options {
+                flex-direction: column;
+            }
+
+            .modal-footer {
+                flex-direction: column;
+            }
+
+            .btn-cancel,
+            .btn-submit {
+                flex: none;
+                width: 100%;
+            }
+        }
+    </style>
+
     <!-- ==================== BREADCRUMB ==================== -->
     <nav class="sp-breadcrumb">
         <div class="sp-breadcrumb-container">
@@ -1171,20 +1605,6 @@
                     </div>
 
                     <!-- Thumbnails -->
-                    {{-- <div class="sp-thumbnails">
-                        <div class="sp-thumbnail active"
-                            onclick="changeMainImage(this, '{{ asset($product->main_image) }}')">
-                            <img src="{{ asset($product->main_image) }}" alt="{{ $product->name }}">
-                        </div>
-                        @if ($product->product_images && count($product->product_images) > 0)
-                            @foreach ($product->product_images as $img)
-                                <div class="sp-thumbnail"
-                                    onclick="changeMainImage(this, '{{ asset($img) }}')">
-                                    <img src="{{ asset($img) }}" alt="{{ $product->name }}">
-                                </div>
-                            @endforeach
-                        @endif
-                    </div> --}}
                     @php
                         $galleryImages = is_array($product->product_images)
                             ? $product->product_images
@@ -1293,24 +1713,6 @@
                     </div>
 
                     <!-- Color Options -->
-                    {{-- @if ($product->colors && count($product->colors) > 0)
-                        <div class="sp-colors">
-                            <h4 class="sp-colors-title">Select Color</h4>
-                            <div class="sp-color-options">
-                                @foreach ($product->colors as $index => $color)
-                                    <label class="sp-color-option">
-                                        <input type="radio" name="product_color" value="{{ $color }}"
-                                            {{ $index === 0 ? 'checked' : '' }}>
-                                        <span class="sp-color-label">
-                                            <span class="sp-color-swatch"
-                                                style="background: {{ strtolower($color) }};"></span>
-                                            {{ ucfirst($color) }}
-                                        </span>
-                                    </label>
-                                @endforeach
-                            </div>
-                        </div>
-                    @endif --}}
                     @php
                         $colors = is_array($product->colors)
                             ? $product->colors
@@ -1358,10 +1760,218 @@
                     </div>
 
                     <!-- Buy Now Button -->
-                    <a href="{{ route('cart') }}" class="sp-buy-now" style="width: 100%; margin-bottom: 24px;">
+                    {{-- <a href="{{ route('cart') }}" class="sp-buy-now" style="width: 100%; margin-bottom: 24px;">
                         <i class="bi bi-lightning-fill"></i>
                         Buy Now
-                    </a>
+                    </a> --}}
+
+                    <!-- Buy Now Button (Updated) -->
+                    <button type="button" class="sp-buy-now" id="buyNowBtn"
+                        {{ $product->stock <= 0 ? 'disabled' : '' }}>
+                        <i class="bi bi-lightning-fill"></i>
+                        Buy Now
+                    </button>
+
+
+                    <!-- Buy Now Modal  -->
+                    <div class="modal-overlay" id="buyNowModal">
+                        <div class="modal-container">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h3><i class="bi bi-lightning-fill"></i> Quick Checkout</h3>
+                                        <p>Complete your purchase</p>
+                                    </div>
+                                    <button class="modal-close" id="closeBuyNowModal">
+                                        <i class="bi bi-x-lg"></i>
+                                    </button>
+                                </div>
+
+                                <form id="buyNowForm" method="POST" action="{{ route('buy.now.process') }}">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                    <input type="hidden" name="quantity" id="buyNowQuantity" value="1">
+                                    <input type="hidden" name="color" id="buyNowColor" value="">
+                                    <input type="hidden" name="coupon_code" id="buyNowCouponCode" value="">
+
+                                    <div class="modal-body">
+                                        <!-- Product Summary -->
+                                        <div class="buy-now-product-summary">
+                                            <div class="buy-now-product-image">
+                                                <img src="{{ asset($product->main_image) }}" alt="{{ $product->name }}">
+                                            </div>
+                                            <div class="buy-now-product-info">
+                                                <h4>{{ $product->name }}</h4>
+                                                <div class="buy-now-product-meta">
+                                                    <span class="buy-now-qty">Qty: <strong
+                                                            id="summaryQty">1</strong></span>
+                                                    <span class="buy-now-color" id="summaryColor" style="display: none;">
+                                                        Color: <strong id="summaryColorValue"></strong>
+                                                    </span>
+                                                </div>
+                                                <div class="buy-now-price">
+                                                    @if ($product->discount > 0)
+                                                        @php
+                                                            $discountedPrice =
+                                                                $product->price -
+                                                                ($product->price * $product->discount) / 100;
+                                                        @endphp
+                                                        <span
+                                                            class="price-current">₹{{ number_format($discountedPrice, 2) }}</span>
+                                                        <span
+                                                            class="price-original">₹{{ number_format($product->price, 2) }}</span>
+                                                    @else
+                                                        <span
+                                                            class="price-current">₹{{ number_format($product->price, 2) }}</span>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Order Summary -->
+                                        <div class="buy-now-order-summary">
+                                            <div class="summary-row">
+                                                <span>Subtotal</span>
+                                                <span id="buyNowSubtotal">₹0.00</span>
+                                            </div>
+                                            @if ($product->discount > 0)
+                                                <div class="summary-row discount">
+                                                    <span><i class="bi bi-tag-fill"></i> Product Discount
+                                                        ({{ $product->discount }}%)</span>
+                                                    <span id="buyNowDiscount">-₹0.00</span>
+                                                </div>
+                                            @endif
+
+                                            <!-- Coupon Discount Row (Hidden by default) -->
+                                            <div class="summary-row coupon-row" id="buyNowCouponRow"
+                                                style="display: none;">
+                                                <span>
+                                                    <i class="bi bi-ticket-perforated-fill"></i>
+                                                    Coupon (<span id="appliedCouponCode"></span>)
+                                                    <button type="button" class="remove-coupon-btn" id="removeCouponBtn"
+                                                        title="Remove coupon">
+                                                        <i class="bi bi-x-circle"></i>
+                                                    </button>
+                                                </span>
+                                                <span id="buyNowCouponDiscount">-₹0.00</span>
+                                            </div>
+
+                                            <div class="summary-row">
+                                                <span>Tax (GST 18%)</span>
+                                                <span id="buyNowTax">₹0.00</span>
+                                            </div>
+                                            <div class="summary-row">
+                                                <span>Shipping</span>
+                                                <span class="text-success">FREE</span>
+                                            </div>
+                                            <div class="summary-row total">
+                                                <span>Total</span>
+                                                <span id="buyNowTotal">₹0.00</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Coupon Input Section -->
+                                        <div class="buy-now-coupon-section">
+                                            <div class="coupon-input-group">
+                                                <input type="text" class="coupon-input" id="buyNowPromoCode"
+                                                    placeholder="Enter promo code">
+                                                <button type="button" class="coupon-apply-btn" id="applyBuyNowCoupon">
+                                                    <i class="bi bi-check2"></i> Apply
+                                                </button>
+                                            </div>
+                                            <div class="coupon-message" id="buyNowCouponMessage"></div>
+                                        </div>
+
+                                        <hr style="margin: 1.5rem 0; border-color: #e5e7eb;">
+
+                                        <!-- Shipping Details -->
+                                        @php $user = Auth::user(); @endphp
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-label">First Name <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-input" name="first_name" required
+                                                    value="{{ old('first_name', $user->first_name ?? '') }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Last Name <span
+                                                        class="required">*</span></label>
+                                                <input type="text" class="form-input" name="last_name" required
+                                                    value="{{ old('last_name', $user->last_name ?? '') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-label">Email <span class="required">*</span></label>
+                                                <input type="email" class="form-input" name="email" required
+                                                    value="{{ old('email', $user->email ?? '') }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Phone <span class="required">*</span></label>
+                                                <input type="tel" class="form-input" name="phone" required
+                                                    value="{{ old('phone', $user->phone ?? '') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Address <span class="required">*</span></label>
+                                            <textarea class="form-textarea" name="address" rows="2" required>{{ old('address', $user->address ?? '') }}</textarea>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-label">City <span class="required">*</span></label>
+                                                <input type="text" class="form-input" name="city" required
+                                                    value="{{ old('city', $user->city ?? '') }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">State <span class="required">*</span></label>
+                                                <input type="text" class="form-input" name="state" required
+                                                    value="{{ old('state', $user->state ?? '') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-row">
+                                            <div class="form-group">
+                                                <label class="form-label">ZIP Code <span class="required">*</span></label>
+                                                <input type="text" class="form-input" name="zip" required
+                                                    value="{{ old('zip', $user->zip ?? '') }}">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="form-label">Country <span class="required">*</span></label>
+                                                <input type="text" class="form-input" name="country" required
+                                                    value="{{ old('country', $user->country ?? 'India') }}">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label class="form-label">Payment Method <span
+                                                    class="required">*</span></label>
+                                            <div class="payment-options">
+                                                <label class="payment-option">
+                                                    <input type="radio" name="payment_method" value="COD" required>
+                                                    <span><i class="bi bi-cash-coin"></i> Cash on Delivery</span>
+                                                </label>
+                                                <label class="payment-option">
+                                                    <input type="radio" name="payment_method" value="Online" required>
+                                                    <span><i class="bi bi-credit-card"></i> Online Payment</span>
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn-cancel" id="cancelBuyNow">Cancel</button>
+                                        <button type="submit" class="btn-submit">
+                                            <i class="bi bi-lock-fill"></i> Place Order
+                                        </button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- Trust Badges -->
                     <div class="sp-trust-badges">
@@ -1719,6 +2329,225 @@
             };
         });
     </script>
+
+    {{-- Buy Now --}}
+    <script>
+        // Buy Now Modal Logic
+        const buyNowBtn = document.getElementById('buyNowBtn');
+        const buyNowModal = document.getElementById('buyNowModal');
+        const closeBuyNowModal = document.getElementById('closeBuyNowModal');
+        const cancelBuyNow = document.getElementById('cancelBuyNow');
+
+        // Product data
+        const productPrice = {{ $product->price }};
+        const productDiscount = {{ $product->discount ?? 0 }};
+        const discountedPrice = productDiscount > 0 ?
+            productPrice - (productPrice * productDiscount / 100) :
+            productPrice;
+
+        // Coupon state
+        let buyNowAppliedCoupon = null;
+        let currentQuantity = 1;
+
+        // Open modal
+        if (buyNowBtn) {
+            buyNowBtn.addEventListener('click', function() {
+                const quantity = parseInt(document.getElementById('quantityInput').value) || 1;
+                const selectedColor = document.querySelector('input[name="product_color"]:checked');
+
+                currentQuantity = quantity;
+
+                // Set hidden fields
+                document.getElementById('buyNowQuantity').value = quantity;
+                document.getElementById('summaryQty').textContent = quantity;
+
+                if (selectedColor) {
+                    document.getElementById('buyNowColor').value = selectedColor.value;
+                    document.getElementById('summaryColorValue').textContent = selectedColor.value;
+                    document.getElementById('summaryColor').style.display = 'inline';
+                }
+
+                // Reset coupon state when opening modal
+                buyNowAppliedCoupon = null;
+                document.getElementById('buyNowCouponCode').value = '';
+                document.getElementById('buyNowPromoCode').value = '';
+                document.getElementById('buyNowCouponRow').style.display = 'none';
+                document.getElementById('buyNowCouponMessage').textContent = '';
+                document.getElementById('buyNowCouponMessage').className = 'coupon-message';
+
+                // Calculate totals
+                calculateBuyNowTotals(quantity);
+
+                // Show modal
+                buyNowModal.style.display = 'block';
+                document.body.style.overflow = 'hidden';
+            });
+        }
+
+        // Close modal functions
+        function closeBuyNowModalFunc() {
+            buyNowModal.style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        closeBuyNowModal.addEventListener('click', closeBuyNowModalFunc);
+        cancelBuyNow.addEventListener('click', closeBuyNowModalFunc);
+
+        buyNowModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeBuyNowModalFunc();
+            }
+        });
+
+        // Calculate totals
+        function calculateBuyNowTotals(quantity) {
+            const subtotal = productPrice * quantity;
+            const productDiscountAmount = (productPrice * productDiscount / 100) * quantity;
+            const afterProductDiscount = subtotal - productDiscountAmount;
+
+            // Calculate coupon discount
+            let couponDiscountAmount = 0;
+            if (buyNowAppliedCoupon) {
+                if (buyNowAppliedCoupon.type === 'percentage') {
+                    couponDiscountAmount = (afterProductDiscount * buyNowAppliedCoupon.value) / 100;
+                } else {
+                    couponDiscountAmount = buyNowAppliedCoupon.value;
+                }
+                // Ensure coupon discount doesn't exceed the amount
+                couponDiscountAmount = Math.min(couponDiscountAmount, afterProductDiscount);
+            }
+
+            const afterAllDiscounts = afterProductDiscount - couponDiscountAmount;
+            const tax = afterAllDiscounts * 0.18;
+            const total = afterAllDiscounts + tax;
+
+            // Update UI
+            document.getElementById('buyNowSubtotal').textContent = '₹' + subtotal.toFixed(2);
+
+            const discountEl = document.getElementById('buyNowDiscount');
+            if (discountEl) {
+                discountEl.textContent = '-₹' + productDiscountAmount.toFixed(2);
+            }
+
+            // Update coupon row
+            if (buyNowAppliedCoupon && couponDiscountAmount > 0) {
+                document.getElementById('buyNowCouponRow').style.display = 'flex';
+                document.getElementById('appliedCouponCode').textContent = buyNowAppliedCoupon.code;
+                document.getElementById('buyNowCouponDiscount').textContent = '-₹' + couponDiscountAmount.toFixed(2);
+            } else {
+                document.getElementById('buyNowCouponRow').style.display = 'none';
+            }
+
+            document.getElementById('buyNowTax').textContent = '₹' + tax.toFixed(2);
+            document.getElementById('buyNowTotal').textContent = '₹' + total.toFixed(2);
+        }
+
+        // Apply Coupon
+        const applyBuyNowCouponBtn = document.getElementById('applyBuyNowCoupon');
+        if (applyBuyNowCouponBtn) {
+            applyBuyNowCouponBtn.addEventListener('click', function() {
+                const code = document.getElementById('buyNowPromoCode').value.trim();
+                const messageEl = document.getElementById('buyNowCouponMessage');
+
+                if (!code) {
+                    messageEl.textContent = 'Please enter a promo code';
+                    messageEl.className = 'coupon-message error';
+                    return;
+                }
+
+                // Disable button while processing
+                this.disabled = true;
+                this.innerHTML = '<i class="bi bi-hourglass-split"></i> Applying...';
+
+                fetch('{{ route('cart.apply-coupon') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            'Accept': 'application/json'
+                        },
+                        body: JSON.stringify({
+                            code: code
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.success) {
+                            // Store coupon
+                            buyNowAppliedCoupon = data.coupon;
+
+                            // Update hidden field
+                            document.getElementById('buyNowCouponCode').value = data.coupon.code;
+
+                            // Show success message
+                            messageEl.textContent = data.message;
+                            messageEl.className = 'coupon-message success';
+
+                            // Add success animation
+                            const couponSection = document.querySelector('.buy-now-coupon-section');
+                            couponSection.classList.add('coupon-applied');
+                            setTimeout(() => couponSection.classList.remove('coupon-applied'), 300);
+
+                            // Recalculate totals
+                            calculateBuyNowTotals(currentQuantity);
+
+                            // Disable input after successful application
+                            document.getElementById('buyNowPromoCode').disabled = true;
+
+                        } else {
+                            messageEl.textContent = data.message;
+                            messageEl.className = 'coupon-message error';
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                        messageEl.textContent = 'Failed to apply coupon. Please try again.';
+                        messageEl.className = 'coupon-message error';
+                    })
+                    .finally(() => {
+                        // Re-enable button
+                        this.disabled = false;
+                        this.innerHTML = '<i class="bi bi-check2"></i> Apply';
+                    });
+            });
+        }
+
+        // Remove Coupon
+        const removeCouponBtn = document.getElementById('removeCouponBtn');
+        if (removeCouponBtn) {
+            removeCouponBtn.addEventListener('click', function() {
+                // Clear coupon
+                buyNowAppliedCoupon = null;
+                document.getElementById('buyNowCouponCode').value = '';
+                document.getElementById('buyNowPromoCode').value = '';
+                document.getElementById('buyNowPromoCode').disabled = false;
+                document.getElementById('buyNowCouponMessage').textContent = '';
+                document.getElementById('buyNowCouponMessage').className = 'coupon-message';
+
+                // Recalculate totals
+                calculateBuyNowTotals(currentQuantity);
+            });
+        }
+
+        // Allow Enter key to apply coupon
+        document.getElementById('buyNowPromoCode').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                document.getElementById('applyBuyNowCoupon').click();
+            }
+        });
+
+        // Payment option visual feedback
+        document.querySelectorAll('#buyNowModal .payment-option input').forEach(input => {
+            input.addEventListener('change', function() {
+                document.querySelectorAll('#buyNowModal .payment-option').forEach(opt => {
+                    opt.classList.remove('selected');
+                });
+                this.closest('.payment-option').classList.add('selected');
+            });
+        });
+    </script>
+
 
     {{-- <!-- Single Products Start -->
     <div class="container-fluid shop py-5">

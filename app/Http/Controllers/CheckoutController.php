@@ -21,14 +21,14 @@ class CheckoutController extends Controller
     public function index()
     {
         $cartItems = Cart::where('user_id', Auth::id())->with('product')->get();
-        $total = $cartItems->sum(fn ($item) => $item->quantity * $item->price);
+        $total = $cartItems->sum(fn($item) => $item->quantity * $item->price);
 
         return view('user.checkout', compact('cartItems', 'total'));
     }
 
     public function processPayment(Request $request)
     {
-        
+
         Log::info('PROCESS PAYMENT:', $request->all());
 
         $userId = Auth::id();
@@ -164,7 +164,7 @@ class CheckoutController extends Controller
             /** ---------------------------------------------
              * 8️⃣ If COD → Direct success page with ORDER ID
              * --------------------------------------------- */
-            
+
             if ($request->payment_method === 'COD') {
                 // Generate Invoice Number for COD
                 $order->update([
@@ -187,7 +187,6 @@ class CheckoutController extends Controller
                 'dbOrder' => $order,
                 'total' => $total,
             ]);
-
         } catch (\Exception $e) {
             DB::rollBack();
             Log::error('CHECKOUT ERROR:', ['message' => $e->getMessage()]);
@@ -273,7 +272,7 @@ class CheckoutController extends Controller
 
         /** Clear Cart */
         Cart::where('user_id', $userId)->delete();
-// dd('before thatnks');
+        // dd('before thatnks');
         // ✅ PASS ORDER ID TO SUCCESS PAGE
         return redirect()->route('thankyou', ['order' => $order->id])
             ->with('success', 'Payment Successful! Thank you for your order.');
@@ -293,6 +292,178 @@ class CheckoutController extends Controller
         $order->load(['items.product', 'user']);
 
         return view('user.order.thank-you', compact('order'));
+    }
+
+    /* ---------------------------------------------------------
+ * 🛒 BUY NOW - Direct Purchase (Skip Cart)
+ * --------------------------------------------------------- */
+    public function buyNow(Request $request)
+    {
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+        ]);
+
+        $product = Product::findOrFail($request->product_id);
+
+        // Check stock
+        if ($product->stock < $request->quantity) {
+            return back()->with('error', 'Insufficient stock available.');
+        }
+
+        $quantity = $request->quantity;
+        $color = $request->color ?? null;
+
+        // Calculate price
+        $price = $product->discount > 0
+            ? $product->price - ($product->price * $product->discount / 100)
+            : $product->price;
+
+        $subtotal = $price * $quantity;
+        $tax = $subtotal * 0.18;
+        $total = $subtotal + $tax;
+
+        return view('user.buy-now', compact('product', 'quantity', 'color', 'subtotal', 'tax', 'total'));
+    }
+
+    /* ---------------------------------------------------------
+ * 💳 PROCESS BUY NOW PAYMENT
+ * --------------------------------------------------------- */
+    public function processBuyNow(Request $request)
+    {
+        Log::info('PROCESS BUY NOW:', $request->all());
+
+        $userId = Auth::id();
+
+        $request->validate([
+            'product_id' => 'required|exists:products,id',
+            'quantity' => 'required|integer|min:1',
+            'first_name' => 'required|string',
+            'last_name' => 'required|string',
+            'email' => 'required|email',
+            'phone' => 'required|string',
+            'address' => 'required|string',
+            'city' => 'required|string',
+            'state' => 'required|string',
+            'zip' => 'required|string',
+            'country' => 'required|string',
+            'payment_method' => 'required|in:COD,Online',
+        ]);
+
+        $product = Product::findOrFail($request->product_id);
+
+        // Check stock
+        if ($product->stock < $request->quantity) {
+            return back()->with('error', 'Insufficient stock available.');
+        }
+
+        /** Calculate totals */
+        $quantity = $request->quantity;
+        $originalPrice = $product->price;
+        $discountPercent = $product->discount ?? 0;
+
+        $price = $discountPercent > 0
+            ? $originalPrice - ($originalPrice * $discountPercent / 100)
+            : $originalPrice;
+
+        $subtotal = $price * $quantity;
+        $discountAmount = ($originalPrice * $discountPercent / 100) * $quantity;
+        $couponDiscount = 0;
+        $shippingAmount = 0;
+
+        // Coupon calculation
+        if ($request->coupon_code === 'REFER50') {
+            $couponDiscount = $subtotal * 0.50;
+        }
+
+        $taxAmount = ($subtotal - $couponDiscount) * 0.18;
+        $total = ($subtotal - $couponDiscount) + $shippingAmount + $taxAmount;
+
+        DB::beginTransaction();
+
+        try {
+            $razorpayOrderId = null;
+
+            /** Create Razorpay order if Online */
+            if ($request->payment_method === 'Online') {
+                $api = new Api(env('RAZORPAY_KEY_ID'), env('RAZORPAY_SECRET'));
+
+                $razorpay = $api->order->create([
+                    'receipt' => Str::uuid(),
+                    'amount' => (int) ($total * 100),
+                    'currency' => 'INR',
+                ]);
+
+                $razorpayOrderId = $razorpay['id'];
+            }
+
+            /** Save Order */
+            $order = Order::create([
+                'user_id' => $userId,
+                'order_number' => $razorpayOrderId ?? ('ORD-' . Str::upper(Str::random(8))),
+                'subtotal' => $subtotal,
+                'discount_amount' => $discountAmount,
+                'coupon_discount' => $couponDiscount,
+                'coupon_code' => $request->coupon_code,
+                'tax_amount' => $taxAmount,
+                'shipping_amount' => $shippingAmount,
+                'total_amount' => $total,
+                'payment_status' => 'pending',
+                'order_status' => 'pending',
+                'payment_method' => $request->payment_method,
+                'currency' => 'INR',
+                'shipping_first_name' => $request->first_name,
+                'shipping_last_name' => $request->last_name,
+                'shipping_email' => $request->email,
+                'shipping_phone' => $request->phone,
+                'shipping_address' => $request->address,
+                'shipping_city' => $request->city,
+                'shipping_state' => $request->state,
+                'shipping_zip' => $request->zip,
+                'shipping_country' => $request->country,
+            ]);
+
+            /** Save Order Item */
+            OrderItem::create([
+                'order_id' => $order->id,
+                'product_id' => $product->id,
+                'product_name' => $product->name,
+                'product_sku' => $product->sku,
+                'product_image' => $product->main_image,
+                'quantity' => $quantity,
+                'price' => $originalPrice,
+                'discount' => $discountPercent,
+                'final_price' => $price * $quantity,
+                'tax_amount' => 0,
+                'status' => 'pending',
+            ]);
+
+            /** Reduce Stock */
+            $product->decrement('stock', $quantity);
+
+            DB::commit();
+
+            /** COD → Success Page */
+            if ($request->payment_method === 'COD') {
+                $order->update([
+                    'invoice_no' => 'INV-' . date('Ymd') . '-' . str_pad($order->id, 6, '0', STR_PAD_LEFT),
+                ]);
+
+                return redirect()->route('thankyou', ['order' => $order->id])
+                    ->with('success', 'Order placed successfully with Cash on Delivery!');
+            }
+
+            /** Online → Razorpay */
+            return view('user.razorpay', [
+                'order' => $razorpay,
+                'dbOrder' => $order,
+                'total' => $total,
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('BUY NOW ERROR:', ['message' => $e->getMessage()]);
+            return back()->with('error', 'Something went wrong. Try again.');
+        }
     }
 
     // public function index()

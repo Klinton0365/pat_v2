@@ -145,13 +145,6 @@ class CartController extends Controller
             // Check if coupon is expired
             $today = now();
 
-            // if ($coupon->start_date && $today->lt($coupon->start_date)) {
-            //     return response()->json([
-            //         'success' => false,
-            //         'message' => 'This coupon is not yet valid'
-            //     ]);
-            // }
-
             if ($coupon->end_date && $today->gt($coupon->end_date)) {
                 return response()->json([
                     'success' => false,

@@ -106,8 +106,6 @@ Route::middleware(['auth.ensure'])->group(function () {
 
     // Cart
     Route::get('/cart', [CartController::class, 'index'])->name('cart');
-    // Route::post('/cart/add', [CartController::class, 'addToCart'])->name('cart.add');
-    // Route::get('/cart/add/{product_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart/add/{product_id}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::post('/cart/update/{id}', [CartController::class, 'update'])->name('cart.update');
     Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
@@ -115,11 +113,12 @@ Route::middleware(['auth.ensure'])->group(function () {
     Route::post('/cart/prepare-checkout', [CartController::class, 'prepareCheckout'])->name('cart.prepare-checkout');
     Route::get('/cart/count', [CartController::class, 'count'])->name('cart.count');
     Route::delete('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
-    // Route::get('/cart/remove/{id}', [CartController::class, 'remove'])->name('cart.remove');
-    // Route::get('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
+
+    // Direct Buy Now (skip cart)
+    Route::post('/buy-now', [CheckoutController::class, 'buyNow'])->name('buy.now');
+    Route::post('/buy-now/process', [CheckoutController::class, 'processBuyNow'])->name('buy.now.process');
 
     // Checkout
-    // Route::get('/checkout', [CheckoutController::class, 'index'])->name('checkout');
     Route::get('/checkout', [ShopController::class, 'checkout'])->name('checkout');
     Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.process');
     Route::post('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
