@@ -8,6 +8,7 @@ use App\Models\Coupon;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
 
 class CartController extends Controller
 {
@@ -19,110 +20,46 @@ class CartController extends Controller
         return view('user.cart', compact('cartItems', 'categories'));
     }
 
-    // public function addToCart(Request $request)
-    // {
-    //     $product = Product::findOrFail($request->product_id);
-
-    //     $cartItem = Cart::updateOrCreate(
-    //         ['user_id' => Auth::id(), 'product_id' => $product->id],
-    //         ['quantity' => \DB::raw('quantity + 1'), 'price' => $product->price]
-    //     );
-
-    //     return response()->json(['success' => true, 'message' => 'Product added to cart']);
-    // }
-
-    // public function addToCart(Request $request)
-    // {
-    //     \Log::info('ADD TO CAR: ', $request->all());
-
-    //     $product = Product::findOrFail($request->product_id);
-
-    //     $cartItem = Cart::updateOrCreate(
-    //         ['user_id' => Auth::id(), 'product_id' => $product->id],
-    //         ['quantity' => \DB::raw('quantity + 1'), 'price' => $product->price]
-    //     );
-
-    //     return response()->json(['success' => true, 'message' => 'Product added to cart successfully!']);
-    // }
-
-    // public function addToCart(Request $request)
-    // {
-    //     \Log::info('ADD TO CART: ', $request->all());
-
-    //     $product = Product::findOrFail($request->product_id);
-
-    //     // Use updateOrCreate but increment quantity properly
-    //     $cartItem = Cart::firstOrNew([
-    //         'user_id' => Auth::id(),
-    //         'product_id' => $product->id,
-    //     ]);
-
-    //     $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
-    //     $cartItem->price = $product->price;
-    //     $cartItem->save();
-
-    //     // ✅ Redirect to cart page
-    //     return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
-    // }
-
-    // public function addToCart($product_id)
-    // {
-    //     \Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
-
-    //     $product = Product::findOrFail($product_id);
-
-    //     $cartItem = Cart::firstOrNew([
-    //         'user_id' => Auth::id(),
-    //         'product_id' => $product->id,
-    //     ]);
-
-    //     $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
-    //     $cartItem->price = $product->price;
-    //     $cartItem->save();
-
-    //     return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
-    // }
-
     public function addToCart($product_id)
-{
-    // Check if user is logged in
-    if (!Auth::check()) {
-        if (request()->ajax() || request()->wantsJson()) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Please login to add items to cart',
-                'redirect' => route('login')
-            ], 401);
+    {
+        // Check if user is logged in
+        if (!Auth::check()) {
+            if (request()->ajax() || request()->wantsJson()) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Please login to add items to cart',
+                    'redirect' => route('login')
+                ], 401);
+            }
+            return redirect()->route('login')->with('error', 'Please login to add items to cart');
         }
-        return redirect()->route('login')->with('error', 'Please login to add items to cart');
-    }
 
-    \Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
+        Log::info('ADD TO CART (GET): ', ['product_id' => $product_id]);
 
-    $product = Product::findOrFail($product_id);
+        $product = Product::findOrFail($product_id);
 
-    $cartItem = Cart::firstOrNew([
-        'user_id' => Auth::id(),
-        'product_id' => $product->id,
-    ]);
-
-    $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
-    $cartItem->price = $product->price;
-    $cartItem->save();
-
-    // Return JSON for AJAX requests
-    if (request()->ajax() || request()->wantsJson()) {
-        $cartCount = Cart::where('user_id', Auth::id())->sum('quantity');
-        
-        return response()->json([
-            'success' => true,
-            'message' => 'Product added to cart successfully!',
-            'cart_count' => $cartCount
+        $cartItem = Cart::firstOrNew([
+            'user_id' => Auth::id(),
+            'product_id' => $product->id,
         ]);
-    }
 
-    return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
-}
+        $cartItem->quantity = ($cartItem->exists ? $cartItem->quantity + 1 : 1);
+        $cartItem->price = $product->price;
+        $cartItem->save();
+
+        // Return JSON for AJAX requests
+        if (request()->ajax() || request()->wantsJson()) {
+            $cartCount = Cart::where('user_id', Auth::id())->sum('quantity');
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Product added to cart successfully!',
+                'cart_count' => $cartCount
+            ]);
+        }
+
+        return redirect()->route('cart')->with('success', 'Product added to cart successfully!');
+    }
 
     // Update cart quantity
     public function update(Request $request, $id)
@@ -186,8 +123,8 @@ class CartController extends Controller
     public function applyCoupon(Request $request)
     {
         try {
-            \Log::info('Applying coupon', ['code' => $request->code]);
-            
+            Log::info('Applying coupon', ['code' => $request->code]);
+
             $request->validate([
                 'code' => 'required|string',
             ]);
@@ -196,7 +133,7 @@ class CartController extends Controller
                 ->where('is_active', true)
                 ->first();
 
-            \Log::info('Coupon found', ['coupon' => $coupon]);
+            Log::info('Coupon found', ['coupon' => $coupon]);
 
             if (!$coupon) {
                 return response()->json([
@@ -207,7 +144,7 @@ class CartController extends Controller
 
             // Check if coupon is expired
             $today = now();
-            
+
             // if ($coupon->start_date && $today->lt($coupon->start_date)) {
             //     return response()->json([
             //         'success' => false,
@@ -240,7 +177,7 @@ class CartController extends Controller
                 'value' => floatval($coupon->value),
             ]]);
 
-            \Log::info('Coupon applied successfully', ['coupon' => $coupon->code]);
+            Log::info('Coupon applied successfully', ['coupon' => $coupon->code]);
 
             return response()->json([
                 'success' => true,
@@ -251,9 +188,8 @@ class CartController extends Controller
                     'value' => floatval($coupon->value),
                 ]
             ]);
-
         } catch (\Exception $e) {
-            \Log::error('Coupon application error', [
+            Log::error('Coupon application error', [
                 'message' => $e->getMessage(),
                 'trace' => $e->getTraceAsString()
             ]);
@@ -312,7 +248,7 @@ class CartController extends Controller
     public function count()
     {
         $count = Cart::where('user_id', Auth::id())->sum('quantity');
-        
+
         return response()->json([
             'success' => true,
             'count' => $count

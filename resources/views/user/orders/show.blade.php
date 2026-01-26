@@ -25,7 +25,7 @@
 
                 @foreach($order->items as $item)
                     <div class="d-flex mb-3">
-                        <img src="{{ asset('uploads/products/' . $item->product_image) }}" 
+                        <img src="{{ asset($item->product_image) }}" 
                              width="70" height="70" class="rounded">
 
                         <div class="ms-3">

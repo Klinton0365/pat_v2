@@ -17,6 +17,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\ServiceBookingController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\User\OrderController;
@@ -123,9 +124,15 @@ Route::middleware(['auth.ensure'])->group(function () {
     Route::post('/checkout/process', [CheckoutController::class, 'processPayment'])->name('checkout.process');
     Route::post('/payment/success', [CheckoutController::class, 'paymentSuccess'])->name('payment.success');
 
-    Route::get('/thankyou', function () {
-        return view('user.order.thank-you');
-    })->name('thankyou');
+    Route::get('/thank-you/{order}', [CheckoutController::class, 'thankyou'])->name('thankyou');
+
+    // Invoice Routes
+    Route::get('/invoice/{order}/download', [InvoiceController::class, 'download'])->name('invoice.download');
+    Route::get('/invoice/{order}/view', [InvoiceController::class, 'view'])->name('invoice.view');
+
+    // Route::get('/thankyou', function () {
+    //     return view('user.order.thank-you');
+    // })->name('thankyou');
 
     // User Orders & Services
     Route::prefix('user')->group(function () {

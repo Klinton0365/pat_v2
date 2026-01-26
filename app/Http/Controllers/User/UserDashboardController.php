@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Order;
 use App\Models\Service;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Http\Request;
 
 class UserDashboardController extends Controller
 {
@@ -34,31 +34,21 @@ class UserDashboardController extends Controller
         return view('user.orders.index', compact('orders'));
     }
 
-    // public function orderShow(Order $order)
-    // {
-    //     if ($order->user_id !== Auth::id()) {
-    //         abort(403);
-    //     }
-
-    //     $order->load('items.product');
-
-    //     return view('user.orders.show', compact('order'));
-    // }
     public function orderShow($id)
-{
-    // Fetch order only if it belongs to the authenticated user
-    $order = Order::where('id', $id)
-        ->where('user_id', Auth::id())
-        ->with(['items.product'])
-        ->first();
+    {
+        // Fetch order only if it belongs to the authenticated user
+        $order = Order::where('id', $id)
+            ->where('user_id', Auth::id())
+            ->with(['items.product'])
+            ->first();
 
-    // If no order found or unauthorized
-    if (! $order) {
-        abort(403, 'Unauthorized access to this order.');
+        // If no order found or unauthorized
+        if (! $order) {
+            abort(403, 'Unauthorized access to this order.');
+        }
+
+        return view('user.orders.show', compact('order'));
     }
-
-    return view('user.orders.show', compact('order'));
-}
 
 
     public function profileIndex()

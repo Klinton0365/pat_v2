@@ -1736,7 +1736,7 @@
         box-shadow: var(--shadow-lg);
         max-width: 640px;
         width: 100%;
-        max-height: 90vh;
+        /* max-height: 90vh; */
         display: flex;
         flex-direction: column;
         animation: modalFadeIn 0.3s ease;
