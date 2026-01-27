@@ -820,8 +820,8 @@
                 </div>
                 <h4 class="info-title">Visit Us</h4>
                 <p class="info-text">
-                    123 Street, Pure Aqua Tech<br>
-                    New York, USA
+                    SSNM Complex, Vella Vinayager Kovil, Thuvarankurichi, Trichy-621314<br>
+                    Tamil Nadu, India
                 </p>
             </div>
 
@@ -831,8 +831,8 @@
                 </div>
                 <h4 class="info-title">Email Us</h4>
                 <p class="info-text">
-                    <a href="mailto:info@pureaquatech.com">info@pureaquatech.com</a><br>
-                    <a href="mailto:support@pureaquatech.com">support@pureaquatech.com</a>
+                    <a href="mailto:info@pureaquatech.in">info@pureaquatech.in</a><br>
+                    <a href="mailto:support@pureaquatech.in">support@pureaquatech.in</a>
                 </p>
             </div>
 
@@ -842,8 +842,8 @@
                 </div>
                 <h4 class="info-title">Call Us</h4>
                 <p class="info-text">
-                    <a href="tel:+1234567890">+1 (234) 567-890</a><br>
-                    <a href="tel:+0987654321">+0 (987) 654-321</a>
+                    <a href="tel:+919994969939">+91 9994969939</a><br>
+                    <a href="tel:+919994969939">+91 9994969939</a>
                 </p>
             </div>
 
@@ -867,13 +867,13 @@
             <a href="#" class="social-link twitter" title="Twitter">
                 <i class="bi bi-twitter-x"></i>
             </a>
-            <a href="#" class="social-link instagram" title="Instagram">
+            <a href="https://www.instagram.com/pureaquatech.in?igsh=Y296cTI3YWtuc3Fm" class="social-link instagram" title="Instagram">
                 <i class="bi bi-instagram"></i>
             </a>
             <a href="#" class="social-link linkedin" title="LinkedIn">
                 <i class="bi bi-linkedin"></i>
             </a>
-            <a href="#" class="social-link whatsapp" title="WhatsApp">
+            <a href="https://wa.me/919994969939?text=Hello%20Pure%20Aqua%20Tech%20Team,%20I%20would%20like%20to%20enquire%20about%20your%20water%20purifier%20products%20and%20services.%20Please%20contact%20me.%20Thank%20you." class="social-link whatsapp" title="WhatsApp">
                 <i class="bi bi-whatsapp"></i>
             </a>
         </div>

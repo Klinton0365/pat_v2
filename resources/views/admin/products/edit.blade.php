@@ -74,9 +74,6 @@
 
                     <div class="mb-3">
                         <label for="colors" class="form-label">Available Colors</label>
-                        {{-- <select name="colors[]" class="form-control" multiple>
-                            <option value="Red" {{ in_array('Red', $product->colors) ? 'selected' : '' }}>Red</option>
-                        </select> --}}
                         <select name="colors[]" class="form-control" multiple>
                             @foreach ($product->colors ?? [] as $color)
                                 <option value="{{ $color }}" selected>{{ $color }}</option>
@@ -128,37 +125,6 @@
                         @enderror
                     </div>
 
-                    {{-- <div class="mb-3 text-start">
-                        <label for="product_images" class="form-label">Product Images (Multiple)</label>
-
-                        <input type="file" name="product_images[]" class="form-control" accept="image/*" multiple>
-
-                        <div class="mt-2 d-flex flex-wrap">
-                            @foreach ($product->product_images as $img)
-                                <div class="image-box me-3 mb-3" style="position: relative;">
-                                    
-                                    <img src="{{ asset($img) }}" 
-                                        width="90" height="90" 
-                                        style="object-fit:cover;border:1px solid #666; border-radius:6px;">
-
-
-                                    <button type="button"
-                                            class="btn btn-sm btn-danger delete-image-btn"
-                                            data-image="{{ $img }}"
-                                            data-id="{{ $product->id }}"
-                                            style="position:absolute; top:-6px; right:-6px; padding:2px 6px; font-size:11px;">
-                                        X
-                                    </button>
-
-                                </div>
-                            @endforeach
-                        </div>
-
-                        @error('product_images')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div> --}}
-
                     <div class="mt-2 d-flex flex-wrap">
                         @foreach ($product->product_images ?? [] as $img)
                             <div class="image-box me-3 mb-3" style="position: relative;">
@@ -174,7 +140,6 @@
                             </div>
                         @endforeach
                     </div>
-
 
                     <button type="submit" class="btn btn-warning">Update</button>
                     <a href="{{ route('products.index') }}" class="btn btn-secondary">Cancel</a>

@@ -474,7 +474,7 @@
                 <div class="social-icons">
                     <a href="#" class="social-icon"><i class="fab fa-facebook-f"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-twitter"></i></a>
-                    <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/pureaquatech.in?igsh=Y296cTI3YWtuc3Fm" class="social-icon"><i class="fab fa-instagram"></i></a>
                     <a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i></a>
                 </div>
                 <div class="security-badge">
@@ -496,12 +496,12 @@
                     <i class="fas fa-copyright"></i> 2024 <a href="#">Pure Aqua Tech</a>. All rights reserved.
                 </div> --}}
                 <div class="copyright">
-    © 2025 Pure Aqua Tech. All rights reserved.
-    <span style="color:#aaa;"> | Designed & Developed by 
-        <a href="https://wa.me/917339047488" target="_blank" style="color:#4facfe;">Klinton A</a>
+                    © 2025 Pure Aqua Tech. All rights reserved.
+                    <span style="color:#aaa;"> | Designed & Developed by
+                        <a href="https://wa.me/917339047488" target="_blank" style="color:#4facfe;">Klinton A</a>
 
-    </span>
-</div>
+                    </span>
+                </div>
 
 
                 {{-- <div class="footer-credits">
@@ -521,7 +521,7 @@
 
 <script>
     // Smooth scroll for back to top
-    document.querySelector('.back-to-top').addEventListener('click', function (e) {
+    document.querySelector('.back-to-top').addEventListener('click', function(e) {
         e.preventDefault();
         window.scrollTo({
             top: 0,
@@ -530,7 +530,7 @@
     });
 
     // Show/hide back to top button
-    window.addEventListener('scroll', function () {
+    window.addEventListener('scroll', function() {
         const backToTop = document.querySelector('.back-to-top');
         if (window.pageYOffset > 300) {
             backToTop.style.display = 'flex';
