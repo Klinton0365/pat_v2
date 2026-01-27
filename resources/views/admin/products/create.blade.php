@@ -51,6 +51,10 @@
                         <label for="slug" class="form-label">Slug</label>
                         <input type="text" name="slug" class="form-control"
                             value="{{ old('slug', $product->slug ?? '') }}">
+
+                        @error('slug')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="mb-3">
